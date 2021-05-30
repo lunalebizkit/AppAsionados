@@ -5,33 +5,32 @@
                 <h1 class="formu">AppAsionados</h1>
             </div>
             <div class="col-md-4 py-5">
-                <div id="card" class="card">
+                <div class="card">
                     <div class="card-header">
-                        <h3>Registro</h3>
+                        <h3>Ingresar</h3>
                     </div>
                     <div class="card-body">
-                        <form action="/paginas/registro" method="post">
+                        <form action="/paginas/ingreso" method="post">
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" name="usuario" placeholder="Usuario" autofocus >
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="contrasenia" placeholder="Contraseña" >
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="nombre" placeholder="Nombre" >
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="apellido" placeholder="Apellido">
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="email"  class="form-control" name="e_mail" placeholder="E-mail" >
+                                <input type="password" class="form-control" name="contrasenia" placeholder="Contraseña" >
                             </div>
                             <div class="d-grid mb-2">
                                 <button type="submit" class="btn btn-success btn-block">
-                                    Registrar
+                                    Entrar
                                 </button>
                             </div>
                         </form>
+                    </div>
+                    <div class="card-footer">
+                        <span><b>¿Aún no tienes cuenta? </b></span>
+                        <div class="d-grid mb-2">
+                        <button onclick="location.href='/paginas/registro'" class="btn btn-info btn-block" >
+                           <span style="color: white">Crear Usuario</span> 
+                        </button>
+                        </div>
                     </div>
                 </div>
             </div>

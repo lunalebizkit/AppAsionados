@@ -2,11 +2,14 @@ const express = require ('express');
 const morgan = require ('morgan');
 const exphbs= require('express-handlebars');
 const path= require('path');
-const { urlencoded } = require('express');
-
+const session= require('express-session');
+const passport= require('passport'); 
+const MySQLStore = require('express-mysql-session');
+const { dataBase } = require('./keys');
 // Iniciar
 
 const aplicacion= express();
+require('./lib/passport');
 
 
 //Configuracion
@@ -22,6 +25,12 @@ aplicacion.engine('.hbs', exphbs({
 aplicacion.set('view engine', '.hbs');
 
 //middeleware
+aplicacion.use(session({
+    secret: 'aleLuna',
+    resave: false,
+    saveUninitialized: false,
+    store: new MySQLStore(dataBase)
+}));
 aplicacion.use(morgan('dev'));
 aplicacion.use(express.urlencoded({extended: false}));
 aplicacion.use(express.json());
@@ -29,6 +38,8 @@ aplicacion.use(express.json());
 aplicacion.use((req, res, next) => {
     next();
 });
+aplicacion.use(passport.initialize());
+aplicacion.use(passport.session());
 //Routes
 aplicacion.use(require('./routes'));
 aplicacion.use(require('./routes/autenticacion'));

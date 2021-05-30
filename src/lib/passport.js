@@ -26,14 +26,9 @@ passport.use('local.ingreso', new LocalStrategy({
     passwordField: 'contrasenia',
     passReqToCallback: true
 }, async (req, usuario, contrasenia, done)=>{
-    const {e_mail} =req.body;
     const newUsuario = {
         usuario,
-        contrasenia,
-        nombre,
-        apellido,
-        e_mail
-
+        contrasenia
     }
     console.log(req.body);
 }));

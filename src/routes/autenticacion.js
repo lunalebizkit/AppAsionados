@@ -8,7 +8,7 @@ ruta.get('/registro', (req, res)=> {
 });
 ruta.post('/registro', passport.authenticate('local.registro', {
         successRedirect: '/profile',
-        failureRedirect: '/registro',
+        failureRedirect: '/profile', //esto es provisorio tiene que ir /registro
         failureFlash: true
 }));
 ruta.get('/profile', (req, res)=>{

@@ -9,7 +9,7 @@ ruta.get('/registro', (req, res)=> {
 ruta.post('/registro', passport.authenticate('local.registro', {
         successRedirect: '/profile',
         failureRedirect: '/profile', //esto es provisorio tiene que ir /registro
-        failureFlash: true
+        // failureFlash: true
 }));
 ruta.get('/profile', (req, res)=>{
     res.send('profile');

@@ -1,39 +1,56 @@
 <main class="formulario">
     <div class="container">
-        <div class="row justify-content-between">
-            <div class="col-md-4 p-3">
-                <h1 class="formu">AppAsionados</h1>
+        <div class="row">
+
+            <div class="col-md-5 p-2">
+                <h1 class="app">APPasionados</h1>
             </div>
-            <div class="col-md-4 py-5">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Ingresar</h3>
-                    </div>
-                    <div class="card-body">
-                        <form action="/ingreso" method="post">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="usuario" placeholder="Usuario" autofocus >
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="password" class="form-control" name="contrasenia" placeholder="Contraseña" >
-                            </div>
+
+            <div class="row row justify-content-between">
+                <div class="col-md-8">
+                    <h2 id="eslogan" class="p-3">Tus deportes favoritos en una sola App, <br>sé un APPasionado más!</h2>
+                </div>
+                <div class="col-md-4 py-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Ingresar</h3>
+                        </div>
+                        <div class="card-body">
+                            <form action="/ingreso" method="post">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" name="usuario" placeholder="Usuario"
+                                        autofocus>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="password" class="form-control" name="contrasenia"
+                                        placeholder="Contraseña">
+                                </div>
+                                <div class="d-grid mb-2">
+                                    <button type="submit" class="btn btn-success btn-block">
+                                        Entrar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer">
+                            <span><b>¿Aún no tienes cuenta? </b></span>
                             <div class="d-grid mb-2">
-                                <button type="submit" class="btn btn-success btn-block">
-                                    Entrar
+                                <button onclick="location.href='/registro'" class="btn btn-info btn-block">
+                                    <span style="color: white">Crear Usuario</span>
                                 </button>
                             </div>
-                        </form>
-                    </div>
-                    <div class="card-footer">
-                        <span><b>¿Aún no tienes cuenta? </b></span>
-                        <div class="d-grid mb-2">
-                        <button onclick="location.href='/registro'" class="btn btn-info btn-block" >
-                           <span style="color: white">Crear Usuario</span> 
-                        </button>
+                            <span><b>¿Quieres proponer tu espacio deportivo? </b></span>
+                            <div class="d-grid mb-2">
+                                <button onclick="location.href='/registro'" class="btn btn-info btn-block">
+                                    <span style="color: white">Registrar </span>
+                                </button>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </main>

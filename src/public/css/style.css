@@ -12,11 +12,22 @@ h1 {
 h3 {
        color: rgba(39, 35, 243, 0.966);
 }
+#eslogan {
+    font-family: 'Dosis', sans-serif;
+    font-family: 'Lobster', cursive;
+    color: rgb(14, 13, 13);
+}
 .py-5 {
        margin-top: 4.5rem;
  }
- .formu {
-     color: rgb(255, 255, 255);
+ .app {
+    font-family: 'Dosis', sans-serif;
+    font-family: 'Lobster', cursive;
+     color: rgb(8, 189, 62);
+     margin-left: 3rem;
+     font-size: 80px;
+     padding-top: 2rem;
+
  }
 
  #sidebarMenu {
@@ -25,7 +36,7 @@ h3 {
         background-color: rgb(202, 236, 202);
  }
  .formulario {
-       background-image: url(../img/stadium.jpg);
+       background-image: url(../img/fut.jpg);
        background-position: center center;
        background-repeat: no-repeat;
        background-size: cover;
@@ -37,6 +48,7 @@ h3 {
    }
 .card {
     border-radius: 0.5rem;
+    opacity: 0.8;
 }
 .card-header, .card-footer {
     border-style: none;

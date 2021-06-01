@@ -13,8 +13,8 @@ h3 {
        color: rgba(39, 35, 243, 0.966);
 }
 #eslogan {
-    font-family: 'Dosis', sans-serif;
-    font-family: 'Lobster', cursive;
+    /* font-family: 'Dosis', sans-serif;
+    font-family: 'Lobster', cursive; */
     color: rgb(255, 255, 255);
 }
 .py-5 {
@@ -41,10 +41,10 @@ h3 {
        background-repeat: no-repeat;
        background-size: cover;
        background-attachment: fixed;
-       height: 39rem;
+        /* height: 39rem; */
        padding-bottom: 0%;
        margin-bottom: 0%;
-       
+
    }
 .card {
     border-radius: 0.5rem;

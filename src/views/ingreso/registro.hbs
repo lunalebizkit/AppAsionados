@@ -1,8 +1,10 @@
 <main class="formulario">
     <div class="container">
         <div class="row justify-content-between">
-            <div class="col-md-4 p-3">
-                <h1 class="formu">AppAsionados</h1>
+            <div class="col-md-4 py-5">
+                <!--agregue logo de la app -->
+                <a title="logoApp" href='/inicio' ><img src="/img/logo4.png" alt="logoApp" width="250"/></a>
+                <!--<h1 class="formu">AppAsionados</h1>-->
             </div>
             <div class="col-md-4 py-5">
                 <div id="card" class="card">
@@ -28,10 +30,18 @@
                             </div>
                             <div class="d-grid mb-2">
                                 <button type="submit" class="btn btn-success btn-block">
-                                    Registrar
+                                    Registrarte
                                 </button>
                             </div>
                         </form>
+                    </div>
+                    <div class="card-footer">
+                        <span><b>¿Tienes una cuenta? </b></span>
+                        <div class="d-grid mb-2">
+                        <button onclick="location.href='/ingreso'" class="btn btn-primary btn-block" >
+                           <span style="color: white">Inicia sesión</span> 
+                        </button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,8 +1,10 @@
 <main class="formulario">
     <div class="container">
         <div class="row justify-content-between">
-            <div class="col-md-4 p-3">
-                <h1 class="formu">AppAsionados</h1>
+            <div class="col-md-4 py-5">
+                <!--agregue logo de la app -->
+                <a title="logoApp" href='/inicio' ><img src="/img/logo4.png" alt="logoApp" width="250"/></a>
+                <!--<h1 class="formu">AppAsionados</h1>-->
             </div>
             <div class="col-md-4 py-5">
                 <div class="card">
@@ -10,7 +12,7 @@
                         <h3>Ingresar</h3>
                     </div>
                     <div class="card-body">
-                        <form action="/ingreso" method="post">
+                        <form action="/ingreso" method="POST">
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" name="usuario" placeholder="Usuario" autofocus >
                             </div>
@@ -19,7 +21,7 @@
                             </div>
                             <div class="d-grid mb-2">
                                 <button type="submit" class="btn btn-success btn-block">
-                                    Entrar
+                                    Iniciar sesión
                                 </button>
                             </div>
                         </form>
@@ -27,8 +29,8 @@
                     <div class="card-footer">
                         <span><b>¿Aún no tienes cuenta? </b></span>
                         <div class="d-grid mb-2">
-                        <button onclick="location.href='/registro'" class="btn btn-info btn-block" >
-                           <span style="color: white">Crear Usuario</span> 
+                        <button onclick="location.href='/registro'" class="btn btn-primary btn-block" >
+                           <span style="color: white">Regístrate</span> 
                         </button>
                         </div>
                     </div>

@@ -6,6 +6,7 @@ const session= require('express-session');
 const passport= require('passport'); 
 const MySQLStore = require('express-mysql-session');
 const { dataBase } = require('./keys');
+const mensaje= require('connect-flash');
 // Iniciar
 
 const aplicacion= express();
@@ -25,6 +26,7 @@ aplicacion.engine('.hbs', exphbs({
 aplicacion.set('view engine', '.hbs');
 
 //middeleware
+aplicacion.use(mensaje());
 aplicacion.use(session({
     secret: 'aleLuna',
     resave: false,
@@ -36,6 +38,7 @@ aplicacion.use(express.urlencoded({extended: false}));
 aplicacion.use(express.json());
 //Global variables
 aplicacion.use((req, res, next) => {
+    aplicacion.locals.mensajeOk=req.flash('mensajeOk');
     next();
 });
 aplicacion.use(passport.initialize());

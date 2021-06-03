@@ -22,6 +22,7 @@ ruta.post('/ingreso', async (req, res, next)=> {
 
     console.log(req.body);
     console.log(req.params);
+    req.flash('mensajeOk', 'El mensaje de todo bien');
     res.send('A dentro');
 });
 // ruta.post('/registro', (req, res) =>{

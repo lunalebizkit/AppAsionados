@@ -4,12 +4,12 @@ const passport= require('passport');
 
 
 ruta.get('/registro', (req, res)=> {
-    res.render('ingreso/registro');
+    res.render('ingreso/registro'); 
 });
 ruta.post('/registro', passport.authenticate('local.registro', {
         successRedirect: '/profile',
-        failureRedirect: '/profile', //esto es provisorio tiene que ir /registro
-        // failureFlash: true
+        failureRedirect: '/registro', //esto es provisorio tiene que ir /registro
+        failureFlash: true
 }));
 ruta.get('/profile', (req, res)=>{
     res.send('profile');
@@ -22,8 +22,10 @@ ruta.post('/ingreso', async (req, res, next)=> {
 
     console.log(req.body);
     console.log(req.params);
-    req.flash('mensajeOk', 'El mensaje de todo bien');
-    res.send('A dentro');
+    req.flash('mensajeOk', 'Usuario ingresado correctamente');
+    res.render('paginas/profile');
+    
+    
 });
 // ruta.post('/registro', (req, res) =>{
 //     const {usuario, contrasenia, nombre, apellido, e_mail} = req.body

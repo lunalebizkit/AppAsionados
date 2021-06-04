@@ -7,13 +7,20 @@ const passport= require('passport');
 const MySQLStore = require('express-mysql-session');
 const { dataBase } = require('./keys');
 const mensaje= require('connect-flash');
-// Iniciar
 
+
+
+/* Iniciar
+------------------------------------------------------------------------------
+*/
 const aplicacion= express();
 require('./lib/passport');
 
 
-//Configuracion
+/*Configuracion
+----------------------------------------------------------------------
+*/
+
 aplicacion.set('port', process.env.PORT || 8000);
 aplicacion.set('views', path.join(__dirname, 'views'));
 aplicacion.engine('.hbs', exphbs({

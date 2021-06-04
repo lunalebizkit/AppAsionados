@@ -1,24 +1,38 @@
 .jumbotron{
-    background-image:url(/img/fut.jpg);
-    background-position: center;
-    background-size: cover;
-    opacity: 0.8;
-    height: 5rem;
+  background-image:url(/img/fut.jpg);
+  background-position: center;
+  background-size: cover;
+  opacity: 0.8;
+  height: 5rem;
 
 }
-h1 {
-       color: white;   
+.inicio {
+  background-image: url(../img/imgInicio.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 39rem;
+  padding-bottom: 0%;
+  margin-bottom: 0%;
 }
+
 h3 {
-       color: rgba(39, 35, 243, 0.966);
+  color: rgb(6, 100, 189);
+}
+
+h6 {
+  color: rgba(0, 0, 0, 0.575);
+  text-align: center;
 }
 #eslogan {
     /* font-family: 'Dosis', sans-serif;
     font-family: 'Lobster', cursive; */
     color: rgb(255, 255, 255);
 }
+
 .py-5 {
-       margin-top: 4.5rem;
+  margin-top: 4.5rem;
  }
  .app {
     /* font-family: 'Dosis', sans-serif; */
@@ -28,12 +42,15 @@ h3 {
      font-size: 80px;
      padding-top: 2rem;
 
+
+.formu {
+  color: rgb(255, 255, 255);
  }
 
- #sidebarMenu {
-       position: fixed;
-       top: 8rem;
-        background-color: rgb(202, 236, 202);
+#sidebarMenu {
+  position: fixed;
+  top: 8rem;
+  background-color: rgb(202, 236, 202);
  }
  .formulario {
        background-image: url(../img/verde1.jpg);
@@ -49,8 +66,68 @@ h3 {
 .card {
     border-radius: 0.5rem;
     opacity: 0.8;
+
+.formulario {
+  background-image: url(../img/fondoImg.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 39rem;
+  padding-bottom: 0%;
+  margin-bottom: 0%;
+       
 }
+
+.card {
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
 .card-header, .card-footer {
-    border-style: none;
+  border-style: none;
    
+}
+
+.futbol {
+  background-color: rgba(19, 95, 0, 0.555);
+  background-image: url(../img/fut1.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 39rem;
+    
+}
+
+.tablaEquipo {
+  background: rgba(255, 254, 254, 0.61);
+}
+
+  /* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  background: rgba(0, 0, 0, 0.651);
+  bottom: 3rem;
+  z-index: 10;
+}
+  
+  /* Declare heights because of positioning of img element */
+.carousel-item {
+  height: 33rem;
+}
+
+.citaAutor {
+  font-style: italic;
+}
+  
+.btnCentro {
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+}
+
+.linkCentro {
+  background: rgba(255, 255, 255, 0.452);
+  width:230px; 
+  margin: 70px 
 }

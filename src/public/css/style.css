@@ -86,7 +86,7 @@ h6 {
   
   /* Declare heights because of positioning of img element */
 .carousel-item {
-  height: 33rem;
+  height: 34rem;
 }
 
 .citaAutor {
@@ -103,4 +103,13 @@ h6 {
   background: rgba(255, 255, 255, 0.452);
   width:230px; 
   margin: 70px 
+}
+
+.offcanvas {
+  background: rgba(216, 216, 216, 0.897);
+  color: rgb(0, 0, 0);
+}
+
+.mailUsuario {
+  color: rgb(95, 95, 95);
 }

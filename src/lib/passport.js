@@ -25,7 +25,7 @@ passport.serializeUser((user,done)=>{
     done(null, user.id);
 }); 
 passport.deserializeUser( async (id, done)=>{
-    const vuelta= await db.query('Select * from usuarios Where idUsuarios = ?', [id]);
+    // const vuelta= await db.query('Select * from usuarios Where idUsuarios = ?', [id]);
     done(null, vuelta[0]);
 });
 passport.use('local.ingreso', new LocalStrategy({

@@ -2,30 +2,8 @@ const express= require('express');
 const ruta= express.Router();
 const passport= require('passport');
 
-//Agregue pantalla inicio
-ruta.get('/', (req, res) => {
-    res.render('ingreso/inicio');
-});
 
-//Agregue pantalla equipo
-ruta.get('/equipo', async (req, res) => {
-    res.render('ingreso/equipo');
-});
 
-//agregue pantalla futbol
-ruta.get('/futbol', async (req, res) => {
-    res.render('ingreso/futbol');
-});
-
-//agregue pantalla deporte
-ruta.get('/deporte', async (req, res) => {
-    res.render('ingreso/deporte');
-});
-
-//Agregue pantalla inicio
-ruta.get('/inicio', async (req, res) => {
-    res.render('ingreso/inicio');
-});
 
 ruta.get('/registro', (req, res)=> {
     res.render('ingreso/registro'); 
@@ -46,7 +24,7 @@ ruta.post('/ingreso', async (req, res, next)=> {
 
     console.log(req.body);
     console.log(req.params);
-    res.render('ingreso/deporte');
+    res.render('paginas/deporte');
 });
 // ruta.post('/registro', (req, res) =>{
 //     const {usuario, contrasenia, nombre, apellido, e_mail} = req.body

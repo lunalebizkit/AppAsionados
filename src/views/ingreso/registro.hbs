@@ -1,10 +1,17 @@
 <main class="formulario">
     <div class="container">
-        <div class="row justify-content-between">
-            <div class="col-md-4 p-3">
-                <h1 class="formu">AppAsionados</h1>
+        <div class="row">
+            <div class="col-md-5 p-2">
+                <h1 class="app">APPasionados</h1>
             </div>
+        </div>
+        <div class="row justify-content-between">
             <div class="col-md-4 py-5">
+                <!--agregue logo de la app -->
+                <a title="logoApp" href='/inicio' ><img src="/img/logo4.png" alt="logoApp" width="250"/></a>
+                <!--<h1 class="formu">AppAsionados</h1>-->
+            </div>
+            <div class="col-md-4 py-4">
                 <div id="card" class="card">
                     <div class="card-header">
                         <h3>Registro</h3>
@@ -12,26 +19,34 @@
                     <div class="card-body">
                         <form action="/registro" method="POST">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="usuario" placeholder="Usuario" autofocus >
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="password" class="form-control" name="contrasenia" placeholder="Contraseña" >
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="nombre" placeholder="Nombre" >
+                                <input type="text" class="form-control" name="nombre" placeholder="Nombre" autofocus>
                             </div>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" name="apellido" placeholder="Apellido">
                             </div>
+                             <div class="input-group mb-3">
+                                <input type="email" class="form-control" name="email" placeholder="E-mail">
+                            </div>
                             <div class="input-group mb-3">
-                                <input type="email"  class="form-control" name="e_mail" placeholder="E-mail" >
+                                <input type="text" class="form-control" name="nombreUsuario" placeholder="Usuario">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="password" class="form-control" name="contrasenia" placeholder="Contraseña">
                             </div>
                             <div class="d-grid mb-2">
                                 <button type="submit" class="btn btn-success btn-block">
-                                    Registrar
+                                    Registrarte
                                 </button>
                             </div>
                         </form>
+                    </div>
+                    <div class="card-footer">
+                        <span><b>¿Tienes una cuenta? </b></span>
+                        <div class="d-grid mb-2">
+                        <button onclick="location.href='/ingreso'" class="btn btn-primary btn-block" >
+                           <span style="color: white">Inicia sesión</span> 
+                        </button>
+                        </div>
                     </div>
                 </div>
             </div>

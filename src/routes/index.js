@@ -3,7 +3,7 @@ const ruta = express.Router();
 
 
 ruta.get('/', (req, res) => {
-    res.send('Hola');
+   res.render('paginas/inicio');
 });
 
 

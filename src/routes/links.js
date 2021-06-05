@@ -2,22 +2,29 @@ const express= require('express');
 const ruta= express.Router();
 const db= require('../database');
 
+//Agregue pantalla inicio
+ruta.get('/', (req, res) => {
+    res.render('ingreso/inicio');
+});
+//Agregue pantalla equipo
+ruta.get('/equipo', async (req, res) => {
+    res.render('paginas/equipo');
+});
 
-// ruta.get('/registro', (req, res) =>{
-//     res.render('paginas/registro');
-// });
-// ruta.post('/registro', (req, res) =>{
-//     const {usuario, contrasenia, nombre, apellido, e_mail} = req.body
-//     const newUsuario = {
-//         usuario,
-//         contrasenia,
-//         nombre,
-//         apellido, 
-//         e_mail
-//     }
-//     console.log(req.body);
-//     res.send('recibido');
-// });
+//agregue pantalla futbol
+ruta.get('/futbol', async (req, res) => {
+    res.render('paginas/futbol');
+});
+
+//agregue pantalla deporte
+ruta.get('/deporte', async (req, res) => {
+    res.render('paginas/deporte');
+});
+
+//Agregue pantalla inicio
+ruta.get('/inicio', async (req, res) => {
+    res.render('ingreso/inicio');
+});
 
 
 module.exports= ruta;

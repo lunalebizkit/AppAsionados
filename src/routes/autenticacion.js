@@ -19,10 +19,10 @@ ruta.get('/ingreso', (req, res) =>  {
 });
 ruta.post('/ingreso', async (req, res, next)=> {
     passport.authenticate('local.ingreso', {
-        successRedirect: '/inicio',
+        successRedirect: 'paginas/deporte',
         failureRedirect: '/ingreso',
         failureFlash: true
-    })(req, res, next);
+    })(req, res, next)
 });
 
 module.exports= ruta;

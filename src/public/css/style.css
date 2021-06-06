@@ -1,11 +1,3 @@
-.jumbotron{
-  background-image:url(/img/fut.jpg);
-  background-position: center;
-  background-size: cover;
-  opacity: 0.8;
-  height: 5rem;
-
-}
 .inicio {
   background-image: url(../img/imgInicio.jpg);
   background-position: center center;

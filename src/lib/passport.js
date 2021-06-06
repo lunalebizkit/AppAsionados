@@ -16,7 +16,7 @@ passport.use('local.registro', new LocalStrategy({
         nombreUsuario,
         contrasenia
     };
-    // const ingresoUsuario = await db.query('Insert into usuarios set ?', [newUsuario]);
+    const ingresoUsuario = await db.query('Insert into usuarios set ?', [newUsuario]);
     newUsuario.id = ingresoUsuario.insertId;
     return done(null, newUsuario);
 }));

@@ -17,7 +17,7 @@ ruta.post('/registro', passport.authenticate('local.registro', {
 ruta.get('/ingreso', (req, res) =>  {
     res.render('ingreso/ingreso');
 });
-ruta.post('/ingreso', async (req, res, next)=> {
+ruta.post('/ingreso', (req, res, next)=> {
     passport.authenticate('local.ingreso', {
         successRedirect: 'paginas/deporte',
         failureRedirect: '/ingreso',

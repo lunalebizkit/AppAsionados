@@ -47,6 +47,7 @@ aplicacion.use(express.json());
 aplicacion.use((req, res, next) => {
     aplicacion.locals.mensajeOk=req.flash('mensajeOk');
     aplicacion.locals.mensajeMal=req.flash('mensajeMal');
+    aplicacion.locals.user=req.user;
     next();
 });
 aplicacion.use(passport.initialize());

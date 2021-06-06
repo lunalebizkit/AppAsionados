@@ -14,6 +14,7 @@ ruta.get('/futbol', async (req, res) => {
 
 //agregue pantalla deporte
 ruta.get('/deporte', async (req, res) => {
+    console.log(req.user);
     res.render('paginas/deporte');
 });
 

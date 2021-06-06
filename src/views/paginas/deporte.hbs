@@ -3,9 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Carousel Template · Bootstrap v5.0</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    
+    <title>APPasionados</title>
 
     <link href="../../public/css/style.css" rel="stylesheet">
   </head>
@@ -15,9 +13,31 @@
   <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="/deporte">
-        <img src="/img/logo4.png" alt="" width="50" height="50" class="d-inline-block align-text-top">
+        <img src="/img/logo4.png" alt="" width="60" height="60" class="d-inline-block ">
         <h2 style="display: inline-block" >APPasionados</h2>
       </a>
+      <li class="nav-item">
+        <a class="nav-link " href="#" tabindex="-1" aria-disabled="true" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Bienvenido Juan Perez</a>
+      </li>
+      
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+          <h4 id="offcanvasRightLabel">Juan Perez</h4>
+          <div class="offcanvas-header">
+            <i class="mailUsuario">juanperez@gmail.com</i>
+          </div>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div class="container-fluid">
+            <a class="nav-link active" aria-current="page" href="#">
+              <span data-feather="home"></span>
+              Perfil
+            </a>
+          </div>
+          <a class="nav-link link-danger " href="/inicio" tabindex="-1" aria-disabled="true">Cerrar sesión</a>
+        </div>
+      </div>
     </div>
   </nav>
 </header>
@@ -65,9 +85,6 @@
   </div>
 </main>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
 
   </body>

@@ -4,7 +4,7 @@ const db= require('../database');
 
 //Agregue pantalla inicio
 ruta.get('/', (req, res) => {
-    res.render('ingreso/inicio');
+    res.render('paginas/inicio');
 });
 //Agregue pantalla equipo
 ruta.get('/equipo', async (req, res) => {

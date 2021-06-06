@@ -6,7 +6,7 @@ const session= require('express-session');
 const passport= require('passport'); 
 const MySQLStore = require('express-mysql-session');
 const { dataBase } = require('./keys');
-const mensaje= require('connect-flash');
+const flash= require('connect-flash');
 
 
 
@@ -33,7 +33,7 @@ aplicacion.engine('.hbs', exphbs({
 aplicacion.set('view engine', '.hbs');
 
 //middeleware
-aplicacion.use(mensaje());
+aplicacion.use(flash());
 aplicacion.use(session({
     secret: 'aleLuna',
     resave: false,

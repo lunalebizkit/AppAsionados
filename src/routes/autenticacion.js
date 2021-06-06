@@ -10,7 +10,7 @@ ruta.get('/registro', (req, res)=> {
 });
 ruta.post('/registro', passport.authenticate('local.registro', {
         successRedirect: 'paginas/deporte',
-        failureRedirect: '/registro', //esto es provisorio tiene que ir /registro
+        failureRedirect: '/registro', 
         failureFlash: true
 }));
 

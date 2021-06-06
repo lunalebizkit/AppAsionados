@@ -46,6 +46,7 @@ aplicacion.use(express.json());
 //Global variables
 aplicacion.use((req, res, next) => {
     aplicacion.locals.mensajeOk=req.flash('mensajeOk');
+    aplicacion.locals.mensajeMal=req.flash('mensajeMal');
     next();
 });
 aplicacion.use(passport.initialize());

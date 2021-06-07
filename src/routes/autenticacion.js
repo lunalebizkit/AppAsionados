@@ -24,5 +24,9 @@ ruta.post('/ingreso', (req, res, next)=> {
         failureFlash: true
     })(req, res, next)
 });
+ruta.get('/cerrarSesion', (req, res) =>{
+    req.logOut();
+    res.redirect('/');
+});
 
 module.exports= ruta;

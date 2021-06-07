@@ -17,7 +17,7 @@ passport.use('local.ingreso', new LocalStrategy({
         const usuario = buscar[0];
         const validacion = await helpers.comparaContrasenia(contrasenia, usuario.contrasenia);
         if (validacion) {
-            done(null, usuario, req.flash('mensajeOk', "Bienvenido che!!"));
+            done(null, usuario, req.flash('mensajeOk', "Bienvenido!!"));
         } else {
             done(null, false, req.flash('mensajeMal', 'Contraseña Incorrecta'));
         }

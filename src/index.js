@@ -44,14 +44,15 @@ aplicacion.use(morgan('dev'));
 aplicacion.use(express.urlencoded({extended: false}));
 aplicacion.use(express.json());
 //Global variables
+aplicacion.use(passport.initialize());
+aplicacion.use(passport.session());
 aplicacion.use((req, res, next) => {
     aplicacion.locals.mensajeOk=req.flash('mensajeOk');
     aplicacion.locals.mensajeMal=req.flash('mensajeMal');
-    aplicacion.locals.user=req.user;
+    aplicacion.locals.user = req.user;
     next();
 });
-aplicacion.use(passport.initialize());
-aplicacion.use(passport.session());
+
 //Routes
 aplicacion.use(require('./routes'));
 aplicacion.use(require('./routes/autenticacion'));

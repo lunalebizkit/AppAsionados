@@ -18,5 +18,11 @@ ruta.get('/deporte', async (req, res) => {
     res.render('paginas/deporte');
 });
 
+//pantalla crear cancha
+ruta.get('/cancha', async (req, res) => {
+    console.log(req.user);
+    res.render('paginas/cancha');
+});
+
 
 module.exports= ruta;

@@ -117,3 +117,31 @@ h6 {
 .modal-title, .modal-body {
   color: wheat;
 }
+
+#Cancha {
+  background-image: url(../img/fut.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 39rem;
+  padding-bottom: 0%;
+  margin-bottom: 0%
+}
+
+#formCancha{
+  background: rgba(255, 254, 254, 0.61);
+  padding:2px 0 10px 0 ;
+   cursor:pointer;
+   display:block;
+   width:400px;
+   margin: 0 auto;
+   margin-left: auto;
+  margin-right: auto;
+}
+
+#modalCancha-header{
+  color:black;
+  text-align: center;
+
+}

@@ -1,3 +1,6 @@
+body {
+  background-color: black;
+}
 #inicio {
   background-image: url(../img/imgInicio.jpg);
   background-position: center center;

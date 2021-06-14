@@ -2,6 +2,8 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const db = require('../database');
 const helpers = require('../lib/helper');
+const nodemailer= require('nodemailer');
+const {google}= require('googleapis');
 
 
 /* ----------------------------
@@ -17,7 +19,7 @@ passport.use('local.ingreso', new LocalStrategy({
         const usuario = buscar[0];
         const validacion = await helpers.comparaContrasenia(contrasenia, usuario.contrasenia);
         if (validacion) {
-            done(null, usuario, req.flash('mensajeOk', "Bienvenido!!"));
+            done(null, usuario, req.flash('mensajeOk', 'Bienvenido! '+ usuario.nombreUsuario  ));
         } else {
             done(null, false, req.flash('mensajeMal', 'Contraseña Incorrecta'));
             ;
@@ -46,7 +48,7 @@ passport.use('local.registro', new LocalStrategy({
     };
     newUsuario.contrasenia = await helpers.encriptarContrasenia(contrasenia);
     const ingresoUsuario = await db.query('INSERT INTO usuarios SET ?', [newUsuario]);
-    req.flash('mensajeOk', 'Usuario Registrado');
+    req.flash('mensajeOk', 'Usuario Registrado Correctamente');
     newUsuario.idUsuarios = ingresoUsuario.insertId;
     return done(null, newUsuario);
 }));

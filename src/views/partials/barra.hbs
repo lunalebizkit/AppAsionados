@@ -1,7 +1,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/paginas/deporte">
+        <a class="navbar-brand" href="/">
             <img src="/img/logo4.png" alt="" width="60" height="60" class="d-inline-block ">
             <h2 style="display: inline-block" >APPasionados</h2>
         </a>
@@ -21,17 +21,13 @@
                     <a class="nav-link active" aria-current="page">
                         <div class="btn-group dropend">
                             <a  href="#" class="link link-dark dropdown-toggle" type="link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                Ver Perfil
+                                Perfil
                             </a>
                             <ul id="barraDesplegable" class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
                                 <div class="container-md">
-                                    <li><span >Apodo</span><h6>Juani</h6></li>
-                                    <li><hr class="dropdown-divider"></li>
                                     <li><span >Cuenta</span><h6>Jugador</h6></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#exampleModal">Actualizar Nombre</a>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#exampleModal2">Actualizar Apodo</a>
                                 </div>
                             </ul>
                         </div>
@@ -95,28 +91,3 @@
         </div>
     </div>
 </div>
-
-<!-- Modal Actualizar Apodo-->
-<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-dark">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Actualizar apodo</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="" method="POST">
-                    <b>Apodo Actual</b>
-                    <input type="text" class="form-control" name="apodo" placeholder="Apodo usuario" autofocus>
-                    <b>Nuevo apodo</b>
-                    <input type="text" class="form-control" name="apodo nuevo" placeholder="Nuevo apodo usuario">  
-                </form> 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-success">Actualizar</button>
-            </div>
-        </div>
-    </div>
-</div>
-

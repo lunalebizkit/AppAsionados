@@ -17,11 +17,6 @@ h6 {
   color: rgba(0, 0, 0, 0.575);
   text-align: center;
 }
-#eslogan {
-    /* font-family: 'Dosis', sans-serif;
-    font-family: 'Lobster', cursive; */
-    color: rgb(255, 255, 255);
-}
 
 #app {
 /*font-family: 'Dosis', sans-serif;
@@ -32,12 +27,6 @@ h6 {
   padding-top: 2rem;
 
 }
-
-#sidebarMenu {
-  position: fixed;
-  top: 8rem;
-  background-color: rgb(202, 236, 202);
- }
 
 .card {
     border-radius: 0.5rem;
@@ -101,7 +90,8 @@ h6 {
 #linkCentro {
   background: rgba(255, 255, 255, 0.452);
   width:230px; 
-  margin: 70px 
+  margin: 70px;
+  text-align: center; 
 }
 
 .offcanvas {

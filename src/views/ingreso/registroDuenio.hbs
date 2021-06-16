@@ -1,4 +1,4 @@
-<main class="formulario">
+<div id="inicioDuenio">
     <div class="container">
         <div class="row justify-content-between">
             <div id= "inicioCentrar" class="col-md-4 py-5">
@@ -12,21 +12,24 @@
                         <h3>Registro</h3>
                     </div>
                     <div class="card-body">
-                        <form action="/registro" method="POST">
+                        <form action="/registroDuenio" method="POST">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="nombre" placeholder="Nombre" pattern="[a-zA-Z]{2,40}" autofocus required>
+                                <input type="text" class="form-control" name="nombre" placeholder="Nombre" autofocus>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="apellido" placeholder="Apellido" pattern="[a-zA-Z]{2,40}" required>
-                            </div>
-                             <div class="input-group mb-3">
-                                <input type="email" class="form-control" name="email" placeholder="E-mail" required>
+                                <input type="text" class="form-control" name="apellido" placeholder="Apellido">
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="nombreUsuario" placeholder="Usuario" required>
+                                <input type="email" class="form-control" name="email" placeholder="E-mail">
                             </div>
                             <div class="input-group mb-3">
-                                <input type="password" class="form-control" name="contrasenia" placeholder="Contraseña" required>
+                                <input type="cuit" class="form-control" name="cuit" placeholder="Cuit">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" name="nombreUsuario" placeholder="Usuario">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="password" class="form-control" name="contrasenia" placeholder="Contraseña">
                             </div>
                             <div class="d-grid mb-2">
                                 <button type="submit" class="btn btn-success btn-block">
@@ -38,7 +41,7 @@
                     <div class="card-footer">
                         <span><b>¿Tienes una cuenta? </b></span>
                         <div class="d-grid mb-2">
-                        <button onclick="location.href='/ingreso'" class="btn btn-primary btn-block" >
+                        <button onclick="location.href='/ingresoDuenio'" class="btn btn-primary btn-block" >
                            <span style="color: white">Inicia sesión</span> 
                         </button>
                         </div>
@@ -47,4 +50,4 @@
             </div>
         </div>
     </div>
-</main>
+</div>

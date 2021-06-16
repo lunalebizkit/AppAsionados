@@ -9,6 +9,7 @@
         <li class="nav-item">
             <a class="nav-link " href="#" tabindex="-1" aria-disabled="true" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Bienvenido {{user.nombreUsuario}}</a>
         </li>
+        
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
             <div class="offcanvas-header">
                 <h4 id="offcanvasRightLabel">{{user.nombre}}</h4>
@@ -21,25 +22,21 @@
                 <div class="container-fluid">
                     <a class="nav-link active" aria-current="page">
                         <div class="btn-group dropend">
-                            <a  href="#" class="link link-dark dropdown-toggle" type="link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                Ver Perfil
+                            <a  href="#" class="link link-secondary dropdown-toggle" type="link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                Perfil
                             </a>
                             <ul id="barraDesplegable" class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
                                 <div class="container-md">
-                                    <li><span >Apodo</span><h6>Juani</h6></li>
-                                    <li><hr class="dropdown-divider"></li>
                                     <li><span >Cuenta</span><h6>Jugador</h6></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#exampleModal">Actualizar Nombre</a>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#exampleModal2">Actualizar Apodo</a>
                                 </div>
                             </ul>
                         </div>
                     </a>
                     <a class="nav-link active" aria-current="page">
                         <div class="btn-group dropend">
-                            <a  href="#" class="link link-dark dropdown-toggle" type="link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a  href="#" class="link link-secondary dropdown-toggle" type="link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 Mis Equipos
                             </a>
                             <ul id="barraDesplegable" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -64,7 +61,12 @@
                     </a>
                 </div>
                 <br>
+                <br>
                 <div class="container-fluid">
+                    <a class="link link-primary " href="/paginas/deporte" tabindex="-1" aria-disabled="true">Elegir deporte</a>
+                </div>
+                <div class="container-fluid" style="margin-top: 70%" >
+                    <hr class="dropdown-divider">
                     <a class="link link-danger " href="/cerrarSesion" tabindex="-1" aria-disabled="true">Cerrar sesión</a>
                 </div>
             </div>
@@ -97,27 +99,4 @@
     </div>
 </div>
 
-<!-- Modal Actualizar Apodo-->
-<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-dark">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Actualizar apodo</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="" method="POST">
-                    <b>Apodo Actual</b>
-                    <input type="text" class="form-control" name="apodo" placeholder="Apodo usuario" autofocus>
-                    <b>Nuevo apodo</b>
-                    <input type="text" class="form-control" name="apodo nuevo" placeholder="Nuevo apodo usuario">  
-                </form> 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-success">Actualizar</button>
-            </div>
-        </div>
-    </div>
-</div>
 {{/if}}

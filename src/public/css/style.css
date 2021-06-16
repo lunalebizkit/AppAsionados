@@ -10,6 +10,7 @@ body {
   height: 39rem;
   padding-bottom: 0%;
   margin-bottom: 0%;
+  
 }
 
 h3 {
@@ -19,11 +20,6 @@ h3 {
 h6 {
   color: rgba(0, 0, 0, 0.575);
   text-align: center;
-}
-#eslogan {
-    /* font-family: 'Dosis', sans-serif;
-    font-family: 'Lobster', cursive; */
-    color: rgb(255, 255, 255);
 }
 
 #app {
@@ -35,12 +31,6 @@ h6 {
   padding-top: 2rem;
 
 }
-
-#sidebarMenu {
-  position: fixed;
-  top: 8rem;
-  background-color: rgb(202, 236, 202);
- }
 
 .card {
     border-radius: 0.5rem;
@@ -55,7 +45,9 @@ h6 {
   background-attachment: fixed;
   height: 39rem;
   padding-bottom: 0%;
-  margin-bottom: 0%
+  margin-bottom: 0%;
+  display: flex;
+  align-items: center;
        
 }
 
@@ -71,7 +63,7 @@ h6 {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  height: 39rem;
+  height: 33rem;
     
 }
 
@@ -88,7 +80,7 @@ h6 {
   
   /* Declare heights because of positioning of img element */
 .carousel-item {
-  height: 34rem;
+  height: 33rem;
 }
 
 #citaAutor {
@@ -99,18 +91,19 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: center;  
+  margin: 100px;
 }
 
 #linkCentro {
-  background: rgba(255, 255, 255, 0.452);
+  background: rgba(255, 255, 255, 0.63);
   width:230px; 
-  margin: 70px;
-  text-align: center;
+  margin: -50px;
+  text-align: center; 
 }
 
 .offcanvas {
-  background: rgba(185, 185, 185, 0.897);
-  color: rgb(0, 0, 0);
+  background: rgba(44, 44, 44, 0.925);
+  color: rgb(255, 255, 255);
 }
 
 #barraDesplegable {
@@ -147,4 +140,23 @@ h6 {
   color:black;
   text-align: center;
 
+}
+
+#inicioDuenio {
+  background-image: url(../img/duenio.jpeg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 39rem;
+  padding-bottom: 0%;
+  margin-bottom: 0%;
+  display: flex;
+  align-items: center;
+       
+}
+
+#inicioCentrar {
+  display: flex;
+  align-items: center;
 }

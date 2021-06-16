@@ -3,8 +3,6 @@ const ruta= express.Router();
 const passport= require('passport');
 
 
-
-
 ruta.get('/registro', (req, res)=> {
     res.render('ingreso/registro'); 
 });
@@ -24,6 +22,29 @@ ruta.post('/ingreso', (req, res, next)=> {
         failureFlash: true
     })(req, res, next)
 });
+
+//registro duenio//
+ruta.get('/registroDuenio', (req, res)=> {
+    res.render('ingreso/registroDuenio'); 
+});
+ruta.post('/registroDuenio', passport.authenticate('local.registroDuenio', {
+        successRedirect: 'paginas/cancha',
+        failureRedirect: '/registroDuenio', 
+        failureFlash: true
+}));
+
+//ingreso duenio//
+ruta.get('/ingresoDuenio', (req, res) =>  {
+    res.render('ingreso/ingresoDuenio');
+});
+ruta.post('/ingresoDuenio', (req, res, next)=> {
+    passport.authenticate('local.ingresoDuenio', {
+        successRedirect: 'paginas/cancha',
+        failureRedirect: '/ingresoDuenio',
+        failureFlash: true
+    })(req, res, next)
+});
+
 ruta.get('/cerrarSesion', (req, res) =>{
     req.logOut();
     res.redirect('/');

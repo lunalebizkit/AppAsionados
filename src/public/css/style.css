@@ -57,8 +57,27 @@ h6 {
 }
 
 #futbol {
-  background-color: rgba(19, 95, 0, 0.555);
-  background-image: url(../img/fut1.jpg);
+  background-color: rgb(32, 155, 16);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 33rem;
+    
+}
+
+#basquet {
+  background-color: rgb(199, 135, 16);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 33rem;
+    
+}
+
+#padel {
+  background-color: rgb(28, 138, 202);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -71,10 +90,11 @@ h6 {
   background: rgba(255, 254, 254, 0.61);
 }
 
+
   /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
-  background: rgba(0, 0, 0, 0.651);
-  bottom: 3rem;
+  background: rgba(100, 100, 100, 0.651);
+  bottom: 8rem;
   z-index: 10;
 }
   

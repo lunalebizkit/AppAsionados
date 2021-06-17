@@ -12,6 +12,16 @@ ruta.get('/futbol', async (req, res) => {
     res.render('paginas/futbol');
 });
 
+//agregue pantalla basquet
+ruta.get('/basquet', async (req, res) => {
+    res.render('paginas/basquet');
+});
+
+//agregue pantalla padel
+ruta.get('/padel', async (req, res) => {
+    res.render('paginas/padel');
+});
+
 //agregue pantalla deporte
 ruta.get('/deporte', async (req, res) => {
     res.render('paginas/deporte');

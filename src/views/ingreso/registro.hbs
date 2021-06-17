@@ -14,13 +14,13 @@
                     <div class="card-body">
                         <form action="/registro" method="POST">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="nombre" placeholder="Nombre" pattern="[a-zA-Z]{2,40}" autofocus required>
+                                <input type="text" class="form-control" name="nombre" placeholder="Nombre" pattern="[a-zA-Z]{2,40}" oninvalid="setCustomValidity('Nombre no debe contener numeros')" onchange="try{setCustomValidity('')}catch(e){}" autofocus required>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="apellido" placeholder="Apellido" pattern="[a-zA-Z]{2,40}" required>
+                                <input type="text" class="form-control" name="apellido" placeholder="Apellido" pattern="[a-zA-Z]{2,40}" oninvalid="setCustomValidity('Apellido no debe contener numeros')" onchange="try{setCustomValidity('')}catch(e){}"  required>
                             </div>
                              <div class="input-group mb-3">
-                                <input type="email" class="form-control" name="email" placeholder="E-mail" required>
+                                <input type="email" class="form-control" name="email" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                             </div>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" name="nombreUsuario" placeholder="Usuario" required>

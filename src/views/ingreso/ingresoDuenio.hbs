@@ -12,7 +12,7 @@
                         <h3>Ingresar</h3>
                     </div>
                     <div class="card-body">
-                        <form action="/ingresoDuenio" method="POST">
+                        <form action="/paginas/cancha" method="get">
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" name="nombreUsuario" placeholder="Usuario" autofocus >
                             </div>
@@ -20,7 +20,7 @@
                                 <input type="password" class="form-control" name="contrasenia" placeholder="Contraseña" >
                             </div>
                             <div class="d-grid mb-2">
-                                <button type="submit" class="btn btn-success btn-block">
+                                <button type="submit" onclick="location.href='/paginas/cancha'" class="btn btn-success btn-block">
                                     Iniciar sesión
                                 </button>
                             </div>

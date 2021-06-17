@@ -14,19 +14,19 @@
                     <div class="card-body">
                         <form action="/registro" method="POST">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="nombre" placeholder="Nombre" autofocus>
+                                <input type="text" class="form-control" name="nombre" placeholder="Nombre" pattern="[a-zA-Z]{2,40}" autofocus required>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="apellido" placeholder="Apellido">
+                                <input type="text" class="form-control" name="apellido" placeholder="Apellido" pattern="[a-zA-Z]{2,40}" required>
                             </div>
                              <div class="input-group mb-3">
-                                <input type="email" class="form-control" name="email" placeholder="E-mail">
+                                <input type="email" class="form-control" name="email" placeholder="E-mail" required>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="nombreUsuario" placeholder="Usuario">
+                                <input type="text" class="form-control" name="nombreUsuario" placeholder="Usuario" required>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="password" class="form-control" name="contrasenia" placeholder="Contraseña">
+                                <input type="password" class="form-control" name="contrasenia" placeholder="Contraseña" required>
                             </div>
                             <div class="d-grid mb-2">
                                 <button type="submit" class="btn btn-success btn-block">

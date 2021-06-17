@@ -1,4 +1,4 @@
-<main class="formulario">
+<div id="inicioDuenio">
     <div class="container">
         <div class="row justify-content-between">
             <div id= "inicioCentrar" class="col-md-4 py-5">
@@ -12,30 +12,22 @@
                         <h3>Ingresar</h3>
                     </div>
                     <div class="card-body">
-                        <form action="/ingreso" method="POST">
+                        <form action="/paginas/vistAdmin" method="get">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="nombreUsuario" placeholder="Usuario" autofocus required >
+                                <input type="text" class="form-control" name="nombreUsuario" placeholder="Usuario" autofocus >
                             </div>
                             <div class="input-group mb-3">
-                                <input type="password" class="form-control" name="contrasenia" placeholder="Contraseña" required>
+                                <input type="password" class="form-control" name="contrasenia" placeholder="Contraseña" >
                             </div>
                             <div class="d-grid mb-2">
-                                <button type="submit" class="btn btn-success btn-block">
+                                <button type="submit" onclick="location.href='/paginas/vistAdmin'" class="btn btn-success btn-block">
                                     Iniciar sesión
                                 </button>
                             </div>
                         </form>
                     </div>
-                    <div class="card-footer">
-                        <span><b>¿Aún no tienes cuenta? </b></span>
-                        <div class="d-grid mb-2">
-                        <button onclick="location.href='/registro'" class="btn btn-primary btn-block" >
-                           <span style="color: white">Regístrate</span> 
-                        </button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-</main>
+</div>

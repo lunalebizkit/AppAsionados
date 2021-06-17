@@ -21,6 +21,8 @@ ruta.get('/deporte', async (req, res) => {
 ruta.get('/cancha', async (req, res) => {
     res.render('paginas/cancha');
 });
-
+ruta.get('/vistAdmin', (req, res) =>{
+    res.render('paginas/vistAdmin');
+});
 
 module.exports= ruta;

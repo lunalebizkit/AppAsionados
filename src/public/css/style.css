@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(9, 121, 24)
+  background-color: rgba(0, 0, 0, 0.897)
 }
 #inicio {
   background-image: url(../img/imgInicio.jpg);
@@ -94,7 +94,7 @@ h6 {
   /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
   background: rgba(100, 100, 100, 0.651);
-  bottom: 8rem;
+  bottom: 1rem;
   z-index: 10;
 }
   

@@ -43,8 +43,8 @@ passport.use('local.registro', new LocalStrategy({
     const buscarEmail = await db.query('SELECT * from usuarios WHERE email= ?', [email]);
     const buscarUsuario = await db.query('SELECT * from usuarios WHERE nombreUsuario= ?', [nombreUsuario]);
     if (buscarEmail.length > 0) {
-        return done(null, false, req.flash('mensajeMal', 'Email Existente!'));
-    }if (buscarUsuario.length > 0) {
+         return done(null, false, req.flash('mensajeMal', 'Email Existente!'));
+     }if (buscarUsuario.length > 0) {
         return done(null, false, req.flash('mensajeMal', 'Usuario Existente!'));
     }else {
         const newUsuario = {
@@ -54,6 +54,64 @@ passport.use('local.registro', new LocalStrategy({
             nombreUsuario,
             contrasenia,
         };
+        const mensajeMail =`
+        <h2>Hola! ${nombre}...<br>
+            Bienvenido a APPasionados </h2>
+        <h3>Gracias por su Registro</h3>
+        <ul>
+            <li>Su Usuario es:<b> ${nombreUsuario} </b></li>
+            <li>Su contraseña es :<b> ${contrasenia} </b></li>
+        </ul>
+        
+    `;
+    
+    const CLIENT_ID="127038509627-tbvecp500j6cnnhntp2lj2qgdn7uv1el.apps.googleusercontent.com";
+    const CLIENT_SECRET="3rTxwgS2L-z79sa2nR3Oy9wI";
+    const REDIRECT_URI="https://developers.google.com/oauthplayground";
+    const REFRESH_TOKEN="1//042zwVNgR64TgCgYIARAAGAQSNwF-L9IrgCqTog5tYUG3AiMjpbijAaCi4bpcHB8p_TXrZzATvpooFiz-NCI8dSKihxkyL09L4IA";
+    const oAuth2cliente = new google.auth.OAuth2( 
+        CLIENT_ID,
+        CLIENT_SECRET,
+        REDIRECT_URI
+        );
+    
+     oAuth2cliente.setCredentials({refresh_token:REFRESH_TOKEN});
+     
+     async function sendMail(){
+         try{
+            const accessToken= await oAuth2cliente.getAccessToken()
+            const transporter= nodemailer.createTransport({
+                 service: "gmail",
+                 auth:{
+                     type:"Oauth2",
+                     user: "elianacortez27@gmail.com",
+                     clientId:CLIENT_ID,
+                     clientSecret:CLIENT_SECRET,
+                     refreshToken:REFRESH_TOKEN,
+                     accessToken:accessToken
+                 },
+    
+             });
+             const mailOptions=
+                
+                {
+                 from:"APPasionados<elianacortez27@gmail.com>",
+                 to: email,
+                 subject:"Confirmacion de Registro",
+                 html: mensajeMail, 
+             };
+             const result = await transporter.sendMail(mailOptions);
+             return result
+    
+    
+         }catch(err){
+             console.log(err);
+         }
+        
+     } 
+    sendMail()
+    //  .then((result)=>res.status(200).send('enviado'))
+     .catch((error)=> console.log(error.message));
         newUsuario.contrasenia = await helpers.encriptarContrasenia(contrasenia);
         const ingresoUsuario = await db.query('INSERT INTO usuarios SET ?', [newUsuario]);
         req.flash('mensajeOk', 'Usuario Registrado Correctamente');

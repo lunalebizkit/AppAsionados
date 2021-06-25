@@ -1,9 +1,10 @@
 const express= require('express');
 const ruta= express.Router();
 const passport= require('passport');
+const  {estaLogueado, noEstaLogueado}=require ('../lib/auth')
 
 
-ruta.get('/registro', (req, res)=> {
+ruta.get('/registro', noEstaLogueado, (req, res)=> {
     res.render('ingreso/registro'); 
 });
 ruta.post('/registro', passport.authenticate('local.registro', {
@@ -12,7 +13,7 @@ ruta.post('/registro', passport.authenticate('local.registro', {
         failureFlash: true
 }));
 
-ruta.get('/ingreso', (req, res) =>  {
+ruta.get('/ingreso', noEstaLogueado, (req, res) =>  {
     res.render('ingreso/ingreso');
 });
 ruta.post('/ingreso', (req, res, next)=> {
@@ -24,7 +25,7 @@ ruta.post('/ingreso', (req, res, next)=> {
 });
 
 //registro duenio//
-ruta.get('/registroDuenio', (req, res)=> {
+ruta.get('/registroDuenio', noEstaLogueado, (req, res)=> {
     res.render('ingreso/registroDuenio'); 
 });
 // ruta.post('/registroDuenio', /*passport.authenticate('local.registroDuenio', {
@@ -34,7 +35,7 @@ ruta.get('/registroDuenio', (req, res)=> {
 // })*/);
 
 //ingreso duenio//
-ruta.get('/ingresoDuenio', (req, res) =>  {
+ruta.get('/ingresoDuenio', noEstaLogueado, (req, res) =>  {
     res.render('ingreso/ingresoDuenio');
 });
 // ruta.post('/ingresoDuenio', (req, res, next)=> /* {
@@ -44,12 +45,12 @@ ruta.get('/ingresoDuenio', (req, res) =>  {
 //         failureFlash: true
 //     })*/(req, res, next)
 // );
-ruta.get('/ingresoAdmin', (req, res) =>{
+ruta.get('/ingresoAdmin', noEstaLogueado, (req, res) =>{
     res.render('ingreso/ingresoAdmin');
 });
 
 
-ruta.get('/cerrarSesion', (req, res) =>{
+ruta.get('/cerrarSesion', estaLogueado, (req, res) =>{
     req.logOut();
     res.redirect('/');
 });

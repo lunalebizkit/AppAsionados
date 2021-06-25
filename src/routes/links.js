@@ -1,37 +1,39 @@
 const express= require('express');
 const ruta= express.Router();
 const db= require('../database');
+const {estaLogueado, noEstaLogueado, admin}=require('../lib/auth');
 
 //Agregue pantalla equipo
-ruta.get('/equipo', async (req, res) => {
+ruta.get('/equipo', estaLogueado, async (req, res) => {
     res.render('paginas/equipo');
 });
 
 //agregue pantalla futbol
-ruta.get('/futbol', async (req, res) => {
+ruta.get('/futbol', estaLogueado, async (req, res) => {
+   
     res.render('paginas/futbol');
 });
 
 //agregue pantalla basquet
-ruta.get('/basquet', async (req, res) => {
+ruta.get('/basquet', estaLogueado, async (req, res) => {
     res.render('paginas/basquet');
 });
 
 //agregue pantalla padel
-ruta.get('/padel', async (req, res) => {
+ruta.get('/padel', estaLogueado, admin, async (req, res) => {
     res.render('paginas/padel');
 });
 
 //agregue pantalla deporte
-ruta.get('/deporte', async (req, res) => {
+ruta.get('/deporte', estaLogueado, async (req, res) => {
     res.render('paginas/deporte');
 });
 
 //pantalla crear cancha
-ruta.get('/cancha', async (req, res) => {
+ruta.get('/cancha', estaLogueado, async (req, res) => {
     res.render('paginas/cancha');
 });
-ruta.get('/vistAdmin', (req, res) =>{
+ruta.get('/vistAdmin',admin,  (req, res) =>{
     res.render('paginas/vistAdmin');
 });
 

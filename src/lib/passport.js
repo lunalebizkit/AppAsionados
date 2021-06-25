@@ -38,7 +38,6 @@ passport.use('local.registro', new LocalStrategy({
     passwordField: 'contrasenia',
     passReqToCallback: true
 }, async (req, nombreUsuario, contrasenia, done) => {
-
     const { nombre, apellido, email } = req.body;
     const buscarEmail = await db.query('SELECT * from usuarios WHERE email= ?', [email]);
     const buscarUsuario = await db.query('SELECT * from usuarios WHERE nombreUsuario= ?', [nombreUsuario]);

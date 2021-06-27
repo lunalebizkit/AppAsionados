@@ -64,10 +64,10 @@ passport.use('local.registro', new LocalStrategy({
         
     `;
     
-    const CLIENT_ID="127038509627-tbvecp500j6cnnhntp2lj2qgdn7uv1el.apps.googleusercontent.com";
-    const CLIENT_SECRET="3rTxwgS2L-z79sa2nR3Oy9wI";
+    const CLIENT_ID="646859646017-mdq9mtoudeusnv9vpt4fibts5t2fnsp9.apps.googleusercontent.com";
+    const CLIENT_SECRET="7JkJcecbeO2F4hAcVczI_AJk";
     const REDIRECT_URI="https://developers.google.com/oauthplayground";
-    const REFRESH_TOKEN="1//042zwVNgR64TgCgYIARAAGAQSNwF-L9IrgCqTog5tYUG3AiMjpbijAaCi4bpcHB8p_TXrZzATvpooFiz-NCI8dSKihxkyL09L4IA";
+    const REFRESH_TOKEN="1//04-u_yUAXk3vOCgYIARAAGAQSNwF-L9IrDd0L11n-_wmDoCrVCR1MtT-_uysOPl_ivEbTABH7FrAcv66Zz4kYqiQS5oN-1HfAjVY";
     const oAuth2cliente = new google.auth.OAuth2( 
         CLIENT_ID,
         CLIENT_SECRET,
@@ -83,7 +83,7 @@ passport.use('local.registro', new LocalStrategy({
                  service: "gmail",
                  auth:{
                      type:"Oauth2",
-                     user: "elianacortez27@gmail.com",
+                     user: "appasionadosdeporte@gmail.com",
                      clientId:CLIENT_ID,
                      clientSecret:CLIENT_SECRET,
                      refreshToken:REFRESH_TOKEN,
@@ -94,7 +94,7 @@ passport.use('local.registro', new LocalStrategy({
              const mailOptions=
                 
                 {
-                 from:"APPasionados<elianacortez27@gmail.com>",
+                 from:"APPasionados <appasionadosdeporte@gmail.com>",
                  to: email,
                  subject:"Confirmacion de Registro",
                  html: mensajeMail, 

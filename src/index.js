@@ -41,7 +41,7 @@ aplicacion.use(session({
     store: new MySQLStore(dataBase)
 }));
 aplicacion.use(morgan('dev'));
-aplicacion.use(express.urlencoded({extended: false}));
+aplicacion.use(express.urlencoded({extended: true}));
 aplicacion.use(express.json());
 //Global variables
 aplicacion.use(passport.initialize());

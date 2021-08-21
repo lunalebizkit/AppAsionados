@@ -10,7 +10,6 @@ ruta.get('/equipo', estaLogueado, async (req, res) => {
 
 //agregue pantalla futbol
 ruta.get('/futbol', estaLogueado, async (req, res) => {
-   
     res.render('paginas/futbol');
 });
 
@@ -33,8 +32,8 @@ ruta.get('/deporte', estaLogueado, async (req, res) => {
 ruta.get('/cancha', estaLogueado, async (req, res) => {
     res.render('paginas/cancha');
 });
-ruta.get('/vistAdmin',admin,  (req, res) =>{
-    res.render('paginas/vistAdmin');
+ruta.get('/vistaAdmin', estaLogueado, async(req, res) =>{
+    res.render('paginas/vistaAdmin');
 });
 
 module.exports= ruta;

@@ -1,7 +1,7 @@
 const express= require('express');
 const ruta= express.Router();
 const passport= require('passport');
-const  {estaLogueado, noEstaLogueado}=require ('../lib/auth')
+const  {estaLogueado, noEstaLogueado, admin}=require ('../lib/auth')
 
 
 ruta.get('/registro', noEstaLogueado, (req, res)=> {
@@ -45,7 +45,7 @@ ruta.get('/ingresoDuenio', noEstaLogueado, (req, res) =>  {
 //         failureFlash: true
 //     })*/(req, res, next)
 // );
-ruta.get('/ingresoAdmin', noEstaLogueado, (req, res) =>{
+ruta.get('/ingresoAdmin', estaLogueado, admin, (req, res) =>{
     res.render('ingreso/ingresoAdmin');
 });
 

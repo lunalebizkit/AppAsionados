@@ -12,10 +12,9 @@ module.exports= {
         } return res.redirect('/paginas/deporte');
     },
     admin(req, res, next) {
-        if((req.user.rol) === 'admin') {
+        if((req.user.rol) & (req.user.rol) === 'admin') {
             return next();
-        } return req.flash('mensajeMal', 'Acceso restringido'),
-        res.redirect('/ingreso');
+        }return res.redirect('/ingreso');
     }
      
 }

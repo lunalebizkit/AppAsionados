@@ -1,5 +1,5 @@
 <div class="container" id="formulario">
-    <form id="formequipo" method="POST" action="crearEquipoFutbol" >
+    <form id="formequipo" method="POST" action="/paginas/crearEquipoFutbol/{{user.idUsuarios}}" >
         <div class="row">
              <h1 class="text-white mt-3 text-center py-4" >CREA TU EQUIPO</h1>
             <div class="col-6 m-auto py-3 px-4 bg-white">
@@ -8,11 +8,11 @@
                     <input type="text" class="form-control" name="nombreEquipo">
                 </div>
                 <div class="input-group mb-3">
-                    <label for="tipo" class="text-black m-3" ><b>SELECCIONA TIPO</b></label>
-                    <select name="tipo" class="btn btn-ls btn-success">
-                        <option value="1">FUTBOL 5</option>
-                        <option value="2">FUTBOL 7</option>
-                        <option value="3">FUTBOL 11</option>
+                    <label for="idDeportes" class="text-black m-3" ><b>SELECCIONA TIPO</b></label>
+                    <select name="idDeportes" class="btn btn-ls btn-success">
+                        <option type="number" value="1">FUTBOL 5</option>
+                        <option type="number" value="2">FUTBOL 7</option>
+                        <option type="number" value="3">FUTBOL 11</option>
                     </select>                      
                 </div>  
             </div> 

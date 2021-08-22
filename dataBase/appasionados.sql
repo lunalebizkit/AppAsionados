@@ -101,5 +101,6 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `email` varchar(60) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `nombreUsuario` varchar(80) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `contrasenia` varchar(90) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `rol` varchar(10),
   PRIMARY KEY (`idUsuarios`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci AUTO_INCREMENT=1 ;

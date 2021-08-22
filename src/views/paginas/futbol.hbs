@@ -17,19 +17,14 @@
                         <tr>
                             <th>Nº de Equipo</th>
                             <th>Nombre</th>
-                            <th>Nº de Jugadores</th>
-                                
+                            <th>Nº de Jugadores</th>                                
                         </tr> 
-                    </thead>        
-                        
+                    </thead>                                
                     <tbody>
                         <tr>
                             <td>1</td>
                             <td>Equipo1</td>
                             <td>7</td>
-                                <!--<td>{{numero}}</td>
-                                <td>{{nombre}}</td>
-                                <td>{{cantidadJugadores}}</td>-->
                         </tr>
                         <tr>
                             <td>2</td>
@@ -65,6 +60,7 @@
                 </table>
             </div>
         </div>
+        {{#if equipo}}
         <div class="container-fluid">
             <div id="tablaEquipo" class="col-md-12">
                 <form class="d-flex">
@@ -76,19 +72,14 @@
                         <tr>
                             <th>Número</th>
                             <th>Nombre</th>
-                            <th>Posición</th>
-                                
+                            <th>Posición</th>                                
                         </tr> 
-                    </thead>        
-                        
+                    </thead>                                
                     <tbody>
                         <tr>
                             <td>1</td>
                             <td>Juan</td>
                             <td>Arquero</td>
-                                <!--<td>{{numero}}</td>
-                                <td>{{nombre}}</td>
-                                <td>{{cantidadJugadores}}</td>-->
                         </tr>
                         <tr>
                             <td>2</td>
@@ -124,6 +115,11 @@
                 </table>
             </div>
         </div>
+        {{else}}
+        <div class="col-6 my-5">
+           <h3><a class="text-white" href="crearEquipo">Crea tu Equipo!</a></h3> 
+        </div>
+        {{/if}}
     </div>
     <div class="container">
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">

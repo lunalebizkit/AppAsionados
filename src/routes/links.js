@@ -46,4 +46,5 @@ ruta.get('/crearEquipo', async (req, res) =>{
     res.render('paginas/crearEquipo');
 });
 
+
 module.exports= ruta;

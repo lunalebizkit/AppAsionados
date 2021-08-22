@@ -54,13 +54,17 @@ ruta.post('/crearEquipoFutbol/:id', async(req, res )=>{
         idDeportes,
         idUsuarios
     }
+    // const crearEquipo = await db.query('Insert into equipos set ?', [newEquipo]);
+    const idEquipo= crearEquipo.insertId
     let newJugador= {
         idUsuarios,
         /*posicion,*/
-        idDeportes
+        idDeportes,
+        idEquipo
     }
     console.info(newEquipo);
-    console.info(newJugador);
+    console.info(newJugador);   
+    //await db.query('Insert into jugador set ?', [newJugador]);
     res.redirect('/paginas/futbol');
 });
 

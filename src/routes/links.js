@@ -46,4 +46,5 @@ ruta.get('/crearEquipoFutbol', async (req, res) =>{
     res.render('paginas/crearEquipoFutbol');
 });
 
+
 module.exports= ruta;

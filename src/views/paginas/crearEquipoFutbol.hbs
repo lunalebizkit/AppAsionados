@@ -1,5 +1,5 @@
 <div class="container" id="formulario">
-    <form id="formequipo" >
+    <form id="formequipo"  method="POST" action="crearEquipoFutbol">
         <div class="row ">
              <h1 class="text-white m-3 text-center" >CREA TU EQUIPO</h1>
             <div class="col-md-6 m-auto bg-warning">
@@ -9,15 +9,15 @@
                 <div class="input-group mb-3">
                     <label for="tipo" class="text-white m-3" >TIPO</label>
                     <select name="tipo" class="btn btn-ls btn-info ">
-                        <option value="">FUTBOL 7</option>
                         <option value="">FUTBOL 5</option>
+                        <option value="">FUTBOL 7</option>
                         <option value="">FUTBOL 11</option>
                     </select>                      
                 </div>  
             </div> 
-        </div> 
+        </div>
+        <button type="submit" onclick="location.href=" class="btn btn-success">
+            crear equipo 
+        </button> 
     </form>
-    <button type="submit" onclick="location.href=" class="btn btn-success ">
-      crear equipo 
-    </button>
 </div>

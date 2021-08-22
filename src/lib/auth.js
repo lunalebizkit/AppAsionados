@@ -1,5 +1,4 @@
 
-
 module.exports= {
     estaLogueado(req, res, next) {
         if (req.isAuthenticated()) {

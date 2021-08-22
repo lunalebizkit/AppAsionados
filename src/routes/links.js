@@ -33,6 +33,13 @@ ruta.get('/cancha', estaLogueado, async (req, res) => {
     res.render('paginas/cancha');
 });
 ruta.get('/vistaAdmin', estaLogueado, async(req, res) =>{
+    const cookie= req.session.cookie;
+    console.info(req.user);
+    console.info(cookie);
+    res.render('paginas/vistaAdmin');
+});
+ruta.post('/vistaAdmin', estaLogueado, async(req, res) =>{
+    console.info(req.body);
     res.render('paginas/vistaAdmin');
 });
 

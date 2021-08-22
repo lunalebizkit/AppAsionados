@@ -1,17 +1,27 @@
-<div id="formulario">
-
-    <form id="formequipo" class="row g-3" >
-        <div class="col-md-12">
-             <div class="text-center"><h1>NOMBRE EQUIPO</h1></div>
-            <input type="text" class="form-control" id="validationDefault01" value="Nombre" required>
-            <br>
+<div class="container" id="formulario">
+    <form id="formequipo" >
+        <div class="row ">
+            <div class="col-md-6 m-auto bg-warning">
+                <div class="input-group mb-3">
+                <input type="text" class="form-control" name="Nombre" placeholder="nombre">
+                </div>
+                <div class="input-group mb-3">
+                    <label for="tipo" class="text-white m-3" >TIPO</label>
+                    <select name="tipo" class="btn btn-ls btn-info ">
+                        <option value="">futbol7</option>
+                        <option value="">futbol5</option>
+                        <option value="">futbol11</option>
+                    </select>                      
+                </div>
+              
+            </div>
+            
         </div>
-       
-
+        
     </form>
 
-    
-  <button type="submit" onclick="location.href='/'" class="btn btn-success btn-block">
+    <button type="submit" onclick="location.href='/'" class="btn btn-success">
         crear equipo
     </button>
+ 
 </div>

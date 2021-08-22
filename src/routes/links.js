@@ -42,5 +42,8 @@ ruta.post('/vistaAdmin', estaLogueado, async(req, res) =>{
     console.info(req.body);
     res.render('paginas/vistaAdmin');
 });
+ruta.get('/crearEquipo', async (req, res) =>{
+    res.render('paginas/crearEquipo');
+});
 
 module.exports= ruta;

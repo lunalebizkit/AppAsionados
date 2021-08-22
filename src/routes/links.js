@@ -42,12 +42,26 @@ ruta.post('/vistaAdmin', estaLogueado, async(req, res) =>{
     console.info(req.body);
     res.render('paginas/vistaAdmin');
 });
-ruta.get('/crearEquipoFutbol', async (req, res) =>{
+ruta.get('/crearEquipoFutbol/:id', async (req, res) =>{    
     res.render('paginas/crearEquipoFutbol');
 });
-ruta.post('/crearEquipoFutbol', async(req, res )=>{
-    console.info(req.body);
-    res.render('paginas/crearEquipoFutbol');
+ruta.post('/crearEquipoFutbol/:id', async(req, res )=>{
+    const {id}= req.params;
+    const idUsuarios = id
+    const {nombreEquipo, idDeportes}= req.body;
+    let newEquipo= {
+        nombreEquipo,
+        idDeportes,
+        idUsuarios
+    }
+    let newJugador= {
+        idUsuarios,
+        /*posicion,*/
+        idDeportes
+    }
+    console.info(newEquipo);
+    console.info(newJugador);
+    res.redirect('/paginas/futbol');
 });
 
 module.exports= ruta;

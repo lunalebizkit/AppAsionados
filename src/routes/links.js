@@ -45,6 +45,9 @@ ruta.post('/vistaAdmin', estaLogueado, async(req, res) =>{
 ruta.get('/crearEquipoFutbol', async (req, res) =>{
     res.render('paginas/crearEquipoFutbol');
 });
-
+ruta.post('/crearEquipoFutbol', async(req, res )=>{
+    console.info(req.body);
+    res.render('paginas/crearEquipoFutbol');
+});
 
 module.exports= ruta;

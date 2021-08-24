@@ -1,7 +1,7 @@
 <div id="futbol">
     <div class="d-flex justify-content-around">
         <div class="container-fluid">
-            <div id="tablaEquipo" class="col-md-12 p-3">
+            <div id="tablaEquipo" class="col-md-10 m-2 p-2">
                 <form class="d-flex">
                     <img class="rounded mx-auto d-block" src="/img/pelotaF.png" alt="" width="50" height="50">
                     <h2 class=" me-4"><b>EQUIPOS</b></h2>
@@ -34,8 +34,8 @@
         </div>
         {{#if miEquipo}}
         <div class="container-fluid">
-            <div id="tablaEquipo" class="col-md-12">
-                {{#each miEquipo}}
+            <div id="tablaEquipo" class="col-md-10 m-2 p-1">
+                {{!-- {{#each miEquipo}} --}}
                 <form class="d-flex">
                     <h2 class=" me-4"><b>MI EQUIPO</b></h2>
                     <h3><i>{{nombreEquipo}}</i></h3>
@@ -49,19 +49,16 @@
                         </tr> 
                     </thead>                                
                     <tbody>
+                        {{#each miEquipo}}
                         <tr>
-                            <td>1</td>
-                            <td>Juan</td>
-                            <td>Arquero</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Pedro</td>
-                            <td>Defensor</td>
-                        </tr>            
+                            <td>{{nombreEquipo}}</td>                            
+                            <td>{{nombreUsuario}}</td>
+                            <td>{{posicion}}</td>                        
+                        </tr>  
+                         {{/each}}                                
                     </tbody>
                 </table>
-                {{/each}}
+               
             </div>
         </div>
         {{else}}

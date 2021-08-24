@@ -7,31 +7,30 @@ const { estaLogueado, noEstaLogueado, admin } = require('../lib/auth');
 ruta.get('/equipo', estaLogueado, async (req, res) => {
     res.render('paginas/equipo');
 });
-
 //agregue pantalla futbol
 ruta.get('/futbol/:id', estaLogueado, async (req, res) => {
     const {id}= req.params;
     const equipos= await db.query('select * from equipos inner join deporte where equipos.idDeportes = deporte.idDeportes');
-    const miEquipo= await db.query('select * from equipos where idUsuarios =?', [id]);
+    const miEquipo= await db.query('select equipos.nombreEquipo, jugador.posicion, usuarios.nombreUsuario from equipos inner join jugador inner join usuarios where equipos.idUsuarios =? and jugador.idEquipo = equipos.idEquipo and usuarios.idUsuarios = jugador.idUsuarios', [id]);
+    // miEquipo.forEach(element => {console.info(miEquipo.element)
+        
+    // });
+    // let equipo=[];
     console.info(miEquipo);
     res.render('paginas/futbol', {equipos, miEquipo});
 });
-
 //agregue pantalla basquet
 ruta.get('/basquet', estaLogueado, async (req, res) => {
     res.render('paginas/basquet');
 });
-
 //agregue pantalla padel
 ruta.get('/padel', estaLogueado, admin, async (req, res) => {
     res.render('paginas/padel');
 });
-
 //agregue pantalla deporte
 ruta.get('/deporte', estaLogueado, async (req, res) => {
     res.render('paginas/deporte');
 });
-
 //pantalla crear cancha
 ruta.get('/cancha', estaLogueado, async (req, res) => {
     res.render('paginas/cancha');
@@ -73,7 +72,7 @@ ruta.post('/crearEquipoFutbol/:id', async (req, res) => {
             };
             await db.query('Insert into jugador set ?', [newJugador]);
             req.flash('mensajeOk', "Equipo Creado con Exito!!!");
-            res.redirect('/paginas/futbol')};    
+            res.redirect('/paginas/futbol/:id')};    
 });
 
 module.exports = ruta;

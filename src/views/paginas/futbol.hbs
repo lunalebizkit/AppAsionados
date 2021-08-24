@@ -1,7 +1,7 @@
 <div id="futbol">
     <div class="d-flex justify-content-around">
         <div class="container-fluid">
-            <div id="tablaEquipo" class="col-md-12">
+            <div id="tablaEquipo" class="col-md-12 p-3">
                 <form class="d-flex">
                     <img class="rounded mx-auto d-block" src="/img/pelotaF.png" alt="" width="50" height="50">
                     <h2 class=" me-4"><b>EQUIPOS</b></h2>
@@ -13,59 +13,32 @@
                     </div>
                 </form>
                 <table class="table table-hover table-info">
-                    <thead>
+                    <thead>                        
                         <tr>
                             <th>Nº de Equipo</th>
                             <th>Nombre</th>
-                            <th>Nº de Jugadores</th>                                
+                            <th>Deporte</th>                                
                         </tr> 
                     </thead>                                
                     <tbody>
+                        {{#each equipos}}
                         <tr>
-                            <td>1</td>
-                            <td>Equipo1</td>
-                            <td>7</td>
+                            <td>#</td>
+                            <td>{{nombreEquipo}}</td>
+                            <td>{{deporte}}</td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Equipo2</td>
-                            <td>9</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Equipo3</td>
-                            <td>6</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Equipo4</td>
-                            <td>7</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Equipo5</td>
-                            <td>7</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Equipo6</td>
-                            <td>9</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Equipo7</td>
-                            <td>8</td>
-                        </tr>
-                    </tbody>
+                        {{/each}}                    
+                    </tbody>                
                 </table>
             </div>
         </div>
-        {{#if equipo}}
+        {{#if miEquipo}}
         <div class="container-fluid">
             <div id="tablaEquipo" class="col-md-12">
+                {{#each miEquipo}}
                 <form class="d-flex">
                     <h2 class=" me-4"><b>MI EQUIPO</b></h2>
-                    <h3><i>Equipo1</i></h3>
+                    <h3><i>{{nombreEquipo}}</i></h3>
                 </form>
                 <table class="table table-hover table-success ">
                     <thead>
@@ -85,39 +58,15 @@
                             <td>2</td>
                             <td>Pedro</td>
                             <td>Defensor</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Carlos</td>
-                            <td>Defensor</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Tomas</td>
-                            <td>Defensor</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Mario</td>
-                            <td>Medio</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Roman</td>
-                            <td>Medio</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Jose</td>
-                            <td>Delantero</td>
-                        </tr>
+                        </tr>            
                     </tbody>
                 </table>
+                {{/each}}
             </div>
         </div>
         {{else}}
         <div class="col-6 my-5">
-           <h3><a class="text-white" href="crearEquipoFutbol/{{user.idUsuarios}}">Crea tu Equipo!</a></h3> 
+           <h3><a class="text-white" href="/paginas/crearEquipoFutbol/{{user.idUsuarios}}">Crea tu Equipo!</a></h3> 
         </div>
         {{/if}}
     </div>

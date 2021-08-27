@@ -1,0 +1,19 @@
+<div class="container">
+    <table class="table table-dark">
+        <h3><p class="text-center text-white">{{equipo}}</p></h3>
+        <thead class="table-danger">
+            <th>Usuario</th>
+            <th>Jugador</th>
+            <th>Posicion</th>
+        </thead>
+        <tbody>            
+            {{#each equipos}}
+            <tr>
+            <td>{{nombreUsuario}}</td>
+            <td>{{nombre}}</td>
+            <td>{{posicion}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

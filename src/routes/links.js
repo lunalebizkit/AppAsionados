@@ -9,15 +9,10 @@ ruta.get('/equipo', estaLogueado, async (req, res) => {
 });
 //agregue pantalla futbol
 ruta.get('/futbol/:id', estaLogueado, async (req, res) => {
-    const {id}= req.params;
-    const equipos= await db.query('select * from equipos inner join deporte where equipos.idDeportes = deporte.idDeportes');
-    const miEquipo= await db.query('select equipos.nombreEquipo, jugador.posicion, usuarios.nombreUsuario from equipos inner join jugador inner join usuarios where equipos.idUsuarios =? and jugador.idEquipo = equipos.idEquipo and usuarios.idUsuarios = jugador.idUsuarios', [id]);
-    // miEquipo.forEach(element => {console.info(miEquipo.element)
-        
-    // });
-    // let equipo=[];
-    console.info(miEquipo);
-    res.render('paginas/futbol', {equipos, miEquipo});
+    const { id } = req.params;
+    const equipos = await db.query('select * from equipos inner join deporte where equipos.idDeportes = deporte.idDeportes');
+    const misEquipos= await db.query('select equipos.nombreEquipo from jugador inner join equipos where equipos.idEquipo = jugador.idEquipo and jugador.idUsuarios =?', [id]);
+    res.render('paginas/futbol', {equipos, misEquipos});
 });
 //agregue pantalla basquet
 ruta.get('/basquet', estaLogueado, async (req, res) => {
@@ -57,22 +52,29 @@ ruta.post('/crearEquipoFutbol/:id', async (req, res) => {
         idDeportes,
         idUsuarios
     };
-    const consulta= await db.query('Select * from equipos Where nombreEquipo =?', [nombreEquipo]);
-    if((consulta.length)>0) {
+    const consulta = await db.query('Select * from equipos Where nombreEquipo =?', [nombreEquipo]);
+    if ((consulta.length) > 0) {
         req.flash('mensajeMal', "Equipo Existente");
         res.redirect('/paginas/crearEquipoFutbol/:id')
     }
-    else {const crearEquipo = await db.query('Insert into equipos set ?', [newEquipo]);
-            const idEquipo = crearEquipo.insertId;
-            let newJugador= {
+    else {
+        const crearEquipo = await db.query('Insert into equipos set ?', [newEquipo]);
+        const idEquipo = crearEquipo.insertId;
+        let newJugador = {
             idUsuarios,
             posicion,
             idDeportes,
             idEquipo
-            };
-            await db.query('Insert into jugador set ?', [newJugador]);
-            req.flash('mensajeOk', "Equipo Creado con Exito!!!");
-            res.redirect('/paginas/futbol/:id')};    
+        };
+        await db.query('Insert into jugador set ?', [newJugador]);
+        req.flash('mensajeOk', "Equipo Creado con Exito!!!");
+        res.redirect('/paginas/futbol/:id')
+    };
+});
+ruta.get('/miEquipo/:equipo', async(req, res)=>{
+    const {equipo}=req.params;
+    const equipos= await db.query('Select usuarios.nombreUsuario, usuarios.nombre, jugador.posicion from equipos join jugador join usuarios where jugador.idEquipo = equipos.idEquipo and usuarios.idUsuarios = jugador.idUsuarios and nombreEquipo =?',[equipo] );
+    res.render('paginas/miEquipo', {equipos, equipo});
 });
 
-module.exports = ruta;
+module.exports = ruta

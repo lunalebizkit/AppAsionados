@@ -13,13 +13,13 @@
                     </div>
                 </form>
                 <table class="table table-hover table-info">
-                    <thead>                        
+                    <thead>
                         <tr>
                             <th>Nº de Equipo</th>
                             <th>Nombre</th>
-                            <th>Deporte</th>                                
-                        </tr> 
-                    </thead>                                
+                            <th>Deporte</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         {{#each equipos}}
                         <tr>
@@ -27,50 +27,75 @@
                             <td>{{nombreEquipo}}</td>
                             <td>{{deporte}}</td>
                         </tr>
-                        {{/each}}                    
-                    </tbody>                
-                </table>
-            </div>
-        </div>
-        {{#if miEquipo}}
-        <div class="container-fluid">
-            <div id="tablaEquipo" class="col-md-10 m-2 p-1">
-                {{!-- {{#each miEquipo}} --}}
-                <form class="d-flex">
-                    <h2 class=" me-4"><b>MI EQUIPO</b></h2>
-                    <h3><i>{{nombreEquipo}}</i></h3>
-                </form>
-                <table class="table table-hover table-success ">
-                    <thead>
-                        <tr>
-                            <th>Número</th>
-                            <th>Nombre</th>
-                            <th>Posición</th>                                
-                        </tr> 
-                    </thead>                                
-                    <tbody>
-                        {{#each miEquipo}}
-                        <tr>
-                            <td>{{nombreEquipo}}</td>                            
-                            <td>{{nombreUsuario}}</td>
-                            <td>{{posicion}}</td>                        
-                        </tr>  
-                         {{/each}}                                
+                        {{/each}}
                     </tbody>
                 </table>
-               
             </div>
         </div>
-        {{else}}
-        <div class="col-6 my-5">
-           <h3><a class="text-white" href="/paginas/crearEquipoFutbol/{{user.idUsuarios}}">Crea tu Equipo!</a></h3> 
+        <div class="container-fluid">
+            <div class="col-6 m-2">
+                <a class="btn btn-primary btn-lg" href="/paginas/crearEquipoFutbol/{{user.idUsuarios}}">Crea tu Equipo!</a>
+            </div>
+            <div class="col-6 m-2">
+                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#misEquipo"
+                    data-bs-whatever="@equipo">Mis Equipos</button>
+            </div>
         </div>
-        {{/if}}
     </div>
     <div class="container">
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn btn-danger" type="submit">Buscar cancha</button>
+            <button class="btn btn-danger" data-toggle="modal" type="submit">Buscar cancha</button>
         </div>
     </div>
-</div> 
-       
+</div>
+<!-- The Modal -->
+<div class="modal fade" id="misEquipo" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+
+            <!-- Modal Header -->
+            <div class="modal-header" id="misEquipo">
+                <h4 class="modal-title">MIS EQUIPOS</h4>
+                <button type="button" class="close" data-bs-dismiss="modal" id="crearEquipo">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body" id="misEquipo">
+                <table class="table text-center">
+                    <tbody>
+                        {{#each misEquipos}}
+                        <tr>
+                            <td><i><h4><a href="/paginas/miEquipo/{{nombreEquipo}}">{{nombreEquipo}}</a></h4></i></td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer" id="crearEquipo">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{!--
+<script>
+    var exampleModal = document.getElementById('crearEquipo')
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+        // Button that triggered the modal
+        var button = event.relatedTarget
+        // Extract info from data-bs-* attributes
+        var recipient = button.getAttribute('data-bs-whatever')
+        // If necessary, you could initiate an AJAX request here
+        // and then do the updating in a callback.
+        //
+        // Update the modal's content.
+        var modalTitle = exampleModal.querySelector('.modal-title')
+        var modalBodyInput = exampleModal.querySelector('.modal-body input')
+
+        modalTitle.textContent = 'New message to ' + recipient
+        modalBodyInput.value = recipient
+    })
+</script>
+href="/paginas/crearEquipoFutbol/{{user.idUsuarios}}" --}}

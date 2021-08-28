@@ -48,19 +48,20 @@ ruta.get('/crearEquipoFutbol/:id', async (req, res) =>{
 ruta.post('/crearEquipoFutbol/:id', async(req, res )=>{
     const {id}= req.params;
     const idUsuarios = id
-    const {nombreEquipo, idDeportes}= req.body;
+    const {nombreEquipo, idDeportes,posicion}= req.body;
     let newEquipo= {
         nombreEquipo,
+        posicion,
         idDeportes,
         idUsuarios
     }
     // const crearEquipo = await db.query('Insert into equipos set ?', [newEquipo]);
-    const idEquipo= crearEquipo.insertId
+    //const idEquipo= crearEquipo.insertId
     let newJugador= {
         idUsuarios,
-        /*posicion,*/
+        posicion,
         idDeportes,
-        idEquipo
+        //idEquipo
     }
     console.info(newEquipo);
     console.info(newJugador);   

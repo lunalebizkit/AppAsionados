@@ -1,3 +1,4 @@
+<script src="bootstrap.bundle.min.js"></script>
 <div id="futbol">
     <div class="d-flex justify-content-around">
         <div class="container-fluid">
@@ -15,7 +16,7 @@
                 <table class="table table-hover table-info">
                     <thead>
                         <tr>
-                            <th>Nº de Equipo</th>
+                            <th>Capitan</th>
                             <th>Nombre</th>
                             <th>Deporte</th>
                         </tr>
@@ -23,8 +24,9 @@
                     <tbody>
                         {{#each equipos}}
                         <tr>
-                            <td>#</td>
-                            <td>{{nombreEquipo}}</td>
+                            <td data-bs-toggle="tooltip" data-bs-placement="top" title="{{email}}">{{nombreUsuario}}
+                            </td>
+                            <td><a href="/paginas/equipo/{{nombreEquipo}}">{{nombreEquipo}}</a></td>
                             <td>{{deporte}}</td>
                         </tr>
                         {{/each}}
@@ -64,7 +66,9 @@
                     <tbody>
                         {{#each misEquipos}}
                         <tr>
-                            <td><i><h4><a href="/paginas/miEquipo/{{nombreEquipo}}">{{nombreEquipo}}</a></h4></i></td>
+                            <td><i>
+                                    <h4><a href="/paginas/miEquipo/{{nombreEquipo}}">{{nombreEquipo}}</a></h4>
+                                </i></td>
                         </tr>
                         {{/each}}
                     </tbody>

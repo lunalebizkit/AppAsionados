@@ -11,7 +11,7 @@ module.exports= {
         } return res.redirect('/paginas/deporte');
     },
     admin(req, res, next) {
-        if((req.user.rol) & (req.user.rol) === 'admin') {
+        if((req.isAuthenticated()) & (req.user.rol) === 'admin') {
             return next();
         }return res.redirect('/ingreso');
     }

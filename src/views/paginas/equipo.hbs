@@ -1,74 +1,21 @@
-<div class="album py-5 bg-light">
-    <div class="container">
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-            <div class="card-column mt-3">
-                <div class="col">
-                    <div class="card">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Juan</p>
-                        </div>
-                    </div>
-                </div>
+<div class="container">
+    <table class="table table-dark table-striped">
+        <thead>
+            <h2 class="text-center" style="color: aquamarine;">{{club}}</h2>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Posicion</th>
+        </thead>
+        <tbody>
+            {{#each equipo}}
+            <tr>
+                <td>{{nombre}}</td>
+                <td>{{apellido}}</td>
+                <td>{{posicion}}</td>                
+            </tr>
+                {{/each}}
+            
+        </tbody>
+    </table>
 
-                <div class="col">
-                    <div class="card ">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Pedro</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card ">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Carlos</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card ">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Tomas</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card ">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Mario</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card ">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Roman</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card ">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Jose</p>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-
-        </div>
-    </div>
 </div>
-
-

@@ -7,35 +7,36 @@
 
         <div class="collapse navbar-collapse" id="navbarsExample04">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
                 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown"
                         aria-expanded="false">Deportes</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                        <li><a class="dropdown-item" href="/paginas/futbol/:id">Fútbol</a></li>
-                        <li><a class="dropdown-item" href="#">Básquet</a></li>
-                        <li><a class="dropdown-item" href="#">Pádel</a></li>
+                        <li><a class="dropdown-item" href="/paginas/futbol/{{user.idUsuarios}}">Fútbol</a></li>
+                        <li><a class="dropdown-item" href="/paginas/basquet/:id">Básquet</a></li>
+                        <li><a class="dropdown-item" href="/paginas/padel/:id">Pádel</a></li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Canchas</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown"
+                        aria-expanded="false">Canchas</a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown04">
+                        <li><a class="dropdown-item" href="/paginas/futbol/:id">Fútbol</a></li>
+                        <li><a class="dropdown-item" href="/paginas/futbol/:id">Básquet</a></li>
+                        <li><a class="dropdown-item" href="/paginas/futbol/:id">Pádel</a></li>
+                    </ul>
                 </li>
-                <form>
-                    <input class="form-control" type="text" placeholder="Buscar..." aria-label="Search">
-                </form>
-                
+                 
             </ul>
             
         </div>
 
         <li class="nav-item">
-            <a class="nav-link " href="#" tabindex="-1" aria-disabled="true" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Bienvenido {{user.nombreUsuario}}</a>
+            <a class="nav-link " href="#card" tabindex="-1" aria-disabled="true" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Bienvenido {{user.nombreUsuario}}</a>
         </li>
+        
         <li class="nav-item">
-            <a class="nav-link-dark" href="/cerrarSesion" tabindex="-1" aria-disabled="true">Cerrar Sesion</a>
+            <a class="nav-link-dark" href="/cerrarSesion" tabindex="-1" aria-disabled="true">Salir</a>
         </li>
     </div>
     

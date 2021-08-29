@@ -1,6 +1,6 @@
 <div class="container">
     <table class="table table-dark table-striped">
-        <thead>
+        <thead class="table-danger">
             <h2 class="text-center" style="color: aquamarine;">{{club}}</h2>
             <th>Nombre</th>
             <th>Apellido</th>
@@ -13,11 +13,13 @@
                 <td>{{apellido}}</td>
                 <td>{{posicion}}</td>                
             </tr>
-                {{/each}}
-            
+                {{/each}}            
         </tbody>
     </table>
     <div class="col-2  p-3">
         <a href="/paginas/futbol/{{user.idUsuarios}}" type="button" class="btn btn-dark">Volver</a>
     </div>
+    {{#unless pertenezco}}
+        <a class="btn btn-info btn-lg" href="/paginas/ingresarAlEquipo/{{user.idUsuarios}}">Ser Parte!!!</a>
+    {{/unless}}
 </div>

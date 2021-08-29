@@ -6,8 +6,10 @@ const { estaLogueado, noEstaLogueado, admin } = require('../lib/auth');
 //Agregue pantalla equipo
 ruta.get('/equipo/:club', estaLogueado, async (req, res) => {
     const {club}= req.params;
+    const {idUsuarios} = req.user;
     const equipo= await db.query('Select * from jugador join equipos join usuarios where usuarios.IdUsuarios = jugador.idUsuarios and jugador.idEquipo = equipos.idEquipo and equipos.nombreEquipo =?', [club]);
-    res.render('paginas/equipo', {equipo, club});
+    const pertenezco= await db.query('select * from jugador join equipos where jugador.idUsuarios =? and jugador.idEquipo = equipos.idEquipo and equipos.nombreEquipo =?', [idUsuarios, club]);   
+    res.render('paginas/equipo', {equipo, club, pertenezco});
 });
 //agregue pantalla futbol
 ruta.get('/futbol/:id', estaLogueado, async (req, res) => {

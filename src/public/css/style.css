@@ -209,3 +209,18 @@ h6 {
 #semiTransparente{
   background: rgba(100, 100, 100, 0.651);
 }
+.sidebar {
+  position: fixed;
+  margin-top: 5.6em;
+  top: 0;
+  /* rtl:raw:
+  right: 0;
+  */
+  bottom: 0;
+  /* rtl:remove */
+  right: 0;
+  z-index: 100; /* Behind the navbar */
+  padding: 30px 0 0; /* Height of navbar */
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  background: rgba(255, 254, 254, 0.61)
+}

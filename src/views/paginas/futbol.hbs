@@ -1,4 +1,3 @@
-<script src="bootstrap.bundle.min.js"></script>
 <div id="futbol">
     <div class="d-flex justify-content-around">
         <div class="container-fluid">
@@ -33,22 +32,22 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-3 m-2">
-                    <a class="btn btn-primary" href="/paginas/crearEquipoFutbol/{{user.idUsuarios}}">Crea tu Equipo!</a>
-                </div>
-                <div class="col-3 m-2">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#misEquipo" data-bs-whatever="@equipo">Mis Equipos</button>
-            </div>
         </div>
-        
-    </div>
-    <div class="container">
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn btn-danger" data-toggle="modal" type="submit">Buscar cancha</button>
+        <div class="sidebar col-2 p-1">
+            <button type="button" class="btn btn-info btn-block text-dark" data-bs-toggle="modal" data-bs-target="#misEquipo"
+                data-bs-whatever="@equipo">Mis Equipos</button>
+            <a class="btn btn-info btn-block text-dark" href="/paginas/crearEquipoFutbol/{{user.idUsuarios}}">Crea tu
+                Equipo!</a>
+            <button class="btn btn-info btn-block text-dark" data-toggle="modal" type="submit">Buscar cancha</button>
         </div>
+
     </div>
-    <a href="/paginas/deporte" type="button" class="btn btn-primary">Volver</a>
 </div>
+
+
+<a href="/paginas/deporte" type="button" class="btn btn-primary">Volver</a>
+</div>
+
 <!-- The Modal -->
 <div class="modal fade" id="misEquipo" tabindex="-1">
     <div class="modal-dialog">
@@ -82,24 +81,3 @@
         </div>
     </div>
 </div>
-
-{{!--
-<script>
-    var exampleModal = document.getElementById('crearEquipo')
-    exampleModal.addEventListener('show.bs.modal', function (event) {
-        // Button that triggered the modal
-        var button = event.relatedTarget
-        // Extract info from data-bs-* attributes
-        var recipient = button.getAttribute('data-bs-whatever')
-        // If necessary, you could initiate an AJAX request here
-        // and then do the updating in a callback.
-        //
-        // Update the modal's content.
-        var modalTitle = exampleModal.querySelector('.modal-title')
-        var modalBodyInput = exampleModal.querySelector('.modal-body input')
-
-        modalTitle.textContent = 'New message to ' + recipient
-        modalBodyInput.value = recipient
-    })
-</script>
-href="/paginas/crearEquipoFutbol/{{user.idUsuarios}}" --}}

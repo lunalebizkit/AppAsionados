@@ -26,7 +26,7 @@ ruta.get('/basquet', estaLogueado, async (req, res) => {
     res.render('paginas/basquet');
 });
 //agregue pantalla padel
-ruta.get('/padel', estaLogueado, admin, async (req, res) => {
+ruta.get('/padel', estaLogueado, async (req, res) => {
     res.render('paginas/padel');
 });
 //agregue pantalla deporte
@@ -46,8 +46,7 @@ ruta.post('/vistaAdmin', admin, async (req, res) => {
     console.info(req.body);
     res.render('paginas/vistaAdmin');
 });
-ruta.get('/crearEquipoFutbol/:id', async (req, res) => {
-    console.info(req.user);
+ruta.get('/crearEquipoFutbol/:id', estaLogueado, async (req, res) => {
     res.render('paginas/crearEquipoFutbol');
 });
 ruta.post('/crearEquipoFutbol/:id', async (req, res) => {
@@ -56,7 +55,6 @@ ruta.post('/crearEquipoFutbol/:id', async (req, res) => {
     const { nombreEquipo, posicion, idDeportes } = req.body;
     let newEquipo = {
         nombreEquipo,
-        posicion,
         idDeportes,
         idUsuarios
     };
@@ -95,6 +93,7 @@ ruta.get('/ingresarAlEquipo/:idEquipo&:idDeportes', async(req, res) =>{
         idEquipo
     }
     if (await db.query('insert into jugador set?', [newJugador])){
+        req.flash('mensajeOk', 'Ya sos parte del equipo!!!');
         res.redirect('/paginas/futbol');
     }else{
         res.render('paginas/ingresarAlEquipo');

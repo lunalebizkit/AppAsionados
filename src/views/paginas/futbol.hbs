@@ -6,24 +6,26 @@
                     <form class="d-flex">
                         <img class="rounded mx-2 d-block" src="/img/pelotaF.png" alt="" width="50" height="50">
                         <a class="navbar-brand" href="#">
-                            <h2 class=" me-3"><b>EQUIPOS</b></h2>
+                            <h2 class=" text-white me-3"><b>EQUIPOS</b></h2>
                         </a>
-                        
+
                         <div class="d-flex justify-content-between m-auto ">
                             <div class="btn-group" role="group" aria-label="Basic outlined example">
                                 <button type="button" class="btn btn-primary">Jugadores</button>
                             </div>
                             <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                <a type="button" class="btn btn-success"href="/paginas/crearEquipoFutbol/{{user.idUsuarios}}">Crear Equipo</a>
-                                <button type="button" class="btn btn-success"data-bs-toggle="modal" data-bs-target="#misEquipo" data-bs-whatever="@equipo">Mis Equipos</button>
-                              
+                                <a type="button" class="btn btn-success"
+                                    href="/paginas/crearEquipoFutbol/{{user.idUsuarios}}">Crear Equipo</a>
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                    data-bs-target="#misEquipo" data-bs-whatever="@equipo">Mis Equipos</button>
+
                             </div>
                         </div>
-                        
+
                     </form>
                     <div id="scroll">
-                        <table id="tablaScroll" class="table table-hover table-info">
-                            <thead>
+                        <table class="table table-hover table-info">
+                            <thead class="fixed">
                                 <tr>
                                     <th>Capitan</th>
                                     <th>Nombre</th>
@@ -33,9 +35,10 @@
                             <tbody>
                                 {{#each equipos}}
                                 <tr>
-                                    <td data-bs-toggle="tooltip" data-bs-placement="top" title="{{email}}">{{nombreUsuario}}
+                                    <td data-bs-toggle="tooltip" data-bs-placement="top" title="{{email}}">
+                                        {{nombreUsuario}}
                                     </td>
-                                    <td><a href="/paginas/equipo/{{nombreEquipo}}">{{nombreEquipo}}</a></td>
+                                    <td><a href="/paginas/equipo/{{nombreEquipo}}&{{idDeportes}}">{{nombreEquipo}}</a></td>
                                     <td>{{deporte}}</td>
                                 </tr>
                                 {{/each}}
@@ -43,19 +46,16 @@
                         </table>
                     </div>
                 </div>
-               
+
             </div>
         </div>
     </div>
     <div class="col-2  p-3">
-        <a href="/paginas/deporte" type="button" class="btn btn-dark">Volver</a>
+        <a id="volver" href="/paginas/deporte" type="button" class="btn btn-dark">Volver</a>
     </div>
-    
+
 </div>
 
-
-<a id="volver" href="/paginas/deporte" type="button" class="btn btn-primary">Volver</a>
-</div>
 
 <!-- The Modal -->
 <div class="modal fade" id="misEquipo" tabindex="-1">
@@ -75,7 +75,8 @@
                         {{#each misEquipos}}
                         <tr>
                             <td><i>
-                                    <h4><a class="text-white" href="/paginas/miEquipo/{{nombreEquipo}}">{{nombreEquipo}}</a></h4>
+                                    <h4><a class="text-white"
+                                            href="/paginas/miEquipo/{{nombreEquipo}}">{{nombreEquipo}}</a></h4>
                                 </i></td>
                         </tr>
                         {{/each}}

@@ -85,7 +85,8 @@ h6 {
 }
 
 #tablaEquipo {
-  background: rgba(0, 0, 0, 0.623);
+  background: rgba(0, 0, 0, 0.623)
+
 }
 
 
@@ -192,8 +193,7 @@ h6 {
   overflow-y: scroll;
   width: 670px;
   height: 379px;
-  display: block;
-
+  display: block
 }
 
 #formulario{
@@ -225,7 +225,6 @@ h6 {
   background: rgba(255, 254, 254, 0.61)
 }
 #volver {
-  position:fixed;
   bottom: 0;
   margin-bottom: 4px
 }

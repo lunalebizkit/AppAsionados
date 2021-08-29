@@ -1,5 +1,5 @@
 <div class="container">
-    <table class="table table-dark table-striped">
+    <table class="table table-dark table-striped mb-5">
         <thead class="table-danger">
             <h2 class="text-center" style="color: aquamarine;">{{club}}</h2>
             <th>Nombre</th>
@@ -11,30 +11,31 @@
             <tr>
                 <td>{{nombre}}</td>
                 <td>{{apellido}}</td>
-                <td>{{posicion}}</td>                
+                <td>{{posicion}}</td>
             </tr>
-                {{/each}}            
+            {{/each}}
         </tbody>
     </table>
-    <div class="col-2  p-3">
-        <a href="/paginas/futbol/{{user.idUsuarios}}" type="button" class="btn btn-dark">Volver</a>
-    </div>
+
     {{#unless pertenezco}}
-    <h3 style="color: yellowgreen;">Queres Sumarte al equipo?</h3>
-    <form action="/paginas/ingresarAlEquipo/{{numero}}&{{idDeportes}}" method="get">
-         <div class="input-group mb-3">
-                    <label for="nombre" class="text-black m-2 "><b> ELEGIR POSICIÓN:</b></label>
-                    <select name="posicion" class="btn btn-ls btn-success" required>
-                        <option type="text" value="">Opciones</option>
-                        <option type="text" value="Arquero">Arquero</option>
-                        <option type="text" value="Defensor">Defensor</option>
-                        <option type="text" value="MedioCampo">Medio campo</option>
-                        <option type="text" value="Delantero">Delantero</option>
-                    </select>
-                </div>
-        <button class="btn btn-info btn-lg" >Ser Parte!!!</button>
-    </form>
-    {{/unless}}
-</div>
-<a id="volver" href="/paginas/futbol/{{user.idUsuarios}}" type="button" class="btn btn-primary">Volver</a>
+    <div class="col-6 mx-auto text-center">
+        <h3 style="color: yellowgreen;">¿Querés ser parte del Equipo?</h3>
+        <form action="/paginas/ingresarAlEquipo/{{numero}}&{{idDeportes}}" method="get">
+            <div class="input-group mb-3 mt-3 mx-5">
+                <label for="nombre" class="text-white m-2 ml-5"><b> ELEGIR POSICIÓN:</b></label>
+                <select name="posicion" class="btn btn-ls btn-success" required>
+                    <option type="text" value="">Opciones</option>
+                    <option type="text" value="Arquero">Arquero</option>
+                    <option type="text" value="Defensor">Defensor</option>
+                    <option type="text" value="MedioCampo">Medio campo</option>
+                    <option type="text" value="Delantero">Delantero</option>
+                </select>
+            </div>
+            <button class="btn btn-primary btn-block">Ser Parte!!!</button>
+        </form>
+        {{/unless}}
+    </div>
+    <div class="col-2  p-3">
+        <a href="/paginas/futbol" type="button" class="btn btn-dark">Volver</a>
+    </div>
 </div>

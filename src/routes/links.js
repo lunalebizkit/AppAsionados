@@ -49,7 +49,7 @@ ruta.post('/vistaAdmin', admin, async (req, res) => {
 ruta.get('/crearEquipoFutbol/:id', estaLogueado, async (req, res) => {
     res.render('paginas/crearEquipoFutbol');
 });
-ruta.post('/crearEquipoFutbol/:id', async (req, res) => {
+ruta.post('/crearEquipoFutbol/:id', estaLogueado, async (req, res) => {
     const { id } = req.params;
     const idUsuarios = id
     const { nombreEquipo, posicion, idDeportes } = req.body;
@@ -77,12 +77,12 @@ ruta.post('/crearEquipoFutbol/:id', async (req, res) => {
         res.redirect('/paginas/futbol')
     };
 });
-ruta.get('/miEquipo/:equipo', async(req, res)=>{
+ruta.get('/miEquipo/:equipo', estaLogueado, async(req, res)=>{
     const {equipo}=req.params;
     const equipos= await db.query('Select usuarios.nombreUsuario, usuarios.nombre, jugador.posicion from equipos join jugador join usuarios where jugador.idEquipo = equipos.idEquipo and usuarios.idUsuarios = jugador.idUsuarios and nombreEquipo =?',[equipo] );
     res.render('paginas/miEquipo', {equipos, equipo});
 });
-ruta.get('/ingresarAlEquipo/:idEquipo&:idDeportes', async(req, res) =>{
+ruta.get('/ingresarAlEquipo/:idEquipo&:idDeportes', estaLogueado, async(req, res) =>{
     const {idEquipo, idDeportes} = req.params;
     const {posicion}=req.query;
     const {idUsuarios}= req.user;

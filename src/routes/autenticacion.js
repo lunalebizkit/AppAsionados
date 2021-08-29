@@ -28,23 +28,23 @@ ruta.post('/ingreso', (req, res, next)=> {
 ruta.get('/registroDuenio', noEstaLogueado, (req, res)=> {
     res.render('ingreso/registroDuenio'); 
 });
-// ruta.post('/registroDuenio', /*passport.authenticate('local.registroDuenio', {
-//         successRedirect: 'paginas/cancha',
-//         failureRedirect: '/registroDuenio', 
-//         failureFlash: true 
-// })*/);
+ ruta.post('/registroDuenio', passport.authenticate('local.registroDuenio', {
+         successRedirect: 'paginas/cancha',
+         failureRedirect: '/registroDuenio', 
+         failureFlash: true 
+ }));
 
 //ingreso duenio//
 ruta.get('/ingresoDuenio', noEstaLogueado, (req, res) =>  {
     res.render('ingreso/ingresoDuenio');
 });
-// ruta.post('/ingresoDuenio', (req, res, next)=> /* {
-//     passport.authenticate('local.ingresoDuenio', {
-//         successRedirect: 'paginas/cancha',
-//         failureRedirect: '/ingresoDuenio',
-//         failureFlash: true
-//     })*/(req, res, next)
-// );
+ ruta.post('/ingresoDuenio', (req, res, next)=>  {
+     passport.authenticate('local.ingresoDuenio', {
+         successRedirect: 'paginas/cancha',
+         failureRedirect: '/ingresoDuenio',
+         failureFlash: true
+     })(req, res, next)
+    });
 ruta.get('/ingresoAdmin', estaLogueado, admin, (req, res) =>{
     res.render('ingreso/ingresoAdmin');
 });

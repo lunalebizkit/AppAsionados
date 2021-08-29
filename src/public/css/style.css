@@ -9,11 +9,10 @@ body {
   background-attachment: fixed;
   height: 39rem;
   padding-bottom: 0%;
-  margin-bottom: 0%;
-  
+  margin-bottom: 0%  
 }
 
-h3 {
+#nombreEquipo {
   color: rgb(6, 100, 189);
 }
 
@@ -58,11 +57,10 @@ h6 {
 
 #futbol {
   background-color: rgb(32, 155, 16);
-  background-position: center center;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  height: 33rem;
     
 }
 
@@ -189,3 +187,4 @@ h6 {
   display: flex;
   align-items: center;
 }
+

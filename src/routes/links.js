@@ -56,6 +56,7 @@ ruta.post('/crearEquipoFutbol/:id', async (req, res) => {
     const { nombreEquipo, posicion, idDeportes } = req.body;
     let newEquipo = {
         nombreEquipo,
+        posicion,
         idDeportes,
         idUsuarios
     };
@@ -98,6 +99,11 @@ ruta.get('/ingresarAlEquipo/:idEquipo&:idDeportes', async(req, res) =>{
     }else{
         res.render('paginas/ingresarAlEquipo');
     }
+});
+
+//agregue pantalla inicio
+ruta.get('/inicio', estaLogueado, async (req, res) => {
+    res.render('paginas/inicio');
 });
 
 module.exports = ruta

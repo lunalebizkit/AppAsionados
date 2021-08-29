@@ -56,7 +56,7 @@ h6 {
 }
 
 #futbol {
-  background-color: rgb(32, 155, 16);
+  background-image: url(../img/verde1.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -85,7 +85,7 @@ h6 {
 }
 
 #tablaEquipo {
-  background: rgba(255, 254, 254, 0.61);
+  background: rgba(0, 0, 0, 0.623);
 }
 
 
@@ -141,7 +141,7 @@ h6 {
   color: wheat;
 }
 
-#Cancha {
+#cancha {
   background-image: url(../img/fut.jpg);
   background-position: center center;
   background-repeat: no-repeat;
@@ -188,6 +188,27 @@ h6 {
   align-items: center;
 }
 
+#scroll {
+  overflow-y: scroll;
+  width: 670px;
+  height: 379px;
+  display: block;
+
+}
+
+#formulario{
+  background-image: url(../img/verde1.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  width: 100%;
+  height: 535px;
+}
+
+#semiTransparente{
+  background: rgba(100, 100, 100, 0.651);
+}
 .sidebar {
   position: fixed;
   margin-top: 5.6em;

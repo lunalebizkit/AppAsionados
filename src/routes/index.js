@@ -4,7 +4,7 @@ const ruta = express.Router();
 
 
 ruta.get('/', (req, res) => {
-   res.render('paginas/inicio');
+   res.render('ingreso/ingreso');
 });
 
 

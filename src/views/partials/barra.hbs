@@ -1,7 +1,7 @@
 {{#if user}}
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href="/paginas/inicio">
             <img src="/img/logo4.png" alt="" width="60" height="60" class="d-inline-block ">
         </a>
         <div class="collapse navbar-collapse" id="navbarsExample04">
@@ -15,20 +15,16 @@
                         <li><a class="dropdown-item" href="/paginas/padel">Pádel</a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown"
-                        aria-expanded="false">Canchas</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                        <li><a class="dropdown-item" href="/paginas/futbol/:id">Fútbol</a></li>
-                        <li><a class="dropdown-item" href="/paginas/futbol/:id">Básquet</a></li>
-                        <li><a class="dropdown-item" href="/paginas/futbol/:id">Pádel</a></li>
-                    </ul>
-                </li>                 
-            </ul>            
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Canchas</a>
+                </li>
+            </ul>
+            
         </div>
         <li class="nav-item">
-            <a class="nav-link " href="#card" tabindex="-1" aria-disabled="true" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Bienvenido {{user.nombreUsuario}}</a>
-        </li>        
+            <a class="nav-link " href="#" aria-disabled="true" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Bienvenido {{user.nombreUsuario}}</a>
+        </li>
+        
         <li class="nav-item">
             <a class="nav-link-dark" href="/cerrarSesion" tabindex="-1" aria-disabled="true">Salir</a>
         </li>

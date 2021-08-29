@@ -1,46 +1,47 @@
-<div class="container" id="formulario">
+<div id="formulario" class="container">
     <form id="formequipo" method="POST" action="/paginas/crearEquipoFutbol/{{user.idUsuarios}}">
         <div class="row">
-            <h1 class="text-white mt-3 text-center py-4">CREA TU EQUIPO</h1>
-            <div class="col-6 m-auto py-3 px-4 bg-white">
-                <div class="input-group mb-3">
-                    <label for="nombre" class="text-black m-2"><b>NOMBRE DE TU EQUIPO:</b></label>
-                    <input type="text" class="form-control" name="nombreEquipo" required>
-                </div>
-                <div class="input-group mb-3">
-                    <label for="nombre" class="text-black m-2 "><b> ELEGIR POSICIÓN:</b></label>
-                    <select name="posicion" class="btn btn-ls btn-success" required>
-                        <option type="text" value="">Opciones</option>
-                        <option type="text" value="Arquero">Arquero</option>
-                        <option type="text" value="Defensor">Defensor</option>
-                        <option type="text" value="MedioCampo">Medio campo</option>
-                        <option type="text" value="Delantero">Delantero</option>
-                    </select>
-                </div>
-                <div class="input-group mb-3">
-                    <label for="idDeportes" class="text-black m-3"><b>SELECCIONA TIPO</b></label>
-                    <select name="idDeportes" class="btn btn-ls btn-success" required>
-                        <option type="" value="">Opciones</option>
-                        <option type="number" value="1">Futbol 5</option>
-                        <option type="number" value="2">Futbol 7</option>
-                        <option type="number" value="3">Futbol 11</option>
-                    </select>
+            <div id="semiTransparente" class="col-5 m-auto py-3 px-3 ">
+                <div class="card">
+                    <div class="card-header">
+                        <h1  class=" mt-3 text-center py-2">CREA TU EQUIPO</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group mb-3 py-2">
+                            <input type="text" class="form-control" name="nombreEquipo" placeholder="Nombre del equipo" autofocus required>
+                            
+                        </div>
+                        <div class="input-group mb-2 justify-content-between py-2">
+                            <select name="posicion" class="btn btn-ls btn-outline-primary" required>
+                                <option type="text" value="">POSICIÓN</option>
+                                <option type="text" value="Arquero">Arquero</option>
+                                <option type="text" value="Defensor">Defensor</option>
+                                <option type="text" value="MedioCampo">Medio campo</option>
+                                <option type="text" value="Delantero">Delantero</option>
+                            </select>
+                            
+                            <select name="idDeportes" class="btn btn-ls btn-outline-primary" required>
+                                <option type="" value="">FORMATO</option>
+                                <option type="number" value="1">Futbol 5</option>
+                                <option type="number" value="2">Futbol 7</option>
+                                <option type="number" value="3">Futbol 11</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-4 m-auto py-4">
+            <div id="semiTransparente" class="col-5 m-auto py-3">
                 <button type="submit" class="btn btn-success btn-block">
-                    Crear Equipo
+                    Crear
+                </button>
+                <button onclick="location.href='/paginas/futbol/{{user.idUsuarios}}'" class="btn btn-danger btn-block">
+                    Cancelar
                 </button>
             </div>
         </div>
     </form>
-    <div class="row">
-        <div class="col-4 m-auto">
-            <button onclick="location.href='/paginas/futbol/{{user.idUsuarios}}'" class="btn btn-danger btn-block">
-                Cancelar
-            </button>
-        </div>
-    </div>
+    
 </div>
+

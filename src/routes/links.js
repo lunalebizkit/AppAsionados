@@ -91,4 +91,9 @@ ruta.get('/inicio', estaLogueado, async (req, res) => {
     res.render('paginas/inicio');
 });
 
+//agregue pantalla duenio
+ruta.get('/duenio', estaLogueado, async (req, res) => {
+    res.render('paginas/duenio');
+});
+
 module.exports = ruta

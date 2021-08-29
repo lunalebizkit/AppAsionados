@@ -1,22 +1,24 @@
-<div class="container">
-    <table class="table table-dark">
-        <h3><p class="text-center text-white">{{equipo}}</p></h3>
-        <thead class="table-danger">
-            <th>Usuario</th>
-            <th>Jugador</th>
-            <th>Posicion</th>
-        </thead>
-        <tbody>            
-            {{#each equipos}}
-            <tr>
-            <td>{{nombreUsuario}}</td>
-            <td>{{nombre}}</td>
-            <td>{{posicion}}</td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
-    <div class="col-2  p-3">
-        <a href="/paginas/futbol/{{user.idUsuarios}}" type="button" class="btn btn-dark">Volver</a>
+<div id="formulario" class="container">
+    <div class="col-md-9 m-auto p-4">
+        <table class="table table-dark">
+            <h3><p id="semiTransparente" class="text-center py-2">{{equipo}}</p></h3>
+            <thead class="table-danger">
+                <th>Usuario</th>
+                <th>Jugador</th>
+                <th>Posicion</th>
+            </thead>
+            <tbody>            
+                {{#each equipos}}
+                <tr>
+                <td>{{nombreUsuario}}</td>
+                <td>{{nombre}}</td>
+                <td>{{posicion}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <div class="col-2  p-3">
+            <a href="/paginas/futbol/{{user.idUsuarios}}" type="button" class="btn btn-dark">Volver</a>
+        </div>
     </div>
 </div>

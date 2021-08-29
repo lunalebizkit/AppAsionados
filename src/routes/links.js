@@ -84,4 +84,9 @@ ruta.get('/ingresarAlEquipo/:idEquipo', async(req, res) =>{
     res.render('paginas/ingresarAlEquipo')
 })
 
+//agregue pantalla inicio
+ruta.get('/inicio', estaLogueado, async (req, res) => {
+    res.render('paginas/inicio');
+});
+
 module.exports = ruta

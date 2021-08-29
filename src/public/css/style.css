@@ -85,7 +85,8 @@ h6 {
 }
 
 #tablaEquipo {
-  background: rgba(0, 0, 0, 0.623);
+  background: rgba(0, 0, 0, 0.623)
+
 }
 
 
@@ -191,8 +192,7 @@ h6 {
   overflow-y: scroll;
   width: 670px;
   height: 379px;
-  display: block;
-
+  display: block
 }
 
 #scrollDuenio {
@@ -235,4 +235,9 @@ h6 {
 
 #titDuenio{
   color: blanchedalmond;
+}
+
+#volver {
+  bottom: 0;
+  margin-bottom: 4px
 }

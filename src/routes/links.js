@@ -4,18 +4,21 @@ const db = require('../database');
 const { estaLogueado, noEstaLogueado, admin } = require('../lib/auth');
 
 //Agregue pantalla equipo
-ruta.get('/equipo/:club', estaLogueado, async (req, res) => {
+ruta.get('/equipo/:club&:idDeportes', estaLogueado, async (req, res) => {
     const {club}= req.params;
+    const {idDeportes}= req.params;
     const {idUsuarios} = req.user;
     const equipo= await db.query('Select * from jugador join equipos join usuarios where usuarios.IdUsuarios = jugador.idUsuarios and jugador.idEquipo = equipos.idEquipo and equipos.nombreEquipo =?', [club]);
-    const pertenezco= await db.query('select * from jugador join equipos where jugador.idUsuarios =? and jugador.idEquipo = equipos.idEquipo and equipos.nombreEquipo =?', [idUsuarios, club]);   
-    res.render('paginas/equipo', {equipo, club, pertenezco});
+    const pertenezco= await db.query('select * from jugador join equipos where jugador.idUsuarios =? and jugador.idEquipo = equipos.idEquipo and equipos.nombreEquipo =?', [idUsuarios, club]);
+   const idEquipo= await db.query('select idEquipo from equipos where nombreEquipo =?', [club]);
+   let numero= idEquipo[0].idEquipo;
+    res.render('paginas/equipo', {equipo, club, pertenezco, numero, idDeportes});
 });
 //agregue pantalla futbol
-ruta.get('/futbol/:id', estaLogueado, async (req, res) => {
-    const { id } = req.params;
+ruta.get('/futbol', estaLogueado, async (req, res) => {
+    const { idUsuarios } = req.user;
     const equipos = await db.query('select * from equipos inner join deporte join usuarios where equipos.idDeportes = deporte.idDeportes and usuarios.idUsuarios = equipos.idUsuarios');
-    const misEquipos= await db.query('select equipos.nombreEquipo from jugador inner join equipos where equipos.idEquipo = jugador.idEquipo and jugador.idUsuarios =?', [id]);
+    const misEquipos= await db.query('select equipos.nombreEquipo from jugador inner join equipos where equipos.idEquipo = jugador.idEquipo and jugador.idUsuarios =?', [idUsuarios]);
     res.render('paginas/futbol', {equipos, misEquipos});
 });
 //agregue pantalla basquet
@@ -23,7 +26,7 @@ ruta.get('/basquet', estaLogueado, async (req, res) => {
     res.render('paginas/basquet');
 });
 //agregue pantalla padel
-ruta.get('/padel', estaLogueado, admin, async (req, res) => {
+ruta.get('/padel', estaLogueado, async (req, res) => {
     res.render('paginas/padel');
 });
 //agregue pantalla deporte
@@ -43,8 +46,7 @@ ruta.post('/vistaAdmin', admin, async (req, res) => {
     console.info(req.body);
     res.render('paginas/vistaAdmin');
 });
-ruta.get('/crearEquipoFutbol/:id', async (req, res) => {
-    console.info(req.user);
+ruta.get('/crearEquipoFutbol/:id', estaLogueado, async (req, res) => {
     res.render('paginas/crearEquipoFutbol');
 });
 ruta.post('/crearEquipoFutbol/:id', async (req, res) => {
@@ -53,7 +55,6 @@ ruta.post('/crearEquipoFutbol/:id', async (req, res) => {
     const { nombreEquipo, posicion, idDeportes } = req.body;
     let newEquipo = {
         nombreEquipo,
-        posicion,
         idDeportes,
         idUsuarios
     };
@@ -73,7 +74,7 @@ ruta.post('/crearEquipoFutbol/:id', async (req, res) => {
         };
         await db.query('Insert into jugador set ?', [newJugador]);
         req.flash('mensajeOk', "Equipo Creado con Exito!!!");
-        res.redirect('/paginas/futbol/:id')
+        res.redirect('/paginas/futbol')
     };
 });
 ruta.get('/miEquipo/:equipo', async(req, res)=>{
@@ -81,11 +82,23 @@ ruta.get('/miEquipo/:equipo', async(req, res)=>{
     const equipos= await db.query('Select usuarios.nombreUsuario, usuarios.nombre, jugador.posicion from equipos join jugador join usuarios where jugador.idEquipo = equipos.idEquipo and usuarios.idUsuarios = jugador.idUsuarios and nombreEquipo =?',[equipo] );
     res.render('paginas/miEquipo', {equipos, equipo});
 });
-ruta.get('/ingresarAlEquipo/:idEquipo', async(req, res) =>{
-    const {idEquipo} = req.params;
-    console.info(idEquipo);
-    res.render('paginas/ingresarAlEquipo')
-})
+ruta.get('/ingresarAlEquipo/:idEquipo&:idDeportes', async(req, res) =>{
+    const {idEquipo, idDeportes} = req.params;
+    const {posicion}=req.query;
+    const {idUsuarios}= req.user;
+    const newJugador={
+        idUsuarios,
+        posicion,
+        idDeportes,
+        idEquipo
+    }
+    if (await db.query('insert into jugador set?', [newJugador])){
+        req.flash('mensajeOk', 'Ya sos parte del equipo!!!');
+        res.redirect('/paginas/futbol');
+    }else{
+        res.render('paginas/ingresarAlEquipo');
+    }
+});
 
 //agregue pantalla inicio
 ruta.get('/inicio', estaLogueado, async (req, res) => {

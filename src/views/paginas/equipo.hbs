@@ -14,15 +14,32 @@
                     <td>{{apellido}}</td>
                     <td>{{posicion}}</td>                
                 </tr>
-                    {{/each}}            
+                {{/each}}            
             </tbody>
         </table>
-        <div class="col-2  p-3">
-            <a href="/paginas/futbol/{{user.idUsuarios}}" type="button" class="btn btn-dark">Volver</a>
-        </div>
+        
         {{#unless pertenezco}}
-            <a class="btn btn-info btn-lg" href="/paginas/ingresarAlEquipo/{{user.idUsuarios}}">Ser Parte!!!</a>
-        {{/unless}}
+        <div class="row">
+            <div id="semiTransparente" class="col-5 m-auto py-3">
+                <h3 style="color: rgb(12, 78, 12);">¿Querés ser parte del Equipo?</h3>
+                <form action="/paginas/ingresarAlEquipo/{{numero}}&{{idDeportes}}" method="get">
+                    <div class="col-6 mx-auto py-4">
+                        <select name="posicion" class="btn btn-ls btn-success" required>
+                            <option type="text" value="">Elegir posición</option>
+                            <option type="text" value="Arquero">Arquero</option>
+                            <option type="text" value="Defensor">Defensor</option>
+                            <option type="text" value="MedioCampo">Medio campo</option>
+                            <option type="text" value="Delantero">Delantero</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary btn-block">Unirme</button>
+                </form>
+                {{/unless}}
+            </div>
+        </div>
+        
+        <div class="col-2  p-3">
+            <a href="/paginas/futbol" type="button" class="btn btn-dark">Volver</a>
+        </div>
     </div>
-    
 </div>

@@ -17,6 +17,21 @@
         </tbody>
     </table>
     {{#unless pertenezco}}
-        <a class="btn btn-info btn-lg" href="/paginas/ingresarAlEquipo/{{user.idUsuarios}}">Ser Parte!!!</a>
+    <h3 style="color: yellowgreen;">Queres Sumarte al equipo?</h3>
+    <form action="/paginas/ingresarAlEquipo/{{numero}}&{{idDeportes}}" method="get">
+         <div class="input-group mb-3">
+                    <label for="nombre" class="text-black m-2 "><b> ELEGIR POSICIÓN:</b></label>
+                    <select name="posicion" class="btn btn-ls btn-success" required>
+                        <option type="text" value="">Opciones</option>
+                        <option type="text" value="Arquero">Arquero</option>
+                        <option type="text" value="Defensor">Defensor</option>
+                        <option type="text" value="MedioCampo">Medio campo</option>
+                        <option type="text" value="Delantero">Delantero</option>
+                    </select>
+                </div>
+        <button class="btn btn-info btn-lg" >Ser Parte!!!</button>
+    </form>
     {{/unless}}
+</div>
+<a id="volver" href="/paginas/futbol/{{user.idUsuarios}}" type="button" class="btn btn-primary">Volver</a>
 </div>

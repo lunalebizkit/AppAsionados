@@ -1,38 +1,33 @@
 <div id="inicioDuenio">
     <div class="container">
         <div class="row justify-content-between">
-            <div id= "inicioCentrar" class="col-md-4 py-5">
+            <div id="inicioCentrar" class="col-md-4 py-5">
                 <!--agregue logo de la app -->
-                <a title="logoApp" href="/" ><img src="/img/logo4.png" alt="logoApp" width="250"/></a>
-                
+                <a title="logoApp" href="/"><img src="/img/logo4.png" alt="logoApp" width="250" /></a>
             </div>
-            <div class="col-md-4 py-4">
+            <div class="col-md-4 py-2">
                 <div id="card" class="card">
                     <div class="card-header">
-                        <h3>Registro</h3>
+                        <h3>Registro de Establecimiento</h3>
                     </div>
                     <div class="card-body">
-                        <form action="/paginas/cancha" method="get">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="nombre" placeholder="Nombre" autofocus>
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="apellido" placeholder="Apellido">
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="email" class="form-control" name="email" placeholder="E-mail">
-                            </div>
-                            <div class="input-group mb-3">
+                        <form action="/paginas/duenio" method="get">                        
+                            <div class="input-group mb-3">          
+                                <b><span style="color: red;">*  </span></b>                      
                                 <input type="cuit" class="form-control" name="cuit" placeholder="Cuit">
                             </div>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="nombreUsuario" placeholder="Usuario">
+                             <div class="input-group mb-3">          
+                                <b><span style="color: red;">*  </span></b>                      
+                                <input type="cuit" class="form-control" name="nombreEstablecimiento" placeholder="Nombre">
                             </div>
-                            <div class="input-group mb-3">
-                                <input type="password" class="form-control" name="contrasenia" placeholder="Contraseña">
-                            </div>
+                             <div class="input-group mb-3">          
+                                <b><span style="color: red;">*  </span></b>                      
+                                <input type="cuit" class="form-control" name="direccion" placeholder="Direccion">
+                            </div>                             
+                            <b><span style="color: red;"><b>*</b></span><span style="font-size:small"> CAMPOS OBLIGATORIOS</span></b>                          
                             <div class="d-grid mb-2">
-                                <button type="submit" onclick="location.href='/paginas/cancha'" class="btn btn-success btn-block">
+                                <button type="submit" onclick="location.href='/paginas/duenio'"
+                                    class="btn btn-success btn-block">
                                     Registrarte
                                 </button>
                             </div>
@@ -41,9 +36,9 @@
                     <div class="card-footer">
                         <span><b>¿Tienes una cuenta? </b></span>
                         <div class="d-grid mb-2">
-                        <button onclick="location.href='/ingresoDuenio'" class="btn btn-primary btn-block" >
-                           <span style="color: white">Inicia sesión</span> 
-                        </button>
+                            <button onclick="location.href='/ingresoDuenio'" class="btn btn-primary btn-block">
+                                <span style="color: white">Inicia sesión</span>
+                            </button>
                         </div>
                     </div>
                 </div>

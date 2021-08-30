@@ -1,8 +1,7 @@
 const express = require('express');
 const ruta = express.Router();
 const db = require('../database');
-const { estaLogueado, noEstaLogueado, admin } = require('../lib/auth');
-
+const { estaLogueado, noEstaLogueado, admin, duenio } = require('../lib/auth');
 //Agregue pantalla equipo
 ruta.get('/equipo/:club&:idDeportes', estaLogueado, async (req, res) => {
     const {club}= req.params;
@@ -49,7 +48,7 @@ ruta.post('/vistaAdmin', admin, async (req, res) => {
 ruta.get('/crearEquipoFutbol/:id', estaLogueado, async (req, res) => {
     res.render('paginas/crearEquipoFutbol');
 });
-ruta.post('/crearEquipoFutbol/:id', async (req, res) => {
+ruta.post('/crearEquipoFutbol/:id', estaLogueado, async (req, res) => {
     const { id } = req.params;
     const idUsuarios = id
     const { nombreEquipo, posicion, idDeportes } = req.body;
@@ -77,12 +76,12 @@ ruta.post('/crearEquipoFutbol/:id', async (req, res) => {
         res.redirect('/paginas/futbol')
     };
 });
-ruta.get('/miEquipo/:equipo', async(req, res)=>{
+ruta.get('/miEquipo/:equipo', estaLogueado, async(req, res)=>{
     const {equipo}=req.params;
     const equipos= await db.query('Select usuarios.nombreUsuario, usuarios.nombre, jugador.posicion from equipos join jugador join usuarios where jugador.idEquipo = equipos.idEquipo and usuarios.idUsuarios = jugador.idUsuarios and nombreEquipo =?',[equipo] );
     res.render('paginas/miEquipo', {equipos, equipo});
 });
-ruta.get('/ingresarAlEquipo/:idEquipo&:idDeportes', async(req, res) =>{
+ruta.get('/ingresarAlEquipo/:idEquipo&:idDeportes', estaLogueado, async(req, res) =>{
     const {idEquipo, idDeportes} = req.params;
     const {posicion}=req.query;
     const {idUsuarios}= req.user;
@@ -108,6 +107,21 @@ ruta.get('/inicio', estaLogueado, async (req, res) => {
 //agregue pantalla duenio
 ruta.get('/duenio', estaLogueado, async (req, res) => {
     res.render('paginas/duenio');
+});
+
+//agregue pantalla crear equipo Basquet TEMPORALMENTE
+ruta.get('/crearEquipoBasquet/:id', estaLogueado, async (req, res) => {
+    res.render('paginas/crearEquipoBasquet');
+});
+
+//agregue pantalla crear equipo Padel TEMPORALMENTE
+ruta.get('/crearEquipoPadel/:id', estaLogueado, async (req, res) => {
+    res.render('paginas/crearEquipoPadel');
+});
+
+//agregue pantalla establecimiento
+ruta.get('/establecimiento', estaLogueado, async (req, res) => {
+    res.render('paginas/establecimiento');
 });
 
 module.exports = ruta

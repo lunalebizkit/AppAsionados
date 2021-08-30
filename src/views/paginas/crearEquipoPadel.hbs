@@ -1,5 +1,5 @@
-<div id="formularioF" class="container">
-    <form id="formequipo" method="POST" action="/paginas/crearEquipoFutbol/{{user.idUsuarios}}">
+<div id="formularioP" class="container">
+    <form id="formequipo" method="POST" action="/paginas/crearEquipoPadel/{{user.idUsuarios}}">
         <div class="row">
             <div id="semiTransparente" class="col-5 m-auto py-3 px-3 ">
                 <div class="card">
@@ -14,17 +14,14 @@
                         <div class="input-group mb-2 justify-content-between py-2">
                             <select name="posicion" class="btn btn-ls btn-outline-primary" required>
                                 <option type="text" value="">POSICIÓN</option>
-                                <option type="text" value="Arquero">Arquero</option>
-                                <option type="text" value="Defensor">Defensor</option>
-                                <option type="text" value="MedioCampo">Medio campo</option>
-                                <option type="text" value="Delantero">Delantero</option>
+                                <option type="text" value="Derecha">Derecha</option>
+                                <option type="text" value="Revés">Revés</option>
                             </select>
                             
                             <select name="idDeportes" class="btn btn-ls btn-outline-primary" required>
                                 <option type="" value="">FORMATO</option>
-                                <option type="number" value="1">Fútbol 5</option>
-                                <option type="number" value="2">Fútbol 7</option>
-                                <option type="number" value="3">Fútbol 11</option>
+                                <option type="number" value="1">Pádel 1</option>
+                                <option type="number" value="2">Pádel 2</option>
                             </select>
                         </div>
                     </div>
@@ -36,7 +33,7 @@
                 <button type="submit" class="btn btn-success btn-block">
                     Crear
                 </button>
-                <button onclick="location.href='/paginas/futbol'" class="btn btn-danger btn-block">
+                <button onclick="location.href='/paginas/padel'" class="btn btn-danger btn-block">
                     Cancelar
                 </button>
             </div>

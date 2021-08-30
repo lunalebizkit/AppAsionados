@@ -1,45 +1,27 @@
 <div id="cancha">
-    
     <form id="formCancha" class="row g-4" >
         <div class="col-md-12">
-            
-            <div class="text-center"><h2>Nueva Cancha</h2></div>
+            <div class="text-center"><h2>Nuevo Establecimiento</h2></div>
+            <input type="text" class="form-control" id="validationDefault01" placeholder="Nombre" autofocus required>
             <br>
-            <div class="input-group mb-2 justify-content-around py-2">
-                <select name="posicion" class="btn btn-ls btn-outline-primary" required>
-                    <option type="text" value="">Establecimiento</option>
-                    <option type="text" value="La Champions">La Champions</option>
-                    <option type="text" value="Gol Gana">Gol Gana</option>
-                </select>
-                <select name="posicion" class="btn btn-ls btn-outline-primary" required>
-                    <option type="text" value="">Formato</option>
-                    <option type="text" value="Fútbol 5">Fútbol 5</option>
-                    <option type="text" value="Fútbol 7">Fútbol 7</option>
-                </select>
+            <input type="text" class="form-control" id="validationDefault02" placeholder="Dirección" required>
+            <br>
+            <input type="text" class="form-control" id="validationDefault02" placeholder="CUIT" required>
+            <div class="mb-3">
+                <div class="text-center"><label for="formFile" class="form-label">Logo (opcional)</label></div>
+                <input class="form-control" type="file" id="formFile">
             </div>
-            
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle col-md-12" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Disponibilidad
-                </button>
-                <div class="dropdown-menu col-md-12" aria-labelledby="dropdownMenuButton">
-                        <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Lunes</a><br>
-                        <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Martes</a><br>
-                        <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Miércoles</a><br>
-                        <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Jueves</a><br>
-                        <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Viernes</a><br>
-                        <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Sábado</a><br>
-                        <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Domingo</a>
-                </div>
-            </div>
+        </div>
+        <div class="col-md-12">
+            <button type="submit" onclick="location.href='#'" class="btn btn-success btn-block">
+                Cargar
+            </button>
+            <button onclick="location.href='/paginas/duenio'" class="btn btn-danger btn-block">
+                Cancelar
+            </button>
+        </div>
     </form>
-    <br>
-    <button type="submit" onclick="location.href='#'" class="btn btn-success btn-block">
-        Cargar
-    </button>
-    <button onclick="location.href='/paginas/duenio'" class="btn btn-danger btn-block">
-        Cancelar
-    </button>
+    
 </div>    
 
  <!-- Modal de horarios-->

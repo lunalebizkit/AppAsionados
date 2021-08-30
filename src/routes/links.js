@@ -119,4 +119,9 @@ ruta.get('/crearEquipoPadel/:id', estaLogueado, async (req, res) => {
     res.render('paginas/crearEquipoPadel');
 });
 
+//agregue pantalla establecimiento
+ruta.get('/establecimiento', estaLogueado, async (req, res) => {
+    res.render('paginas/establecimiento');
+});
+
 module.exports = ruta

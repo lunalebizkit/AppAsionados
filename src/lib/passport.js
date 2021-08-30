@@ -4,8 +4,6 @@ const db = require('../database');
 const helpers = require('../lib/helper');
 const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
-
-
 /* ----------------------------
 ingreso del usuario
 --------------------------------*/
@@ -29,7 +27,6 @@ passport.use('local.ingreso', new LocalStrategy({
         return done(null, false, req.flash('mensajeMal', 'El usuario no existe'));
     }
 }));
-
 /*------------------------------------
 Registro del usuario
 -------------------------------------*/
@@ -52,6 +49,8 @@ passport.use('local.registro', new LocalStrategy({
             email,
             nombreUsuario,
             contrasenia,
+            idRol: 3,
+            baja: 0
         };
         const mensajeMail =`
         <h2>Hola! ${nombre}...<br>
@@ -62,8 +61,7 @@ passport.use('local.registro', new LocalStrategy({
             <li>Su contraseña es :<b> ${contrasenia} </b></li>
         </ul>
         
-    `;
-    
+    `;    
     const CLIENT_ID="646859646017-mdq9mtoudeusnv9vpt4fibts5t2fnsp9.apps.googleusercontent.com";
     const CLIENT_SECRET="7JkJcecbeO2F4hAcVczI_AJk";
     const REDIRECT_URI="https://developers.google.com/oauthplayground";
@@ -72,10 +70,8 @@ passport.use('local.registro', new LocalStrategy({
         CLIENT_ID,
         CLIENT_SECRET,
         REDIRECT_URI
-        );
-    
-     oAuth2cliente.setCredentials({refresh_token:REFRESH_TOKEN});
-     
+        );    
+     oAuth2cliente.setCredentials({refresh_token:REFRESH_TOKEN});     
      async function sendMail(){
          try{
             const accessToken= await oAuth2cliente.getAccessToken()
@@ -116,17 +112,12 @@ passport.use('local.registro', new LocalStrategy({
         req.flash('mensajeOk', 'Usuario Registrado Correctamente');
         newUsuario.idUsuarios = ingresoUsuario.insertId;
         return done(null, newUsuario);
-    }
-   
+    }   
 }));
-
-
-
 passport.serializeUser((user, done) => {
     done(null, user.idUsuarios);
 });
 passport.deserializeUser(async (id, done) => {
     const fila = await db.query('SELECT * FROM usuarios WHERE idUsuarios = ?', [id]);
     done(null, fila[0]);
-
 })

@@ -1,8 +1,7 @@
 const express = require('express');
 const ruta = express.Router();
 const db = require('../database');
-const { estaLogueado, noEstaLogueado, admin } = require('../lib/auth');
-
+const { estaLogueado, noEstaLogueado, admin, duenio } = require('../lib/auth');
 //Agregue pantalla equipo
 ruta.get('/equipo/:club&:idDeportes', estaLogueado, async (req, res) => {
     const {club}= req.params;

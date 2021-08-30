@@ -259,3 +259,14 @@ h6 {
   bottom: 0;
   margin-bottom: 4px
 }
+
+.tooltip.right .tiptext{
+  top: -5px;
+  left: 110%;
+}
+.tooltip.right .tiptext::after{
+  margin-top: -5px;
+  top: 50%;
+  right: 100%;
+  border-color: transparent #2E2E2E transparent transparent;
+}

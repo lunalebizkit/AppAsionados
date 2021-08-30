@@ -65,22 +65,20 @@ h6 {
 }
 
 #basquet {
-  background-color: rgb(199, 135, 16);
+  background-image: url(../img/basq.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  height: 33rem;
     
 }
 
 #padel {
-  background-color: rgb(28, 138, 202);
+  background-image: url(../img/padd.jfif);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  height: 33rem;
     
 }
 
@@ -190,8 +188,8 @@ h6 {
 
 #scroll {
   overflow-y: scroll;
-  width: 670px;
-  height: 379px;
+  width: 660px;
+  height: 375px;
   display: block
 }
 
@@ -204,8 +202,28 @@ h6 {
 }
 
 
-#formulario{
+#formularioF{
   background-image: url(../img/verde1.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  width: 100%;
+  height: 535px;
+}
+
+#formularioB{
+  background-image: url(../img/basq.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  width: 100%;
+  height: 535px;
+}
+
+#formularioP{
+  background-image: url(../img/padd.jfif);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

@@ -12,12 +12,11 @@
                 <tr>
                     <td>{{nombre}}</td>
                     <td>{{apellido}}</td>
-                    <td>{{posicion}}</td>                
+                    <td>{{posicion}}</td>
                 </tr>
-                {{/each}}            
+                {{/each}}
             </tbody>
         </table>
-        
         {{#unless pertenezco}}
         <div class="row">
             <div id="semiTransparente" class="col-5 m-auto py-3">
@@ -35,11 +34,10 @@
                     <button class="btn btn-primary btn-block">Unirme</button>
                 </form>
                 {{/unless}}
+                <div class="col-2  p-3">
+                    <a href="/paginas/futbol" type="button" class="btn btn-dark">Volver</a>
+                </div>
             </div>
-        </div>
-        
-        <div class="col-2  p-3">
-            <a href="/paginas/futbol" type="button" class="btn btn-dark">Volver</a>
         </div>
     </div>
 </div>

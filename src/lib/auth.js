@@ -11,9 +11,14 @@ module.exports= {
         } return res.redirect('/paginas/deporte');
     },
     admin(req, res, next) {
-        if((req.isAuthenticated()) & (req.user.rol) === 'admin') {
+        if((req.isAuthenticated()) & (req.user.rol) === 1) {
             return next();
         }return res.redirect('/ingreso');
+    },
+    duenio(req, res, next) {
+        if((req.isAuthenticated()) & (req.user.rol) === 2) {
+            return next();
+        }return res.redirect('/registroDuenio');
     }
      
 }

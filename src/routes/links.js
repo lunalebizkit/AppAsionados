@@ -110,4 +110,14 @@ ruta.get('/duenio', estaLogueado, async (req, res) => {
     res.render('paginas/duenio');
 });
 
+//agregue pantalla crear equipo Basquet TEMPORALMENTE
+ruta.get('/crearEquipoBasquet/:id', estaLogueado, async (req, res) => {
+    res.render('paginas/crearEquipoBasquet');
+});
+
+//agregue pantalla crear equipo Padel TEMPORALMENTE
+ruta.get('/crearEquipoPadel/:id', estaLogueado, async (req, res) => {
+    res.render('paginas/crearEquipoPadel');
+});
+
 module.exports = ruta

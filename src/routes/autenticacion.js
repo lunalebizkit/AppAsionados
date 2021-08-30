@@ -1,6 +1,7 @@
 const express= require('express');
 const ruta= express.Router();
 const passport= require('passport');
+const db = require('../database');
 const  {estaLogueado, noEstaLogueado, admin}=require ('../lib/auth');
 
 ruta.get('/registro', noEstaLogueado, (req, res)=> {
@@ -22,14 +23,25 @@ ruta.post('/ingreso', (req, res, next)=> {
     })(req, res, next)
 });
 //registro duenio//
-ruta.get('/registroDuenio', estaLogueado, (req, res)=> {
+ruta.get('/registroDuenio', estaLogueado, async(req, res)=> {
     res.render('ingreso/registroDuenio'); 
 });
-//  ruta.post('/registroDuenio', passport.authenticate('local.registroDuenio', {
-//          successRedirect: 'paginas/duenio',
-//          failureRedirect: '/registroDuenio', 
-//          failureFlash: true 
-//  }));
+ ruta.post('/registroDuenio', estaLogueado, async(req, res)=>{
+     const {nombreEstablecimiento, cuit, direccion}=req.body;
+     const {idUsuarios}= req.user;
+     const newEstablecimiento= {
+         nombreEstablecimiento,
+         direccion,
+         cuit,
+         idUsuarios
+     };
+     if(await db.query('insert into establecimiento set?', [newEstablecimiento])) {
+         await db.query('update usuarios set idRol = "2" where idUsuarios=?', [idUsuarios]);
+         res.redirect('/paginas/duenio')
+     }
+     else{ res.redirect('ingreso/registroDuenio')}
+    
+ });
 
 //ingreso duenio//
 ruta.get('/ingresoDuenio', noEstaLogueado, (req, res) =>  {

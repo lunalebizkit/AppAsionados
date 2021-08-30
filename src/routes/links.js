@@ -18,7 +18,8 @@ ruta.get('/futbol', estaLogueado, async (req, res) => {
     const { idUsuarios } = req.user;
     const equipos = await db.query('select * from equipos inner join deporte join usuarios where equipos.idDeportes = deporte.idDeportes and usuarios.idUsuarios = equipos.idUsuarios');
     const misEquipos= await db.query('select equipos.nombreEquipo from jugador inner join equipos where equipos.idEquipo = jugador.idEquipo and jugador.idUsuarios =?', [idUsuarios]);
-    res.render('paginas/futbol', {equipos, misEquipos});
+    const canchas = await db.query('select * from establecimiento');
+    res.render('paginas/futbol', {equipos, misEquipos, canchas});
 });
 //agregue pantalla basquet
 ruta.get('/basquet', estaLogueado, async (req, res) => {
@@ -98,15 +99,15 @@ ruta.get('/ingresarAlEquipo/:idEquipo&:idDeportes', estaLogueado, async(req, res
         res.render('paginas/ingresarAlEquipo');
     }
 });
-
 //agregue pantalla inicio
 ruta.get('/inicio', estaLogueado, async (req, res) => {
     res.render('paginas/inicio');
 });
-
 //agregue pantalla duenio
-ruta.get('/duenio', estaLogueado, async (req, res) => {
-    res.render('paginas/duenio');
+ruta.get('/duenio', estaLogueado, duenio, async (req, res) => {
+    const {idUsuarios}= req.user;
+    const canchas= await db.query('Select * from establecimiento where idUsuarios =?', [idUsuarios]);
+    res.render('paginas/duenio', {canchas});
 });
 
 //agregue pantalla crear equipo Basquet TEMPORALMENTE

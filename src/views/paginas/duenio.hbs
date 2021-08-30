@@ -3,11 +3,8 @@
         <div class="container-fluid">
             <div class="row justify-content-between">
                 <div id="tablaEquipo" class="col-md-9 m-auto p-3">
-                    <form class="d-flex">
-                        
-                        <h2 id="titDuenio" class= "md-3 px-5"><b>CANCHAS</b></h2>
-                        
-                        
+                    <form class="d-flex">                        
+                        <h2 id="titDuenio" class= "md-3 px-5"><b>CANCHAS</b></h2>                     
                         <div class="d-flex justify-content-between m-auto ">
                             <div class="btn-group" role="group" aria-label="Basic outlined example">
                                 <a type="button" class="btn btn-primary" href="establecimiento">Agregar Establecimiento</a>
@@ -24,17 +21,19 @@
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Dirección</th>
-                                    <th>Formato</th>
+                                    <th>Cuit</th>
                                     <th>Número</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{#each equipos}}
+                                {{#each canchas}}
                                 <tr>
-                                    <td data-bs-toggle="tooltip" data-bs-placement="top" title="{{email}}">{{nombreUsuario}}
+                                    <td data-bs-toggle="tooltip" data-bs-placement="top" title="{{email}}">{{nombreEstablecimiento}}
                                     </td>
-                                    <td><a href="/paginas/equipo/{{nombreEquipo}}">{{nombreEquipo}}</a></td>
-                                    <td>{{deporte}}</td>
+                                    <td><a >{{direccion}}</a></td>
+                                    <td><a >{{cuit}}</a></td>
+                                    <td><b>#</b></td>
+                                    
                                 </tr>
                                 {{/each}}
                             </tbody>

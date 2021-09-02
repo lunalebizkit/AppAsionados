@@ -18,8 +18,8 @@ ruta.get('/futbol', estaLogueado, async (req, res) => {
     const { idUsuarios } = req.user;
     const equipos = await db.query('select * from equipos inner join deporte join usuarios where equipos.idDeportes = deporte.idDeportes and usuarios.idUsuarios = equipos.idUsuarios');
     const misEquipos= await db.query('select equipos.nombreEquipo from jugador inner join equipos where equipos.idEquipo = jugador.idEquipo and jugador.idUsuarios =?', [idUsuarios]);
-    const canchas = await db.query('select * from establecimiento');
-    res.render('paginas/futbol', {equipos, misEquipos, canchas});
+    //const canchas = await db.query('select * from establecimiento');
+    res.render('paginas/futbol', {equipos, misEquipos});//, canchas});
 });
 //agregue pantalla basquet
 ruta.get('/basquet', estaLogueado, async (req, res) => {

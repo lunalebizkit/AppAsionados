@@ -58,8 +58,7 @@ h6 {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
-    
+  background-attachment: fixed    
 }
 
 #basquet {
@@ -113,7 +112,7 @@ h6 {
   background: rgba(255, 255, 255, 0.63);
   width:230px; 
   margin: -50px;
-  text-align: center; 
+  text-align: center 
 }
 
 .offcanvas {
@@ -133,11 +132,9 @@ h6 {
 #barraDesplegable {
   background: rgb(192, 192, 192);
 }
-
 .modal-title, .modal-body {
   color: wheat;
 }
-
 #cancha {
   background-image: url(../img/duenio.jpg);
   background-position: center;
@@ -145,9 +142,8 @@ h6 {
   background-size: cover;
   background-attachment: fixed;
   width: 100%;
-  height: 535px;
+  height: 535px
 }
-
 #formCancha{
   background: rgba(255, 254, 254, 0.61);
   padding:2px 0 10px 0 ;
@@ -158,13 +154,10 @@ h6 {
    margin-left: auto;
   margin-right: auto;
 }
-
 #modalCancha-header{
   color:black;
-  text-align: center;
-
+  text-align: center
 }
-
 #inicioDuenio {
   background-image: url(../img/duenio.jpeg);
   background-position: center center;
@@ -175,31 +168,18 @@ h6 {
   padding-bottom: 0%;
   margin-bottom: 0%;
   display: flex;
-  align-items: center;
-       
+  align-items: center       
 }
-
 #inicioCentrar {
   display: flex;
-  align-items: center;
+  align-items: center
 }
-
-#scroll {
-  overflow-y: scroll;
-  width: 660px;
-  height: 375px;
-  display: block
-}
-
 #scrollDuenio {
   overflow-y: scroll;
   width: 970px;
   height: 379px;
-  display: block;
-
+  display: block
 }
-
-
 #formularioF{
   background-image: url(../img/verde1.jpg);
   background-position: center;
@@ -233,21 +213,6 @@ h6 {
 #semiTransparente{
   background: rgba(100, 100, 100, 0.651);
 }
-.sidebar {
-  position: fixed;
-  margin-top: 5.6em;
-  top: 0;
-  /* rtl:raw:
-  right: 0;
-  */
-  bottom: 0;
-  /* rtl:remove */
-  right: 0;
-  z-index: 100; /* Behind the navbar */
-  padding: 30px 0 0; /* Height of navbar */
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-  background: rgba(255, 254, 254, 0.61)
-}
 
 #titDuenio{
   color: blanchedalmond;
@@ -267,4 +232,19 @@ h6 {
   top: 50%;
   right: 100%;
   border-color: transparent #2E2E2E transparent transparent;
+}
+#tablaEquipo {
+  position: relative;
+}
+#tablaEquipo table{  
+  width: 100%;
+}
+#tablaEquipoScroll {
+  height: 350px;
+  overflow-y: auto
+}
+#scroll {
+  overflow-y: scroll;
+  height: 350px;
+  display: block
 }

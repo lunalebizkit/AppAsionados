@@ -128,7 +128,19 @@ ruta.get('/establecimiento', estaLogueado, async (req, res) => {
 ruta.get('/prueba', estaLogueado, async (req, res) => {
     res.render('paginas/prueba');
 });
-ruta.post('/prueba', estaLogueado, async (req, res) => {
-    res.render('paginas/prueba');
+ruta.post('/prueba/:id', estaLogueado, async (req, res) => {
+    const {filename} = req.file;
+    const {id}= req.params;
+    await db.query('update usuarios set img = ? where idUsuarios =?', [filename, id]);
+    console.info(req.file);
+    console.info(req.file.filename);
+    console.info(req.file.filename.length);
+    res.send('joyaa');
+});
+ruta.get('/miPerfil', estaLogueado, async (req, res) => {
+    const {idUsuarios}= req.user;
+    const usuario= await db.query('select * from usuarios where idUsuarios =?', [idUsuarios]);
+    console.info(usuario[0].img);
+    res.render('paginas/miPerfil', usuario[0]);
 });
 module.exports = ruta

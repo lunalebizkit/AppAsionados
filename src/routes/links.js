@@ -140,7 +140,7 @@ ruta.post('/prueba/:id', estaLogueado, async (req, res) => {
 ruta.get('/miPerfil', estaLogueado, async (req, res) => {
     const {idUsuarios}= req.user;
     const usuario= await db.query('select * from usuarios where idUsuarios =?', [idUsuarios]);
-    console.info(usuario[0].img);
-    res.render('paginas/miPerfil', usuario[0]);
+    const eli= usuario[0];
+    res.render('paginas/miPerfil', {eli});
 });
 module.exports = ruta

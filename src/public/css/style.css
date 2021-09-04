@@ -1,5 +1,6 @@
 body {
-  background-color: rgba(0, 0, 0, 0.897);
+  /* background-color: rgba(0, 0, 0, 0.897); */
+  background-color: rgba(250, 242, 242, 0.897);
 }
 #inicio {
   background-image: url(../img/imgInicio.jpg);

@@ -124,5 +124,10 @@ ruta.get('/crearEquipoPadel/:id', estaLogueado, async (req, res) => {
 ruta.get('/establecimiento', estaLogueado, async (req, res) => {
     res.render('paginas/establecimiento');
 });
-
+ruta.get('/prueba', estaLogueado, async (req, res) => {
+    res.render('paginas/prueba');
+});
+ruta.post('/prueba', estaLogueado, async (req, res) => {
+    res.render('paginas/prueba');
+});
 module.exports = ruta

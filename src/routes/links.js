@@ -1,4 +1,5 @@
 const express = require('express');
+const { file } = require('googleapis/build/src/apis/file');
 const ruta = express.Router();
 const db = require('../database');
 const { estaLogueado, noEstaLogueado, admin, duenio } = require('../lib/auth');
@@ -124,5 +125,13 @@ ruta.get('/crearEquipoPadel/:id', estaLogueado, async (req, res) => {
 ruta.get('/establecimiento', estaLogueado, async (req, res) => {
     res.render('paginas/establecimiento');
 });
-
+ruta.get('/pruebas', async(req, res)=>{
+    res.render('paginas/pruebas')
+});
+ruta.post('/pruebas', async(req, res)=>{
+    const {foto}= req.body;
+    console.log(req.body);
+    console.log(foto);
+    res.redirect('/paginas/pruebas')
+})
 module.exports = ruta

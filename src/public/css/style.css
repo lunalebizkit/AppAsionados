@@ -2,7 +2,7 @@ body {
   background-color: rgba(0, 0, 0, 0.897)
 }
 #inicio {
-  background-image: url(../img/imgInicio.jpg);
+  background-image: url(../img/app/imgInicio.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -32,7 +32,7 @@ h6 {
     text-align: center;
 }
 .formulario {
-  background-image: url(../img/fondoImg.jpg);
+  background-image: url(../img/app/fondoImg.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -49,21 +49,21 @@ h6 {
   border-style: none   
 }
 #futbol {
-  background-image: url(../img/verde1.jpg);
+  background-image: url(../img/app/verde1.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed    
 }
 #basquet {
-  background-image: url(../img/basq.jpg);
+  background-image: url(../img/app/basq.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed    
 }
 #padel {
-  background-image: url(../img/padd.jfif);
+  background-image: url(../img/app/padd.jfif);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -118,7 +118,7 @@ h6 {
   color: wheat;
 }
 #cancha {
-  background-image: url(../img/duenio.jpg);
+  background-image: url(../img/app/duenio.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -141,7 +141,7 @@ h6 {
   text-align: center
 }
 #inicioDuenio {
-  background-image: url(../img/duenio.jpeg);
+  background-image: url(../img/app/duenio.jpeg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -163,7 +163,7 @@ h6 {
   display: block
 }
 #formularioF{
-  background-image: url(../img/verde1.jpg);
+  background-image: url(../img/app/verde1.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -173,7 +173,7 @@ h6 {
 }
 
 #formularioB{
-  background-image: url(../img/basq.jpg);
+  background-image: url(../img/app/basq.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -183,7 +183,7 @@ h6 {
 }
 
 #formularioP{
-  background-image: url(../img/padd.jfif);
+  background-image: url(../img/app/padd.jfif);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

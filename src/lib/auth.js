@@ -1,4 +1,3 @@
-
 module.exports= {
     estaLogueado(req, res, next) {
         if (req.isAuthenticated()) {
@@ -11,9 +10,9 @@ module.exports= {
         } return res.redirect('/paginas/deporte');
     },
     admin(req, res, next) {
-        if((req.isAuthenticated()) & (req.user.idRol) === 1) {
+        if((req.isAuthenticated()) && (req.user.idRol) === 1) {
             return next();
-        }return res.redirect('/ingreso');
+        }return res.redirect('/paginas/inicio');
     },
     duenio(req, res, next) {
         if((req.isAuthenticated()) & (req.user.idRol) === 2) {

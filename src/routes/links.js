@@ -128,19 +128,24 @@ ruta.get('/establecimiento', estaLogueado, async (req, res) => {
 ruta.get('/prueba', estaLogueado, async (req, res) => {
     res.render('paginas/prueba');
 });
-ruta.post('/prueba/:id', estaLogueado, async (req, res) => {
+// ruta.post('/prueba/:id', estaLogueado, async (req, res) => {
+   
+// });
+ruta.get('/miPerfil/:id', estaLogueado, async (req, res) => {
+    const {id}= req.params;
+    const consulta= await db.query('select * from usuarios where idUsuarios =?', [id]);
+    const usuario= consulta[0];
+    res.render('paginas/miPerfil', {usuario});
+});
+ruta.post('/miPerfil/:id', estaLogueado, async (req, res) => {
     const {filename} = req.file;
     const {id}= req.params;
-    await db.query('update usuarios set img = ? where idUsuarios =?', [filename, id]);
-    console.info(req.file);
-    console.info(req.file.filename);
-    console.info(req.file.filename.length);
-    res.send('joyaa');
-});
-ruta.get('/miPerfil', estaLogueado, async (req, res) => {
-    const {idUsuarios}= req.user;
-    const usuario= await db.query('select * from usuarios where idUsuarios =?', [idUsuarios]);
-    const eli= usuario[0];
-    res.render('paginas/miPerfil', {eli});
+    if (  await db.query('update usuarios set img = ? where idUsuarios =?', [filename, id])) {
+        req.flash('mensajeOk', 'Imagen Almacenada!!!');    
+        res.redirect('/paginas/deporte');
+    }else {
+        req.flash('mensajeMal', 'Error al cargar la imagen');
+        res.redirect('/paginas/deporte');
+    }   
 });
 module.exports = ruta

@@ -70,7 +70,6 @@ ruta.post('/crearEquipoFutbol/:id', estaLogueado, async (req, res) => {
         let newJugador = {
             idUsuarios,
             posicion,
-            idDeportes,
             idEquipo
         };
         await db.query('Insert into jugador set ?', [newJugador]);
@@ -90,7 +89,6 @@ ruta.get('/ingresarAlEquipo/:idEquipo&:idDeportes', estaLogueado, async(req, res
     const newJugador={
         idUsuarios,
         posicion,
-        idDeportes,
         idEquipo
     }
     if (await db.query('insert into jugador set?', [newJugador])){

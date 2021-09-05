@@ -112,14 +112,19 @@
             <div class="modal-body" id="misEquipo">
                 <table class="table text-center">
                     <tbody>
-                        {{#each misEquipos}}
+                         {{#if misEquipos}}
+                            {{#each misEquipos}}
                         <tr>
                             <td><i>
                                     <h4><a class="text-white"
                                             href="/paginas/miEquipo/{{nombreEquipo}}">{{nombreEquipo}}</a></h4>
                                 </i></td>
                         </tr>
-                        {{/each}}
+                            {{/each}}
+                        {{else}}
+                        <h4><p  class="text-white text-center" >Aún no tienes equipo</p></h4>
+                        <h5 class="text-center"><a href="/paginas/crearEquipoFutbol/{{user.idUsuarios}}"><em>Crea tu propio Equipo!</em></a></h5>
+                        {{/if}}
                     </tbody>
                 </table>
 

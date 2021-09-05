@@ -35,7 +35,7 @@ ruta.get('/deporte', estaLogueado, async (req, res) => {
     res.render('paginas/deporte');
 });
 //pantalla crear cancha
-ruta.get('/cancha', estaLogueado, async (req, res) => {
+ruta.get('/cancha', estaLogueado, duenio, async (req, res) => {
     res.render('paginas/cancha');
 });
 ruta.get('/vistaAdmin', estaLogueado, admin, async (req, res) => {
@@ -118,9 +118,8 @@ ruta.get('/crearEquipoBasquet/:id', estaLogueado, async (req, res) => {
 ruta.get('/crearEquipoPadel/:id', estaLogueado, async (req, res) => {
     res.render('paginas/crearEquipoPadel');
 });
-
 //agregue pantalla establecimiento
-ruta.get('/establecimiento', estaLogueado, async (req, res) => {
+ruta.get('/establecimiento', estaLogueado, duenio, async (req, res) => {
     res.render('paginas/establecimiento');
 });
 ruta.get('/prueba', estaLogueado, async (req, res) => {

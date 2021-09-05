@@ -1,14 +1,12 @@
 body {
-  /* background-color: rgba(0, 0, 0, 0.897); */
-  background-color: rgba(250, 242, 242, 0.897);
+  background-color: rgba(0, 0, 0, 0.897)
 }
 #inicio {
   background-image: url(../img/imgInicio.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
-  
+  background-attachment: fixed  
 }
 #nombreEquipo {
   color: rgb(6, 100, 189);
@@ -48,10 +46,8 @@ h6 {
 }
 
 .card-header, .card-footer {
-  border-style: none;
-   
+  border-style: none   
 }
-
 #futbol {
   background-image: url(../img/verde1.jpg);
   background-position: center;
@@ -59,61 +55,48 @@ h6 {
   background-size: cover;
   background-attachment: fixed    
 }
-
 #basquet {
   background-image: url(../img/basq.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
-    
+  background-attachment: fixed    
 }
-
 #padel {
   background-image: url(../img/padd.jfif);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
-    
+  background-attachment: fixed    
 }
-
 #tablaEquipo {
   background: rgba(0, 0, 0, 0.623)
-
 }
-
-
   /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
   background: rgba(100, 100, 100, 0.651);
   bottom: 1rem;
   z-index: 10;
-}
-  
+}  
   /* Declare heights because of positioning of img element */
 .carousel-item {
   height: 33rem;
 }
-
 #citaAutor {
   font-style: italic;
-}
-  
+}  
 #btnCentro {
   display: flex;
   align-items: center;
   justify-content: center;  
   margin: 100px;
 }
-
 #linkCentro {
   background: rgba(255, 255, 255, 0.63);
   width:230px; 
   margin: -50px;
   text-align: center 
 }
-
 .offcanvas {
   background: rgba(44, 44, 44, 0.925);
   color: rgb(255, 255, 255);

@@ -4,17 +4,20 @@
         <a class="navbar-brand" href="/paginas/inicio">
             <img src="/img/logo4.png" alt="" width="60" height="60" class="d-inline-block ">
         </a>
-        
         <div class="collapse navbar-collapse" id="navbarsExample04">
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">                
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown"
                         aria-expanded="false">Deportes</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown04">
                         <li><a class="dropdown-item" href="/paginas/futbol">Fútbol</a></li>
-                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                         <li><a class="dropdown-item" href="/paginas/basquet">Básquet</a></li>
-                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                         <li><a class="dropdown-item" href="/paginas/padel">Pádel</a></li>
                     </ul>
                 </li>
@@ -22,17 +25,54 @@
                     <a type="button" class="btn btn-primary" href="#">Reservá ya!</a>
                 </li>
             </ul>
-            
         </div>
         <li class="nav-item">
-            <a class="nav-link " href="#" aria-disabled="true" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Bienvenido/a {{user.nombreUsuario}}</a>
+            <a class="nav-link text-primary" href="#" aria-disabled="true" data-bs-toggle="modal"
+                data-bs-target="#miPerfil" aria-controls="offcanvasRight">Bienvenido/a {{user.nombreUsuario}}</a>
         </li>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04"
+            aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <li class="nav-item">
             <a class="link link-danger" href="/cerrarSesion" tabindex="-1" aria-disabled="true">Salir</a>
         </li>
-    </div>    
+    </div>
 </nav>
+<!-- The Modal -->
+<div class="modal fade" id="miPerfil" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: rgb(95, 162, 182);">
+            <!-- Modal Header -->
+            <div class="modal-header" id="miPerfil">
+                <h4 class="modal-title">Mi Perfil</h4>
+                <button type="button" class="close" data-bs-dismiss="modal" id="crearEquipo">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body" id="miPerfil">
+                <div class="row ">
+                    <div class="col-sm-3">
+                        <img src="/img/descarga/{{user.img}}" alt="perfil" width="125" height="120">
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="d-flex ms-3">
+                            <i class="fas fa-user"></i><span class="ms-2">
+                                {{user.nombre}}</span><span class="ms-1">{{user.apellido}}</span>
+                        </div>
+                        <div class="d-flex ms-3">
+                            <i id="email" class="fas fa-envelope"></i><span class="ms-2">
+                                {{user.email}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer" id="miPerfil">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 {{/if}}

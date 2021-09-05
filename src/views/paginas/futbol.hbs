@@ -2,32 +2,33 @@
     <div class="container-fluid">
         <div class="row justify-content-between">
             <div id="tablaEquipo" class="col-lg-5 m-2 p-2">
-                <form class="d-flex">
+                <div class="d-flex">
                     <img class=" d-inline-block " src="/img/pelotaF.png" alt="" width="50" height="50">
                     <a class="navbar-brand">
-                        <a class="btn btn-dark btn-lg dropdown-toggle text-white" href="#" id="dropdown04" data-bs-toggle="dropdown"
-                        aria-expanded="false">EQUIPOS</a>
+                        <a class="btn btn-dark btn-lg dropdown-toggle text-white" href="#" id="dropdown04"
+                            data-bs-toggle="dropdown" aria-expanded="false">EQUIPOS</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                data-bs-target="#misEquipo" data-bs-whatever="@equipo">Mis Equipos</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/paginas/crearEquipoFutbol/{{user.idUsuarios}}">Crear Equipo</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#misEquipo" data-bs-whatever="@equipo">Mis Equipos</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="/paginas/crearEquipoFutbol/{{user.idUsuarios}}">Crear
+                                    Equipo</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a class="dropdown-item" href="#">Ver Jugadores</a></li>
                         </ul>
                     </a>
                     <div class="d-flex justify-content-between m-auto ">
-                        <input type="text" class="form-control" name="buscarCancha" placeholder="Buscar"
-                            autofocus required>
-                        
-                        <button class="btn btn-danger" type="reset">
-                            <i class="fas fa-search"></i> 
-                        </button>
+                        <form class="d-flex" action="">
+                            <input type="text" class="form-control" name="buscarCancha" placeholder="Buscar" autofocus>
+                            <button class="btn btn-danger" type="reset">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
                     </div>
-                    
-                    
-
-                </form>
+                </div>
                 <div id="scroll">
                     <table class="table table-hover table-info">
                         <thead class="fixed">
@@ -52,23 +53,19 @@
                     </table>
                 </div>
             </div>
-            
+
             <!--Tabla Canchas-->
             <div id="tablaEquipo" class="col-lg-5 m-2 p-2">
                 <form class="d-flex">
                     <a class="navbar-brand" href="#">
                         <h3 class=" text-white px-5"><b>CANCHAS</b></h3>
                     </a>
-
                     <div class="d-flex justify-content-between m-auto ">
-                        <input type="text" class="form-control" name="buscarCancha" placeholder="Buscar"
-                            autofocus required>
-                        
+                        <input type="text" class="form-control" name="buscarCancha" placeholder="Buscar" autofocus>
                         <button class="btn btn-danger" type="reset">
-                            <i class="fas fa-search"></i> 
+                            <i class="fas fa-search"></i>
                         </button>
                     </div>
-
                 </form>
                 <div id="scroll">
                     <table class="table table-hover table-info">
@@ -95,9 +92,7 @@
                     </table>
                 </div>
             </div>
-
         </div>
-
     </div>
     <div class="col-2  p-4">
         <a id="volver" href="/paginas/deporte" type="button" class="btn btn-danger">Volver</a>

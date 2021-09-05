@@ -193,7 +193,7 @@ h6 {
 }
 
 #semiTransparente{
-  background: rgba(100, 100, 100, 0.651);
+  background: rgba(41, 41, 41, 0.575);
 }
 
 #titDuenio{
@@ -229,4 +229,8 @@ h6 {
   overflow-y: scroll;
   height: 350px;
   display: block
+}
+
+#perfil{
+  background-color: rgb(26, 26, 26);
 }

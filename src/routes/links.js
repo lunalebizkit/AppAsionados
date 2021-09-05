@@ -3,6 +3,7 @@ const { file } = require('googleapis/build/src/apis/file');
 const ruta = express.Router();
 const db = require('../database');
 const { estaLogueado, noEstaLogueado, admin, duenio } = require('../lib/auth');
+
 //Agregue pantalla equipo
 ruta.get('/equipo/:club&:idDeportes', estaLogueado, async (req, res) => {
     const {club}= req.params;
@@ -123,6 +124,24 @@ ruta.get('/crearEquipoPadel/:id', estaLogueado, async (req, res) => {
 ruta.get('/establecimiento', estaLogueado, async (req, res) => {
     res.render('paginas/establecimiento');
 });
+
+//agregue pantalla verCancha
+ruta.get('/verCancha', estaLogueado, async (req, res) => {
+    res.render('paginas/verCancha');
+});
+
+//agregue pantalla reserva
+ruta.get('/reserva', estaLogueado, async (req, res) => {
+    res.render('paginas/reserva');
+});
+//agregue pantalla jugadores 
+//¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡REVISAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ruta.get('/jugadores/:jugador', estaLogueado, async(req, res)=>{
+    const {jugador}=req.params;
+    const jugadores= await db.query('Select usuarios.nombreUsuario, usuarios.nombre, usuarios.apellido, jugador.posicion from usuarios join jugador where usuarios.idUsuarios = jugador.idUsuarios and nombre =?',[jugador] );
+    res.render('paginas/jugadores', {jugadores, jugador});
+});
+
 ruta.get('/prueba', estaLogueado, async (req, res) => {
     res.render('paginas/prueba');
 });

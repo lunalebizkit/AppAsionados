@@ -1,31 +1,33 @@
-<div style="background-color: rgb(95, 162, 182);">
-    <form id="formequipo" action="/paginas/miPerfil/{{user.idUsuarios}}" method="POST" enctype="multipart/form-data">
-        <div class="row">
+<div id="perfil">
+    <form action="/paginas/miPerfil/{{user.idUsuarios}}" method="POST" enctype="multipart/form-data">
+        <div class="d-flex">
             <div id="semiTransparente" class="col-5 m-auto py-3 px-3 ">
                 <div class="card">
                     <div class="card-header">
+                        <a href="javascript: history.go(-1)" class="close">&times;</a>
                         <h1 class=" mt-3 text-center py-2">Mi Perfil</h1>
+                        
                     </div>
                     {{#with usuario}}
                     <div class="card-body">
                         <div class="col-md-3">
-                            <img src="/img/descarga/{{img}}" width="300">
+                            <img src="/img/descarga/{{img}}" width="170">
                             <input type="file" name="imagen">
                             <button class="btn btn-success" type="submit">Cargar</button>
                         </div>
-                        <label for="nombreUsuario"><b>Nombre de Usuario</b></label><span
-                            class="ms-3">{{nombreUsuario}}</span><br>
-                        <label for="nombre"><b>Nombre</b></label><span>{{nombre}}</span><br>
-                        <label for="nombreUsuario"><b>Apellido</b></label><span>{{apellido}}</span><br>
-                        <label for="EmailUsuario"><b>Correo Electronico</b></label><span>{{email}}</span><br>
-                        <label for="EmailUsuario"><b>Nombre de Usuario</b></label><span>{{email}}</span><br>
+                        
+                        <i for="nombre"><b>Nombre:</b>{{nombre}}</i>
+                        <br>
+                        <i for="nombreUsuario"><b>Apellido:</b>{{apellido}}</i>
+                        <br>
+                        <i for="nombreUsuario"><b>Nombre de Usuario:</b>{{nombreUsuario}}</i>
+                        <br>
+                        <i for="EmailUsuario"><b>Email:</b>{{email}}</i>
+                        
                         {{/with}}
                     </div>
                 </div>
             </div>
         </div>
     </form>
-     <div class="col-2  p-3">
-            <a href="/paginas/inicio" type="button" class="btn btn-dark">Volver</a>
-        </div>
 </div>

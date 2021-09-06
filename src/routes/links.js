@@ -3,6 +3,7 @@ const { file } = require('googleapis/build/src/apis/file');
 const ruta = express.Router();
 const db = require('../database');
 const { estaLogueado, noEstaLogueado, admin, duenio } = require('../lib/auth');
+const foto= require('../lib/foto');
 
 //Agregue pantalla equipo
 ruta.get('/equipo/:club&:idDeportes', estaLogueado, async (req, res) => {
@@ -153,7 +154,7 @@ ruta.get('/miPerfil/:id', estaLogueado, async (req, res) => {
     const usuario= consulta[0];
     res.render('paginas/miPerfil', {usuario});
 });
-ruta.post('/miPerfil/:id', estaLogueado, async (req, res) => {
+ruta.post('/miPerfil/:id', estaLogueado, foto, async (req, res) => {
     const {filename} = req.file;
     const {id}= req.params;
     if (  await db.query('update usuarios set img = ? where idUsuarios =?', [filename, id])) {

@@ -1,5 +1,5 @@
 <div id="formularioF" class="container">
-    <div class="col-md-9 m-auto p-4">
+    <div id="scroll" class="col-md-9 m-auto p-4">
         <table class="table table-dark table-striped">
             <thead class="table-danger">
                 <h2 id="semiTransparente" class="text-center py-2" style="color: rgb(0, 0, 0);">{{club}}</h2>
@@ -17,28 +17,29 @@
                 {{/each}}
             </tbody>
         </table>
-        {{#unless pertenezco}}
-        <div class="row">
-            <div id="semiTransparente" class="col-5 m-auto py-3">
-                <h3 style="color: rgb(12, 78, 12);">¿Querés ser parte del Equipo?</h3>
-                <form action="/paginas/ingresarAlEquipo/{{numero}}&{{idDeportes}}" method="get">
-                    <div class="col-6 mx-auto py-4">
-                        <select name="posicion" class="btn btn-ls btn-success" required>
-                            <option type="text" value="">Elegir posición</option>
-                            <option type="text" value="Arquero">Arquero</option>
-                            <option type="text" value="Defensor">Defensor</option>
-                            <option type="text" value="MedioCampo">Medio campo</option>
-                            <option type="text" value="Delantero">Delantero</option>
-                        </select>
-                    </div>
-                    <button class="btn btn-primary btn-block">Unirme</button>
-                </form>
-            </div>
-        </div>
-        {{/unless}}
-        
-        <div class="col-2  p-4">
-            <a id="volver" href="/paginas/futbol" type="button" class="btn btn-danger">Volver</a>
+    </div>
+    <div style = "float: left" class="col-2  p-4">
+        <a id="volver" href="/paginas/futbol" type="button" class="btn btn-danger">Volver</a>
+    </div>
+    
+    {{#unless pertenezco}}
+    <div class="container">
+        <div id="semiTransparente" class="col-6 m-auto p-2 text-center">
+            <h3 style="color: rgb(0, 0, 0);">¿Querés ser parte del Equipo?</h3>
+            <form  action="/paginas/ingresarAlEquipo/{{numero}}&{{idDeportes}}" method="get">
+                <div class="col-6 mx-auto py-4">
+                    <select name="posicion" class="btn btn-ls btn-success" required>
+                        <option type="text" value="">Elegir posición</option>
+                        <option type="text" value="Arquero">Arquero</option>
+                        <option type="text" value="Defensor">Defensor</option>
+                        <option type="text" value="MedioCampo">Medio campo</option>
+                        <option type="text" value="Delantero">Delantero</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary btn-block">Unirme</button>
+            </form>
         </div>
     </div>
+    {{/unless}}
+    
 </div>

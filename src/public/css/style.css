@@ -231,6 +231,12 @@ h6 {
   display: block
 }
 
+#scrollMiEquipo {
+  overflow-y: scroll;
+  height: 440px;
+  display: block
+}
+
 #perfil{
   background-color: rgb(26, 26, 26);
 }

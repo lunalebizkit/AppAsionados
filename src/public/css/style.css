@@ -237,6 +237,12 @@ h6 {
   display: block
 }
 
+#scrollJugador {
+  overflow-y: scroll;
+  height: 445px;
+  display: block
+}
+
 #perfil{
   background-color: rgb(26, 26, 26);
 }

@@ -1,8 +1,7 @@
 <div id="cancha">
     
-    <form id="formCancha" class="row g-4" >
-        <div class="col-md-12">
-            
+    <form action="/paginas/cancha" method="POST" id="formCancha" class="row g-4" enctype="multipart/form-data" >
+        <div class="col-md-12">            
             <div class="text-center"><h2>Nueva Cancha</h2></div>
             <br>
             <div class="input-group mb-2 justify-content-around py-2">
@@ -16,8 +15,7 @@
                     <option type="text" value="Pádel 1">Pádel 1</option>
                     <option type="text" value="Pádel 2">Pádel 2</option>
                 </select>
-            </div>
-            
+            </div>            
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle col-md-12" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Disponibilidad
@@ -31,6 +29,7 @@
                         <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Sábado</a><br>
                         <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Domingo</a>
                 </div>
+                <input type="file" name="imagen">        
             </div>
     </form>
     <br>

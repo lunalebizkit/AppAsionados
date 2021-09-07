@@ -40,6 +40,10 @@ ruta.get('/deporte', estaLogueado, async (req, res) => {
 ruta.get('/cancha', estaLogueado, duenio, async (req, res) => {
     res.render('paginas/cancha');
 });
+ruta.post('/cancha', estaLogueado, duenio, foto, async (req, res) => {
+    console.info(req.file);
+    res.send('Cargo la pagina');
+});
 ruta.get('/vistaAdmin', estaLogueado, admin, async (req, res) => {
     const cookie = req.session.cookie;
     console.info(cookie);
@@ -124,12 +128,10 @@ ruta.get('/crearEquipoPadel/:id', estaLogueado, async (req, res) => {
 ruta.get('/establecimiento', estaLogueado, duenio, async (req, res) => {
     res.render('paginas/establecimiento');
 });
-
 //agregue pantalla verCancha
 ruta.get('/verCancha', estaLogueado, async (req, res) => {
     res.render('paginas/verCancha');
 });
-
 //agregue pantalla reserva
 ruta.get('/reserva', estaLogueado, async (req, res) => {
     res.render('paginas/reserva');
@@ -141,7 +143,6 @@ ruta.get('/jugadores/:jugador', estaLogueado, async(req, res)=>{
     
     res.render('paginas/jugadores', {misEquipos, jugadores});
 });
-
 ruta.get('/prueba', estaLogueado, async (req, res) => {
     res.render('paginas/prueba');
 });

@@ -4,7 +4,6 @@ const ruta = express.Router();
 const db = require('../database');
 const { estaLogueado, noEstaLogueado, admin, duenio } = require('../lib/auth');
 const foto= require('../lib/foto');
-
 //Agregue pantalla equipo
 ruta.get('/equipo/:club&:idDeportes', estaLogueado, async (req, res) => {
     const {club}= req.params;
@@ -45,9 +44,11 @@ ruta.post('/cancha', estaLogueado, duenio, foto, async (req, res) => {
     res.send('Cargo la pagina');
 });
 ruta.get('/vistaAdmin', estaLogueado, admin, async (req, res) => {
-    const cookie = req.session.cookie;
-    console.info(cookie);
-    res.render('paginas/vistaAdmin');
+    const usuarios= await db.query('select * from usuarios');
+    const equipos= await db.query('select * from equipos');
+    const establecimiento= await db.query('select * from establecimiento');
+   
+    res.render('paginas/vistaAdmin', {usuarios, equipos, establecimiento});
 });
 ruta.post('/vistaAdmin', admin, async (req, res) => {
     console.info(req.body);

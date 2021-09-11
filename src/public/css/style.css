@@ -240,3 +240,19 @@ h6 {
 #perfil{
   background-color: rgb(26, 26, 26);
 }
+#mensaje{
+  position: absolute;
+  top: 80px;
+  left: 135px;
+  animation: aparecer 2s
+  
+}
+@keyframes aparecer {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+.navbar {
+ padding-bottom: 0px;
+ padding-top: 0px;
+}
+

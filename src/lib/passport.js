@@ -50,6 +50,7 @@ passport.use('local.registro', new LocalStrategy({
             nombreUsuario,
             contrasenia,
             idRol: 3,
+            img: 'perfil.png',
             baja: 0
         };
         const mensajeMail =`

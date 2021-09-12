@@ -1,218 +1,30 @@
 <div id="cancha">
-    <form id="formCancha" class="row g-4" >
-        <div class="col-md-12">
-            <div class="text-center"><h2>Nuevo Establecimiento</h2></div>
-            <input type="text" class="form-control" id="validationDefault01" placeholder="Nombre" autofocus required>
-            <br>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Dirección" required>
-            <br>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="CUIT" required>
-            <div class="mb-3">
-                <div class="text-center"><label for="formFile" class="form-label">Logo (opcional)</label></div>
+    <div class="col-md-6 mx-auto p-2">
+        <form id="formCancha">
+            <div class="text-center mb-4 p-2">
+                <h2>Nuevo Establecimiento</h2>
+            </div>
+            <div class="input-group mb-3 px-3">
+                <input type="text" class="form-control" id="validationDefault01"
+                    placeholder="Nombre del Establecimiento" autofocus required>
+            </div>
+            <div class="input-group mb-3 px-3">
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Dirección" required>
+            </div>
+            <div class="input-group mb-3 px-3">
+                <input type="number" class="form-control" id="validationDefault02" placeholder="CUIT" required>
+            </div>
+            <div class="mb-3 text-center">
+                <label for="formFile"><b>Logo (opcional)</b></label>
                 <input class="form-control" type="file" id="formFile">
             </div>
-        </div>
-        <div class="col-md-12">
-            <button type="submit" onclick="location.href='#'" class="btn btn-success btn-block">
-                Cargar
-            </button>
-            <button onclick="location.href='/paginas/duenio'" class="btn btn-danger btn-block">
-                Cancelar
-            </button>
-        </div>
-    </form>
-    
-</div>    
-
- <!-- Modal de horarios-->
-<div class="modal fade" id="modelCancha" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div  class="modal-content">
-            <div class="modal-header">
-                <h3 align="center">Horarios</h3>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Mañana</th>
-                            <th scope="col">Tarde</th>
-                            <th scope="col">Noche</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        9.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        13.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        20.00hs
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        10.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        14.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        21.00hs
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        11.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        15.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        22.00hs
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        12.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        16.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        23.00hs
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        17.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        00.00hs
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        18.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        19.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success">Cargar</button>
-            </div>
-        </div>
+            <div class="col-md-6 mx-auto pb-3">
+                <button type="submit" class="btn btn-success btn-block">
+                    Cargar
+                </button>
+                <button onclick="location.href='/paginas/duenio'" class="btn btn-danger btn-block">
+                    Cancelar
+                </button>
+        </form>
     </div>
 </div>

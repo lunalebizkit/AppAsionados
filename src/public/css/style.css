@@ -242,6 +242,15 @@ h6, h5{
 #perfil{
   background-color: rgb(26, 26, 26);
 }
+
+#sello{
+  background-image: url(../img/app/sello.png);
+  background-repeat: no-repeat;
+  background-position: 95%;
+  font: message-box;
+  color: rgb(43, 42, 42);
+}
+
 #mensaje{
   position: absolute;
   top: 80px;
@@ -258,3 +267,14 @@ h6, h5{
  padding-top: 0px;
 }
 
+.zoom {
+  transition: transform .2s; 
+}
+
+.zoom:hover {
+  transform: scale(1.2); 
+}
+
+#guionPerfil{
+  border-top: solid 1px;
+}

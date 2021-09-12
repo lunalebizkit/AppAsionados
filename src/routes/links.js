@@ -172,4 +172,15 @@ ruta.post('/miPerfil/:id', estaLogueado, foto, async (req, res) => {
         res.redirect('/paginas/deporte');
     }   
 });
+//REservas//
+ruta.get('/reservaDeporte', async(req, res)=>{
+    const deporte= await db.query('select * from deporte');
+    res.render('reserva/reservaDeporte', {deporte})
+});
+ruta.get('/reservaDeporte1/', async(req, res)=>{
+    const {deporte} =req.query;
+    // console.info(req.query);
+    // const canchas= await db.query('select * from canchas where idDeportes =?', [deporte]);
+    res.render('reserva/reservaDeporte1')
+});
 module.exports = ruta

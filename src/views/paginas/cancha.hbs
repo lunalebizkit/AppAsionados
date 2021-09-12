@@ -1,12 +1,26 @@
-<div id="cancha">    
-    <form action="/paginas/cancha/{{id}}" method="POST" id="formCancha" class="row g-4" enctype="multipart/form-data" >
-        <div class="col-md-12">            
-            <div class="text-center"><h2>Nueva Cancha</h2></div>
-            <div class="text-center"><h2>{{datosEstablecimiento.nombreEstablecimiento}}</h2></div>
-            <br>
-            <div class="input-group mb-2 justify-content-around py-2">
-                 <label for="numeroCancha"><b>Numuero de la Cancha</b></label>
-                 <input type="number" class="col-5" name="numero" id="numeroCancha" placeholder="Nro de Cancha" required>       
+<div id="cancha">
+    <div class="col-md-4 mx-auto py-3" id="formCancha">
+        <form action="/paginas/cancha/{{id}}" method="POST" enctype="multipart/form-data">
+            <div class="text-center">
+                <h2>Nueva Cancha</h2>
+            </div>
+            <div class="text-center">
+                <h2>{{datosEstablecimiento.nombreEstablecimiento}}</h2>
+            </div>           
+            <div class="input-group mt-5 justify-content-around py-2">
+                <label for="numeroCancha"><b>Numero de Cancha</b></label>
+                <select name="numeroCancha" class="btn btn-ls btn-outline-primary" required>
+                    <option value="1" type="number">1</option>
+                    <option value="2" type="number">2</option>
+                    <option value="3" type="number">3</option>
+                    <option value="4" type="number">4</option>
+                    <option value="5" type="number">5</option>
+                    <option value="6" type="number">6</option>
+                    <option value="7" type="number">7</option>
+                    <option value="8" type="number">8</option>
+                    <option value="9" type="number">9</option>
+                    <option value="10" type="number">10</option>
+                </select>
                 <select name="idDeporte" class="btn btn-ls btn-outline-primary" required>
                     <option type="text" value="">Formato</option>
                     <option type="text" value="1">Fútbol 5</option>
@@ -16,228 +30,101 @@
                     <option type="text" value="5">Básquet 5</option>
                     <option type="text" value="6">Pádel 1</option>
                     <option type="text" value="7">Pádel 2</option>
-                </select>                
-            </div>      
-            <div class="text-center">
+                </select>
+            </div>
+            <div class="text-center mb-2">
+                <label for="dias"><b>Dias de Atencion</b></label>
+                <select name="diaDesde" class="btn btn-ls btn-outline-primary" required>
+                    <option type="text" value="">Desde</option>
+                    <option type="text" value="Lunes">Lunes</option>
+                    <option type="text" value="Martes">Martes</option>
+                    <option type="text" value="Miercoles">Miercoles</option>
+                    <option type="text" value="Jueves">Jueves</option>
+                    <option type="text" value="Viernes">Viernes</option>
+                    <option type="text" value="Sabado">Sabado</option>
+                    <option type="text" value="Domingo">Domingo</option>
+                </select>
+                <select name="diasHasta" class="btn btn-ls btn-outline-primary" required>
+                    <option type="text">Hasta</option>
+                    <option type="text" value="1">Lunes</option>
+                    <option type="text" value="2">Martes</option>
+                    <option type="text" value="3">Miercoles</option>
+                    <option type="text" value="4">Jueves</option>
+                    <option type="text" value="5">Viernes</option>
+                    <option type="text" value="6">Sabado</option>
+                    <option type="text" value="7">Domingo</option>
+                </select>
+            </div>
+            <div class="text-center mb-3">
                 <label for="horario"><b>Horario de Atencion</b></label>
-                <p><span>Desde</span><input type="number" min="00" max="24" class="col-4 m-1" name="horaDesde" id="horario"><span>Hs.</span></p>
-                <p><span>Hasta</span><input type="number" min="00" max="24" class="col-4 m-1" name="horaHasta"><span>Hs.</span></p>
-            </div>      
+                <select name="horaDesde" class="btn btn-ls btn-outline-primary" required>
+                    <option>Desde</option>
+                    <option value="1" type="number">1</option>
+                    <option value="2" type="number">2</option>
+                    <option value="3" type="number">3</option>
+                    <option value="4" type="number">4</option>
+                    <option value="5" type="number">5</option>
+                    <option value="6" type="number">6</option>
+                    <option value="7" type="number">7</option>
+                    <option value="8" type="number">8</option>
+                    <option value="9" type="number">9</option>
+                    <option value="10" type="number">10</option>
+                    <option value="11" type="number">11</option>
+                    <option value="12" type="number">12</option>
+                    <option value="13" type="number">13</option>
+                    <option value="14" type="number">14</option>
+                    <option value="15" type="number">15</option>
+                    <option value="16" type="number">16</option>
+                    <option value="17" type="number">17</option>
+                    <option value="18" type="number">18</option>
+                    <option value="19" type="number">19</option>
+                    <option value="20" type="number">20</option>
+                    <option value="21" type="number">21</option>
+                    <option value="22" type="number">22</option>
+                    <option value="23" type="number">23</option>
+                    <option value="24" type="number">24</option>
+                </select>
+                <select name="horaHasta" class="btn btn-ls btn-outline-primary" required>
+                    <option>Hasta</option>
+                    <option value="1" type="number">1</option>
+                    <option value="2" type="number">2</option>
+                    <option value="3" type="number">3</option>
+                    <option value="4" type="number">4</option>
+                    <option value="5" type="number">5</option>
+                    <option value="6" type="number">6</option>
+                    <option value="7" type="number">7</option>
+                    <option value="8" type="number">8</option>
+                    <option value="9" type="number">9</option>
+                    <option value="10" type="number">10</option>
+                    <option value="11" type="number">11</option>
+                    <option value="12" type="number">12</option>
+                    <option value="13" type="number">13</option>
+                    <option value="14" type="number">14</option>
+                    <option value="15" type="number">15</option>
+                    <option value="16" type="number">16</option>
+                    <option value="17" type="number">17</option>
+                    <option value="18" type="number">18</option>
+                    <option value="19" type="number">19</option>
+                    <option value="20" type="number">20</option>
+                    <option value="21" type="number">21</option>
+                    <option value="22" type="number">22</option>
+                    <option value="23" type="number">23</option>
+                    <option value="24" type="number">24</option>
+                </select><span class="m-1"><b>Hs</b></span>
+            </div>
             <div class="text-center">
-                {{!-- <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Disponibilidad
-                </button> --}}
-                {{!-- <div class="dropdown-menu col-md-12" aria-labelledby="dropdownMenuButton">
-                        <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Lunes</a><br>
-                        <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Martes</a><br>
-                        <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Miércoles</a><br>
-                        <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Jueves</a><br>
-                        <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Viernes</a><br>
-                        <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Sábado</a><br>
-                        <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Domingo</a>
-                </div> --}}
-                <label for="imagen"><b>Imagen de la Cancha</b></label>
-                <input class="btn" type="file" name="imagen" id="imagen">        
+                <span><b>Imagen de la Cancha</b></span>
+                <input class="btn" type="file" name="imagen" id="imagen">
             </div>
-    </form>
-    <br>
-    <button type="submit" onclick="location.href='#'" class="btn btn-success btn-block">
-        Cargar
-    </button>
-    <button onclick="location.href='/paginas/duenio'" class="btn btn-danger btn-block">
-        Cancelar
-    </button>
-</div>    
 
- <!-- Modal de horarios-->
-<div class="modal fade" id="modelCancha" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div  class="modal-content">
-            <div class="modal-header">
-                <h3 align="center">Horarios</h3>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Mañana</th>
-                            <th scope="col">Tarde</th>
-                            <th scope="col">Noche</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        9.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        13.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        20.00hs
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        10.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        14.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        21.00hs
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        11.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        15.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        22.00hs
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        12.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        16.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        23.00hs
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        17.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        00.00hs
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        18.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        19.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success">Cargar</button>
-            </div>
-        </div>
+            <div class="col-5 mx-auto">
+                <button type="submit" class="btn btn-success btn-block">
+                    Cargar
+                </button>
+        </form>
+        <button onclick="location.href='/paginas/duenio'" class="btn btn-danger btn-block">
+            Cancelar
+        </button>
     </div>
+</div>
 </div>

@@ -44,8 +44,11 @@ ruta.get('/cancha/:id', estaLogueado, duenio, async (req, res) => {
 });
 ruta.post('/cancha/:id', estaLogueado, duenio, foto, async (req, res) => {
     const {id}= req.params;
+    const{numeroCancha, idDeportes} = req.body;
     console.info(req.body);
     console.info(req.file);
+    const newCancha={id, numeroCancha, idDeportes}
+    console.info(newCancha);
     res.send('Cargo la pagina');
 });
 ruta.get('/vistaAdmin', estaLogueado, admin, async (req, res) => {

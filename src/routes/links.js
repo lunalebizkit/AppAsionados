@@ -36,10 +36,15 @@ ruta.get('/deporte', estaLogueado, async (req, res) => {
     res.render('paginas/deporte');
 });
 //pantalla crear cancha
-ruta.get('/cancha', estaLogueado, duenio, async (req, res) => {
-    res.render('paginas/cancha');
+ruta.get('/cancha/:id', estaLogueado, duenio, async (req, res) => {
+    const {id}=req.params;
+    const establecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [id]);
+    const datosEstablecimiento= establecimiento[0]
+    res.render('paginas/cancha', {datosEstablecimiento, id});
 });
-ruta.post('/cancha', estaLogueado, duenio, foto, async (req, res) => {
+ruta.post('/cancha/:id', estaLogueado, duenio, foto, async (req, res) => {
+    const {id}= req.params;
+    console.info(req.body);
     console.info(req.file);
     res.send('Cargo la pagina');
 });

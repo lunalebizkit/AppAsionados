@@ -1,31 +1,33 @@
-<div id="cancha">
-    
-    <form action="/paginas/cancha" method="POST" id="formCancha" class="row g-4" enctype="multipart/form-data" >
+<div id="cancha">    
+    <form action="/paginas/cancha/{{id}}" method="POST" id="formCancha" class="row g-4" enctype="multipart/form-data" >
         <div class="col-md-12">            
             <div class="text-center"><h2>Nueva Cancha</h2></div>
+            <div class="text-center"><h2>{{datosEstablecimiento.nombreEstablecimiento}}</h2></div>
             <br>
             <div class="input-group mb-2 justify-content-around py-2">
-                <select name="posicion" class="btn btn-ls btn-outline-primary" required>
-                    <option type="text" value="">Establecimiento</option>
-                    <option type="text" value="La Champions">La Champions</option>
-                    <option type="text" value="Gol Gana">Gol Gana</option>
-                </select>
-                <select name="posicion" class="btn btn-ls btn-outline-primary" required>
+                 <label for="numeroCancha"><b>Numuero de la Cancha</b></label>
+                 <input type="number" class="col-5" name="numero" id="numeroCancha" placeholder="Nro de Cancha" required>       
+                <select name="idDeporte" class="btn btn-ls btn-outline-primary" required>
                     <option type="text" value="">Formato</option>
-                    <option type="text" value="Fútbol 5">Fútbol 5</option>
-                    <option type="text" value="Fútbol 7">Fútbol 7</option>
-                    <option type="text" value="Fútbol 11">Fútbol 11</option>
-                    <option type="text" value="Básquet 2">Básquet 2</option>
-                    <option type="text" value="Básquet 5">Básquet 5</option>
-                    <option type="text" value="Pádel 1">Pádel 1</option>
-                    <option type="text" value="Pádel 2">Pádel 2</option>
-                </select>
-            </div>            
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle col-md-12" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <option type="text" value="1">Fútbol 5</option>
+                    <option type="text" value="2">Fútbol 7</option>
+                    <option type="text" value="3">Fútbol 11</option>
+                    <option type="text" value="4">Básquet 2</option>
+                    <option type="text" value="5">Básquet 5</option>
+                    <option type="text" value="6">Pádel 1</option>
+                    <option type="text" value="7">Pádel 2</option>
+                </select>                
+            </div>      
+            <div class="text-center">
+                <label for="horario"><b>Horario de Atencion</b></label>
+                <p><span>Desde</span><input type="number" min="00" max="24" class="col-4 m-1" name="horaDesde" id="horario"><span>Hs.</span></p>
+                <p><span>Hasta</span><input type="number" min="00" max="24" class="col-4 m-1" name="horaHasta"><span>Hs.</span></p>
+            </div>      
+            <div class="text-center">
+                {{!-- <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Disponibilidad
-                </button>
-                <div class="dropdown-menu col-md-12" aria-labelledby="dropdownMenuButton">
+                </button> --}}
+                {{!-- <div class="dropdown-menu col-md-12" aria-labelledby="dropdownMenuButton">
                         <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Lunes</a><br>
                         <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Martes</a><br>
                         <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Miércoles</a><br>
@@ -33,8 +35,9 @@
                         <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Viernes</a><br>
                         <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Sábado</a><br>
                         <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Domingo</a>
-                </div>
-                <input type="file" name="imagen">        
+                </div> --}}
+                <label for="imagen"><b>Imagen de la Cancha</b></label>
+                <input class="btn" type="file" name="imagen" id="imagen">        
             </div>
     </form>
     <br>

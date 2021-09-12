@@ -8,7 +8,7 @@ ruta.get('/registro', noEstaLogueado, (req, res)=> {
     res.render('ingreso/registro'); 
 });
 ruta.post('/registro', passport.authenticate('local.registro', {
-        successRedirect: 'paginas/carga',
+        successRedirect: 'paginas/inicio',
         failureRedirect: '/registro', 
         failureFlash: true
 }));
@@ -17,7 +17,7 @@ ruta.get('/ingreso', noEstaLogueado, (req, res) =>  {
 });
 ruta.post('/ingreso', (req, res, next)=> {
     passport.authenticate('local.ingreso', {
-        successRedirect: 'paginas/carga',
+        successRedirect: 'paginas/inicio',
         failureRedirect: '/ingreso',
         failureFlash: true
     })(req, res, next)

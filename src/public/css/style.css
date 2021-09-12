@@ -274,3 +274,7 @@ h6, h5{
 .zoom:hover {
   transform: scale(1.2); 
 }
+
+#guionPerfil{
+  border-top: solid 1px;
+}

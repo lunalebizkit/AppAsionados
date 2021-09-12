@@ -1,6 +1,6 @@
 <div id="cancha">
     <div class="col-md-4 mx-auto py-3" id="formCancha">
-        <form action="/paginas/cancha/{{id}}" method="POST" enctype="multipart/form-data">
+        <form action="/paginas/cancha/{{idEstablecimiento}}" method="POST" enctype="multipart/form-data">
             <div class="text-center">
                 <h2>Nueva Cancha</h2>
             </div>
@@ -34,26 +34,14 @@
             </div>
             <div class="text-center mb-2">
                 <label for="dias"><b>Dias de Atencion</b></label>
-                <select name="diaDesde" class="btn btn-ls btn-outline-primary" required>
-                    <option type="text" value="">Desde</option>
-                    <option type="text" value="Lunes">Lunes</option>
-                    <option type="text" value="Martes">Martes</option>
-                    <option type="text" value="Miercoles">Miercoles</option>
-                    <option type="text" value="Jueves">Jueves</option>
-                    <option type="text" value="Viernes">Viernes</option>
-                    <option type="text" value="Sabado">Sabado</option>
-                    <option type="text" value="Domingo">Domingo</option>
-                </select>
-                <select name="diasHasta" class="btn btn-ls btn-outline-primary" required>
-                    <option type="text">Hasta</option>
-                    <option type="text" value="1">Lunes</option>
-                    <option type="text" value="2">Martes</option>
-                    <option type="text" value="3">Miercoles</option>
-                    <option type="text" value="4">Jueves</option>
-                    <option type="text" value="5">Viernes</option>
-                    <option type="text" value="6">Sabado</option>
-                    <option type="text" value="7">Domingo</option>
-                </select>
+             
+                <label for="dias"><input type="checkbox" name="dias" value="Lunes">Lunes</label>                
+                <label for="dias"><input type="checkbox" name="dias" value="Martes">Martes</label>
+                <label for="dias"><input type="checkbox" name="dias" value="Miercoles">Miercoles</label>
+                <label for="dias"><input type="checkbox" name="dias" value="Jueves">Jueves</label>
+                <label for="dias"><input type="checkbox" name="dias" value="Viernes">Viernes</label>
+                <label for="dias"><input type="checkbox" name="dias" value="Sabado">Sabado</label>
+                <label for="dias"><input type="checkbox" name="dias" value="Domingo">Domingo</label>        
             </div>
             <div class="text-center mb-3">
                 <label for="horario"><b>Horario de Atencion</b></label>
@@ -122,9 +110,9 @@
                     Cargar
                 </button>
         </form>
-        <button onclick="location.href='/paginas/duenio'" class="btn btn-danger btn-block">
+        <a onclick="location.href='/paginas/duenio'" class="btn btn-danger btn-block">
             Cancelar
-        </button>
+        </a>
     </div>
 </div>
 </div>

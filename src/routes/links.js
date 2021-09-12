@@ -36,16 +36,20 @@ ruta.get('/deporte', estaLogueado, async (req, res) => {
     res.render('paginas/deporte');
 });
 //pantalla crear cancha
-ruta.get('/cancha/:id', estaLogueado, duenio, async (req, res) => {
-    const {id}=req.params;
-    const establecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [id]);
+ruta.get('/cancha/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
+    const {idEstablecimiento}=req.params;
+    const establecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [idEstablecimiento]);
     const datosEstablecimiento= establecimiento[0]
-    res.render('paginas/cancha', {datosEstablecimiento, id});
+    res.render('paginas/cancha', {datosEstablecimiento, idEstablecimiento});
 });
-ruta.post('/cancha/:id', estaLogueado, duenio, foto, async (req, res) => {
-    const {id}= req.params;
-    console.info(req.body);
-    console.info(req.file);
+ruta.post('/cancha/:idEstablecimiento', estaLogueado, duenio, foto, async (req, res) => {
+    const {idEstablecimiento}= req.params;
+    // const {filename}= req.file;
+    const{numeroCancha, idDeportes, dias} = req.body;
+    const newCancha={idEstablecimiento, numeroCancha, idDeportes}
+    const newImagenCancha={idEstablecimiento, numeroCancha}
+     const newDias= {dias: dias}
+    console.info(newCancha);
     res.send('Cargo la pagina');
 });
 ruta.get('/vistaAdmin', estaLogueado, admin, async (req, res) => {

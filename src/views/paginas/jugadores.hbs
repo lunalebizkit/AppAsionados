@@ -1,28 +1,69 @@
 <div id="formularioF" class="container">
-    <div class="col-md-9 m-auto p-4">
+    <div id="scrollJugador" class="col-md-9 m-auto p-4">
         <table class="table table-dark">
             <h3><p id="semiTransparente" class="text-center py-2" style="color: rgb(0, 0, 0);">JUGADORES</p></h3>
             <thead class="table-danger">
                 <th>Nombre/Apellido</th>
                 <th>Posición</th>
                 <th>Nombre de Usuario</th>
-                <th>Email</th>
+                <th>Equipos</th>
                 
             </thead>
             <tbody>            
-                {{#each jugador}}
+                {{#each jugadores}}
                 <tr>
-                <td>{{nombre}}{{apellido}}</td>
+                <td>{{nombre}} {{apellido}}</td>
                 <td>{{posicion}}</td>
                 <td>{{nombreUsuario}}</td>
-                <td>{{email}}</td>
+                <td>
+                   
+                    <a class="button" href="#" data-bs-toggle="modal" data-bs-target="#misEquipo" data-bs-whatever="@equipo">Ver</a>
+                    
                 </tr>
+                    
                 {{/each}}
             </tbody>
         </table>
         
-        <div class="col-2  p-4">
-            <a id="volver" href="/paginas/futbol" type="button" class="btn btn-danger">Volver</a>
+    </div>
+    <div class="col-2  p-4">
+        <a id="volver" href="/paginas/futbol" type="button" class="btn btn-danger">Volver</a>
+    </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal fade" id="misEquipo" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+
+            <!-- Modal Header -->
+            <div class="modal-header" id="misEquipo">
+                <h4 class="modal-title">EQUIPOS</h4>
+                <button type="button" class="close" data-bs-dismiss="modal" id="crearEquipo">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body" id="misEquipo">
+                <table class="table text-center">
+                    <tbody>
+                         {{#if misEquipos}}
+                            {{#each misEquipos}}
+                        <tr>
+                            <td><i>
+                                    <h4><a class="text-white"
+                                            href="/paginas/miEquipo/{{nombreEquipo}}">{{nombreEquipo}}</a></h4>
+                                </i></td>
+                        </tr>
+                            {{/each}}
+                        {{/if}}
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer" id="crearEquipo">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            </div>
         </div>
     </div>
 </div>

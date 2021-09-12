@@ -11,7 +11,7 @@ body {
 #nombreEquipo {
   color: rgb(6, 100, 189);
 }
-h6 {
+h6, h5{
   color: rgba(0, 0, 0, 0.575);
   text-align: center;
 }
@@ -152,10 +152,6 @@ h6 {
   display: flex;
   align-items: center       
 }
-#inicioCentrar {
-  display: flex;
-  align-items: center
-}
 #scrollDuenio {
   overflow-y: scroll;
   width: 970px;
@@ -227,13 +223,19 @@ h6 {
 }
 #scroll {
   overflow-y: scroll;
-  height: 350px;
+  height: 370px;
   display: block
 }
 
 #scrollMiEquipo {
   overflow-y: scroll;
   height: 440px;
+  display: block
+}
+
+#scrollJugador {
+  overflow-y: scroll;
+  height: 445px;
   display: block
 }
 

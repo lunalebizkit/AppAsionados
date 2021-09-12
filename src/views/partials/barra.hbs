@@ -21,6 +21,12 @@
                         <li><a class="dropdown-item" href="/paginas/padel">Pádel</a></li>
                     </ul>
                 </li>
+                
+                <li class="container-fluid">
+                    <a type="link" class="nav-link" href="#" aria-disabled="true" data-bs-toggle="modal"
+                data-bs-target="#nosotros" aria-controls="offcanvasRight">Nosotros</a>
+                </li>
+
                 <li class="container-fluid">
                     <a type="button" class="btn btn-primary" href="/paginas/reserva">Reservá ya!</a>
                 </li>
@@ -39,7 +45,7 @@
         </li>
     </div>
 </nav>
-<!-- The Modal -->
+<!--Modal perfil -->
 <div class="modal fade" id="miPerfil" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content" style="background-color: rgb(95, 162, 182);">
@@ -67,12 +73,41 @@
                     </div>
                 </div>
             </div>
-            <!-- Modal footer -->
-            <div class="modal-footer" id="miPerfil">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-            </div>
         </div>
     </div>
 </div>
+
+<!--Modal nosotros -->
+<div class="modal fade" id="nosotros" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="background-color: rgba(95, 162, 182);">
+            <!-- Modal Header -->
+            <div class="modal-header" id="nosotros">
+                <h4 class="modal-title text-white">¿Qué es APPasionados?</h4>
+                <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body" id="nosotros">
+                <div class="row ">
+                    <div >
+                        <h5><p>LLamar a un complejo deportivo e intentar reservar un turno es cosa 
+                            del pasado. APPasionados te ofrece un sistema innovador para estar más 
+                            actualizado que nunca. A través de nuestra página, puedes navegar por 
+                            las canchas, ver sus galería de imágenes, turnos disponibles y reservar
+                            rápidamente, sin pérdidas de tiempo.</p> 
+                            <p>Ya no es necesario depender de una guía telefónica en tu celular de 
+                            todos los complejos deportivos que conoces, se puede prescindir del 
+                            teléfono y puedes olvidarte de las interminables llamadas para tratar
+                            de conseguir un turno. APPasionados llegó para hacer todo mucho más simple.</p></h5>
+                            <h4>¿Por qué usar APPasionados?</h4>
+                        <h5><p>- Reduce el tiempo al alquilar la cancha de tu complejo favorito.</p>
+                            <p>- Fácil de usar, pensada para el usuario.</p>
+                            <p>- Encontrá tu complejo favorito del deporte que quieras.</p>
+                            <p>- Armá tu equipo invitando a tus amigos.</p></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {{/if}}

@@ -167,4 +167,9 @@ ruta.post('/miPerfil/:id', estaLogueado, foto, async (req, res) => {
         res.redirect('/paginas/deporte');
     }   
 });
+
+//agregue pantalla carga
+ruta.get('/carga', estaLogueado, async (req, res) => {
+    res.render('paginas/carga');
+});
 module.exports = ruta

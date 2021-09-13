@@ -4,20 +4,20 @@
             <h3><p id="semiTransparente" class="text-center py-2" style="color: rgb(0, 0, 0);">JUGADORES</p></h3>
             <thead class="table-danger">
                 <th>Nombre/Apellido</th>
-                <th>Posición</th>
                 <th>Nombre de Usuario</th>
-                <th>Equipos</th>
+                <th>Email</th>
+                <th>Perfil</th>
                 
             </thead>
             <tbody>            
                 {{#each jugadores}}
                 <tr>
                 <td>{{nombre}} {{apellido}}</td>
-                <td>{{posicion}}</td>
                 <td>{{nombreUsuario}}</td>
+                <td>{{email}}</td>
                 <td>
                    
-                    <a class="button" href="#" data-bs-toggle="modal" data-bs-target="#misEquipo" data-bs-whatever="@equipo">Ver</a>
+                    <a class="button" href="#" data-bs-toggle="modal" data-bs-target="#miPerfil" data-bs-whatever="@miPefil">Ver</a>
                     
                 </tr>
                     
@@ -31,38 +31,33 @@
     </div>
 </div>
 
-<!-- The Modal -->
-<div class="modal fade" id="misEquipo" tabindex="-1">
+<!--Modal perfil -->
+<div class="modal fade" id="miPerfil" tabindex="-1">
     <div class="modal-dialog">
-        <div class="modal-content bg-dark">
-
+        <div class="modal-content" style="background-color: rgb(245, 224, 187);">
             <!-- Modal Header -->
-            <div class="modal-header" id="misEquipo">
-                <h4 class="modal-title">EQUIPOS</h4>
+            <div class="modal-header" id="miPerfil">
+                <em><h4 class="modal-title text-dark"><u style="color: rgb(59, 59, 59);">Socio Nº {{user.idUsuarios}}</u></h4></em>
                 <button type="button" class="close" data-bs-dismiss="modal" id="crearEquipo">&times;</button>
             </div>
-
             <!-- Modal body -->
-            <div class="modal-body" id="misEquipo">
-                <table class="table text-center">
-                    <tbody>
-                         {{#if misEquipos}}
-                            {{#each misEquipos}}
-                        <tr>
-                            <td><i>
-                                    <h4><a class="text-white"
-                                            href="/paginas/miEquipo/{{nombreEquipo}}">{{nombreEquipo}}</a></h4>
-                                </i></td>
-                        </tr>
-                            {{/each}}
-                        {{/if}}
-                    </tbody>
-                </table>
-
-            </div>
-            <!-- Modal footer -->
-            <div class="modal-footer" id="crearEquipo">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            <div class="modal-body" id="miPerfil">
+                <div id="sello" class="row ">
+                    <div class="col-sm-3">
+                       <a href="/paginas/miPerfil/{{user.idUsuarios}}"><img src="/img/descarga/{{user.img}}" alt="" width="125" height="120"></a>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="d-flex">
+                            <pre class="ms-2">Nombre: {{user.nombre}}</pre>
+                        </div>
+                        <div class="d-flex">
+                            <pre class="ms-2">Apellido: {{user.apellido}}</pre>
+                        </div>
+                        <div class="d-flex">
+                            <pre class="ms-2">Email: {{user.email}}</pre>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -51,14 +51,14 @@
         <div class="modal-content" style="background-color: rgb(245, 224, 187);">
             <!-- Modal Header -->
             <div class="modal-header" id="miPerfil">
-                <a href="/paginas/miPerfil/{{user.idUsuarios}}"><h4 class="modal-title text-dark">Mi Perfil</h4></a>
+                <em><h4 class="modal-title text-dark"><u style="color: rgb(59, 59, 59);">Socio Nº {{user.idUsuarios}}</u></h4></em>
                 <button type="button" class="close" data-bs-dismiss="modal" id="crearEquipo">&times;</button>
             </div>
             <!-- Modal body -->
             <div class="modal-body" id="miPerfil">
                 <div id="sello" class="row ">
                     <div class="col-sm-3">
-                       <a><img src="/img/descarga/{{user.img}}" alt="" width="125" height="120"></a>
+                       <a href="/paginas/miPerfil/{{user.idUsuarios}}"><img class="zoom" src="/img/descarga/{{user.img}}" alt="" width="125" height="120"></a>
                     </div>
                     <div class="col-sm-8">
                         <div class="d-flex">

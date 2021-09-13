@@ -44,13 +44,15 @@ ruta.get('/cancha/:idEstablecimiento', estaLogueado, duenio, async (req, res) =>
 });
 ruta.post('/cancha/:idEstablecimiento', estaLogueado, duenio, foto, async (req, res) => {
     const {idEstablecimiento}= req.params;
-    // const {filename}= req.file;
-    const{numeroCancha, idDeportes, dias} = req.body;
+    const {numeroCancha, idDeportes, lunes, martes, miercoles, jueves, viernes, sabado, domingo} = req.body;
     const newCancha={idEstablecimiento, numeroCancha, idDeportes}
+    const cancha= await db.query('Insert INTO cancha SET ?', [newCancha]);
     const newImagenCancha={idEstablecimiento, numeroCancha}
-     const newDias= {dias: dias}
-    console.info(newCancha);
-    res.send('Cargo la pagina');
+    //const imagenCancha= await db.query('Insert INTO imagencancha SET ?', [newImagenCancha]);
+    const newDias= {'idCancha': 3, lunes, martes, miercoles, jueves, viernes, sabado, domingo};
+    const dia= await db.query('Insert INTO dia SET ?', [newDias]);
+    console.info(newDias);
+    res.render('paginas/duenio');
 });
 ruta.get('/vistaAdmin', estaLogueado, admin, async (req, res) => {
     const usuarios= await db.query('select * from usuarios');
@@ -148,10 +150,8 @@ ruta.get('/reserva', estaLogueado, async (req, res) => {
 });
 //agregue pantalla jugadores 
 ruta.get('/jugadores/:jugador', estaLogueado, async(req, res)=>{
-    const misEquipos= await db.query('select equipos.nombreEquipo from equipos  ');
-    const jugadores= await db.query('Select usuarios.nombreUsuario, usuarios.nombre, usuarios.apellido, jugador.posicion from usuarios join jugador where usuarios.idUsuarios = jugador.idUsuarios Group by usuarios.nombreUsuario');
-    
-    res.render('paginas/jugadores', {misEquipos, jugadores});
+    const jugadores= await db.query('Select usuarios.nombreUsuario, usuarios.nombre, usuarios.apellido, usuarios.email from usuarios Group by usuarios.nombreUsuario');
+    res.render('paginas/jugadores', {jugadores});
 });
 ruta.get('/prueba', estaLogueado, async (req, res) => {
     res.render('paginas/prueba');

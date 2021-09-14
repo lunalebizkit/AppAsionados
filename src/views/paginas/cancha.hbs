@@ -1,6 +1,6 @@
 <div id="cancha">
     <div class="col-md-4 mx-auto py-3" id="formCancha">
-        <form action="/paginas/cancha/{{idEstablecimiento}}" method="POST" enctype="multipart/form-data">
+        <form action="/paginas/cancha/{{idEstablecimiento}}" method="POST">
             <div class="text-center">
                 <h2>Nueva Cancha</h2>
             </div>
@@ -9,7 +9,8 @@
             </div>           
             <div class="input-group mt-5 justify-content-around py-2">
                 <label for="numeroCancha"><b>Numero de Cancha</b></label>
-                <select name="numeroCancha" class="btn btn-ls btn-outline-primary" required>
+                <input type="number" name="numeroCancha" {{!--class="btn btn-ls btn-outline-primary"--}} min="{{numero}}" required>
+                    {{!-- <option value=""></option>
                     <option value="1" type="number">1</option>
                     <option value="2" type="number">2</option>
                     <option value="3" type="number">3</option>
@@ -20,7 +21,7 @@
                     <option value="8" type="number">8</option>
                     <option value="9" type="number">9</option>
                     <option value="10" type="number">10</option>
-                </select>
+                </select> --}}
                 <select name="idDeportes" class="btn btn-ls btn-outline-primary" required>
                     <option type="text" value="">Formato</option>
                     <option type="text" value="1">Fútbol 5</option>
@@ -35,17 +36,17 @@
             <div class="text-center mb-2">
                 <label for="dias"><b>Dias de Atencion</b></label>
              
-                <label for="dias"><input type="checkbox" name="dias" value="Lunes">Lunes</label>                
-                <label for="dias"><input type="checkbox" name="dias" value="Martes">Martes</label>
-                <label for="dias"><input type="checkbox" name="dias" value="Miercoles">Miercoles</label>
-                <label for="dias"><input type="checkbox" name="dias" value="Jueves">Jueves</label>
-                <label for="dias"><input type="checkbox" name="dias" value="Viernes">Viernes</label>
-                <label for="dias"><input type="checkbox" name="dias" value="Sabado">Sabado</label>
-                <label for="dias"><input type="checkbox" name="dias" value="Domingo">Domingo</label>        
+                <label for="dias"><input type="checkbox" name="Lunes" value="Lunes">Lunes</label>                
+                <label for="dias"><input type="checkbox" name="Martes" value="Martes">Martes</label>
+                <label for="dias"><input type="checkbox" name="Miercoles" value="Miercoles">Miercoles</label>
+                <label for="dias"><input type="checkbox" name="Jueves" value="Jueves">Jueves</label>
+                <label for="dias"><input type="checkbox" name="Viernes" value="Viernes">Viernes</label>
+                <label for="dias"><input type="checkbox" name="Sabado" value="Sabado">Sabado</label>
+                <label for="dias"><input type="checkbox" name="Domingo" value="Domingo">Domingo</label>        
             </div>
             <div class="text-center mb-3">
                 <label for="horario"><b>Horario de Atencion</b></label>
-                <select name="horaDesde" class="btn btn-ls btn-outline-primary" required>
+                <select name="horaInicio" class="btn btn-ls btn-outline-primary" required>
                     <option>Desde</option>
                     <option value="1" type="number">1</option>
                     <option value="2" type="number">2</option>
@@ -72,7 +73,7 @@
                     <option value="23" type="number">23</option>
                     <option value="24" type="number">24</option>
                 </select>
-                <select name="horaHasta" class="btn btn-ls btn-outline-primary" required>
+                <select name="horaFin" class="btn btn-ls btn-outline-primary" required>
                     <option>Hasta</option>
                     <option value="1" type="number">1</option>
                     <option value="2" type="number">2</option>
@@ -100,10 +101,10 @@
                     <option value="24" type="number">24</option>
                 </select><span class="m-1"><b>Hs</b></span>
             </div>
-            <div class="text-center">
+            {{!-- <div class="text-center">
                 <span><b>Imagen de la Cancha</b></span>
                 <input class="btn" type="file" name="imagen" id="imagen">
-            </div>
+            </div> --}}
 
             <div class="col-5 mx-auto">
                 <button type="submit" class="btn btn-success btn-block">

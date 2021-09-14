@@ -39,17 +39,23 @@ ruta.get('/deporte', estaLogueado, async (req, res) => {
 ruta.get('/cancha/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
     const {idEstablecimiento}=req.params;
     const establecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [idEstablecimiento]);
-    const datosEstablecimiento= establecimiento[0]
-    res.render('paginas/cancha', {datosEstablecimiento, idEstablecimiento});
+    const numeroC= await db.query('select numeroCancha from cancha where idEstablecimiento =? group by numeroCancha', [idEstablecimiento]);
+    const {numeroCancha}=numeroC[0];
+    const numero= numeroCancha + 1;
+    const datosEstablecimiento= establecimiento[0];
+    res.render('paginas/cancha', {datosEstablecimiento, idEstablecimiento, numero});
 });
-ruta.post('/cancha/:idEstablecimiento', estaLogueado, duenio, foto, async (req, res) => {
+ruta.post('/cancha/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
     const {idEstablecimiento}= req.params;
-    // const {filename}= req.file;
-    const{numeroCancha, idDeportes, dias} = req.body;
-    const newCancha={idEstablecimiento, numeroCancha, idDeportes}
-    const newImagenCancha={idEstablecimiento, numeroCancha}
-     const newDias= {dias: dias}
-    console.info(newCancha);
+    const{numeroCancha, horaInicio, horaFin, idDeportes, Lunes, Martes, Miercoles, Jueves, Viernes, Sabado, Domingo} = req.body;
+    const newCancha={idEstablecimiento, numeroCancha, idDeportes}   
+    if (cancha= await db.query('Insert into cancha set?', [newCancha])) {
+        const idCancha= cancha.insertId;
+        const newDias= {idCancha, Lunes, Martes, Miercoles, Jueves, Viernes, Sabado, Domingo};
+        await db.query('Insert into dia set?', [newDias]);
+        const newHorario= {idCancha, horaInicio, horaFin};
+        await db.query('Insert into horarios set?', [newHorario]);
+    }
     res.send('Cargo la pagina');
 });
 ruta.get('/vistaAdmin', estaLogueado, admin, async (req, res) => {

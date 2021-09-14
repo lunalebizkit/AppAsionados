@@ -1,18 +1,18 @@
 <div id="cancha" class="container">
-        
-    <form id="formCancha" class="row g-4" >
-        <div class="col-md-12">
-            
-            <div class="text-center"><h2>Reserva</h2></div>
+    <div class="col-md-6 mx-auto p-3">
+        <form id="formCancha">
+            <div class="text-center">
+                <h2>Reserva</h2>
+            </div>
             <div class="dropdown-divider"></div>
             <div class="input-group mb-2 justify-content-around py-2">
-                <select name="posicion" class="btn btn-ls btn-primary" required>
+                <select name="equipo1" class="btn btn-ls btn-primary" required>
                     <option type="text" value="">Local</option>
                     <option type="text" value="equipo1">equipo1</option>
                     <option type="text" value="equipo2">equipo2</option>
                     <option type="text" value="equipo3">equipo3</option>
                 </select>
-                <select name="posicion" class="btn btn-ls btn-primary" required>
+                <select name="equipo2" class="btn btn-ls btn-primary" required>
                     <option type="text" value="">Visitante</option>
                     <option type="text" value="equipo1">equipo1</option>
                     <option type="text" value="equipo2">equipo2</option>
@@ -67,17 +67,14 @@
                     <option type="text" value="23:00">23:00</option>
                 </select>
             </div>
-            <div class="dropdown-divider"></div>
-
-            <a href="" class="btn btn-success btn-block">
+            <div class="col-6 mx-auto pb-3">
+                  <button type="submit" class="btn btn-success btn-block">
                 Reservar
-            </a>
+            </button>
             <a href="javascript: history.go(-1)" class="btn btn-danger btn-block">
                 Cancelar
             </a>
-        </div>
-        
-    </form>
+            </div>          
+        </form>
+    </div>
 </div>
-    
-  

@@ -11,7 +11,7 @@ body {
 #nombreEquipo {
   color: rgb(6, 100, 189);
 }
-h6 {
+h6, h5{
   color: rgba(0, 0, 0, 0.575);
   text-align: center;
 }
@@ -119,22 +119,22 @@ h6 {
 }
 #cancha {
   background-image: url(../img/app/duenio.jpg);
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
   width: 100%;
-  height: 535px
+   height: 555px 
 }
 #formCancha{
   background: rgba(255, 254, 254, 0.61);
-  padding:2px 0 10px 0 ;
+  /* padding:2px 0 10px 0 ;
    cursor:pointer;
-   display:block;
-   width:400px;
-   margin: 0 auto;
-   margin-left: auto;
-  margin-right: auto;
+   display:block; */
+   /* width:400px; */
+   /* margin: 0 auto; */
+   /* margin-left: auto;
+  margin-right: auto; */
 }
 #modalCancha-header{
   color:black;
@@ -151,10 +151,6 @@ h6 {
   margin-bottom: 0%;
   display: flex;
   align-items: center       
-}
-#inicioCentrar {
-  display: flex;
-  align-items: center
 }
 #scrollDuenio {
   overflow-y: scroll;
@@ -227,7 +223,7 @@ h6 {
 }
 #scroll {
   overflow-y: scroll;
-  height: 350px;
+  height: 370px;
   display: block
 }
 
@@ -237,16 +233,48 @@ h6 {
   display: block
 }
 
+#scrollJugador {
+  overflow-y: scroll;
+  height: 445px;
+  display: block
+}
+
 #perfil{
-  background-color: rgb(92, 143, 163);
+  background-color: rgb(26, 26, 26);
 }
-#mensaje {
-  top: 90px;
-  left: 145px;
-  animation: aparecer 2s;
+
+#sello{
+  background-image: url(../img/app/sello.png);
+  background-repeat: no-repeat;
+  background-position: 95%;
+  font: message-box;
+  color: rgb(43, 42, 42);
+}
+
+#mensaje{
   position: absolute;
+  top: 80px;
+  left: 135px;
+  animation: aparecer 2s
+  
 }
-@keyframes aparecer{
+@keyframes aparecer {
   0% {opacity: 0;}
   100% {opacity: 1;}
+}
+.navbar {
+ padding-bottom: 0px;
+ padding-top: 0px;
+}
+
+.zoom {
+  transition: transform .2s; 
+}
+
+.zoom:hover {
+  transform: scale(1.2); 
+}
+
+#guionPerfil{
+  border-top: solid 1px;
 }

@@ -4,7 +4,6 @@ const ruta = express.Router();
 const db = require('../database');
 const { estaLogueado, noEstaLogueado, admin, duenio } = require('../lib/auth');
 const foto= require('../lib/foto');
-
 //Agregue pantalla equipo
 ruta.get('/equipo/:club&:idDeportes', estaLogueado, async (req, res) => {
     const {club}= req.params;
@@ -37,17 +36,28 @@ ruta.get('/deporte', estaLogueado, async (req, res) => {
     res.render('paginas/deporte');
 });
 //pantalla crear cancha
-ruta.get('/cancha', estaLogueado, duenio, async (req, res) => {
-    res.render('paginas/cancha');
+ruta.get('/cancha/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
+    const {idEstablecimiento}=req.params;
+    const establecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [idEstablecimiento]);
+    const datosEstablecimiento= establecimiento[0]
+    res.render('paginas/cancha', {datosEstablecimiento, idEstablecimiento});
 });
-ruta.post('/cancha', estaLogueado, duenio, foto, async (req, res) => {
-    console.info(req.file);
+ruta.post('/cancha/:idEstablecimiento', estaLogueado, duenio, foto, async (req, res) => {
+    const {idEstablecimiento}= req.params;
+    // const {filename}= req.file;
+    const{numeroCancha, idDeportes, dias} = req.body;
+    const newCancha={idEstablecimiento, numeroCancha, idDeportes}
+    const newImagenCancha={idEstablecimiento, numeroCancha}
+     const newDias= {dias: dias}
+    console.info(newCancha);
     res.send('Cargo la pagina');
 });
 ruta.get('/vistaAdmin', estaLogueado, admin, async (req, res) => {
-    const cookie = req.session.cookie;
-    console.info(cookie);
-    res.render('paginas/vistaAdmin');
+    const usuarios= await db.query('select * from usuarios');
+    const equipos= await db.query('select * from equipos');
+    const establecimiento= await db.query('select * from establecimiento');
+   
+    res.render('paginas/vistaAdmin', {usuarios, equipos, establecimiento});
 });
 ruta.post('/vistaAdmin', admin, async (req, res) => {
     console.info(req.body);
@@ -137,11 +147,11 @@ ruta.get('/reserva', estaLogueado, async (req, res) => {
     res.render('paginas/reserva');
 });
 //agregue pantalla jugadores 
-//¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡REVISAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ruta.get('/jugadores/:jugador', estaLogueado, async(req, res)=>{
-    const {jugador}=req.params;
-    const jugadores= await db.query('Select usuarios.nombreUsuario, usuarios.nombre, usuarios.apellido, jugador.posicion from usuarios join jugador where usuarios.idUsuarios = jugador.idUsuarios and nombre =?',[jugador] );
-    res.render('paginas/jugadores', {jugadores, jugador});
+    const misEquipos= await db.query('select equipos.nombreEquipo from equipos  ');
+    const jugadores= await db.query('Select usuarios.nombreUsuario, usuarios.nombre, usuarios.apellido, jugador.posicion from usuarios join jugador where usuarios.idUsuarios = jugador.idUsuarios Group by usuarios.nombreUsuario');
+    
+    res.render('paginas/jugadores', {misEquipos, jugadores});
 });
 ruta.get('/prueba', estaLogueado, async (req, res) => {
     res.render('paginas/prueba');
@@ -166,4 +176,21 @@ ruta.post('/miPerfil/:id', estaLogueado, foto, async (req, res) => {
         res.redirect('/paginas/deporte');
     }   
 });
+
+//agregue pantalla carga
+ruta.get('/carga', estaLogueado, async (req, res) => {
+    res.render('paginas/carga');
+});
+//REservas//
+ruta.get('/reservaDeporte', async(req, res)=>{
+    const deporte= await db.query('select * from deporte');
+    res.render('reserva/reservaDeporte', {deporte})
+});
+ruta.get('/reservaDeporte1/', async(req, res)=>{
+    const {deporte} =req.query;
+    // console.info(req.query);
+    // const canchas= await db.query('select * from canchas where idDeportes =?', [deporte]);
+    res.render('reserva/reservaDeporte1')
+});
+
 module.exports = ruta

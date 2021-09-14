@@ -1,0 +1,14 @@
+<div class="col-4 mx-auto bg-secondary py-5">
+    
+    <div class="text-white">
+        <h3>Elige deporte</h3>
+        <form action="/paginas/reservaDeporte1/" method="GET">
+        <select name="deporte" id="">
+            {{#each deporte}}
+            <option value="{{idDeportes}}">{{deporte}}</option>
+             {{/each}}
+        </select>
+        <button type="submit">Aceptar</button>
+        </form>
+    </div>  
+</div>

@@ -56,7 +56,7 @@ ruta.post('/cancha/:idEstablecimiento', estaLogueado, duenio, async (req, res) =
         const newHorario= {idCancha, horaInicio, horaFin};
         await db.query('Insert into horarios set?', [newHorario]);
     }
-    res.send('Cargo la pagina');
+    res.redirect('/paginas/duenio');
 });
 ruta.get('/vistaAdmin', estaLogueado, admin, async (req, res) => {
     const usuarios= await db.query('select * from usuarios');
@@ -194,9 +194,18 @@ ruta.get('/reservaDeporte', async(req, res)=>{
 });
 ruta.get('/reservaDeporte1/', async(req, res)=>{
     const {deporte} =req.query;
-    // console.info(req.query);
-    // const canchas= await db.query('select * from canchas where idDeportes =?', [deporte]);
-    res.render('reserva/reservaDeporte1')
+    const canchas= await db.query('select establecimiento.nombreEstablecimiento, cancha.numeroCancha, cancha.id from establecimiento join cancha where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes =?', [deporte]);
+    const numero= 56;
+    res.render('reserva/reservaDeporte1', {canchas, numero})
+});
+ruta.get('/reservaDeporte2/', async(req, res)=>{
+    const {fecha, cancha}= req.query;
+    const dia= new Date(fecha).getDay();
+    console.info(fecha);
+    //  console.info(dia);
+     console.info(dia);
+     const turnos= await db.query('select * from  horarios where idCancha =?', [cancha]);
+    res.render('reserva/reservaDeporte2', {turnos})
 });
 
 module.exports = ruta

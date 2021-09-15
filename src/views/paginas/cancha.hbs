@@ -6,22 +6,11 @@
             </div>
             <div class="text-center">
                 <h2>{{datosEstablecimiento.nombreEstablecimiento}}</h2>
-            </div>           
+            </div>
             <div class="input-group mt-5 justify-content-around py-2">
                 <label for="numeroCancha"><b>Numero de Cancha</b></label>
-                <input type="number" name="numeroCancha" {{!--class="btn btn-ls btn-outline-primary"--}} min="{{numero}}" required>
-                    {{!-- <option value=""></option>
-                    <option value="1" type="number">1</option>
-                    <option value="2" type="number">2</option>
-                    <option value="3" type="number">3</option>
-                    <option value="4" type="number">4</option>
-                    <option value="5" type="number">5</option>
-                    <option value="6" type="number">6</option>
-                    <option value="7" type="number">7</option>
-                    <option value="8" type="number">8</option>
-                    <option value="9" type="number">9</option>
-                    <option value="10" type="number">10</option>
-                </select> --}}
+                <input type="number" name="numeroCancha" {{!--class="btn btn-ls btn-outline-primary" --}}
+                    min="{{numero}}" required>
                 <select name="idDeportes" class="btn btn-ls btn-outline-primary" required>
                     <option type="text" value="">Formato</option>
                     <option type="text" value="1">Fútbol 5</option>
@@ -35,14 +24,13 @@
             </div>
             <div class="text-center mb-2">
                 <label for="dias"><b>Dias de Atencion</b></label>
-             
-                <label for="dias"><input type="checkbox" name="Lunes" value="Lunes">Lunes</label>                
-                <label for="dias"><input type="checkbox" name="Martes" value="Martes">Martes</label>
-                <label for="dias"><input type="checkbox" name="Miercoles" value="Miercoles">Miercoles</label>
-                <label for="dias"><input type="checkbox" name="Jueves" value="Jueves">Jueves</label>
-                <label for="dias"><input type="checkbox" name="Viernes" value="Viernes">Viernes</label>
-                <label for="dias"><input type="checkbox" name="Sabado" value="Sabado">Sabado</label>
-                <label for="dias"><input type="checkbox" name="Domingo" value="Domingo">Domingo</label>        
+                <label for="dias"><input type="checkbox" name="Lunes" value="1">Lunes</label>
+                <label for="dias"><input type="checkbox" name="Martes" value="2">Martes</label>
+                <label for="dias"><input type="checkbox" name="Miercoles" value="3">Miercoles</label>
+                <label for="dias"><input type="checkbox" name="Jueves" value="4">Jueves</label>
+                <label for="dias"><input type="checkbox" name="Viernes" value="5">Viernes</label>
+                <label for="dias"><input type="checkbox" name="Sabado" value="6">Sabado</label>
+                <label for="dias"><input type="checkbox" name="Domingo" value="0">Domingo</label>
             </div>
             <div class="text-center mb-3">
                 <label for="horario"><b>Horario de Atencion</b></label>
@@ -101,11 +89,6 @@
                     <option value="24" type="number">24</option>
                 </select><span class="m-1"><b>Hs</b></span>
             </div>
-            {{!-- <div class="text-center">
-                <span><b>Imagen de la Cancha</b></span>
-                <input class="btn" type="file" name="imagen" id="imagen">
-            </div> --}}
-
             <div class="col-5 mx-auto">
                 <button type="submit" class="btn btn-success btn-block">
                     Cargar

@@ -1,0 +1,29 @@
+<script>
+function myFunction() {
+  document.getElementById("texto").innerHTML = `<div class="col-sm-3 mb-3 bg-info"><input type="checkbox" name="turno" id="" value="{{numero}}"> Turno {{numero}}</div>`
+}
+</script>
+
+<div class="col-4 mx-auto bg-secondary py-5">
+
+    <div class="text-white">
+        <h3>Elige Canchas</h3>
+        <form action="/paginas/reservaDeporte2/" method="GET">
+            <label for="fecha">Elija un dia</label>
+            <input type="date" name="fecha" value="" required>
+            {{#each canchas}}
+            <div class="col-md-6 bg-info mb-3">
+                nombre de La cancha {{nombreEstablecimiento}} <br>
+                numero de la cancha {{numeroCancha}}
+                <input type="radio" name="cancha" value="{{id}}">
+            </div>
+            {{/each}}
+
+            <button type="submit">Aceptar</button>
+        </form>
+       <p id="texto"></p>
+        <p id="demo">Click the button to change the text in this paragraph.</p>
+        <button onclick="myFunction()">Try it</button>
+    </div>
+    
+</div>

@@ -205,7 +205,8 @@ ruta.get('/reservaDeporte2/', async(req, res)=>{
     //  console.info(dia);
      console.info(dia);
      const turnos= await db.query('select * from  horarios where idCancha =?', [cancha]);
-    res.render('reserva/reservaDeporte2', {turnos})
+     const turno= turnos[0]
+    res.render('reserva/reservaDeporte2', {turno})
 });
 
 module.exports = ruta

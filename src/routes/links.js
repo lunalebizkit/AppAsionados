@@ -150,7 +150,7 @@ ruta.get('/reserva', estaLogueado, async (req, res) => {
 });
 //agregue pantalla jugadores 
 ruta.get('/jugadores/:jugador', estaLogueado, async(req, res)=>{
-    const jugadores= await db.query('Select usuarios.nombreUsuario, usuarios.nombre, usuarios.apellido, usuarios.email from usuarios Group by usuarios.nombreUsuario');
+    const jugadores= await db.query('Select usuarios.idUsuarios, usuarios.nombreUsuario, usuarios.nombre, usuarios.apellido, usuarios.email from usuarios Group by usuarios.nombreUsuario');
     res.render('paginas/jugadores', {jugadores});
 });
 ruta.get('/prueba', estaLogueado, async (req, res) => {

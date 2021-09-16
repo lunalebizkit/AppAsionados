@@ -155,8 +155,7 @@ h6, h5{
 #scrollDuenio {
   overflow-y: scroll;
   width: 970px;
-  height: 379px;
-  display: block
+  height: 379px
 }
 #formularioF{
   background-image: url(../img/app/verde1.jpg);
@@ -167,7 +166,6 @@ h6, h5{
   width: 100%;
   height: 535px;
 }
-
 #formularioB{
   background-image: url(../img/app/basq.jpg);
   background-position: center;
@@ -177,7 +175,6 @@ h6, h5{
   width: 100%;
   height: 535px;
 }
-
 #formularioP{
   background-image: url(../img/app/padd.jfif);
   background-position: center;
@@ -187,11 +184,9 @@ h6, h5{
   width: 100%;
   height: 535px;
 }
-
 #semiTransparente{
   background: rgba(41, 41, 41, 0.575);
 }
-
 #titDuenio{
   color: blanchedalmond;
 }
@@ -200,7 +195,6 @@ h6, h5{
   bottom: 0;
   margin-bottom: 4px
 }
-
 .tooltip.right .tiptext{
   top: -5px;
   left: 110%;
@@ -218,7 +212,7 @@ h6, h5{
   width: 100%;
 }
 #tablaEquipoScroll {
-  height: 350px;
+  /* height: 350px; */
   overflow-y: auto
 }
 #scroll {

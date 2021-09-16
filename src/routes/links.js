@@ -38,12 +38,9 @@ ruta.get('/deporte', estaLogueado, async (req, res) => {
 //pantalla crear cancha
 ruta.get('/cancha/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
     const {idEstablecimiento}=req.params;
-    const establecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [idEstablecimiento]);
-    const numeroC= await db.query('select numeroCancha from cancha where idEstablecimiento =? group by numeroCancha', [idEstablecimiento]);
-    const {numeroCancha}=numeroC[0];
-    const numero= numeroCancha + 1;
+    const establecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [idEstablecimiento]);  
     const datosEstablecimiento= establecimiento[0];
-    res.render('paginas/cancha', {datosEstablecimiento, idEstablecimiento, numero});
+    res.render('paginas/cancha', {datosEstablecimiento, idEstablecimiento});
 });
 ruta.post('/cancha/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
     const {idEstablecimiento}= req.params;
@@ -55,7 +52,10 @@ ruta.post('/cancha/:idEstablecimiento', estaLogueado, duenio, async (req, res) =
         await db.query('Insert into dia set?', [newDias]);
         const newHorario= {idCancha, horaInicio, horaFin};
         await db.query('Insert into horarios set?', [newHorario]);
+        req.flash('mensajeOk', "Cancha Registrada Correctamente");
+        res.redirect('/paginas/duenio');
     }
+    req.flash('mensajeMal', "Algo salio Mal");
     res.redirect('/paginas/duenio');
 });
 ruta.get('/vistaAdmin', estaLogueado, admin, async (req, res) => {
@@ -200,7 +200,7 @@ ruta.get('/reservaDeporte1/', async(req, res)=>{
 });
 ruta.get('/reservaDeporte2/', async(req, res)=>{
     const {fecha, cancha}= req.query;
-    const dia= new Date(fecha).getDay();
+    const dia= new Date(fecha).getDay() + 1;
     console.info(fecha);
     //  console.info(dia);
      console.info(dia);

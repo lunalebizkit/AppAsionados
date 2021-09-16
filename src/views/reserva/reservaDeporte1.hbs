@@ -1,25 +1,19 @@
-
-
-<div class="col-4 mx-auto bg-secondary py-5">
-
-    <div class="text-white">
-        <h3>Elige Canchas</h3>
+<div class="col-4 m-0 bg-white py-5">
+    <div class="text-center">
+        <h3>Establecimientos</h3>
         <form action="/paginas/reservaDeporte2/" method="GET">
-            <label for="fecha">Elija un dia</label>
+            <label class="mt-3" for="fecha"><b>Elija un dia</b></label>
             <input type="date" name="fecha" value="" required>
             {{#each canchas}}
             <div class="col-md-6 bg-info mb-3">
-                nombre de La cancha {{nombreEstablecimiento}} <br>
+                <b> {{nombreEstablecimiento}} <br>
                 numero de la cancha {{numeroCancha}}
                 <input type="radio" name="cancha" value="{{id}}">
             </div>
             {{/each}}
 
-            <button type="submit">Aceptar</button>
-        </form>
-       <p id="texto"></p>
-        <p id="demo">Click the button to change the text in this paragraph.</p>
-        <button onclick="myFunction()">Try it</button>
+            <button class="btn btn-success" type="submit">Aceptar</button>
+        </form>    
     </div>
     
 </div>

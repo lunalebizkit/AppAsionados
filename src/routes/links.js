@@ -63,6 +63,11 @@ ruta.post('/cancha/:idEstablecimiento', estaLogueado, duenio, async (req, res) =
      req.flash('mensajeOk', "Cancha Registrada Correctamente");
     res.redirect('/paginas/duenio');
 });
+ruta.get('/misCanchas/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
+    const {idEstablecimiento}=req.params;
+    const establecimiento= await db.query('Select * from cancha where idEstablecimiento =?', [idEstablecimiento]);
+    res.render('paginas/misCanchas', {establecimiento});
+});
 ruta.get('/vistaAdmin', estaLogueado, admin, async (req, res) => {
     const usuarios= await db.query('select * from usuarios');
     const equipos= await db.query('select * from equipos');
@@ -179,7 +184,6 @@ ruta.post('/miPerfil/:id', estaLogueado, foto, async (req, res) => {
         res.redirect('/paginas/deporte');
     }   
 });
-
 //agregue pantalla carga
 ruta.get('/carga', estaLogueado, async (req, res) => {
     res.render('paginas/carga');
@@ -190,13 +194,14 @@ ruta.get('/reservaDeporte', estaLogueado, async(req, res)=>{
     res.render('reserva/reservaDeporte', {deporte})
 });
 ruta.get('/reservaDeporte1/', estaLogueado, async(req, res)=>{
+    var fechaActual= new Date().toLocaleDateString();
     const {deporte} =req.query;
     const canchas= await db.query('select establecimiento.nombreEstablecimiento, cancha.numeroCancha, cancha.id from establecimiento join cancha where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes =?', [deporte]);
     if((canchas.length)===0) {
         req.flash('mensajeMal', "No hay Establecimientos"),
         res.redirect('/paginas/reservaDeporte');
     }
-    res.render('reserva/reservaDeporte1', {canchas, deporte})
+    res.render('reserva/reservaDeporte1', {canchas, deporte, fechaActual})
 });
 ruta.post('/reservaDeporte1/:deporte', async(req, res)=>{
     const{fecha, idCancha}=req.body;

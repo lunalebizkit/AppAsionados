@@ -1,9 +1,13 @@
+<script>
+    var fechaActual= new Date().toLocaleDateString();
+    document.getElementById('fecha').setAttribute("min", fechaActual);
+</script>
 <div class="col-4 m-0 bg-white py-5">
     <div class="text-center">
         <h3>Establecimientos</h3>
         <form action="/paginas/reservaDeporte1/{{deporte}}" method="POST">
             <label class="mt-3" for="fecha"><b>Elija un dia</b></label>
-            <input type="date" name="fecha" value="" required>
+            <input id="fecha" type="date" value="09/16/2021" name="fecha" required>
             {{#each canchas}}
             <div class="col-md-6 bg-info mb-3">
                 <b> {{nombreEstablecimiento}} <br>

@@ -154,10 +154,8 @@ ruta.get('/reserva', estaLogueado, async (req, res) => {
 });
 //agregue pantalla jugadores 
 ruta.get('/jugadores/:jugador', estaLogueado, async(req, res)=>{
-    const misEquipos= await db.query('select equipos.nombreEquipo from equipos  ');
-    const jugadores= await db.query('Select usuarios.nombreUsuario, usuarios.nombre, usuarios.apellido, jugador.posicion from usuarios join jugador where usuarios.idUsuarios = jugador.idUsuarios Group by usuarios.nombreUsuario');
-    
-    res.render('paginas/jugadores', {misEquipos, jugadores});
+    const jugadores= await db.query('Select usuarios.idUsuarios, usuarios.nombreUsuario, usuarios.nombre, usuarios.apellido, usuarios.email from usuarios Group by usuarios.nombreUsuario');
+    res.render('paginas/jugadores', {jugadores});
 });
 ruta.get('/prueba', estaLogueado, async (req, res) => {
     res.render('paginas/prueba');

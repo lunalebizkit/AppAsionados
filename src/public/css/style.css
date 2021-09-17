@@ -269,6 +269,11 @@ h6, h5{
   transform: scale(1.2); 
 }
 
-#guionPerfil{
-  border-top: solid 1px;
+.zoom1{
+  transition: 0.6s;
+}
+
+.zoom1:hover {
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg) scale(1.2);
 }

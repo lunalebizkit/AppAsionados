@@ -161,8 +161,10 @@ ruta.get('/jugadores/:jugador', estaLogueado, async(req, res)=>{
     const jugadores= await db.query('Select usuarios.idUsuarios, usuarios.nombreUsuario, usuarios.nombre, usuarios.apellido, usuarios.email from usuarios Group by usuarios.nombreUsuario');
     res.render('paginas/jugadores', {jugadores});
 });
-ruta.get('/prueba', estaLogueado, async (req, res) => {
-    res.render('paginas/prueba');
+ruta.get('/reservaUsuario/:idUsuario', estaLogueado, async (req, res) => {
+    const {idUsuario}= req.params;
+    const reservas= await db.query('Select idReserva, fecha, hora from reserva where idUsuario =?', [idUsuario]);
+    res.render('paginas/reservaUsuario', {reservas});
 });
 // ruta.post('/prueba/:id', estaLogueado, async (req, res) => {
    

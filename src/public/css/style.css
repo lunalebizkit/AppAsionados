@@ -176,12 +176,6 @@ h6, h5{
 #semiTransparente{
   background: rgba(41, 41, 41, 0.575);
 }
-<<<<<<< HEAD
-#titDuenio{
-  color: blanchedalmond;
-}
-=======
->>>>>>> e85bba0c13984ce1f7ae2546e08a3156143c9c31
 
 #volver {
   bottom: 0;
@@ -238,15 +232,17 @@ h6, h5{
 }
 
 #mensaje{
-  position: absolute;
+  position: absolute !important;
   top: 80px;
   left: 135px;
   animation: aparecer 2s
   
 }
 @keyframes aparecer {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
+  0% {opacity: 0;
+  position:absolute;}
+  100% {opacity: 1;
+  position: absolute !important;}
 }
 .navbar {
  padding-bottom: 0px;

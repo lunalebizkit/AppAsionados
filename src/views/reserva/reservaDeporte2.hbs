@@ -1,6 +1,7 @@
 <div class="col-4 mx-0 bg-white py-5">
     <div class="text-center">
         <h3>Elige Turno</h3>
+        <a id="botonTurnos" href="#" onclick="return misTurnos({{turno.horaInicio}}, {{turno.horaFin}})">Ver Turnos</a>
         <form action="/paginas/reservaDeporte2/{{idCancha}}&{{fecha}}" method="POST">
             <div class="container">
                 <div class="row row-cols-2">
@@ -9,13 +10,13 @@
             </div>
             <button type="submit" class="btn btn-success text-dark">Reservar</button>
         </form>
-        <button id="botonTurnos" class="btn btn-warning text-dark" onclick="misTurnos({{turno.horaInicio}}, {{turno.horaFin}})">Ver Turnos</button>
+        
     </div>
 </div>
 <script type="text/javascript">
     function misTurnos(a, b) {
         for (var i = a; i <= b; i++) {
-            document.getElementById("texto").innerHTML += `<div class="col mb-3 bg-primary"><input type="checkbox" name="turno" id="" value="${i}"> Turno ${i} Hora</div>`;
+            document.getElementById("texto").innerHTML += `<div class="col mb-3 bg-primary"><input type="radio" name="turno" id="" value="${i}"> Turno ${i} Hora</div>`;
         }
     }
     var btnTurnos = document.getElementById("botonTurnos");

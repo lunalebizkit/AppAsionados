@@ -176,12 +176,6 @@ h6, h5{
 #semiTransparente{
   background: rgba(41, 41, 41, 0.575);
 }
-<<<<<<< HEAD
-#titDuenio{
-  color: blanchedalmond;
-}
-=======
->>>>>>> e85bba0c13984ce1f7ae2546e08a3156143c9c31
 
 #volver {
   bottom: 0;
@@ -234,7 +228,7 @@ h6, h5{
   background-repeat: no-repeat;
   background-position: 95%;
   font: message-box;
-  color: rgb(43, 42, 42);
+  font-style: oblique;
 }
 
 #mensaje{

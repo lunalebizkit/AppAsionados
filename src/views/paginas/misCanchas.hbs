@@ -1,20 +1,24 @@
-<div class="row justify-content-around">
-    {{#each establecimiento}}
-    <div class="col-md-4 mb-3">
-        <div class="card bg-info">
-            <div class="card-header">
-                <b><u>Numero de Cancha</u> {{numeroCancha}} <u>Deporte</u> {{deporte}}</b>
+<div id="cancha">
+    <div class="container">
+        <h2 class="mb-3 text-white text-center">MIS CANCHAS</h2>
+        <div class="row justify-content-around">
+            {{#each establecimiento}}
+            <div class="col-md-4 mb-3 m-2 pb-5">
+                <div class="card bg-info">
+                    <div class="card-header">
+                        <b><u>Numero de Cancha</u> {{numeroCancha}} <u>Deporte</u> {{deporte}}</b>
+                    </div>
+                    <div class="card-body">
+                        <img src="/img/descarga/{{img}}" alt="" width="150" height="150">
+                    </div>
+                    <div class="card-footer">
+                        <b>Horarios </b>
+                        <b>Desde</b> {{horaInicio}} <b>Hs</b>
+                        <b>Hasta</b> {{horaFin}} <b>Hs</b>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <img src="/img/descarga/{{img}}" alt="" width="150" height="150">
-            </div>
-            <div class="card-footer">
-                <b>Horarios </b>
-                <b>Desde</b> {{horaInicio}} <b>Hs</b>
-                <b>Hasta</b> {{horaFin}} <b>Hs</b>
-            </div>
+            {{/each}}
         </div>
     </div>
-
-    {{/each}}
 </div>

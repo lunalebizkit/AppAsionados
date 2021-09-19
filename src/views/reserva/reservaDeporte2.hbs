@@ -1,25 +1,34 @@
 <div class="col-4 mx-0 bg-white py-5">
     <div class="text-center">
         <h3>Elige Turno</h3>
-        <button class="btn btn-warning mb-3" id="botonTurnos" onclick="return misTurnos({{turno.horaInicio}}, {{turno.horaFin}})">Ver Turnos</button>
+        <button class="btn btn-warning mb-3" id="botonTurnos"
+            onclick="return misTurnos({{turno.horaInicio}}, {{turno.horaFin}})">Ver Turnos</button>
         <form action="/paginas/reservaDeporte2/{{idCancha}}&{{fecha}}" method="POST">
             <div class="container">
-                <div  id="texto" class="row justify-content-around">
-                
+                <div id="texto" class="row justify-content-around">
+
                 </div>
             </div>
             <button type="submit" class="btn btn-success text-dark">Reservar</button>
         </form>
-        
     </div>
+</div>
+<div style="float: left" class="col-2  p-4">
+    <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
 </div>
 <script type="text/javascript">
     function misTurnos(a, b) {
         for (var i = a; i <= b; i++) {
-            document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-primary"><input type="radio" name="turno" id="" value="${i}" required> ${i} Hs</div>`;
+            { {#each reservas } }
+            if (i == {{ hora }
+        }) { document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-danger"><input type="radio" name="turno" id="" value="${i}" disabled> ${i} Hs</div>`; }
+        {
+            {
+                /each}}
+                document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-primary"><input type="radio" name="turno" id="" value="${i}" required> ${i} Hs</div>`;
+            }
         }
-    }
-    var btnTurnos = document.getElementById("botonTurnos");
-    var disableButton = function () { this.disabled = true; };
-    btnTurnos.addEventListener('click', disableButton, false);
+        var btnTurnos = document.getElementById("botonTurnos");
+        var disableButton = function () { this.disabled = true; };
+        btnTurnos.addEventListener('click', disableButton, false);
 </script>

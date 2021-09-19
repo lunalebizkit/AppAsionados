@@ -42,12 +42,15 @@ ruta.get('/cancha/:idEstablecimiento', estaLogueado, duenio, async (req, res) =>
     const datosEstablecimiento= establecimiento[0];
     res.render('paginas/cancha', {datosEstablecimiento, idEstablecimiento});
 });
-ruta.post('/cancha/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
+ruta.post('/cancha/:idEstablecimiento', estaLogueado, duenio, foto, async (req, res) => {
     const {idEstablecimiento}= req.params;
+    const {filename}= req.file;
     const{numeroCancha, horaInicio, horaFin, idDeportes, dia} = req.body;
     const newCancha={idEstablecimiento, numeroCancha, idDeportes};
-    cancha= await db.query('Insert into cancha set?', [newCancha]);
+    const cancha= await db.query('Insert into cancha set?', [newCancha]);
     const idCancha= cancha.insertId;
+    const newImagen={idCancha, img: filename};
+    const cargaImagen= await db.query('insert into imagenCancha set?', [newImagen]);
     async function ingresar() {
         for (let i=0; i< dia.length; i++) {
             try {
@@ -163,12 +166,10 @@ ruta.get('/jugadores/:jugador', estaLogueado, async(req, res)=>{
 });
 ruta.get('/reservaUsuario/:idUsuario', estaLogueado, async (req, res) => {
     const {idUsuario}= req.params;
-    const reservas= await db.query('Select idReserva, fecha, hora from reserva where idUsuario =?', [idUsuario]);
+    const reservas= await db.query('Select deporte.deporte, reserva.fecha, reserva.hora, cancha.numeroCancha, establecimiento.nombreEstablecimiento from reserva join establecimiento join cancha join deporte where deporte.idDeportes = cancha.idDeportes and cancha.id = reserva.idCancha and establecimiento.idEstablecimiento = cancha.idEstablecimiento and idUsuario =?', [idUsuario]);
     res.render('paginas/reservaUsuario', {reservas});
 });
-// ruta.post('/prueba/:id', estaLogueado, async (req, res) => {
-   
-// });
+
 ruta.get('/miPerfil/:id', estaLogueado, async (req, res) => {
     const {id}= req.params;
     const consulta= await db.query('select * from usuarios where idUsuarios =?', [id]);
@@ -220,8 +221,9 @@ ruta.post('/reservaDeporte1/:deporte', async(req, res)=>{
 ruta.get('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
     const { idCancha, fecha}= req.params;
      const turnos= await db.query('select * from  horarios where idCancha =?', [idCancha]);
+     const reservas= await db.query('select hora from  reserva where fecha =?', [fecha]);
      const turno= turnos[0]
-    res.render('reserva/reservaDeporte2', {turno, idCancha, fecha})
+    res.render('reserva/reservaDeporte2', {turno, idCancha, fecha, reservas})
 });
 ruta.post('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
     const {idCancha, idUsuarios, fecha}= req.session.newReserva;

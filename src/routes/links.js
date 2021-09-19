@@ -221,7 +221,7 @@ ruta.post('/reservaDeporte1/:deporte', async(req, res)=>{
 ruta.get('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
     const { idCancha, fecha}= req.params;
      const turnos= await db.query('select * from  horarios where idCancha =?', [idCancha]);
-     const reservas= await db.query('select hora from  reserva where fecha =?', [fecha]);
+     const reservas= await db.query('select hora from reserva where fecha =? and estado = "reservado"', [fecha]);
      const turno= turnos[0]
     res.render('reserva/reservaDeporte2', {turno, idCancha, fecha, reservas})
 });

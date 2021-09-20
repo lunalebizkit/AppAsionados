@@ -26,11 +26,18 @@
             </div>
         </div>
      
-        <div id="linkCentro" class="col-sm-2 mx-auto">
+        <div id="linkCentro" class="col-sm-2 mx-auto" style="display: none;">
             <b>Ingresar como... <a href="/paginas/vistaAdmin" type="link"
                     class="link link-primary link-lg">Administrador</a></b>
             <h6>© 2021 APPasionados</h6>
-        </div>  
-           
+        </div>           
     </div>
 </div>
+<script> 
+    var estado 
+    if ({{user.idRol}} === 1) {
+     estado= "block"
+     }else{
+     estado= "none"}
+document.getElementById('linkCentro').style.display= estado
+</script>

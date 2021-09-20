@@ -2,8 +2,9 @@
     var fechaActual = new Date().toLocaleDateString();
     document.getElementById('fecha').setAttribute("min", fechaActual);
 </script>
-<div class="container">
-    <div class="row row-cols-2 mt-5">
+<div id="ticket" style="height: 50vw; width: 100vw">
+<div class="container p-5">
+    <div class="row row-cols-2">
         <div class="col-sm-4 bg-white py-5">
             <div class="text-center">
                 <h3>Establecimientos</h3>
@@ -25,14 +26,18 @@
         </div>
         <div class="col">
             <div class="row justify-content-around">
-            {{#each canchas}}
-            <div class="col m-3 bg-info">
-            <img src="/img/descarga/{{img}}" alt="" width="150" height="150">       
-             <b> {{nombreEstablecimiento}} 
-             numero de la cancha {{numeroCancha}}           
-            </div>
-            {{/each}}
+                {{#each canchas}}
+                <div class="col m-3 bg-info">
+                    <img src="/img/descarga/{{img}}" alt="" width="150" height="150">
+                    <b> {{nombreEstablecimiento}}
+                        numero de la cancha {{numeroCancha}}
+                </div>
+                {{/each}}
             </div>
         </div>
     </div>
+</div>
+<div style="float: left" class="col-2  p-4">
+    <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
+</div>
 </div>

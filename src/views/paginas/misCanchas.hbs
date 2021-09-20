@@ -1,20 +1,30 @@
-<div class="row justify-content-around">
-    {{#each establecimiento}}
-    <div class="col-md-4 mb-3">
-        <div class="card bg-info">
-            <div class="card-header">
-                <b><u>Numero de Cancha</u> {{numeroCancha}} <u>Deporte</u> {{deporte}}</b>
-            </div>
-            <div class="card-body">
-                <img src="/img/descarga/{{img}}" alt="" width="150" height="150">
-            </div>
-            <div class="card-footer">
-                <b>Horarios </b>
-                <b>Desde</b> {{horaInicio}} <b>Hs</b>
-                <b>Hasta</b> {{horaFin}} <b>Hs</b>
-            </div>
+<div id="cancha">
+    <div class="container-fluid">
+        <div class="card text-center mb-4 p-1">
+            <h2 class="mb-3 mx-auto py-2">MIS CANCHAS</h2>
         </div>
+        <div class="row">
+            {{#each establecimiento}}
+            <div class="col-4">
+                <div class="card bg-info">
+                    <div class="card-header">
+                        <b>Cancha Nº {{numeroCancha}} - {{deporte}}</b>
+                    </div>
+                    <div class="card-body">
+                        <img src="/img/descarga/{{img}}" alt="" width="150" height="150">
+                    </div>
+                    <div class="card-footer">
+                        <b>Horario -</b>
+                        <b>De {{horaInicio}}hs</b>
+                        <b>a {{horaFin}}hs</b>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <div class="col-2  p-4">
+            <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
+        </div>
+        
     </div>
-
-    {{/each}}
 </div>

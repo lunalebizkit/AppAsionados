@@ -71,7 +71,7 @@ ruta.post('/cancha/:idEstablecimiento', estaLogueado, duenio, foto, async (req, 
 });
 ruta.get('/misCanchas/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
     const {idEstablecimiento}=req.params;
-    const establecimiento= await db.query('Select * from cancha join deporte inner join imagenCancha join horarios where  horarios.idCancha= cancha.id and cancha.idDeportes = deporte.idDeportes and cancha.idEstablecimiento =?', [idEstablecimiento]);
+    const establecimiento= await db.query('Select * from cancha join deporte join imagenCancha join horarios where  horarios.idCancha= cancha.id and imagenCancha.idCancha = cancha.id and cancha.idDeportes = deporte.idDeportes and cancha.idEstablecimiento =?', [idEstablecimiento]);
     res.render('paginas/misCanchas', {establecimiento});
 });
 ruta.get('/vistaAdmin', estaLogueado, admin, async (req, res) => {

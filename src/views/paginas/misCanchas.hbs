@@ -1,0 +1,27 @@
+<div id="cancha" style="height: 40vw; width: 100vw">
+    <div class="container">
+        <h2 class="mb-3 text-white text-center">MIS CANCHAS</h2>
+        <div class="row justify-content-around">
+            {{#each establecimiento}}
+            <div class="col-md-4 mb-3 m-2 pb-5">
+                <div class="card bg-secondary">
+                    <div class="card-header">
+                        <b><u>Numero de Cancha</u> {{numeroCancha}} <u>Deporte</u> {{deporte}}</b>
+                    </div>
+                    <div class="card-body">
+                        <img src="/img/descarga/{{img}}" alt="" width="250" height="200">
+                    </div>
+                    <div class="card-footer">
+                        <b>Horarios </b>
+                        <b>Desde</b> {{horaInicio}} <b>Hs</b>
+                        <b>Hasta</b> {{horaFin}} <b>Hs</b>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <div style="float: left" class="col-2  p-4">
+            <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
+        </div>
+    </div>
+</div>

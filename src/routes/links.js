@@ -25,11 +25,14 @@ ruta.get('/futbol', estaLogueado, async (req, res) => {
 });
 //agregue pantalla basquet
 ruta.get('/basquet', estaLogueado, async (req, res) => {
-    res.render('paginas/basquet');
+    const canchas = await db.query('select distinct establecimiento.idEstablecimiento, establecimiento.direccion, establecimiento.nombreEstablecimiento from establecimiento join cancha where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = 4');
+    res.render('paginas/basquet', {canchas});
 });
 //agregue pantalla padel
 ruta.get('/padel', estaLogueado, async (req, res) => {
-    res.render('paginas/padel');
+    const equipos = await db.query('select * from equipos join deporte join usuarios where equipos.idDeportes = deporte.idDeportes and usuarios.idUsuarios = equipos.idUsuarios and equipos.idDeportes = 5');
+    const canchas = await db.query('select distinct establecimiento.direccion, establecimiento.nombreEstablecimiento from establecimiento join cancha where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = 5');
+    res.render('paginas/padel', {canchas, equipos});
 });
 //agregue pantalla deporte
 ruta.get('/deporte', estaLogueado, async (req, res) => {
@@ -38,19 +41,38 @@ ruta.get('/deporte', estaLogueado, async (req, res) => {
 //pantalla crear cancha
 ruta.get('/cancha/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
     const {idEstablecimiento}=req.params;
-    const establecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [idEstablecimiento]);
-    const datosEstablecimiento= establecimiento[0]
+    const establecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [idEstablecimiento]);  
+    const datosEstablecimiento= establecimiento[0];
     res.render('paginas/cancha', {datosEstablecimiento, idEstablecimiento});
 });
 ruta.post('/cancha/:idEstablecimiento', estaLogueado, duenio, foto, async (req, res) => {
     const {idEstablecimiento}= req.params;
-    // const {filename}= req.file;
-    const{numeroCancha, idDeportes, dias} = req.body;
-    const newCancha={idEstablecimiento, numeroCancha, idDeportes}
-    const newImagenCancha={idEstablecimiento, numeroCancha}
-     const newDias= {dias: dias}
-    console.info(newCancha);
-    res.send('Cargo la pagina');
+    const {filename}= req.file;
+    const{numeroCancha, horaInicio, horaFin, idDeportes, dia} = req.body;
+    const newCancha={idEstablecimiento, numeroCancha, idDeportes};
+    const cancha= await db.query('Insert into cancha set?', [newCancha]);
+    const idCancha= cancha.insertId;
+    const newImagen={idCancha, img: filename};
+    const cargaImagen= await db.query('insert into imagenCancha set?', [newImagen]);
+    async function ingresar() {
+        for (let i=0; i< dia.length; i++) {
+            try {
+                let newDia= {idCancha, dia:dia[i]};
+                let insertarDia= await db.query('Insert into dia set?', [newDia]);
+        }catch(error){
+            console.log(error);
+        }} 
+    }
+    ingresar();
+    const newHorario= {idCancha, horaInicio, horaFin};
+     await db.query('Insert into horarios set?', [newHorario]);
+     req.flash('mensajeOk', "Cancha Registrada Correctamente");
+    res.redirect('/paginas/duenio');
+});
+ruta.get('/misCanchas/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
+    const {idEstablecimiento}=req.params;
+    const establecimiento= await db.query('Select * from cancha join deporte join imagenCancha join horarios where  horarios.idCancha= cancha.id and imagenCancha.idCancha = cancha.id and cancha.idDeportes = deporte.idDeportes and cancha.idEstablecimiento =?', [idEstablecimiento]);
+    res.render('paginas/misCanchas', {establecimiento});
 });
 ruta.get('/vistaAdmin', estaLogueado, admin, async (req, res) => {
     const usuarios= await db.query('select * from usuarios');
@@ -125,41 +147,63 @@ ruta.get('/duenio', estaLogueado, duenio, async (req, res) => {
     const canchas= await db.query('Select * from establecimiento where idUsuarios =?', [idUsuarios]);
     res.render('paginas/duenio', {canchas});
 });
-
 //agregue pantalla crear equipo Basquet TEMPORALMENTE
 ruta.get('/crearEquipoBasquet/:id', estaLogueado, async (req, res) => {
     res.render('paginas/crearEquipoBasquet');
 });
-
 //agregue pantalla crear equipo Padel TEMPORALMENTE
-ruta.get('/crearEquipoPadel/:id', estaLogueado, async (req, res) => {
+ruta.get('/crearEquipoPadel/:id', estaLogueado, async(req, res)=>{
     res.render('paginas/crearEquipoPadel');
+});
+ruta.post('/crearEquipoPadel/:id', estaLogueado, async (req, res) => {
+    const { id } = req.params;
+    const idUsuarios = id
+    const { nombreEquipo, posicion, idDeportes } = req.body;
+    let newEquipo = {
+        nombreEquipo,
+        idDeportes,
+        idUsuarios
+    };
+    const consulta = await db.query('Select * from equipos Where nombreEquipo =?', [nombreEquipo]);
+    if ((consulta.length) > 0) {
+        req.flash('mensajeMal', "Equipo Existente");
+        res.redirect('/paginas/crearEquipoPadel/:id')
+    }
+    else {
+        const crearEquipo = await db.query('Insert into equipos set ?', [newEquipo]);
+        const idEquipo = crearEquipo.insertId;
+        let newJugador = {
+            idUsuarios,
+            posicion,
+            idEquipo
+        };
+        await db.query('Insert into jugador set ?', [newJugador]);
+        req.flash('mensajeOk', "Equipo Creado con Exito!!!");
+        res.redirect('/paginas/padel')
+    };   
 });
 //agregue pantalla establecimiento
 ruta.get('/establecimiento', estaLogueado, duenio, async (req, res) => {
     res.render('paginas/establecimiento');
 });
 //agregue pantalla verCancha
-ruta.get('/verCancha', estaLogueado, async (req, res) => {
-    res.render('paginas/verCancha');
-});
-//agregue pantalla reserva
-ruta.get('/reserva', estaLogueado, async (req, res) => {
-    res.render('paginas/reserva');
+ruta.get('/verCancha/:idEstablecimiento', estaLogueado, async (req, res) => {
+    const{idEstablecimiento}= req.params;
+    const consultaEstablecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [idEstablecimiento]);
+    const establecimiento= consultaEstablecimiento[0];
+    res.render('paginas/verCancha', {establecimiento});
 });
 //agregue pantalla jugadores 
 ruta.get('/jugadores/:jugador', estaLogueado, async(req, res)=>{
-    const misEquipos= await db.query('select equipos.nombreEquipo from equipos  ');
-    const jugadores= await db.query('Select usuarios.nombreUsuario, usuarios.nombre, usuarios.apellido, jugador.posicion from usuarios join jugador where usuarios.idUsuarios = jugador.idUsuarios Group by usuarios.nombreUsuario');
-    
-    res.render('paginas/jugadores', {misEquipos, jugadores});
+    const jugadores= await db.query('Select usuarios.idUsuarios, usuarios.nombreUsuario, usuarios.nombre, usuarios.apellido, usuarios.email from usuarios Group by usuarios.nombreUsuario');
+    res.render('paginas/jugadores', {jugadores});
 });
-ruta.get('/prueba', estaLogueado, async (req, res) => {
-    res.render('paginas/prueba');
+ruta.get('/reservaUsuario/:idUsuario', estaLogueado, async (req, res) => {
+    const {idUsuario}= req.params;
+    const reservas= await db.query('Select deporte.deporte, reserva.fecha, reserva.hora, cancha.numeroCancha, establecimiento.nombreEstablecimiento from reserva join establecimiento join cancha join deporte where deporte.idDeportes = cancha.idDeportes and cancha.id = reserva.idCancha and establecimiento.idEstablecimiento = cancha.idEstablecimiento and idUsuario =?', [idUsuario]);
+    res.render('paginas/reservaUsuario', {reservas});
 });
-// ruta.post('/prueba/:id', estaLogueado, async (req, res) => {
-   
-// });
+
 ruta.get('/miPerfil/:id', estaLogueado, async (req, res) => {
     const {id}= req.params;
     const consulta= await db.query('select * from usuarios where idUsuarios =?', [id]);
@@ -177,21 +221,51 @@ ruta.post('/miPerfil/:id', estaLogueado, foto, async (req, res) => {
         res.redirect('/paginas/deporte');
     }   
 });
-
 //agregue pantalla carga
-ruta.get('/carga', estaLogueado, async (req, res) => {
+ruta.get('/carga', async (req, res) => {
     res.render('paginas/carga');
 });
 //REservas//
-ruta.get('/reservaDeporte', async(req, res)=>{
+ruta.get('/reservaDeporte', estaLogueado, async(req, res)=>{
     const deporte= await db.query('select * from deporte');
     res.render('reserva/reservaDeporte', {deporte})
 });
-ruta.get('/reservaDeporte1/', async(req, res)=>{
+ruta.get('/reservaDeporte1/', estaLogueado, async(req, res)=>{
+    var fechaActual= new Date().toLocaleDateString();
     const {deporte} =req.query;
-    // console.info(req.query);
-    // const canchas= await db.query('select * from canchas where idDeportes =?', [deporte]);
-    res.render('reserva/reservaDeporte1')
+    const canchas= await db.query('select imagenCancha.img, establecimiento.nombreEstablecimiento, cancha.numeroCancha, cancha.id from establecimiento join cancha join imagenCancha where imagenCancha.idCancha = cancha.id and establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes =?', [deporte]);
+    if((canchas.length)===0) {
+        req.flash('mensajeMal', "No hay Establecimientos"),
+        res.redirect('/paginas/reservaDeporte');
+    }
+    res.render('reserva/reservaDeporte1', {canchas, deporte, fechaActual})
+});
+ruta.post('/reservaDeporte1/:deporte', async(req, res)=>{
+    const{fecha, idCancha}=req.body;
+    const {deporte}= req.params;
+    const{idUsuarios}= req.user;
+    req.session.newReserva= {idUsuarios, fecha, idCancha};
+    const dia= new Date(fecha).getDay() + 1;
+    const dias=await db.query('Select * from dia where idCancha =? and dia=?', [idCancha, dia]);
+    if ((dias.length)>0) {
+        res.redirect('/paginas/reservaDeporte2/'+idCancha+'&'+fecha);
+    }else{req.flash('mensajeMal', 'El dia seleccionado No atiende!'),
+    res.redirect('/paginas/reservaDeporte1/'+ '?deporte='+deporte)}  
+});
+ruta.get('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
+    const { idCancha, fecha}= req.params;
+     const turnos= await db.query('select * from  horarios where idCancha =?', [idCancha]);
+     const reservas= await db.query('select hora from reserva where fecha =? and estado = "reservado"', [fecha]);
+     const turno= turnos[0]
+    res.render('reserva/reservaDeporte2', {turno, idCancha, fecha, reservas})
+});
+ruta.post('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
+    const {idCancha, idUsuarios, fecha}= req.session.newReserva;
+    const {turno}= req.body;
+    const newReserva= {idCancha, idUsuario: idUsuarios, estado: "reservado", fecha, hora: turno}
+    await db.query('insert into reserva set?',[newReserva]);
+    req.flash('mensajeOk', 'Reserva Hecha!!!');
+    res.redirect('/paginas/deporte');
 });
 
 module.exports = ruta

@@ -1,15 +1,15 @@
 <div id="cancha" style="width: 100vw; height: 33rem">
-    <div class="container p-5">
-        <div id="semiTransparente" class="col-md-5 m-auto p-5">
-            <div class="col-md-12">
+    <div class="container-fluid p-3">
+        <div class="card bg-primary col-md-5 m-auto p-5">
+            <div class="col-md-15">
                 {{#with establecimiento}}
-                <div class="card-header">
+                <div class="card text-center mb-4">
                     <div class="text-center">
                         
                         <h2>{{nombreEstablecimiento}}</h2>
                     </div>
                 </div>
-                <div class="card-body text-white">
+                <div id="semiTransparente" class="card-body text-white">
 
                     <i type="text">Dirección: <b>{{direccion}}</b></i>
                     <br>
@@ -18,8 +18,8 @@
                  {{/with}}
             </div>
         </div>
-           <div style="float: left" class="col-2  p-4">
-            <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
+           <div class="col-2  p-4">
+            <a  href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
         </div>
     </div>
   

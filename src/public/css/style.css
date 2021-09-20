@@ -6,7 +6,6 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed  
 }
 #nombreEquipo {
   color: rgb(6, 100, 189);
@@ -217,6 +216,17 @@ h6, h5{
   height: 445px;
   display: block
 }
+
+#scrollMisCanchas {
+  overflow-y: scroll;
+  height: 380px
+}
+
+#scrollReservas {
+  overflow-y: scroll;
+  height: 335px
+}
+
 #perfil{
   background-color: rgb(26, 26, 26);
 }
@@ -256,6 +266,7 @@ h6, h5{
   -webkit-transform: rotate(360deg);
   transform: rotate(360deg) scale(1.2);
 }
+/*
 #ticket {
   background-image: url(../img/app/ticket.jpg);
   background-repeat: no-repeat;
@@ -275,3 +286,4 @@ h6, h5{
   width: 100vw;
 	background-color: rgba(0,0,0,0.5);
 }
+*/

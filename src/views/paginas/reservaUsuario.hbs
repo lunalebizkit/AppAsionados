@@ -1,28 +1,32 @@
-<div id="ticket" style="height: 50vw; width: 100vw">
-<div class="container">
-    <table class="table table-success table-striped ">
-        <h3 class="text-white text-center">Mis Reservas</h3>
-        <thead>
-            <th>Establecimiento</th>
-            <th>Cancha</th>
-            <th>Deporte</th>
-            <th>Fecha</th>
-            <th>Hora</th>
-        </thead>
-        <tbody>
-            {{#each reservas}}
-            <tr>
-                <td>{{nombreEstablecimiento}}</td>
-                <td>{{numeroCancha}}</td>
-                <td>{{deporte}}</td>
-                <td>{{fecha}}</td>
-                <td>{{hora}}</td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
-</div>
-<div style="float: left" class="col-2 p-5">
-    <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
-</div>
+<div id="inicio">
+    <div class="container">
+        <div class="card text-center mb-4">
+            <h2 class="mb-3 mx-auto">MIS RESERVAS</h2>
+        </div>
+        <div id="scrollReservas">
+            <table class="table table-success table-striped">
+                <thead>
+                    <th>Establecimiento</th>
+                    <th>Cancha</th>
+                    <th>Deporte</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                </thead>
+                <tbody>
+                    {{#each reservas}}
+                    <tr>
+                        <td>{{nombreEstablecimiento}}</td>
+                        <td>{{numeroCancha}}</td>
+                        <td>{{deporte}}</td>
+                        <td>{{fecha}}</td>
+                        <td>{{hora}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-2 p-5">
+        <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
+    </div>
 </div>

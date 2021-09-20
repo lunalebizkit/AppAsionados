@@ -49,7 +49,6 @@ ruta.post('/cancha/:idEstablecimiento', estaLogueado, duenio, foto, async (req, 
     const newCancha={idEstablecimiento, numeroCancha, idDeportes}
     const newImagenCancha={idEstablecimiento, numeroCancha}
      const newDias= {dias: dias}
-    console.info(newCancha);
     res.send('Cargo la pagina');
 });
 ruta.get('/vistaAdmin', estaLogueado, admin, async (req, res) => {

@@ -14,7 +14,7 @@
                         <form action="/registroDuenio" method="post">                        
                             <div class="input-group mb-3">          
                                 <b><span style="color: red;">*  </span></b>                      
-                                <input type="number" class="form-control" name="cuit" placeholder="Ingrese su Cuit sin guiones" maxlength="11" minlength="9" required>
+                                <input type="text" class="form-control" name="cuit" placeholder="Ingrese su Cuit sin guiones" pattern="[0-9]{9,11}" required>
                             </div>
                              <div class="input-group mb-3">          
                                 <b><span style="color: red;">*  </span></b>                      

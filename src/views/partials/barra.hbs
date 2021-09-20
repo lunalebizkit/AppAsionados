@@ -1,7 +1,4 @@
-
-
 {{#if user}}
-
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/paginas/inicio">
@@ -28,14 +25,6 @@
                 <li class="container-fluid">
                     <a type="link" class="nav-link" href="#" aria-disabled="true" data-bs-toggle="modal"
                 data-bs-target="#nosotros" aria-controls="offcanvasRight">Nosotros</a>
-                </li>
-                  <li class="container-fluid">
-                    <a type="link" id="accesoDuenio" class="nav-link" href="/paginas/duenio" aria-disabled="true"
-                 aria-controls="offcanvasRight">Cancha</a>
-                </li>
-                  <li class="container-fluid">
-                    <a type="link" id="accesoDuenio" class="nav-link" href="/paginas/reservaUsuario/{{user.idUsuarios}}" aria-disabled="true"
-                 aria-controls="offcanvasRight">Mis Reservas</a>
                 </li>
 
                 <li class="container-fluid">
@@ -73,13 +62,13 @@
                     </div>
                     <div class="col-sm-8">
                         <div class="d-flex">
-                            <pre class="ms-2">Nombre: {{user.nombre}}</pre>
+                            <b><pre class="ms-2">Nombre:{{user.nombre}}</pre></b>
                         </div>
                         <div class="d-flex">
-                            <pre class="ms-2">Apellido: {{user.apellido}}</pre>
+                            <b><pre class="ms-2">Apellido:{{user.apellido}}</pre></b>
                         </div>
                         <div class="d-flex">
-                            <pre class="ms-2">Email: {{user.email}}</pre>
+                            <b><pre class="ms-2">Email:{{user.email}}</pre></b>
                         </div>
                     </div>
                 </div>
@@ -128,7 +117,12 @@
                         <div class="d-flex col-sm-10">
                             <i class="fas fa-user-friends"></i>
                             <p> Armá tu equipo invitando a tus amigos.</p></h5>
-                        </div>                  
+                        </div>
+                            
+                            
+                            
+                            
+                            
                     </div>
                 </div>
             </div>
@@ -136,12 +130,3 @@
     </div>
 </div>
 {{/if}}
-<script> 
-    var estado 
-    if ({{user.idRol}} === 2) {
-     estado= "block"
-     }else{
-     estado= "none"}
-
-document.getElementById('accesoDuenio').style.display= estado
-</script>

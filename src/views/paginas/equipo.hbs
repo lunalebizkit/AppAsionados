@@ -24,10 +24,10 @@
     
     {{#unless pertenezco}}
     <div class="container">
-        <div id="semiTransparente" class="col-6 m-auto p-2 text-center">
+        <div id="semiTransparente" class="col-7 m-auto p-1 text-center">
             <h3 style="color: rgb(0, 0, 0);">¿Querés ser parte del Equipo?</h3>
             <form  action="/paginas/ingresarAlEquipo/{{numero}}&{{idDeportes}}" method="get">
-                <div class="col-6 mx-auto py-4">
+                <div class="col-6 mx-auto py-2">
                     <select name="posicion" class="btn btn-ls btn-success" required>
                         <option type="text" value="">Elegir posición</option>
                         <option type="text" value="Arquero">Arquero</option>
@@ -35,8 +35,10 @@
                         <option type="text" value="MedioCampo">Medio campo</option>
                         <option type="text" value="Delantero">Delantero</option>
                     </select>
+                    <span><hr class="dropdown-divider"></span>
+                    <button class="btn btn-primary btn-block">Unirme</button>
                 </div>
-                <button class="btn btn-primary btn-block">Unirme</button>
+                
             </form>
         </div>
     </div>

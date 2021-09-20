@@ -1,43 +1,48 @@
 <div id="cancha">
-    <div class="d-flex justify-content-around">
-        <div class="container-fluid">
-            <div class="row justify-content-between">
-                <div id="tablaEquipo" class="col-md-9 m-auto p-3">
-                    <form class="d-flex">                        
-                        <h2 id="titDuenio" class= "md-3 px-5"><b>ESTABLECIMIENTO</b></h2>                     
-                        <div class="d-flex justify-content-between m-auto ">
-                            <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                <a type="button" class="btn btn-primary" href="establecimiento">Agregar Establecimiento</a>
-                            </div>
-                        </div>
-                        
-                    </form>
-                    <div id="scrollDuenio">
-                        <table id="tablaScroll" class="table table-hover table-info">
-                            <thead>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>Dirección</th>
-                                    <th>Cuit</th>                                   
-                                    <th>Opción</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{#each canchas}}
-                                <tr>
-                                    <td data-bs-toggle="tooltip" data-bs-placement="top" title="{{email}}">{{nombreEstablecimiento}}
-                                    </td>
-                                    <td><a >{{direccion}}</a></td>
-                                    <td><a >{{cuit}}</a></td>
-                                    <td><b><a type="button" class="btn btn-success" href="cancha/{{idEstablecimiento}}">Agregar Cancha</a></b></td>
-                                    
-                                </tr>
-                                {{/each}}
-                            </tbody>
-                        </table>
-                    </div>
+    <div class="container-fluid">
+        <div class="row justify-content-between">
+            <div id="tablaEquipo" class="col-md-9 m-auto p-2">
+                <div class="navbar-brand">
+                    <a class="navbar-brand">
+                        <a class="btn btn-dark btn-lg dropdown-toggle text-white" href="#" id="dropdown04"
+                            data-bs-toggle="dropdown" aria-expanded="false">ESTABLECIMIENTO</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown04">
+                            <li><a class="dropdown-item" href="establecimiento">Agregar Establecimiento</a></li>
+                        </ul>
+                    </a>
+                     <a class="navbar-brand">
+                        <a class="btn btn-dark btn-lg dropdown-toggle text-white" href="#" id="dropdown04"
+                            data-bs-toggle="dropdown" aria-expanded="false">RESERVAS</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown04">
+                            <li><a class="dropdown-item" href="establecimiento">Ver Reservas</a></li>
+                        </ul>
+                    </a>
                 </div>
-               
+                <div id="scroll">
+                    <table class="table table-hover table-info">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Dirección</th>
+                                <th>Cuit</th>                                   
+                                <th>Opción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each canchas}}
+                            <tr>
+                                <td data-bs-toggle="tooltip" data-bs-placement="top" title="{{email}}">{{nombreEstablecimiento}}
+                                </td>
+                                <td><a >{{direccion}}</a></td>
+                                <td><a >{{cuit}}</a></td>
+                                <td><b><a class="link link-success" href="cancha/{{idEstablecimiento}}">Agregar Cancha</a></b>
+                                <br>
+                                <b><a class="link link-primary" href="misCanchas/{{idEstablecimiento}}">Mis Canchas</a></b></td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

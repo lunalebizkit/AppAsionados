@@ -70,7 +70,8 @@ h6, h5{
   background-attachment: fixed    
 }
 #tablaEquipo {
-  background: rgba(0, 0, 0, 0.623)
+  background: rgba(0, 0, 0, 0.623);
+  position: relative;
 }
   /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
@@ -119,7 +120,7 @@ h6, h5{
 }
 #cancha {
   background-image: url(../img/app/duenio.jpg);
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed
@@ -179,7 +180,6 @@ h6, h5{
 
 #volver {
   bottom: 0;
-  margin-bottom: 4px
 }
 .tooltip.right .tiptext{
   top: -5px;
@@ -231,14 +231,11 @@ h6, h5{
   position: absolute !important;
   top: 80px;
   left: 135px;
-  animation: aparecer 2s
-  
+  animation: aparecer 2s 
 }
 @keyframes aparecer {
-  0% {opacity: 0;
-  position:absolute;}
-  100% {opacity: 1;
-  position: absolute !important;}
+  0% {opacity: 0;}
+  100% {opacity: 1;}
 }
 .navbar {
  padding-bottom: 0px;
@@ -252,12 +249,29 @@ h6, h5{
 .zoom:hover {
   transform: scale(1.2); 
 }
-
 .zoom1{
   transition: 0.6s;
 }
-
 .zoom1:hover {
   -webkit-transform: rotate(360deg);
   transform: rotate(360deg) scale(1.2);
+}
+#ticket {
+  background-image: url(../img/app/ticket.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height: 100%;
+  background-attachment: fixed;
+}
+#ticket:before {
+  content:'';
+	position: absolute;
+  top: 5rem;
+	bottom: 0;
+	left: 0;
+	right: 0;
+  height: 50vw;
+  width: 100vw;
+	background-color: rgba(0,0,0,0.5);
 }

@@ -21,9 +21,9 @@
                         </ul>
                     </a>
                     <div class="d-flex justify-content-between m-auto ">
-                        <form class="d-flex" action="">
-                            <input type="text" class="form-control" id= "formulario" placeholder="Buscar" autofocus>
-                            <button class="btn btn-danger" type="reset" id="boton">
+                        <form class="d-flex" method="GET" action="">
+                            <input type="search" class="form-control" id= "formulario" placeholder="Buscar" autofocus>
+                            <button class="btn btn-danger" type="submit" id="boton">
                                 <i class="fas fa-search"></i>
                             </button>
                         </form>
@@ -67,7 +67,7 @@
                     </a>
                     <div class="d-flex justify-content-between m-auto ">
                         <input type="text" class="form-control" name="buscarCancha" placeholder="Buscar" autofocus>
-                        <button class="btn btn-danger" type="reset">
+                        <button id="msj" class="btn btn-danger" type="reset">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
@@ -78,7 +78,6 @@
                             <tr>
                                 <th>Establecimiento</th>
                                 <th>Dirección</th>
-                                <th>Deporte</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -88,7 +87,6 @@
                                     <a href="/paginas/verCancha/{{idEstablecimiento}}">{{nombreEstablecimiento}}</a>
                                 </td>
                                 <td>{{direccion}}</td>
-                                <td>#</td>
                             </tr>
                             {{/each}}
                         </tbody>
@@ -100,8 +98,8 @@
     <div class="col-2  p-4">
         <a id="volver" href="/paginas/deporte" type="button" class="btn btn-danger">Volver</a>
     </div>
-
 </div>
+
 <!-- The Modal -->
 <div class="modal fade" id="misEquipo" tabindex="-1">
     <div class="modal-dialog">

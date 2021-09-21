@@ -1,24 +1,25 @@
-<div id="ticket" style="height: 50vw; width: 100vw">
-<div class="container p-5">
-    <div class="row row-cols-2">
-        <div class="col-4 m-0 bg-white py-5">
-            <div class="text-center" disbled>
-                <h3>Elige un Deporte</h3>
-                <form action="/paginas/reservaDeporte1/" method="GET">
-                    <select name="deporte" id="">
-                        {{#each deporte}}
-                        <option value="{{idDeportes}}">{{deporte}}</option>
-                        {{/each}}
-                    </select>
-                    <button type="submit" class="btn btn-success">Aceptar</button>
-                </form>
+<div id="ticket">
+    <div class="container p-5">
+        <div class="row row-cols-2">
+            <div class="col-6 py-5" style="background-color: rgb(255, 255, 255, 0.4);">
+                <div class="text-center">
+                    <h3>Elige un Deporte</h3>
+                    <form action="/paginas/reservaDeporte1/" method="GET">
+                        <select name="deporte" id="">
+                            <option value="">Deporte</option>
+                            {{#each deporte}}
+                            <option value="{{idDeportes}}">{{deporte}}</option>
+                            {{/each}}
+                        </select>
+                        <button type="submit" class=" m-2 btn btn-success">Aceptar</button>
+                    </form>
+                </div>
             </div>
-        </div>
-       
+        </div>        
     </div>
-   <div style="float: left" class="col-2 p-5">
-    <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
-</div>
-</div>
-
+    <div class="row py-5">
+    <div style="float: left" class="col-2 p-5">
+            <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
+        </div>
+        </div>
 </div>

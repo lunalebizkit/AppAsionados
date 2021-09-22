@@ -94,7 +94,6 @@ ruta.post('/crearEquipoFutbol/:id', estaLogueado, async (req, res) => {
     const { nombreEquipo, posicion, idDeportes } = req.body;
     let newEquipo = {
         nombreEquipo,
-        posicion, 
         idDeportes,
         idUsuarios
     };
@@ -150,6 +149,33 @@ ruta.get('/duenio', estaLogueado, duenio, async (req, res) => {
 //agregue pantalla crear equipo Basquet TEMPORALMENTE
 ruta.get('/crearEquipoBasquet/:id', estaLogueado, async (req, res) => {
     res.render('paginas/crearEquipoBasquet');
+});
+ruta.post('/crearEquipoBasquet/:id', estaLogueado, async (req, res) => {
+    const { id } = req.params;
+    const idUsuarios = id
+    const { nombreEquipo, posicion, idDeportes } = req.body;
+    let newEquipo = {
+        nombreEquipo,
+        idDeportes,
+        idUsuarios
+    };
+    const consulta = await db.query('Select * from equipos Where nombreEquipo =?', [nombreEquipo]);
+    if ((consulta.length) > 0) {
+        req.flash('mensajeMal', "Equipo Existente");
+        res.redirect('/paginas/crearEquipoBasquet/:id')
+    }
+    else {
+        const crearEquipo = await db.query('Insert into equipos set ?', [newEquipo]);
+        const idEquipo = crearEquipo.insertId;
+        let newJugador = {
+            idUsuarios,
+            posicion,
+            idEquipo
+        };
+        await db.query('Insert into jugador set ?', [newJugador]);
+        req.flash('mensajeOk', "Equipo Creado con Exito!!!");
+        res.redirect('/paginas/basquet')
+    };   
 });
 //agregue pantalla crear equipo Padel TEMPORALMENTE
 ruta.get('/crearEquipoPadel/:id', estaLogueado, async(req, res)=>{

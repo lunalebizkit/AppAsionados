@@ -103,14 +103,14 @@ ruta.post('/crearEquipoFutbol/:id', estaLogueado, async (req, res) => {
         res.redirect('/paginas/crearEquipoFutbol/:id')
     }
     else {
-        const crearEquipo = await db.query('Insert into equipos set ?', [newEquipo]);
+        const crearEquipo = await db.query('Insert into equipos set?', [newEquipo]);
         const idEquipo = crearEquipo.insertId;
         let newJugador = {
             idUsuarios,
             posicion,
             idEquipo
         };
-        await db.query('Insert into jugador set ?', [newJugador]);
+        await db.query('Insert into jugador set?', [newJugador]);
         req.flash('mensajeOk', "Equipo Creado con Exito!!!");
         res.redirect('/paginas/futbol')
     };
@@ -259,7 +259,7 @@ ruta.get('/reservaDeporte', estaLogueado, async(req, res)=>{
 ruta.get('/reservaDeporte1/', estaLogueado, async(req, res)=>{
     var fechaActual= new Date().toLocaleDateString();
     const {deporte} =req.query;
-    const canchas= await db.query('select imagenCancha.img, establecimiento.nombreEstablecimiento, cancha.numeroCancha, cancha.id from establecimiento join cancha join imagenCancha where imagenCancha.idCancha = cancha.id and establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes =?', [deporte]);
+    const canchas= await db.query('select imagenCancha.img, establecimiento.nombreEstablecimiento, cancha.numeroCancha, cancha.id, deporte.deporte, horarios.horaInicio, horarios.horaFin from establecimiento join cancha join imagenCancha join deporte join horarios where imagenCancha.idCancha = cancha.id and establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = deporte.idDeportes and cancha.id = horarios.idCancha and cancha.idDeportes =?', [deporte]);
     if((canchas.length)===0) {
         req.flash('mensajeMal', "No hay Establecimientos"),
         res.redirect('/paginas/reservaDeporte');

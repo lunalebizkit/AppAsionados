@@ -2,13 +2,14 @@
     var fechaActual = new Date().toLocaleDateString();
     document.getElementById('fecha').setAttribute("min", fechaActual);
 </script>
-<div id="ticket">
+
+<main id="ticket">
     <div class="progress">
         <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
     </div>
     <div class="container-fluid">
         <div class="row row-cols-2">
-            <div class="col-md-4 m-0 py-4" style="background: rgb(255, 255, 255);">
+            <div class="col-md-4 m-0 bg-white mt-4 py-4">
                 <div class="text-center">
                     <h3>Establecimientos</h3>
                     <form action="/paginas/reservaDeporte1/{{deporte}}" method="POST">
@@ -26,12 +27,12 @@
                             <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-outline-danger">Volver</a>
                         </div>
                         <div class="col-1 py-1">
-                            <a id="volver" href="javascript: history.go(-2)" type="button" class="btn btn-outline-danger">Salir</a>
+                            <a id="volver" href="/paginas/inicio" type="button" class="btn btn-outline-danger">Salir</a>
                         </div>
                     </form>
                 </div>
             </div>
-            <div class="col md-4 m-0 py-4">
+            <div class="col md-4 m-0 mt-2 py-4">
                 <div class="text-center">
                     <div id="scrollJugador">
                         {{#each canchas}}
@@ -47,7 +48,7 @@
                                         <b>Cancha Nº {{numeroCancha}} - {{deporte}}</b>
                                     </div>
                                     <div class="card-body">
-                                        <img src="/img/descarga/{{img}}" alt="" width="400" >
+                                        <img src="/img/descarga/{{img}}" alt="" width="300">
                                     </div>
                                     <div class="card-footer">
                                         <b>Horario -</b>
@@ -63,4 +64,4 @@
             </div>
         </div>
     </div>
-</div>
+</main>

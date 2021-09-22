@@ -3,20 +3,22 @@
     <table class="table table-success table-striped ">
         <h3 class="text-white text-center">Mis Reservas</h3>
         <thead>
+            <th>Fecha</th>
             <th>Establecimiento</th>
             <th>Cancha</th>
             <th>Deporte</th>
-            <th>Fecha</th>
+            <th>Fecha Reservada</th>
             <th>Hora</th>
         </thead>
         <tbody>
             {{#each reservas}}
             <tr>
+                 <td>{{fechas fecha}}</td>
                 <td>{{nombreEstablecimiento}}</td>
                 <td>{{numeroCancha}}</td>
                 <td>{{deporte}}</td>
-                <td>{{fecha}}</td>
-                <td>{{hora}}:00 Hs</td>
+                <td>{{fechaReserva}}</td>
+                <td>{{ hora}}:00 Hs</td>
             </tr>
             {{/each}}
         </tbody>

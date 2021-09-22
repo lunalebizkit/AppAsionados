@@ -72,6 +72,7 @@ ruta.post('/cancha/:idEstablecimiento', estaLogueado, duenio, foto, async (req, 
 ruta.get('/misCanchas/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
     const {idEstablecimiento}=req.params;
     const establecimiento= await db.query('Select * from cancha join deporte join imagenCancha join horarios where  horarios.idCancha= cancha.id and imagenCancha.idCancha = cancha.id and cancha.idDeportes = deporte.idDeportes and cancha.idEstablecimiento =?', [idEstablecimiento]);
+    console.info(establecimiento);
     res.render('paginas/misCanchas', {establecimiento});
 });
 ruta.get('/vistaAdmin', estaLogueado, admin, async (req, res) => {
@@ -199,7 +200,7 @@ ruta.get('/jugadores/:jugador', estaLogueado, async(req, res)=>{
 });
 ruta.get('/reservaUsuario/:idUsuario', estaLogueado, async (req, res) => {
     const {idUsuario}= req.params;
-    const reservas= await db.query('Select deporte.deporte, reserva.fecha, reserva.hora, cancha.numeroCancha, establecimiento.nombreEstablecimiento from reserva join establecimiento join cancha join deporte where deporte.idDeportes = cancha.idDeportes and cancha.id = reserva.idCancha and establecimiento.idEstablecimiento = cancha.idEstablecimiento and idUsuario =?', [idUsuario]);
+    const reservas= await db.query("Select reserva.fechaReserva, deporte.deporte, reserva.fecha, reserva.hora, cancha.numeroCancha, establecimiento.nombreEstablecimiento from reserva join establecimiento join cancha join deporte where deporte.idDeportes = cancha.idDeportes and cancha.id = reserva.idCancha and establecimiento.idEstablecimiento = cancha.idEstablecimiento and idUsuario =?", [idUsuario]);
     res.render('paginas/reservaUsuario', {reservas});
 });
 
@@ -261,7 +262,7 @@ ruta.get('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
 ruta.post('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
     const {idCancha, idUsuarios, fecha}= req.session.newReserva;
     const {turno}= req.body;
-    const newReserva= {idCancha, idUsuario: idUsuarios, estado: "reservado", fecha, hora: turno}
+    const newReserva= {idCancha, idUsuario: idUsuarios, estado: "reservado",fechaReserva: fecha, hora: turno}
     await db.query('insert into reserva set?',[newReserva]);
     req.flash('mensajeOk', 'Reserva Hecha!!!');
     res.redirect('/paginas/deporte');

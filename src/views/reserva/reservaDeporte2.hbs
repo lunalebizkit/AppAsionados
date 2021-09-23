@@ -4,7 +4,7 @@
     </div>
     <div class="container-fluid">
         <div class="row row-cols-2">
-            <div class="col-md-4 m-0 bg-white mt-4 py-4">
+            <div class="col-md-4 m-0 mt-4 py-4" style="background-color: rgb(255,255,255, 0.5);">
                 <div class="text-center" disbled>
                     <h3>Elige Turno</h3>
                     <button class="btn btn-warning mb-3" id="botonTurnos"
@@ -61,7 +61,7 @@
         for (var i = a; i <= b; i++) {
             {{#each reservas }}
             if (i == {{ hora }})
-        { document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-danger"><input type="radio" name="turno" id="" value="${i}" disabled> ${i} Hs</div>`; }
+        { document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-danger"><input type="radio" name="turno" id="" value="${i}" disabled> ${i} Hs</div>`; continue }
             {{/each}}
                 document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-primary"><input type="radio" name="turno" id="" value="${i}" required> ${i} Hs</div>`;
             }

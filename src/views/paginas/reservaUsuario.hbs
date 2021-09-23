@@ -9,6 +9,7 @@
                 <th>Deporte</th>
                 <th>Fecha Reservada</th>
                 <th>Hora</th>
+                <th>Opcion</th>
             </thead>
             <tbody>
                 {{#each reservas}}
@@ -18,7 +19,8 @@
                     <td>{{numeroCancha}}</td>
                     <td>{{deporte}}</td>
                     <td id="{{idReserva}}">{{fechaReserva}}</td>
-                    <td>{{ hora}}:00 Hs</td>
+                    <td><span id="{{id}}">{{ hora}}<span>:00 Hs</span> </td>
+                    <td><button id="boton{{id}}" class="btn btn-warning">Cancelar Reserva</button></td>
                 </tr>
                 {{/each}}
             </tbody>
@@ -32,15 +34,19 @@
  
 </div>
 <script>
+     var tiempoActual= new Date().getHours();
     var dia= new Date().getDay();
-   
-     var fecha= new Date(document.getElementById('9').innerHTML).getUTCDay();
+    var horaReserva= document.getElementById('24').innerText
+    var hora = horaReserva.split(/[/ :]/)[0]-15;
+     var fecha= new Date(document.getElementById('10').innerHTML).getUTCDay();
     console.log(fecha);
     console.log(dia);
-   
-    if(fecha === dia){
-        console.log("si son iguales")
+    console.log(hora);
+    console.log(document.getElementById('24').innerText);
+
+    if ((fecha === dia)&(tiempoActual == hora)) {
+         document.getElementById('boton24').disabled= true 
     }
-    var tiempo= new Date().getHours();
-    console.log(tiempo + 'es la hora')
+
+
 </script>

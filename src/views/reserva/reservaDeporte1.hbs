@@ -2,95 +2,103 @@
     var fechaActual = new Date().toLocaleDateString();
     document.getElementById('fecha').setAttribute("min", fechaActual);
 </script>
-<div id="ticket">
-    <div class="container p-5" >
-        <div class="row row-cols-2">
-            <div class="col-sm-4 py-5" style="background-color: rgb(255, 255, 255, 0.4);">
 
-<main id="ticket">
-    <div class="progress">
-        <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
-    </div>
-    <div class="container-fluid">
+                    
+     {{!-- <div class="container p-5">
         <div class="row row-cols-2">
-            <div class="col-md-4 m-0 bg-white mt-4 py-4">
-                <div class="text-center">
-                    <h3>Establecimientos</h3>
-                    <form action="/paginas/reservaDeporte1/{{deporte}}" method="POST">
-                        <label class="mt-3" for="fecha"><b>Elije un día</b></label>
-                        <input id="fecha" type="date" value="09/16/2021" name="fecha" required>
-                        {{#each canchas}}
-                        <div class="col-md-6 bg-info mx-auto mb-3 mt-2">
-                            {{nombreEstablecimiento}} <br>
-                            Cancha Nº{{numeroCancha}}
-                            <input type="radio" name="idCancha" value="{{id}}" required>
-                        </div>
-                        {{/each}}
-                        <button class="btn btn-success" type="submit">Aceptar</button>
-                        <div class="col-1 mt-5 py-1">
-                            <a id="volver" href="/paginas/reservaDeporte" type="button" class="btn btn-outline-danger">Volver</a>
-                        </div>
-                        <div class="col-1 py-1">
-                            <a id="volver" href="/paginas/inicio" type="button" class="btn btn-outline-danger">Salir</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-<<<<<<< HEAD
-            <div class="col">
-                <div class="row justify-content-around">
-                    {{#each canchas}}
-                    <div class="col">
-                        <div class="card bg-secondary">
-                            <div class="card-header">
-                                {{nombreEstablecimiento}}
+            <div class="col-sm-4 py-5" style="background-color: rgb(255, 255, 255, 0.4);">  --}}
+
+                <main id="ticket">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-success progress-bar-animated"
+                            role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
+                            style="width: 50%"></div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row row-cols-2">
+                            <div class="col-md-4 m-0 bg-white mt-4 py-4">
+                                <div class="text-center">
+                                    <h3>Establecimientos</h3>
+                                    <form action="/paginas/reservaDeporte1/{{deporte}}" method="POST">
+                                        <label class="mt-3" for="fecha"><b>Elije un día</b></label>
+                                        <input id="fecha" type="date" value="09/16/2021" name="fecha" required>
+                                        {{#each canchas}}
+                                        <div class="col-md-6 bg-info mx-auto mb-3 mt-2">
+                                            {{nombreEstablecimiento}} <br>
+                                            Cancha Nº{{numeroCancha}}
+                                            <input type="radio" name="idCancha" value="{{id}}" required>
+                                        </div>
+                                        {{/each}}
+                                        <button class="btn btn-success" type="submit">Aceptar</button>
+                                        <div class="col-1 mt-5 py-1">
+                                            <a id="volver" href="/paginas/reservaDeporte" type="button"
+                                                class="btn btn-outline-danger">Volver</a>
+                                        </div>
+                                        <div class="col-1 py-1">
+                                            <a id="volver" href="/paginas/inicio" type="button"
+                                                class="btn btn-outline-danger">Salir</a>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <img src="/img/descarga/{{img}}" alt="" width="250" height="200">
-                            </div>
-                            <div class="card-footer">
-                                Cancha Nro : {{numeroCancha}}
-=======
-            <div class="col md-4 m-0 mt-2 py-4">
-                <div class="text-center">
-                    <div id="scrollJugador">
-                        {{#each canchas}}
-                        <div class="col-10 mx-auto mt-2" >
-                            <!--<div class="col-3 m-4 bg-info">
+                            {{!-- <div class="col">
+                                <div class="row justify-content-around">
+                                    {{#each canchas}}
+                                    <div class="col">
+                                        <div class="card bg-secondary">
+                                            <div class="card-header">
+                                                {{nombreEstablecimiento}}
+                                            </div>
+                                            <div class="card-body">
+                                                <img src="/img/descarga/{{img}}" alt="" width="250" height="200">
+                                            </div>
+                                            <div class="card-footer">
+                                                Cancha Nro : {{numeroCancha}}
+                                                <div class="col md-4 m-0 mt-2 py-4">
+                                                    <div class="text-center">
+                                                        <div id="scrollJugador">
+                                                            {{#each canchas}}
+                                                            <div class="col-10 mx-auto mt-2">
+                                                            <div class="col-3 m-4 bg-info">
                                 <img src="/img/descarga/{{img}}" alt="" width="150" height="150">
                                 <b> {{nombreEstablecimiento}}</b>
-                                <b>Cancha Nº{{numeroCancha}}</b>
-                            </div>-->
-                            <div style="background: rgb(245, 245, 245);">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <b>Cancha Nº {{numeroCancha}} - {{deporte}}</b>
-                                    </div>
-                                    <div class="card-body">
-                                        <img src="/img/descarga/{{img}}" alt="" width="300">
-                                    </div>
-                                    <div class="card-footer">
-                                        <b>Horario -</b>
-                                        <b>De {{horaInicio}}hs</b>
-                                        <b>a {{horaFin}}hs</b>
-                                    </div>
-                                </div>
->>>>>>> e5953f84ad0cf8215b11c6023a72fad96bdc463a
-                            </div>
-                        </div>
-                        {{/each}}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<<<<<<< HEAD
-    <div class="row py-5">
-        <div style="float: left" class="col-2 p-5">
-            <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
-        </div>
-    </div>
-</div>
-=======
-</main>
->>>>>>> e5953f84ad0cf8215b11c6023a72fad96bdc463a
+                                <b>Cancha Nº{{numeroCancha}}</b> --}}
+                            {{!-- </div>
+                                                                <div style="background: rgb(245, 245, 245);">
+                                                                    <div class="card">
+                                                                        <div class="card-header">
+                                                                            <b>Cancha Nº {{numeroCancha}} -
+                                                                                {{deporte}}</b>
+                                                                        </div>
+                                                                        <div class="card-body">
+                                                                            <img src="/img/descarga/{{img}}" alt=""
+                                                                                width="300">
+                                                                        </div>
+                                                                        <div class="card-footer">
+                                                                            <b>Horario -</b>
+                                                                            <b>De {{horaInicio}}hs</b>
+                                                                            <b>a {{horaFin}}hs</b>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            {{/each}} --}}
+                                                        {{!-- </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row py-5">
+                                            <div style="float: left" class="col-2 p-5">
+                                                <a id="volver" href="javascript: history.go(-1)" type="button"
+                                                    class="btn btn-danger">Volver</a>
+                                            </div>
+                                        </div>
+                                    </div> --}}
+                </main> 
+                 {{!-- <div class="row py-5">
+                                            <div style="float: left" class="col-2 p-5">
+                                                <a id="volver" href="javascript: history.go(-1)" type="button"
+                                                    class="btn btn-danger">Volver</a>
+                                            </div>
+                                        </div> --}}

@@ -19,8 +19,8 @@
                     <td>{{numeroCancha}}</td>
                     <td>{{deporte}}</td>
                     <td id="{{idReserva}}">{{fechaReserva}}</td>
-                    <td><span id="{{id}}">{{ hora}}<span>:00 Hs</span> </td>
-                    <td><button id="boton{{id}}" class="btn btn-warning">Cancelar Reserva</button></td>
+                    <td id="{{ horas fecha}}">{{ hora}}:00 Hs</td>
+                    <td><button id="{{id}}" class="btn btn-warning">Cancelar Reserva</button></td>
                 </tr>
                 {{/each}}
             </tbody>
@@ -30,23 +30,22 @@
             <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
         </div>
     </div>
-    </div>
- 
+    </div> 
 </div>
-<script>
-     var tiempoActual= new Date().getHours();
-    var dia= new Date().getDay();
-    var horaReserva= document.getElementById('24').innerText
-    var hora = horaReserva.split(/[/ :]/)[0]-15;
-     var fecha= new Date(document.getElementById('10').innerHTML).getUTCDay();
-    console.log(fecha);
-    console.log(dia);
-    console.log(hora);
-    console.log(document.getElementById('24').innerText);
-
-    if ((fecha === dia)&(tiempoActual == hora)) {
-         document.getElementById('boton24').disabled= true 
-    }
-
+<script>     
+     
+    function bloquearBoton() {
+         let horaActual= new Date().getHours();
+        let diaActual= new Date().getDay();    
+       {{#each reservas}}        
+          horaReserva= document.getElementById({{horas fecha}}).innerHTML;
+          horaDeLaReserva = horaReserva.split(/[/ :]/)[0]-4;
+          fechaReservada= new Date(document.getElementById({{idReserva}}).innerHTML).getUTCDay();
+         if((fechaReservada == diaActual)&&(horaActual > horaDeLaReserva)) {           
+              document.getElementById({{id}}).disabled= true;
+         }
+       {{/each}}
+     } 
+     bloquearBoton()
 
 </script>

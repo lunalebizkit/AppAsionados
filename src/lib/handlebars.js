@@ -1,13 +1,17 @@
 //const { format } = require('timeago.js');
-const dayjs= require('dayjs');
+var localizedFormat = require('dayjs/plugin/localizedFormat')
 
+const dayjs= require('dayjs');
 const helpers= {};
+dayjs().format('L');
 // helpers.date= (timestamp) => {
 //     return format(timestamp);
 // }
-// helpers.dayjs= (fecha) => {
-//     return dayjs(fecha).format('DD/MM/YYYY')}
 helpers.fechas= (timestamp) => {
-    return dayjs(timestamp).format('DD/MM/YYYY')
+    return dayjs(timestamp).format('DD/MM/YYYY')}
+helpers.horas= (timestamp) => {
+    return dayjs(timestamp).format('sss' + 1)
 }
+helpers.fechaCompara= (timestamp) => {
+    return dayjs(timestamp).format('YYYY-MM-DD')}
 module.exports= helpers;

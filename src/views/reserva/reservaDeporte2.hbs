@@ -23,13 +23,29 @@
     </div>
 </div>
 <script type="text/javascript">
+let diaActual=  new Date()
+const convertirFecha= (fecha)=>{
+    convertirParaComparar= fecha.getFullYear() + "/"+ (fecha.getMonth()+1) + "/"+ fecha.getDate();
+    return convertirParaComparar
+}
+
     function misTurnos(a, b) {
+         let horaActual= new Date().getHours();
+         let diaActual1=  new Date({{fecha}})        
+     
+        console.log(horaActual);
+      
         for (var i = a; i <= b; i++) {
             {{#each reservas }}
+          
             if (i == {{ hora }})
         { document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-danger"><input type="radio" name="turno" id="" value="${i}" disabled> ${i} Hs</div>`; continue
          }
             {{/each}}
+              if (convertirFecha(diaActual) == convertirFecha(diaActual1)) {
+               if(horaActual >= i ) { continue
+               }
+            }
                 document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-primary"><input type="radio" name="turno" id="" value="${i}" required> ${i}:00 Hs.</div>`;
             }
         }

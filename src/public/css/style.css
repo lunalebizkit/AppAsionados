@@ -6,7 +6,6 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed  
 }
 #nombreEquipo {
   color: rgb(6, 100, 189);
@@ -123,7 +122,7 @@ h6, h5{
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed
+  background-attachment: fixed    
 }
 
 #modalCancha-header{
@@ -208,15 +207,26 @@ h6, h5{
 }
 #scrollMiEquipo {
   overflow-y: scroll;
-  height: 440px;
-  display: block
+  height: 346px;
+  display: block;
 }
 
 #scrollJugador {
   overflow-y: scroll;
   height: 445px;
-  display: block
+  display: block;
 }
+
+#scrollMisCanchas {
+  overflow-y: scroll;
+  height: 380px
+}
+
+#scrollReservas {
+  overflow-y: scroll;
+  height: 335px
+}
+
 #perfil{
   background-color: rgb(26, 26, 26);
 }
@@ -225,7 +235,7 @@ h6, h5{
   background-repeat: no-repeat;
   background-position: 95%;
   font: message-box;
-  color: rgb(43, 42, 42);
+  font-style: oblique;
 }
 #mensaje{
   position: absolute !important;
@@ -256,10 +266,24 @@ h6, h5{
   -webkit-transform: rotate(360deg);
   transform: rotate(360deg) scale(1.2);
 }
-#ticket {
+
+#ticket:before {
   background-image: url(../img/app/ticket.jpg);
-  background-repeat: no-repeat;
-  background-position: center center;
   background-size: cover;
-  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  content:'';
+	position: absolute;
+  top: 118px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+#misCanchas {
+  background-image: url(../img/app/fut1.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed    
 }

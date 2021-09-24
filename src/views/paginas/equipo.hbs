@@ -1,33 +1,35 @@
-<div id="formularioF" class="container">
-    <div id="scroll" class="col-md-9 m-auto p-4">
-        <table class="table table-dark table-striped">
-            <thead class="table-danger">
-                <h2 id="semiTransparente" class="text-center py-2" style="color: rgb(0, 0, 0);">{{club}}</h2>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Posicion</th>
-            </thead>
-            <tbody>
-                {{#each equipo}}
-                <tr>
-                    <td>{{nombre}}</td>
-                    <td>{{apellido}}</td>
-                    <td>{{posicion}}</td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
+<div id="inicio" class="container-fluid">
+    <div class="col-md-9 m-auto p-4">
+        <h2 class="card text-center py-2" style="color: rgb(0, 0, 0);">{{club}}</h2>
+        <div id="scrollMiEquipo">
+            <table class="table table-hover table-dark">
+                <thead class="table-info">
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Posicion</th>
+                </thead>
+                <tbody>
+                    {{#each equipo}}
+                    <tr>
+                        <td>{{nombre}} <!--<i class="fas fa-copyright"></i>--></td>
+                        <td>{{apellido}}</td>
+                        <td>{{posicion}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div style = "float: left" class="col-2  p-4">
+    <div class="col-2  p-4">
         <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
     </div>
     
     {{#unless pertenezco}}
     <div class="container">
-        <div id="semiTransparente" class="col-6 m-auto p-2 text-center">
+        <div id="semiTransparente" class="col-7 m-auto p-1 text-center">
             <h3 style="color: rgb(0, 0, 0);">¿Querés ser parte del Equipo?</h3>
             <form  action="/paginas/ingresarAlEquipo/{{numero}}&{{idDeportes}}" method="get">
-                <div class="col-6 mx-auto py-4">
+                <div class="col-6 mx-auto py-2">
                     <select name="posicion" class="btn btn-ls btn-success" required>
                         <option type="text" value="">Elegir posición</option>
                         <option type="text" value="Arquero">Arquero</option>
@@ -35,8 +37,10 @@
                         <option type="text" value="MedioCampo">Medio campo</option>
                         <option type="text" value="Delantero">Delantero</option>
                     </select>
+                    <span><hr class="dropdown-divider"></span>
+                    <button class="btn btn-primary btn-block">Unirme</button>
                 </div>
-                <button class="btn btn-primary btn-block">Unirme</button>
+                
             </form>
         </div>
     </div>

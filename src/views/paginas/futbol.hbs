@@ -1,32 +1,33 @@
 <div id="futbol">
     <div class="container-fluid">
         <div class="row justify-content-between">
+            <!--Tabla Equipos-->
             <div id="tablaEquipo" class="col-lg-5 m-2 p-2">
                 <div class="d-flex">
-                    <img class=" d-inline-block " src="/img/app/pelotaF.png" alt="" width="50" height="50">
+                    <img class="d-inline-block " src="/img/app/pelotaF.png" alt="" width="50" height="50">
                     <a class="navbar-brand">
                         <a class="btn btn-dark btn-lg dropdown-toggle text-white" href="#" id="dropdown04"
                             data-bs-toggle="dropdown" aria-expanded="false">EQUIPOS</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown04">
                             <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#misEquipo" data-bs-whatever="@equipo">Mis Equipos</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="/paginas/crearEquipoFutbol/{{user.idUsuarios}}">Crear
-                                    Equipo</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/paginas/crearEquipoFutbol/{{user.idUsuarios}}">Crear Equipo</a></li>
+                            <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="/paginas/jugadores/{{user.idUsuarios}}">Ver Jugadores</a></li>
                         </ul>
                     </a>
                     <div class="d-flex justify-content-between m-auto ">
-                        <form class="d-flex" action="">
-                            <input type="text" class="form-control" name="buscarCancha" placeholder="Buscar" autofocus>
-                            <button class="btn btn-danger" type="reset">
+                        <form class="d-flex" method="GET" action="">
+                            <input type="search" class="form-control" id= "formulario" placeholder="Buscar" autofocus>
+                            <button class="btn btn-danger" type="submit" id="boton">
                                 <i class="fas fa-search"></i>
                             </button>
                         </form>
+                       <script>
+                           const formulario = document.querySelector('#formulario');
+                           const boton = document.querySelector('#boton');
+                           
+                       </script> 
                     </div>
                 </div>
                 <div id="scroll">
@@ -73,7 +74,6 @@
                             <tr>
                                 <th>Establecimiento</th>
                                 <th>Dirección</th>
-                                <th>Deporte</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -83,7 +83,6 @@
                                     <a href="/paginas/verCancha/{{idEstablecimiento}}">{{nombreEstablecimiento}}</a>
                                 </td>
                                 <td>{{direccion}}</td>
-                                <td>#</td>
                             </tr>
                             {{/each}}
                         </tbody>
@@ -95,8 +94,8 @@
     <div class="col-2  p-4">
         <a id="volver" href="/paginas/deporte" type="button" class="btn btn-danger">Volver</a>
     </div>
-
 </div>
+
 <!-- The Modal -->
 <div class="modal fade" id="misEquipo" tabindex="-1">
     <div class="modal-dialog">

@@ -1,11 +1,8 @@
-
-
 {{#if user}}
-
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/paginas/inicio">
-            <img src="/img/app/logo4.png" alt="" width="60" height="60" class="d-inline-block ">
+        <a class="navbar-brand mb-1" href="/paginas/inicio">
+            <img src="/img/app/logo4.png" alt="" width="65" height="65" class="d-inline-block ">
         </a>
         <div class="collapse navbar-collapse" id="navbarsExample04">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
@@ -24,25 +21,28 @@
                         <li><a class="dropdown-item" href="/paginas/padel">Pádel</a></li>
                     </ul>
                 </li>
-                
-                <li class="container-fluid">
-                    <a type="link" class="nav-link" href="#" aria-disabled="true" data-bs-toggle="modal"
-                data-bs-target="#nosotros" aria-controls="offcanvasRight">Nosotros</a>
-             
-                  <li class="container-fluid">
+                <!--
+                <li class="nav-item">
+                    <a type="link" id="accesoDuenio" class="nav-link" href="/paginas/duenio" aria-disabled="true" style="display: none;" aria-controls="offcanvasRight">Canchas</a>
+                </li>
+                -->
+                <li class="nav-item">
                     <a type="link" class="nav-link" href="/paginas/reservaUsuario/{{user.idUsuarios}}" aria-disabled="true"
                  aria-controls="offcanvasRight">Mis Reservas</a>
                 </li>
-                <li class="container-fluid">
-                    <a type="button" class="btn btn-primary" href="/paginas/reservaDeporte">Reservá ya!</a>
+
+                <li class="nav-item">
+                    <a type="link" class="nav-link" href="#" aria-disabled="true" data-bs-toggle="modal"
+                    data-bs-target="#nosotros" aria-controls="offcanvasRight">Nosotros</a>
                 </li>
-                   </li>
-                  <li class="container-fluid">
-                    <a type="link" id="accesoDuenio" class="nav-link" href="/paginas/duenio" aria-disabled="true" style="display: none;" aria-controls="offcanvasRight">Canchas</a>
-                </li>
+                
             </ul>
         </div>
-        <li class="nav-item">
+        <li class="navbar-nav nav-item">
+            <a type="button" class="btn btn-primary" href="/paginas/reservaDeporte">Reservá ya!</a>
+        </li>
+        
+        <li class="navbar-nav nav-item">
             <a class="nav-link text-primary" href="#" aria-disabled="true" data-bs-toggle="modal"
                 data-bs-target="#miPerfil" aria-controls="offcanvasRight">Bienvenido/a {{user.nombreUsuario}}</a>
         </li>
@@ -72,13 +72,13 @@
                     </div>
                     <div class="col-sm-8">
                         <div class="d-flex">
-                            <pre class="ms-2">Nombre: {{user.nombre}}</pre>
+                            <b><pre class="ms-2">Nombre:{{user.nombre}}</pre></b>
                         </div>
                         <div class="d-flex">
-                            <pre class="ms-2">Apellido: {{user.apellido}}</pre>
+                            <b><pre class="ms-2">Apellido:{{user.apellido}}</pre></b>
                         </div>
                         <div class="d-flex">
-                            <pre class="ms-2">Email: {{user.email}}</pre>
+                            <b><pre class="ms-2">Email:{{user.email}}</pre></b>
                         </div>
                     </div>
                 </div>
@@ -127,7 +127,12 @@
                         <div class="d-flex col-sm-10">
                             <i class="fas fa-user-friends"></i>
                             <p> Armá tu equipo invitando a tus amigos.</p></h5>
-                        </div>                  
+                        </div>
+                            
+                            
+                            
+                            
+                            
                     </div>
                 </div>
             </div>

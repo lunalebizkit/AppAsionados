@@ -4,35 +4,43 @@ const ruta = express.Router();
 const db = require('../database');
 const { estaLogueado, noEstaLogueado, admin, duenio } = require('../lib/auth');
 const foto= require('../lib/foto');
+
 //Agregue pantalla equipo
 ruta.get('/equipo/:club&:idDeportes', estaLogueado, async (req, res) => {
     const {club}= req.params;
     const {idDeportes}= req.params;
     const {idUsuarios} = req.user;
+    const equipos = await db.query('select * from equipos inner join deporte join usuarios where equipos.idDeportes = deporte.idDeportes and usuarios.idUsuarios = equipos.idUsuarios');
     const equipo= await db.query('Select * from jugador join equipos join usuarios where usuarios.IdUsuarios = jugador.idUsuarios and jugador.idEquipo = equipos.idEquipo and equipos.nombreEquipo =?', [club]);
     const pertenezco= await db.query('select * from jugador join equipos where jugador.idUsuarios =? and jugador.idEquipo = equipos.idEquipo and equipos.nombreEquipo =?', [idUsuarios, club]);
-   const idEquipo= await db.query('select idEquipo from equipos where nombreEquipo =?', [club]);
-   let numero= idEquipo[0].idEquipo;
-    res.render('paginas/equipo', {equipo, club, pertenezco, numero, idDeportes});
+    const idEquipo= await db.query('select idEquipo from equipos where nombreEquipo =?', [club]);
+    let numero= idEquipo[0].idEquipo;
+    res.render('paginas/equipo', {equipos, equipo, club, pertenezco, numero, idDeportes});
 });
 //agregue pantalla futbol
 ruta.get('/futbol', estaLogueado, async (req, res) => {
     const { idUsuarios } = req.user;
-    const equipos = await db.query('select * from equipos inner join deporte join usuarios where equipos.idDeportes = deporte.idDeportes and usuarios.idUsuarios = equipos.idUsuarios');
-    const misEquipos= await db.query('select equipos.nombreEquipo from jugador inner join equipos where equipos.idEquipo = jugador.idEquipo and jugador.idUsuarios =?', [idUsuarios]);
+    const equipos = await db.query('select * from equipos inner join deporte join usuarios where equipos.idDeportes = deporte.idDeportes and usuarios.idUsuarios = equipos.idUsuarios and deporte.idDeportes < 4');
+    const misEquipos= await db.query('select equipos.nombreEquipo from jugador inner join equipos where equipos.idEquipo = jugador.idEquipo and equipos.idDeportes < 4 and jugador.idUsuarios =?', [idUsuarios]);
     const canchas = await db.query('select * from establecimiento');
     res.render('paginas/futbol', {equipos, misEquipos, canchas});
 });
 //agregue pantalla basquet
 ruta.get('/basquet', estaLogueado, async (req, res) => {
-    const canchas = await db.query('select distinct establecimiento.idEstablecimiento, establecimiento.direccion, establecimiento.nombreEstablecimiento from establecimiento join cancha where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = 4');
-    res.render('paginas/basquet', {canchas});
+    //const canchas = await db.query('select distinct establecimiento.idEstablecimiento, establecimiento.direccion, establecimiento.nombreEstablecimiento from establecimiento join cancha where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = 4');
+    const { idUsuarios } = req.user;
+    const equipos = await db.query('select * from equipos inner join deporte join usuarios where equipos.idDeportes = deporte.idDeportes and usuarios.idUsuarios = equipos.idUsuarios and deporte.idDeportes = 4');
+    const misEquipos= await db.query('select equipos.nombreEquipo from jugador inner join equipos where equipos.idEquipo = jugador.idEquipo and equipos.idDeportes = 4 and jugador.idUsuarios =?', [idUsuarios]);
+    const canchas = await db.query('select * from establecimiento join cancha where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = 4');
+    res.render('paginas/basquet', {equipos, misEquipos, canchas});
 });
 //agregue pantalla padel
 ruta.get('/padel', estaLogueado, async (req, res) => {
-    const equipos = await db.query('select * from equipos join deporte join usuarios where equipos.idDeportes = deporte.idDeportes and usuarios.idUsuarios = equipos.idUsuarios and equipos.idDeportes = 5');
-    const canchas = await db.query('select distinct establecimiento.direccion, establecimiento.nombreEstablecimiento from establecimiento join cancha where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = 5');
-    res.render('paginas/padel', {canchas, equipos});
+    const { idUsuarios } = req.user;
+    const equipos = await db.query('select * from equipos inner join deporte join usuarios where equipos.idDeportes = deporte.idDeportes and usuarios.idUsuarios = equipos.idUsuarios and deporte.idDeportes = 5');
+    const misEquipos= await db.query('select equipos.nombreEquipo from jugador inner join equipos where equipos.idEquipo = jugador.idEquipo and equipos.idDeportes = 5 and jugador.idUsuarios =?', [idUsuarios]);
+    const canchas = await db.query('select * from establecimiento join cancha where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = 5');
+    res.render('paginas/padel', {equipos, misEquipos, canchas});
 });
 //agregue pantalla deporte
 ruta.get('/deporte', estaLogueado, async (req, res) => {
@@ -85,6 +93,8 @@ ruta.post('/vistaAdmin', admin, async (req, res) => {
     console.info(req.body);
     res.render('paginas/vistaAdmin');
 });
+
+//agregue pantalla crear equipo Futbol 
 ruta.get('/crearEquipoFutbol/:id', estaLogueado, async (req, res) => {
     res.render('paginas/crearEquipoFutbol');
 });
@@ -103,18 +113,19 @@ ruta.post('/crearEquipoFutbol/:id', estaLogueado, async (req, res) => {
         res.redirect('/paginas/crearEquipoFutbol/:id')
     }
     else {
-        const crearEquipo = await db.query('Insert into equipos set ?', [newEquipo]);
+        const crearEquipo = await db.query('Insert into equipos set?', [newEquipo]);
         const idEquipo = crearEquipo.insertId;
         let newJugador = {
             idUsuarios,
             posicion,
             idEquipo
         };
-        await db.query('Insert into jugador set ?', [newJugador]);
+        await db.query('Insert into jugador set?', [newJugador]);
         req.flash('mensajeOk', "Equipo Creado con Exito!!!");
         res.redirect('/paginas/futbol')
     };
 });
+
 ruta.get('/miEquipo/:equipo', estaLogueado, async(req, res)=>{
     const {equipo}=req.params;
     const equipos= await db.query('Select usuarios.nombreUsuario, usuarios.nombre, jugador.posicion from equipos join jugador join usuarios where jugador.idEquipo = equipos.idEquipo and usuarios.idUsuarios = jugador.idUsuarios and nombreEquipo =?',[equipo] );
@@ -146,11 +157,38 @@ ruta.get('/duenio', estaLogueado, duenio, async (req, res) => {
     const canchas= await db.query('Select * from establecimiento where idUsuarios =?', [idUsuarios]);
     res.render('paginas/duenio', {canchas});
 });
-//agregue pantalla crear equipo Basquet TEMPORALMENTE
+//agregue pantalla crear equipo Basquet 
 ruta.get('/crearEquipoBasquet/:id', estaLogueado, async (req, res) => {
     res.render('paginas/crearEquipoBasquet');
 });
-//agregue pantalla crear equipo Padel TEMPORALMENTE
+ruta.post('/crearEquipoBasquet/:id', estaLogueado, async (req, res) => {
+    const { id } = req.params;
+    const idUsuarios = id
+    const { nombreEquipo, posicion, idDeportes } = req.body;
+    let newEquipo = {
+        nombreEquipo,
+        idDeportes,
+        idUsuarios
+    };
+    const consulta = await db.query('Select * from equipos Where nombreEquipo =?', [nombreEquipo]);
+    if ((consulta.length) > 0) {
+        req.flash('mensajeMal', "Equipo Existente");
+        res.redirect('/paginas/crearEquipoBasquet/:id')
+    }
+    else {
+        const crearEquipo = await db.query('Insert into equipos set?', [newEquipo]);
+        const idEquipo = crearEquipo.insertId;
+        let newJugador = {
+            idUsuarios,
+            posicion,
+            idEquipo
+        };
+        await db.query('Insert into jugador set?', [newJugador]);
+        req.flash('mensajeOk', "Equipo Creado con Exito!!!");
+        res.redirect('/paginas/basquet')
+    };
+});
+//agregue pantalla crear equipo Padel 
 ruta.get('/crearEquipoPadel/:id', estaLogueado, async(req, res)=>{
     res.render('paginas/crearEquipoPadel');
 });
@@ -232,7 +270,7 @@ ruta.get('/reservaDeporte', estaLogueado, async(req, res)=>{
 ruta.get('/reservaDeporte1/', estaLogueado, async(req, res)=>{
     var fechaActual= new Date().toLocaleDateString();
     const {deporte} =req.query;
-    const canchas= await db.query('select imagenCancha.img, establecimiento.nombreEstablecimiento, cancha.numeroCancha, cancha.id from establecimiento join cancha join imagenCancha where imagenCancha.idCancha = cancha.id and establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes =?', [deporte]);
+    const canchas= await db.query('select imagenCancha.img, establecimiento.nombreEstablecimiento, cancha.numeroCancha, cancha.id, deporte.deporte, horarios.horaInicio, horarios.horaFin from establecimiento join cancha join imagenCancha join deporte join horarios where imagenCancha.idCancha = cancha.id and establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = deporte.idDeportes and cancha.id = horarios.idCancha and cancha.idDeportes =?', [deporte]);
     if((canchas.length)===0) {
         req.flash('mensajeMal', "No hay Establecimientos"),
         res.redirect('/paginas/reservaDeporte');

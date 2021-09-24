@@ -6,7 +6,7 @@
                 <th>Nombre/Apellido</th>
                 <th>Nombre de Usuario</th>
                 <th>Email</th>
-                <th>Perfil</th>
+                <th>Opción</th>
                 
             </thead>
             <tbody>            
@@ -15,50 +15,15 @@
                 <td>{{nombre}} {{apellido}}</td>
                 <td>{{nombreUsuario}}</td>
                 <td>{{email}}</td>
-                <td>
-                   
-                    <a class="button" href="#" data-bs-toggle="modal" data-bs-target="#miPerfil" data-bs-whatever="@miPefil">Ver</a>
-                    
+                <td><a class="button" href="#">Invitar</a></td>
                 </tr>
-                    
                 {{/each}}
+                
             </tbody>
         </table>
         
     </div>
     <div class="col-2  p-4">
         <a id="volver" href="/paginas/futbol" type="button" class="btn btn-danger">Volver</a>
-    </div>
-</div>
-
-<!--Modal perfil -->
-<div class="modal fade" id="miPerfil" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content" style="background-color: rgb(245, 224, 187);">
-            <!-- Modal Header -->
-            <div class="modal-header" id="miPerfil">
-                <em><h4 class="modal-title text-dark"><u style="color: rgb(59, 59, 59);">Socio Nº {{idUsuarios}}</u></h4></em>
-                <button type="button" class="close" data-bs-dismiss="modal" id="crearEquipo">&times;</button>
-            </div>
-            <!-- Modal body -->
-            <div class="modal-body" id="miPerfil">
-                <div id="sello" class="row ">
-                    <div class="col-sm-3">
-                       <a href="/paginas/miPerfil/{{idUsuarios}}"><img src="/img/descarga/{{img}}" alt="" width="125" height="120"></a>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="d-flex">
-                            <pre class="ms-2">Nombre: {{nombre}}</pre>
-                        </div>
-                        <div class="d-flex">
-                            <pre class="ms-2">Apellido: {{apellido}}</pre>
-                        </div>
-                        <div class="d-flex">
-                            <pre class="ms-2">Email: {{email}}</pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>

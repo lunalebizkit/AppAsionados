@@ -1,27 +1,33 @@
 <div id="padel">
-    <div class="container-fluid pt-5">
+    <div class="container-fluid">
         <div class="row justify-content-between">
-            <div id="tablaEquipo" class="col-md-5 m-2 p-2">
+            <!--Tabla Equipos-->
+            <div id="tablaEquipo" class="col-lg-5 m-2 p-2">
                 <div class="d-flex">
-                    <img class="rounded mx-2 d-block" src="/img/app/pelotaP.png" alt="" width="45" height="45">
+                    <img class="d-inline-block" src="/img/app/pelotaP.png" alt="" width="50" height="50">
                     <a class="navbar-brand">
-                        <a class="btn btn-dark btn-lg dropdown-toggle text-white" href="#" id="dropdown04" data-bs-toggle="dropdown"
-                        aria-expanded="false">EQUIPOS</a>
+                        <a class="btn btn-dark btn-lg dropdown-toggle text-white" href="#" id="dropdown04" 
+                            data-bs-toggle="dropdown" aria-expanded="false">EQUIPOS</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                data-bs-target="#misEquipo" data-bs-whatever="@equipo">Mis Equipos</a></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#misEquipo" data-bs-whatever="@equipo">Mis Equipos</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="/paginas/crearEquipoPadel/{{user.idUsuarios}}">Crear Equipo</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Ver Jugadores</a></li>
+                            <li><a class="dropdown-item" href="/paginas/jugadores/{{user.idUsuarios}}">Ver Jugadores</a></li>
                         </ul>
                     </a>
                     <div class="d-flex justify-content-between m-auto ">
-                        <input type="text" class="form-control" name="buscarCancha" placeholder="Buscar"
-                            autofocus required>                        
-                        <button class="btn btn-danger" type="reset">
-                            <i class="fas fa-search"></i> 
-                        </button>
+                        <form class="d-flex" method="GET" action="">
+                            <input type="search" class="form-control" id= "formulario" placeholder="Buscar" autofocus>
+                            <button class="btn btn-danger" type="submit" id="boton">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                       <script>
+                           const formulario = document.querySelector('#formulario');
+                           const boton = document.querySelector('#boton');
+                           
+                       </script> 
                     </div>
                 </div>
                 <div id="scroll">
@@ -66,21 +72,17 @@
                     <table class="table table-hover table-info">
                         <thead class="fixed">
                             <tr>
-                                <th>Nombre</th>
+                                <th>Establecimiento</th>
                                 <th>Dirección</th>
-                                <th>Formato</th>
-                                <th>Número</th>
                             </tr>
                         </thead>
                         <tbody>                            
-                            {{#each cancha}}
-                             <tr>
+                            {{#each canchas}}
+                            <tr>
                                 <td data-bs-toggle="tooltip" data-bs-placement="top" title="{{email}}">
-                                  <a href="/paginas/verCancha/{{idEstablecimiento}}">{{nombreEstablecimiento}}</a>
+                                    <a href="/paginas/verCancha/{{idEstablecimiento}}">{{nombreEstablecimiento}}</a>
                                 </td>
-                                <td><a href="#">{{direccion}}</a></td>
-                                <td><b>#</b></td>
-                                <td><b>#</b></td>
+                                <td>{{direccion}}</td>
                             </tr>
                             {{/each}}
                         </tbody>
@@ -89,8 +91,7 @@
             </div>
         </div>
     </div>
-    
-    <div class="col-2 pt-4">
+    <div class="col-2 p-4">
         <a id="volver" href="/paginas/deporte" type="button" class="btn btn-danger">Volver</a>
     </div>
 </div>

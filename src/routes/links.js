@@ -248,7 +248,7 @@ ruta.post('/reservaDeporte1/:deporte', async(req, res)=>{
     const dia= new Date(fecha).getDay() + 1;
     const dias=await db.query('Select * from dia where idCancha =? and dia=?', [idCancha, dia]);
     if ((dias.length)>0) {
-        res.redirect('/paginas/reservaDeporte2/'+idCancha+'&'+fecha);
+        res.redirect('/paginas/reservaDeporte2/'+idCancha+'&'+"fecha="+fecha);
     }else{req.flash('mensajeMal', 'El dia seleccionado No atiende!'),
     res.redirect('/paginas/reservaDeporte1/'+ '?deporte='+deporte)}  
 });
@@ -257,9 +257,15 @@ ruta.get('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
      const turnos= await db.query('select * from  horarios where idCancha =?', [idCancha]);
      const reservas= await db.query('select hora from reserva where fecha =? and estado = "reservado"', [fecha]);
      const turno= turnos[0];
-     const fechaReserva = new Date(fecha).toISOString();
-     console.info(fechaReserva);
-    res.render('reserva/reservaDeporte2', {turno, idCancha, fechaReserva, reservas})
+     const fechaReserva = new Date(fecha);
+     const convertirFecha= (fecha)=>{
+        convertirParaComparar= fecha.getFullYear() + "/"+ (fecha.getMonth()+1) + "/"+ fecha.getDate();
+        return convertirParaComparar
+    }
+    const fechaReservada= convertirFecha(fechaReserva);
+    console.info(convertirFecha(fechaReserva));
+     console.info(fechaReservada);
+    res.render('reserva/reservaDeporte2', {turno, idCancha, fechaReservada, reservas})
 });
 ruta.post('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
     const {idCancha, idUsuarios, fecha}= req.session.newReserva;

@@ -257,15 +257,7 @@ ruta.get('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
      const turnos= await db.query('select * from  horarios where idCancha =?', [idCancha]);
      const reservas= await db.query('select hora from reserva where fecha =? and estado = "reservado"', [fecha]);
      const turno= turnos[0];
-     const fechaReserva = new Date(fecha);
-     const convertirFecha= (fecha)=>{
-        convertirParaComparar= fecha.getFullYear() + "/"+ (fecha.getMonth()+1) + "/"+ fecha.getDate();
-        return convertirParaComparar
-    }
-    const fechaReservada= convertirFecha(fechaReserva);
-    console.info(convertirFecha(fechaReserva));
-     console.info(fechaReservada);
-    res.render('reserva/reservaDeporte2', {turno, idCancha, fechaReservada, reservas})
+    res.render('reserva/reservaDeporte2', {turno, idCancha, reservas})
 });
 ruta.post('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
     const {idCancha, idUsuarios, fecha}= req.session.newReserva;

@@ -267,17 +267,12 @@ h6, h5{
   transform: rotate(360deg) scale(1.2);
 }
 
-#ticket:before {
+#ticket {
   background-image: url(../img/app/ticket.jpg);
   background-size: cover;
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
-  content:'';
-	position: absolute;
-  top: 118px;
-	bottom: 0;
-	left: 0;
-	right: 0;
+ 
 }
 
 #misCanchas {

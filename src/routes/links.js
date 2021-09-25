@@ -303,7 +303,7 @@ ruta.post('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
     const newReserva= {idCancha, idUsuario: idUsuarios, estado: "reservado",fechaReserva: fecha, hora: turno}
     await db.query('insert into reserva set?',[newReserva]);
     req.flash('mensajeOk', 'Reserva Hecha!!!');
-    res.redirect('/paginas/deporte');
+    res.redirect('/paginas/reservaUsuario/'+ idUsuarios);
 });
 
 module.exports = ruta

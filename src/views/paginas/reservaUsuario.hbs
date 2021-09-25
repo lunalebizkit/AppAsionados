@@ -1,41 +1,7 @@
-<<<<<<< HEAD
-<div id="inicio">
-    <div class="container">
-        <div class="card text-center mb-4">
-            <h2 class="mb-3 mx-auto">MIS RESERVAS</h2>
-        </div>
-        <div id="scrollReservas">
-            <table class="table table-success table-hover">
-                <thead class="table-info">
-                    <th>Establecimiento</th>
-                    <th>Cancha</th>
-                    <th>Deporte</th>
-                    <th>Fecha</th>
-                    <th>Hora</th>
-                </thead>
-                <tbody>
-                    {{#each reservas}}
-                    <tr>
-                        <td>{{nombreEstablecimiento}}</td>
-                        <td>{{numeroCancha}}</td>
-                        <td>{{deporte}}</td>
-                        <td>{{fecha}}</td>
-                        <td>{{hora}}</td>
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="col-2 p-5">
-        <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
-    </div>
-</div>
-=======
 <div id="ticket">
-    <div class="container">
+    <div class="container p-5">
         <table class="table table-success table-striped ">
-            <h3 class="text-white text-center">Mis Reservas</h3>
+            <h2 class="text-white text-center mb-3">Mis Reservas</h2>
             <thead>
                 <th>Fecha</th>
                 <th>Establecimiento</th>
@@ -60,7 +26,7 @@
             </tbody>
         </table>
            <div class="row py-5">
-        <div style="float: left" class="col-2 p-5">
+        <div style="float: left" class="col-2 p-3">
             <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
         </div>
     </div>
@@ -83,4 +49,3 @@
      bloquearBoton()
 
 </script>
->>>>>>> ale

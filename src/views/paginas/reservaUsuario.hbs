@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div id="inicio">
     <div class="container">
         <div class="card text-center mb-4">
@@ -30,3 +31,56 @@
         <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
     </div>
 </div>
+=======
+<div id="ticket">
+    <div class="container">
+        <table class="table table-success table-striped ">
+            <h3 class="text-white text-center">Mis Reservas</h3>
+            <thead>
+                <th>Fecha</th>
+                <th>Establecimiento</th>
+                <th>Cancha</th>
+                <th>Deporte</th>
+                <th>Fecha Reservada</th>
+                <th>Hora</th>
+                <th>Opcion</th>
+            </thead>
+            <tbody>
+                {{#each reservas}}
+                <tr>
+                    <td>{{fechas fecha}}</td>
+                    <td>{{nombreEstablecimiento}}</td>
+                    <td>{{numeroCancha}}</td>
+                    <td>{{deporte}}</td>
+                    <td id="{{idReserva}}">{{fechaReserva}}</td>
+                    <td id="{{ horas fecha}}">{{ hora}}:00 Hs</td>
+                    <td><button id="{{id}}" class="btn btn-warning">Cancelar Reserva</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+           <div class="row py-5">
+        <div style="float: left" class="col-2 p-5">
+            <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
+        </div>
+    </div>
+    </div> 
+</div>
+<script>     
+     
+    function bloquearBoton() {
+         let horaActual= new Date().getHours();
+        let diaActual= new Date().getDay();    
+       {{#each reservas}}        
+          horaReserva= document.getElementById({{horas fecha}}).innerHTML;
+          horaDeLaReserva = horaReserva.split(/[/ :]/)[0]-4;
+          fechaReservada= new Date(document.getElementById({{idReserva}}).innerHTML).getUTCDay();
+         if((fechaReservada == diaActual)&&(horaActual > horaDeLaReserva)) {           
+              document.getElementById({{id}}).disabled= true;
+         }
+       {{/each}}
+     } 
+     bloquearBoton()
+
+</script>
+>>>>>>> ale

@@ -53,20 +53,39 @@
             </div>
         </div>
     </div>
+    </div>
 </div>
 -->
 
 <script type="text/javascript">
-    function misTurnos(a, b) {
-        for (var i = a; i <= b; i++) {
-            {{#each reservas }}
-            if (i == {{ hora }})
-        { document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-danger"><input type="radio" name="turno" id="" value="${i}" disabled> ${i} Hs</div>`; }
-            {{/each}}
-                document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-primary"><input type="radio" name="turno" id="" value="${i}" required> ${i} Hs</div>`;
-            }
+let tomarParametro = new URLSearchParams(window.location.href);
+let fechaSeleccionada = tomarParametro.get('fecha');
+let diaActual=  new Date();    
+function misTurnos(a, b) {        
+        const convertirFecha= (fecha)=>{
+            let mes= fecha.getMonth()+1;
+            if (mes < 10) {
+             mes='0' + mes}
+            convertirParaComparar= fecha.getFullYear() + "-"+ mes + "-"+ fecha.getDate();
+            return convertirParaComparar
         }
-        var btnTurnos = document.getElementById("botonTurnos");
-        var disableButton = function () { this.disabled = true; };
-        btnTurnos.addEventListener('click', disableButton, false);
+         let horaActual= new Date().getHours();      
+        for (let i = a; i <= b; i++) {              
+            
+            {{#each reservas }}
+          
+            if (i == {{ hora }})
+        { document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-danger"><input type="radio" name="turno" id="" value="${i}" disabled> ${i} Hs</div>`; continue
+         }
+            {{/each}}       
+                 if ((convertirFecha(diaActual) == fechaSeleccionada) & ( horaActual >= i ))
+               {
+                continue;
+               }    
+                document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-primary"><input type="radio" name="turno" id="" value="${i}" required> ${i}:00 Hs.</div>`;
+            }
+        }      
+let btnTurnos = document.getElementById("botonTurnos");
+let disableButton = function () { this.disabled = true; };
+btnTurnos.addEventListener('click', disableButton, false);
 </script>

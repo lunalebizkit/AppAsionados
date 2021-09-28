@@ -169,7 +169,6 @@ ruta.post('/cancha/:idEstablecimiento', estaLogueado, duenio, foto, async (req, 
 ruta.get('/misCanchas/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
     const {idEstablecimiento}=req.params;
     const establecimiento= await db.query('Select * from cancha join deporte join imagenCancha join horarios where  horarios.idCancha= cancha.id and imagenCancha.idCancha = cancha.id and cancha.idDeportes = deporte.idDeportes and cancha.idEstablecimiento =?', [idEstablecimiento]);
-    console.info(establecimiento);
     res.render('paginas/misCanchas', {establecimiento});
 });
 //agregue pantalla crear equipo Basquet 
@@ -293,14 +292,13 @@ ruta.get('/reservaDeporte', estaLogueado, async(req, res)=>{
     res.render('reserva/reservaDeporte', {deporte})
 });
 ruta.get('/reservaDeporte1/', estaLogueado, async(req, res)=>{
-    var fechaActual= new Date().toLocaleDateString();
     const {deporte} =req.query;
     const canchas= await db.query('select imagenCancha.img, establecimiento.nombreEstablecimiento, cancha.numeroCancha, cancha.id, deporte.deporte, horarios.horaInicio, horarios.horaFin from establecimiento join cancha join imagenCancha join deporte join horarios where imagenCancha.idCancha = cancha.id and establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = deporte.idDeportes and cancha.id = horarios.idCancha and cancha.idDeportes =?', [deporte]);
     if((canchas.length)===0) {
         req.flash('mensajeMal', "No hay Establecimientos"),
         res.redirect('/paginas/reservaDeporte');
     }
-    res.render('reserva/reservaDeporte1', {canchas, deporte, fechaActual})
+    res.render('reserva/reservaDeporte1', {canchas, deporte})
 });
 ruta.post('/reservaDeporte1/:deporte', async(req, res)=>{
     const{fecha, idCancha}=req.body;
@@ -315,9 +313,11 @@ ruta.post('/reservaDeporte1/:deporte', async(req, res)=>{
     res.redirect('/paginas/reservaDeporte1/'+ '?deporte='+deporte)}  
 });
 ruta.get('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
-    const { idCancha, fecha}= req.params;
+    const { idCancha, fecha}= req.session.newReserva;
      const turnos= await db.query('select * from  horarios where idCancha =?', [idCancha]);
-     const reservas= await db.query('select hora from reserva where fecha =? and estado = "reservado"', [fecha]);
+     const reservas= await db.query('select hora from reserva where fechaReserva =? and estado = "reservado" and idCancha =?', [fecha, idCancha]);
+     console.info(reservas);
+     console.info(fecha);
      const turno= turnos[0];
     res.render('reserva/reservaDeporte2', {turno, idCancha, reservas})
 });

@@ -45,9 +45,9 @@ function misTurnos(a, b) {
             
             {{#each reservas }}
           
-            if (i == {{ hora }})
-        { document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-danger"><input type="radio" name="turno" id="" value="${i}" disabled> ${i} Hs</div>`; continue
-         }
+            if (i == {{ hora }}) {
+                 document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-danger"><input type="radio" name="turno" id="" value="${i}" disabled> ${i} Hs</div>`; continue;
+            }
             {{/each}}       
                  if ((convertirFecha(diaActual) == fechaSeleccionada) & ( horaActual >= i ))
                {

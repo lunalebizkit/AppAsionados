@@ -24,7 +24,7 @@
                     <td id="{{idReserva}}">{{fechaReserva}}</td>
                     <td id="{{ horas fecha}}">{{ hora}}:00 Hs</td>
                     <td><form action="/paginas/reservaUsuarioCancelar/{{idReserva}}" method="get">
-                    <button id="{{id}}" class="btn btn-warning" value="">Cancelar Reserva</button>
+                    <button id="{{id}}" class="btn btn-warning">Cancelar Reserva</button>
                     </form></td>
                 </tr>
                 {{/each}}
@@ -39,22 +39,36 @@
     </div> 
 </div>
 <script>     
-    function bloquearBoton() {
-         let horaActual= new Date().getHours();
-        let diaActual= new Date().getDay();    
-        let diaActualMilisegundos= new Date().getTime();    
-       {{#each reservas}}        
-          horaReserva= document.getElementById({{horas fecha}}).innerHTML;
+   async function bloquearBoton() {
+           let horaActual= new Date().getHours();
+            let diaActual= new Date().toISOString();
+            let diaActualSplit= diaActual.split('T')[0];
+            let diaActualMilisegundos= new Date().getTime();
+       {{#each reservas}} 
+       
+          horaReserva= document.getElementById({{ horas fecha }}).innerHTML;
           horaDeLaReserva = horaReserva.split(/[/ :]/)[0]-4;
-          fechaReservada= new Date(document.getElementById({{idReserva}}).innerHTML).getUTCDay();
-          fechaReservadaMilisegundos= +new Date(document.getElementById({{idReserva}}).innerHTML);
-          if (diaActualMilisegundos > fechaReservadaMilisegundos) {
-              document.getElementById({{id}}).disabled= true;
-          }
-         if((fechaReservada == diaActual)&&(horaActual > horaDeLaReserva)) {           
-              document.getElementById({{id}}).disabled= true;
-         }
+          fechaReservada= new Date(document.getElementById({{idReserva}}).innerHTML).toISOString();
+          fechaReservadaUTC= new Date(document.getElementById({{idReserva}}).innerHTML).toUTCString()
+          convertirAMilisegundos= Date.parse(fechaReservadaUTC); 
+                  
+            if (convertirAMilisegundos > diaActualMilisegundos) {
+                  document.getElementById({{id}}).disabled= false;
+                }
+           if((diaActualSplit == fechaReservada.split('T')[0]) & ( horaActual > horaDeLaReserva)) {
+               document.getElementById({{id}}).disabled= true;
+                }
+           
        {{/each}}
-     } 
-     bloquearBoton()   
+
+     }
+    bloquearBoton()   
+    {{!-- console.log(new Intl.DateTimeFormat('es-AR').format(new Date(document.getElementById(14).innerHTML)));
+    let fechaz= document.getElementById(14).innerHTML;
+    let año= fechaz.split(/[ -]/)[0];
+    let mes= fechaz.split(/[ -]/)[1];
+    let dia= fechaz.split(/[ -]/)[2]
+    console.log( Date.parse(dia+'/'+mes+'/'+año));
+    console.log(Date.parse(fechaz));
+    console.log(new Date()); --}}
 </script>

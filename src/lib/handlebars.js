@@ -8,7 +8,7 @@ const helpers= {};
 helpers.fechas= (timestamp) => {
     return dayjs(timestamp).format('DD/MM/YYYY')}
 helpers.horas= (timestamp) => {
-    return dayjs(timestamp).format('sss' + 1)
+    return dayjs(timestamp).format('1' +'sss')
 }
 helpers.fechaCompara= (timestamp) => {
     return dayjs(timestamp).format('YYYY-MM-DD')}

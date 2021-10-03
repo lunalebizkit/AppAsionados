@@ -12,13 +12,10 @@
                         <label for="numeroCancha">Numero de Cancha<span style="color: red;"> *</span></label>
                         <input type="number" name="numeroCancha" class="col-2 m-2" min="1" required>
                         <select name="idDeportes" class="btn btn-ls btn-primary" required>
-                            <option type="number" value="">Formato</option>
-                            <option type="number" value=1>Fútbol 5</option>
-                            <option type="number" value=2>Fútbol 7</option>
-                            <option type="number" value=3>Fútbol 11</option>
-                            <option type="number" value=4>Básquet </option>
-                            <option type="number" value=5>Pádel </option>
-                        
+                             <option value="" selected disabled>Formato</option>                         
+                            {{#each deporte}}
+                            <option type="number" value={{idDeportes}} required>{{deporte}}</option>                           
+                            {{/each}}
                         </select>
                     </div>
                     <div class="container mt-2">

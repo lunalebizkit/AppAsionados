@@ -1,15 +1,15 @@
 <div id="ticket">
-    <div class="progress">
+    <div class="progress mb-3">
         <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
     </div>
     <div class="container-fluid">
-        <div class="row row-cols-2">
-            <div class="col-md-4 m-0 mt-4 py-4" style="background-color: rgb(255,255,255, 0.5);">
-                <div class="text-center" disbled>
+        <div class="row row-cols-2 pb-5">
+            <div class="col-md-4 m-0 mt-3 py-4 pb-5" style="background-color: rgb(255, 255, 255, 0.5);">
+                <div class="text-center">
                     <h3>Elige Turno</h3>
                     <button class="btn btn-warning mb-3" id="botonTurnos"
                         onclick="return misTurnos({{turno.horaInicio}}, {{turno.horaFin}})">Ver Turnos</button>
-                    <form action="/paginas/reservaDeporte2/{{idCancha}}&{{fecha}}" method="POST">
+                    <form action="/paginas/reservaDeporte2/{{idCancha}}&fechaSeleccionada" method="POST">
                         <div class="container">
                             <div id="texto" class="row justify-content-around">
 
@@ -28,45 +28,35 @@
         </div>
     </div>
 </div>
-<!--
-<div id="ticket">
-    <div class="progress">
-        <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%"></div>
-    </div>
-    <div class="container-fluid">
-        <div class="row row-cols-2">
-            <div class="col-4 m-0 bg-white mt-4 py-5">
-                <div class="text-center" disbled>
-                    <h3>Elige un Deporte</h3>
-                    <form action="/paginas/reservaDeporte1/" method="GET">
-                        <select name="deporte" id="">
-                            {{#each deporte}}
-                            <option value="{{idDeportes}}">{{deporte}}</option>
-                            {{/each}}
-                        </select>
-                        <button type="submit" class="btn btn-success">Aceptar</button>
-                        <div class="col-1 mt-5 py-1">
-                            <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-outline-danger">Volver</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
--->
-
 <script type="text/javascript">
-    function misTurnos(a, b) {
-        for (var i = a; i <= b; i++) {
-            {{#each reservas }}
-            if (i == {{ hora }})
-        { document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-danger"><input type="radio" name="turno" id="" value="${i}" disabled> ${i} Hs</div>`; continue }
-            {{/each}}
-                document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-primary"><input type="radio" name="turno" id="" value="${i}" required> ${i} Hs</div>`;
-            }
+let tomarParametro = new URLSearchParams(window.location.href);
+let fechaSeleccionada = tomarParametro.get('fecha');
+let diaActual=  new Date();    
+function misTurnos(a, b) {        
+        const convertirFecha= (fecha)=>{
+            let mes= fecha.getMonth()+1;
+            if (mes < 10) {
+             mes='0' + mes}
+            convertirParaComparar= fecha.getFullYear() + "-"+ mes + "-"+ fecha.getDate();
+            return convertirParaComparar
         }
-        var btnTurnos = document.getElementById("botonTurnos");
-        var disableButton = function () { this.disabled = true; };
-        btnTurnos.addEventListener('click', disableButton, false);
+         let horaActual= new Date().getHours();      
+        for (let i = a; i <= b; i++) {              
+            
+            {{#each reservas }}
+          
+            if (i == {{ hora }}) {
+                 document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-danger"><input type="radio" name="turno" id="" value="${i}" disabled> ${i} Hs</div>`; continue;
+            }
+            {{/each}}       
+                 if ((convertirFecha(diaActual) == fechaSeleccionada) & ( horaActual >= i ))
+               {
+                continue;
+               }    
+                document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-primary"><input type="radio" name="turno" id="" value="${i}" required> ${i}:00 Hs.</div>`;
+            }
+        }      
+let btnTurnos = document.getElementById("botonTurnos");
+let disableButton = function () { this.disabled = true; };
+btnTurnos.addEventListener('click', disableButton, false);
 </script>

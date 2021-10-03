@@ -1,32 +1,74 @@
-<div id="inicio">
+<div id="ticket">
     <div class="container p-5">
-        <div class="card text-center mb-4">
-            <h2 class="mb-3 mx-auto">MIS RESERVAS</h2>
+           <div class="container text-center bg-white">
+            <h4 style="color: red;"><p>* Las reservas se podran cancelar 4hs antes de la fecha seleccionada</p></h4>
         </div>
-        <div id="scrollReservas">
-            <table class="table table-success table-hover">
-                <thead class="table-info">
-                    <th>Establecimiento</th>
-                    <th>Cancha</th>
-                    <th>Deporte</th>
-                    <th>Fecha</th>
-                    <th>Hora</th>
-                </thead>
-                <tbody>
-                    {{#each reservas}}
-                    <tr>
-                        <td>{{nombreEstablecimiento}}</td>
-                        <td>{{numeroCancha}}</td>
-                        <td>{{deporte}}</td>
-                        <td>{{fecha}}</td>
-                        <td>{{hora}}</td>
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
+        <table class="table table-success table-striped ">
+            <h2 class="text-white text-center mb-3">Mis Reservas</h2>
+            <thead>
+                <th>Fecha</th>
+                <th>Establecimiento</th>
+                <th>Cancha</th>
+                <th>Deporte</th>
+                <th>Fecha Reservada</th>
+                <th>Hora</th>
+                <th>Opcion</th>
+            </thead>
+            <tbody>
+                {{#each reservas}}
+                <tr>
+                    <td>{{fechas fecha}}</td>
+                    <td>{{nombreEstablecimiento}}</td>
+                    <td>{{numeroCancha}}</td>
+                    <td>{{deporte}}</td>
+                    <td id="{{idReserva}}">{{fechaReserva}}</td>
+                    <td id="{{ horas fecha}}">{{ hora}}:00 Hs</td>
+                    <td><form action="/paginas/reservaUsuarioCancelar/{{idReserva}}" method="get">
+                    <button id="{{id}}" class="btn btn-warning">Cancelar Reserva</button>
+                    </form></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+     
+           <div class="row py-5">
+        <div style="float: left" class="col-2 p-3">
+            <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
         </div>
     </div>
-    <div class="col-2 p-5">
-        <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
-    </div>
+    </div> 
 </div>
+<script>     
+   async function bloquearBoton() {
+           let horaActual= new Date().getHours();
+            let diaActual= new Date().toISOString();
+            let diaActualSplit= diaActual.split('T')[0];
+            let diaActualMilisegundos= new Date().getTime();
+       {{#each reservas}} 
+       
+          horaReserva= document.getElementById({{ horas fecha }}).innerHTML;
+          horaDeLaReserva = horaReserva.split(/[/ :]/)[0]-4;
+          fechaReservada= new Date(document.getElementById({{idReserva}}).innerHTML).toISOString();
+          fechaReservadaUTC= new Date(document.getElementById({{idReserva}}).innerHTML).toUTCString()
+          convertirAMilisegundos= Date.parse(fechaReservadaUTC); 
+                  
+            if (convertirAMilisegundos > diaActualMilisegundos) {
+                  document.getElementById({{id}}).disabled= false;
+                }
+           if((diaActualSplit == fechaReservada.split('T')[0]) & ( horaActual > horaDeLaReserva)) {
+               document.getElementById({{id}}).disabled= true;
+                }
+           
+       {{/each}}
+
+     }
+    bloquearBoton()   
+    {{!-- console.log(new Intl.DateTimeFormat('es-AR').format(new Date(document.getElementById(14).innerHTML)));
+    let fechaz= document.getElementById(14).innerHTML;
+    let año= fechaz.split(/[ -]/)[0];
+    let mes= fechaz.split(/[ -]/)[1];
+    let dia= fechaz.split(/[ -]/)[2]
+    console.log( Date.parse(dia+'/'+mes+'/'+año));
+    console.log(Date.parse(fechaz));
+    console.log(new Date()); --}}
+</script>

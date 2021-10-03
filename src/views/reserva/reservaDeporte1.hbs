@@ -8,7 +8,7 @@
         <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
     </div>
     <div class="container-fluid">
-        <div class="row row-cols-2">
+        <div class="row">
             <div class="col-md-4 m-0 mt-4 py-4" style="background-color: rgb(255, 255, 255, 0.5);">
                 <div class="text-center">
                     <h3>Establecimientos</h3>
@@ -22,13 +22,7 @@
                             <input type="radio" name="idCancha" value="{{id}}" required>
                         </div>
                         {{/each}}
-                        <button class="btn btn-success" type="submit">Aceptar</button>
-                        <div class="col-1 mt-5 py-1">
-                            <a id="volver" href="/paginas/reservaDeporte" type="button" class="btn btn-outline-danger">Volver</a>
-                        </div>
-                        <div class="col-1 py-1">
-                            <a id="volver" href="/paginas/inicio" type="button" class="btn btn-outline-danger">Salir</a>
-                        </div>
+                       
                     </form>
                 </div>
             </div>
@@ -61,6 +55,17 @@
                         {{/each}}
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container pb-5">
+                 <button class="btn btn-success" type="submit">Aceptar</button>
+                        <div class="col-1 mt-5 py-1">
+                            <a id="volver" href="/paginas/reservaDeporte" type="button" class="btn btn-outline-danger">Volver</a>
+                        </div>
+                        <div class="col-1 py-1">
+                            <a id="volver" href="/paginas/inicio" type="button" class="btn btn-outline-danger">Salir</a>
+                        </div>
             </div>
         </div>
     </div>

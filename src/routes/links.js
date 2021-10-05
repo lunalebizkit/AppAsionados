@@ -306,4 +306,17 @@ ruta.post('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
     res.redirect('/paginas/reservaUsuario/'+ idUsuarios);
 });
 
+//agregue pantalla mapa
+ruta.get('/mapa', estaLogueado, duenio, async (req, res) => {
+    const {idEstablecimiento}=req.params;
+    const establecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [idEstablecimiento]);  
+    console.info(establecimiento);
+    res.render('paginas/mapa', {establecimiento});
+});
+
+ruta.post('/mapa', estaLogueado, duenio, async (req, res) => {
+    await db.query('Insert into establecimiento (latitud, longitud) values (lat, long) where idEstablecimiento =?');
+    res.redirect('/paginas/mapa');
+});
+
 module.exports = ruta

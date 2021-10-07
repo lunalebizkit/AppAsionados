@@ -331,16 +331,40 @@ ruta.post('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
 });
 
 //agregue pantalla mapa
-ruta.get('/mapa', estaLogueado, duenio, async (req, res) => {
+ruta.get('/mapa/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
     const {idEstablecimiento}=req.params;
     const establecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [idEstablecimiento]);  
+    const cancha= establecimiento[0];
+
     console.info(establecimiento);
-    res.render('paginas/mapa', {establecimiento});
+    res.render('paginas/mapa', {cancha, idEstablecimiento});
 });
 
-ruta.post('/mapa', estaLogueado, duenio, async (req, res) => {
-    await db.query('Insert into establecimiento (latitud, longitud) values (lat, long) where idEstablecimiento =?');
-    res.redirect('/paginas/mapa');
+ruta.post('/mapa/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
+    const {mapLat} = req.body;
+    const {mapLong} = req.body;
+    const {idEstablecimiento}=req.params;
+    if (  await db.query('update establecimiento set latitud = ?, longitud = ? where idEstablecimiento =?', [mapLat, mapLong, idEstablecimiento])) {
+        req.flash('mensajeOk', 'Coordenada almacenada!!!');    
+        res.redirect('/paginas/mapa');
+    }else {
+        req.flash('mensajeMal', 'Error al guardar coordenada');
+        res.redirect('/paginas/mapa');
+    }   
+    //await db.query('Update establecimiento SET latitud = ? where idEstablecimiento =?', [filename, idEstablecimiento]);
+    //console.log(req.body);
+    //res.render('paginas/mapa');
 });
 
-module.exports = ruta
+ruta.get('/tutorialJugador', estaLogueado, async (req, res) => {
+    res.render('paginas/tutorialJugador');
+});
+
+ruta.get('/tutorialReserva', estaLogueado, async (req, res) => {
+    res.render('paginas/tutorialReserva');
+});
+
+ruta.get('/tutorialCancha', estaLogueado, async (req, res) => {
+    res.render('paginas/tutorialCancha');
+});
+module.exports = ruta;

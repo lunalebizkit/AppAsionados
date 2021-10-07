@@ -2,9 +2,12 @@
     <form method="POST" action="/paginas/mapa/{{idEstablecimiento}}">
         <div class="container-flex">
             <div class="d-flex justify-content-around p-4">
-                
-                <div id="showMap" style="width: 800px; height: 360px;"> </div>
-                
+            {{#with cancha}}
+                <div id="showMap" style="width: 800px; height: 360px;"> 
+                    <input id="mapLat" type="text" name="lat" value="">
+                    <input id="mapLong" type="text" name="long" value="">
+                </div>
+            {{/with}}   
             </div>   
         </div>
         <div class="col-5 mx-auto p-4" style="background-color: blanchedalmond;">
@@ -20,11 +23,14 @@
 </div>
 
 
+
 <script type="text/javascript"> 
+{{#with cancha}}
 function showGoogleMaps()
 {
     //Creamos el punto a partir de la latitud y longitud de una dirección:
-    var point = new google.maps.LatLng('-32.97347599652521', '-68.81319506294416');
+    var point = new google.maps.LatLng({{latitud}}, {{longitud}});    
+    
  
     //Configuramos las opciones indicando zoom, punto y tipo de mapa
     var myOptions = {
@@ -41,17 +47,19 @@ function showGoogleMaps()
         position:point,
         draggable: true,
         map: map,
-        title: "Casa - Calle Emilio Civit 2177, Maipú"
+        title: '{{direccion}}'
     });
-    google.maps.event.addListener(marker, 'dragend', function() {
+    google.maps.event.addListener(marker, 'dragend', function(event) {
         
-    alert('Latitud = '+marker.getPosition().lat()+ ', Longitud = '+marker.getPosition().lng());
-    var lat = marker.getPosition().lat();
-    var long = marker.getPosition().lng();
-
-    //await db.query('Insert into establecimiento (latitud, longitud) VALUES (lat, long)');
+        //alert('Latitud = '+marker.getPosition().lat()+ ', Longitud = '+marker.getPosition().lng());
+        var lat = marker.getPosition().lat();
+        var long = marker.getPosition().lng();
+        document.getElementById("mapLat").setAttribute("value", lat);
+        document.getElementById("mapLong").setAttribute("value", long);
     });
+    
 }
 showGoogleMaps();
+{{/with}}
 </script>
 

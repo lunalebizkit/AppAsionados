@@ -316,8 +316,6 @@ ruta.get('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
     const { idCancha, fecha}= req.session.newReserva;
      const turnos= await db.query('select * from  horarios where idCancha =?', [idCancha]);
      const reservas= await db.query('select hora from reserva where fechaReserva =? and estado = "reservado" and idCancha =?', [fecha, idCancha]);
-     console.info(reservas);
-     console.info(fecha);
      const turno= turnos[0];
     res.render('reserva/reservaDeporte2', {turno, idCancha, reservas})
 });
@@ -335,7 +333,6 @@ ruta.get('/mapa/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
     const {idEstablecimiento}=req.params;
     const establecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [idEstablecimiento]);  
     const cancha= establecimiento[0];
-
     console.info(establecimiento);
     res.render('paginas/mapa', {cancha, idEstablecimiento});
 });

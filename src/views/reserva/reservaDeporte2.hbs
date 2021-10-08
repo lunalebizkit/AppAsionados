@@ -31,29 +31,37 @@
 <script type="text/javascript">
 let tomarParametro = new URLSearchParams(window.location.href);
 let fechaSeleccionada = tomarParametro.get('fecha');
-let diaActual=  new Date();    
+let diaActual=  new Date()
 function misTurnos(a, b) {        
         const convertirFecha= (fecha)=>{
             let mes= fecha.getMonth()+1;
             if (mes < 10) {
              mes='0' + mes}
-            convertirParaComparar= fecha.getFullYear() + "-"+ mes + "-"+ fecha.getDate();
+             let dia= fecha.getDate();
+             if (dia < 10) {
+                 dia= '0' + dia
+             } 
+            convertirParaComparar= fecha.getFullYear() + "-"+ mes + "-"+ dia;
             return convertirParaComparar
         }
-         let horaActual= new Date().getHours();      
+         let horaActual= new Date().getHours()+1;
+         let minutoActual= new Date().getMinutes();
+         let minutos= new Date().getMinutes()
+         let hora= new Date().getHours()
+         let horaAhora=`${hora}:${minutos}`
+        
         for (let i = a; i <= b; i++) {              
-            
+            if ((convertirFecha(diaActual) == fechaSeleccionada) & ( horaActual >= i) ) {
+                continue } 
             {{#each reservas }}
           
             if (i == {{ hora }}) {
-                 document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-danger"><input type="radio" name="turno" id="" value="${i}" disabled> ${i} Hs</div>`; continue;
+                 document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-danger"><input type="radio" name="turno" id="" value="${i}" disabled> ${i}:00 Hs</div>`; continue;
             }
-            {{/each}}       
-                 if ((convertirFecha(diaActual) == fechaSeleccionada) & ( horaActual >= i ))
-               {
-                continue;
-               }    
-                document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-primary"><input type="radio" name="turno" id="" value="${i}" required> ${i}:00 Hs.</div>`;
+            {{/each}}
+           console.log()
+            
+            document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-primary"><input type="radio" name="turno" id="" value="${i}" required> ${i}:00 Hs.</div>`;
             }
         }      
 let btnTurnos = document.getElementById("botonTurnos");

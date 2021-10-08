@@ -29,7 +29,13 @@
 function showGoogleMaps()
 {
     //Creamos el punto a partir de la latitud y longitud de una dirección:
-    var point = new google.maps.LatLng({{latitud}}, {{longitud}});    
+    if ({{latitud}} == null){
+        var point = new google.maps.LatLng({{latitud}}, {{longitud}});
+    }else{
+        var point = new google.maps.LatLng(-32.98453020055478, -68.7883132302121);
+    };
+    
+        
     
  
     //Configuramos las opciones indicando zoom, punto y tipo de mapa

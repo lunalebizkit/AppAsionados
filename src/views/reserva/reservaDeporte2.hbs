@@ -37,31 +37,26 @@ function misTurnos(a, b) {
             let mes= fecha.getMonth()+1;
             if (mes < 10) {
              mes='0' + mes}
-             let dia= fecha.getDate();
-             if (dia < 10) {
-                 dia= '0' + dia
-             } 
+            let dia= fecha.getDate();
+            if (dia < 10) {
+             dia='0' + dia}
             convertirParaComparar= fecha.getFullYear() + "-"+ mes + "-"+ dia;
             return convertirParaComparar
         }
-         let horaActual= new Date().getHours()+1;
-         let minutoActual= new Date().getMinutes();
-         let minutos= new Date().getMinutes()
-         let hora= new Date().getHours()
-         let horaAhora=`${hora}:${minutos}`
-        
+         let horaActual= new Date().getHours()+1;    
+         
         for (let i = a; i <= b; i++) {              
-            if ((convertirFecha(diaActual) == fechaSeleccionada) & ( horaActual >= i) ) {
-                continue } 
+            if ((convertirFecha(diaActual) == fechaSeleccionada) & ( horaActual >= i )) {
+                continue;
+            }    
+                
             {{#each reservas }}
           
             if (i == {{ hora }}) {
-                 document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-danger"><input type="radio" name="turno" id="" value="${i}" disabled> ${i}:00 Hs</div>`; continue;
+                document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-danger"><input type="radio" name="turno" id="" value="${i}" disabled> ${i}:00 Hs</div>`; continue;
             }
-            {{/each}}
-           console.log()
-            
-            document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-primary"><input type="radio" name="turno" id="" value="${i}" required> ${i}:00 Hs.</div>`;
+            {{/each}}       
+            document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-primary"><input type="radio" name="turno" id="" value="${i}" required> ${i}:00 Hs</div>`;
             }
         }      
 let btnTurnos = document.getElementById("botonTurnos");

@@ -8,7 +8,8 @@
                         <a class="btn btn-dark btn-lg dropdown-toggle text-white" href="#" id="dropdown04"
                             data-bs-toggle="dropdown" aria-expanded="false">EQUIPOS</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#misEquipo" data-bs-whatever="@equipo">Mis Equipos</a></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#misEquipo"
+                                    data-bs-whatever="@equipo">Mis Equipos</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -17,22 +18,18 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="/paginas/jugadores/{{user.idUsuarios}}">Ver Jugadores</a></li>
+                            <li><a class="dropdown-item" href="/paginas/jugadores/{{user.idUsuarios}}">Ver Jugadores</a>
+                            </li>
                         </ul>
                     </a>
                     <div class="d-flex justify-content-between m-auto ">
-                        <form class="d-flex" method="GET" action="">
-                            <input type="search" class="form-control" id= "formulario" placeholder="Buscar" autofocus>
-                            <button class="btn btn-danger" type="submit" id="boton">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </form>
-                       <script>
-                           const formulario = document.querySelector('#formulario');
-                           const boton = document.querySelector('#boton');
-                           
-                       </script> 
+                        <input id="busqueda" type="text" class="form-control" placeholder="Buscar" onkeyup="buscar();"
+                            autofocus>
+                        <button class="btn btn-danger" id="boton">
+                            <i class="fas fa-search"></i>
+                        </button>
                     </div>
+
                 </div>
                 <div id="scroll">
                     <table class="table table-hover table-info">
@@ -43,8 +40,9 @@
                                 <th>Deporte</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {{#each equipos}}
+                        <tbody id="tblEquipos">
+
+                            {{#each equipos }}
                             <tr>
                                 <td data-bs-toggle="tooltip" data-bs-placement="top" title="{{email}}">
                                     {{nombreUsuario}}
@@ -54,6 +52,7 @@
                                 <td>{{deporte}}</td>
                             </tr>
                             {{/each}}
+
                         </tbody>
                     </table>
                 </div>
@@ -66,8 +65,8 @@
                         <h3 class=" text-white px-5"><b>CANCHAS</b></h3>
                     </a>
                     <div class="d-flex justify-content-between m-auto ">
-                        <input type="text" class="form-control" name="buscarCancha" placeholder="Buscar" autofocus>
-                        <button id="msj" class="btn btn-danger" type="reset">
+                        <input id="busqueda1" type="text" class="card-filter" placeholder="Buscar" onkeyup="buscar1();" autofocus>
+                        <button class="btn btn-danger" type="reset" id="boton">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
@@ -78,28 +77,31 @@
                             <tr>
                                 <th>Establecimiento</th>
                                 <th>Dirección</th>
+                                <th>Deporte</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tblCancha">
                             {{#each canchas}}
                             <tr>
                                 <td data-bs-toggle="tooltip" data-bs-placement="top" title="{{email}}">
                                     <a href="/paginas/verCancha/{{idEstablecimiento}}">{{nombreEstablecimiento}}</a>
                                 </td>
                                 <td>{{direccion}}</td>
+                                <td>#</td>
                             </tr>
                             {{/each}}
                         </tbody>
                     </table>
                 </div>
+
             </div>
         </div>
     </div>
     <div class="col-2  p-4">
         <a id="volver" href="/paginas/deporte" type="button" class="btn btn-danger">Volver</a>
     </div>
-</div>
 
+</div>
 <!-- The Modal -->
 <div class="modal fade" id="misEquipo" tabindex="-1">
     <div class="modal-dialog">
@@ -115,18 +117,21 @@
             <div class="modal-body" id="misEquipo">
                 <table class="table text-center">
                     <tbody>
-                         {{#if misEquipos}}
-                            {{#each misEquipos}}
+                        {{#if misEquipos}}
+                        {{#each misEquipos}}
                         <tr>
                             <td><i>
                                     <h4><a class="text-white"
                                             href="/paginas/miEquipo/{{nombreEquipo}}">{{nombreEquipo}}</a></h4>
                                 </i></td>
                         </tr>
-                            {{/each}}
+                        {{/each}}
                         {{else}}
-                        <h4><p  class="text-white text-center" >Aún no tienes equipo</p></h4>
-                        <h5 class="text-center"><a href="/paginas/crearEquipoFutbol/{{user.idUsuarios}}"><em>Crea tu propio Equipo!</em></a></h5>
+                        <h4>
+                            <p class="text-white text-center">Aún no tienes equipo</p>
+                        </h4>
+                        <h5 class="text-center"><a href="/paginas/crearEquipoFutbol/{{user.idUsuarios}}"><em>Crea tu
+                                    propio Equipo!</em></a></h5>
                         {{/if}}
                     </tbody>
                 </table>
@@ -139,3 +144,53 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function buscar() {
+        var tabla = document.getElementById('tblEquipos');
+        var busqueda = document.getElementById('busqueda').value.toLowerCase();
+        var cellsOfRow = " ";
+        var found = false;
+        var compareWith = " ";
+        for (var i = 1; i < tabla.rows.length; i++) {
+            cellsOfRow = tabla.rows[i].getElementsByTagName('td')
+            found = false;
+            for (var j = 0; j < cellsOfRow.length && !found; j++) {
+                compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+                if (busqueda.length == 0 || (compareWith.indexOf(busqueda) > -1)) {
+                    found = true;
+                }
+            }
+            if (found) {
+                tabla.rows[i].style.display = '';
+            } else {
+                tabla.rows[i].style.display = 'none';
+            }
+        }
+    }
+   
+</script>
+<script type="text/javascript">
+    function buscar1() {
+        var tabla = document.getElementById('tblCancha');
+        var busqueda = document.getElementById('busqueda1').value.toLowerCase();
+        var cellsOfRow = " ";
+        var found = false;
+        var compareWith = " ";
+        for (var i = 1; i < tabla.rows.length; i++) {
+            cellsOfRow = tabla.rows[i].getElementsByTagName('td')
+            found = false;
+            for (var j = 0; j < cellsOfRow.length && !found; j++) {
+                compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+                if (busqueda.length == 0 || (compareWith.indexOf(busqueda) > -1)) {
+                    found = true;
+                }
+            }
+            if (found) {
+                tabla.rows[i].style.display = '';
+            } else {
+                tabla.rows[i].style.display = 'none';
+            }
+        }
+    }
+   
+</script>

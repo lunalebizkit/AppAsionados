@@ -93,8 +93,7 @@ ruta.post('/crearEquipoFutbol/:id', estaLogueado, async (req, res) => {
     const idUsuarios = id
     const { nombreEquipo, posicion, idDeportes } = req.body;
     let newEquipo = {
-        nombreEquipo,
-        posicion, 
+        nombreEquipo, 
         idDeportes,
         idUsuarios
     };

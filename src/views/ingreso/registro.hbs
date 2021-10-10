@@ -19,10 +19,10 @@
                     <div class="card-body">
                         <form action="/registro" method="POST">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="nombre" placeholder="Nombre" pattern="[a-zA-Z]{2,40}" oninvalid="setCustomValidity('Nombre no debe contener numeros')" onchange="try{setCustomValidity('')}catch(e){}" autofocus required>
+                                <input type="text" class="form-control" name="nombre" placeholder="Nombre" pattern="[a-zA-Z]{2,40}" oninvalid="setCustomValidity('Nombre no debe contener numeros ni espacios')" onchange="try{setCustomValidity('')}catch(e){}" autofocus required>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="apellido" placeholder="Apellido" pattern="[a-zA-Z]{2,40}" oninvalid="setCustomValidity('Apellido no debe contener numeros')" onchange="try{setCustomValidity('')}catch(e){}"  required>
+                                <input type="text" class="form-control" name="apellido" placeholder="Apellido" pattern="[a-zA-Z]{2,40}" oninvalid="setCustomValidity('Apellido no debe contener numeros ni espacios')" onchange="try{setCustomValidity('')}catch(e){}"  required>
                             </div>
                              <div class="input-group mb-3">
                                 <input type="email" class="form-control" name="email" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
@@ -31,8 +31,10 @@
                                 <input type="text" class="form-control" name="nombreUsuario" placeholder="Usuario" required>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="password" class="form-control" name="contrasenia" placeholder="Contraseña" pattern="[a,z0-9]{3,8}" required>
+                                <input type="password" class="form-control" name="contrasenia" placeholder="Contraseña" pattern="[a-z0-9]{3,8}" required>
                             </div>
+                            <span style="font-size:small">(La contraseña debe ser alfa-numérica y contener de 3 a 8 caracteres)</span>
+                            <span><hr class="dropdown-divider"></span>
                             <div class="d-grid mb-2">
                                 <button type="submit" class="btn btn-success btn-block">
                                     Registrarte

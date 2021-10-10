@@ -1,19 +1,20 @@
 <div id="cancha" style="width: 100vw; height: 33rem">
     <div class="container-fluid p-3">
-        <div class="card bg-dark col-md-5 m-auto p-5">
+        <div class="card bg-dark col-md-5 m-auto p-3">
             <div class="col-md-15">
                 {{#with establecimiento}}
-                <div class="card text-center mb-4">
+                <div class="card text-center mb-2">
                     <div class="text-center">
-                        
                         <h2>{{nombreEstablecimiento}}</h2>
                     </div>
                 </div>
                 <div id="semiTransparente" class="card-body text-white">
-
                     <i type="text">Dirección: <b>{{direccion}}</b></i>
                     <br>
                     <i type="text">Deporte: <b>Fútbol 5</b></i>
+                </div>
+                <div class="d-flex justify-content-around">
+                    <div id="showMap" style="width: 480px; height: 263px;"></div>
                 </div>
                  {{/with}}
             </div>
@@ -24,3 +25,33 @@
     </div>
   
 </div>
+
+<script type="text/javascript"> 
+{{#with establecimiento}}
+function showGoogleMaps()
+{
+    //Creamos el punto a partir de la latitud y longitud de una dirección:
+    var point = new google.maps.LatLng({{latitud}}, {{longitud}});    
+    
+ 
+    //Configuramos las opciones indicando zoom, punto y tipo de mapa
+    var myOptions = {
+        zoom: 15, 
+        center: point, 
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+ 
+    //Creamos el mapa y lo asociamos a nuestro contenedor
+    var map = new google.maps.Map(document.getElementById("showMap"),  myOptions);
+ 
+    //Mostramos el marcador en el punto que hemos creado
+    var marker = new google.maps.Marker({
+        position:point,
+        draggable: false,
+        map: map,
+        title: '{{direccion}}'
+    });    
+}
+showGoogleMaps();
+{{/with}}
+</script>

@@ -30,9 +30,10 @@ function showGoogleMaps()
 {
     //Creamos el punto a partir de la latitud y longitud de una dirección:
     if ({{latitud}} == null){
-        var point = new google.maps.LatLng({{latitud}}, {{longitud}});
-    }else{
+        console.log({{latitud}});
         var point = new google.maps.LatLng(-32.98453020055478, -68.7883132302121);
+    }else{
+        var point = new google.maps.LatLng({{latitud}}, {{longitud}});
     };
     
         

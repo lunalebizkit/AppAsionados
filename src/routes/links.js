@@ -253,8 +253,6 @@ ruta.get('/reservaUsuario/:idUsuario', estaLogueado, async (req, res) => {
     const {idUsuario}= req.params;
     const diaActual= new Date().toISOString().split('T')[0]
     const reservas= await db.query("Select reserva.idReserva, cancha.id, reserva.fechaReserva, deporte.deporte, reserva.fecha, reserva.hora, cancha.numeroCancha, establecimiento.nombreEstablecimiento from reserva join establecimiento join cancha join deporte where deporte.idDeportes = cancha.idDeportes and cancha.id = reserva.idCancha and reserva.estado = 'reservado' and establecimiento.idEstablecimiento = cancha.idEstablecimiento and idUsuario =? and reserva.estado = 'reservado' and reserva.fechaReserva >= ? order by reserva.fechaReserva desc", [idUsuario, diaActual]);
-    
-  
       res.render('paginas/reservaUsuario', {reservas});
 });
 ruta.get('/reservaUsuarioCancelar/:id', estaLogueado, async (req, res)=>{    

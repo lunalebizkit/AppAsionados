@@ -74,13 +74,8 @@
                         <h3 class=" text-white px-5"><b>CANCHAS</b></h3>
                     </a>
                     <div class="d-flex justify-content-between m-auto ">
-<<<<<<< HEAD
                         <input id="busqueda1" type="text" class="card-filter" placeholder="Buscar" onkeyup="buscar1();" autofocus>
                         <button class="btn btn-danger" type="reset" id="boton">
-=======
-                        <input type="text" class="form-control" name="buscarCancha" placeholder="Buscar" autofocus>
-                        <button class="btn btn-danger" type="reset">
->>>>>>> 6f46d83282b874d3e40492588120e6b424779f94
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
@@ -165,7 +160,7 @@
         var cellsOfRow = " ";
         var found = false;
         var compareWith = " ";
-        for (var i = 1; i < tabla.rows.length; i++) {
+        for (var i = 0; i < tabla.rows.length; i++) {
             cellsOfRow = tabla.rows[i].getElementsByTagName('td')
             found = false;
             for (var j = 0; j < cellsOfRow.length && !found; j++) {

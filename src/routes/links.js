@@ -64,8 +64,8 @@ ruta.get('/vistaAdmin', estaLogueado, admin, async (req, res) => {
     const usuarios= await db.query('select * from usuarios');
     const equipos= await db.query('select * from equipos');
     const establecimiento= await db.query('select * from establecimiento');
-   
-    res.render('paginas/vistaAdmin', {usuarios, equipos, establecimiento});
+   const deporte= await db.query('Select * from deporte')
+    res.render('paginas/vistaAdmin', {usuarios, equipos, establecimiento, deporte});
 });
 ruta.post('/vistaAdmin', admin, async (req, res) => {
     console.info(req.body);
@@ -156,6 +156,18 @@ ruta.get('/fallo/:idReserva&:idEstablecimiento',estaLogueado, duenio, async(req,
         console.info(error)
         req.flash('mensajeMal', 'No se pudo actualizar estado')
         res.redirect('/paginas/reservaEstablecimiento/' + idEstablecimiento)
+    }   
+});
+ruta.get('/crearDep',estaLogueado, admin, async(req, res)=>{
+    const {deporte}= req.query;
+    try {
+        await db.query('Insert into deporte set?', {'deporte': deporte});
+        req.flash('mensajeOk', 'Deporte Creado!!!')
+        res.redirect('/paginas/vistaAdmin')
+    } catch (error) {
+        console.info(error)
+        req.flash('mensajeMal', 'No se pudo crear el Deporte')
+        res.redirect('/paginas/vistaAdmin')
     }   
 });
 //pantalla crear cancha

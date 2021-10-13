@@ -60,10 +60,10 @@
             </div>
 
             <!--Tabla Canchas-->
-            <div id="tablaEquipo" class="col-lg-5 m-2 p-2">
+            <div id="tablaEquipo" class="col-lg-6 m-2 p-2">
                 <form class="d-flex">
                     <a class="navbar-brand" href="#">
-                        <h3 class=" text-white px-5"><b>CANCHAS</b></h3>
+                        <h4 class=" text-white px-4"><b>ESTABLECIMIENTOS</b></h4>
                     </a>
                     <div class="d-flex justify-content-between m-auto ">
                         <input id="busqueda1" type="text" class="card-filter" placeholder="Buscar" onkeyup="buscar1();" autofocus>
@@ -83,7 +83,7 @@
                         </thead>
                         <tbody id="tblCancha">
                             {{#each canchas}}
-                            <tr id="texto1">
+                            <tr>
                                 <td data-bs-toggle="tooltip" data-bs-placement="top" title="{{email}}">
                                     <a href="/paginas/verCancha/{{idEstablecimiento}}">{{nombreEstablecimiento}}</a>
                                 </td>

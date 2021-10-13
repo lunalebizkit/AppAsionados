@@ -43,24 +43,25 @@
            let horaActual= new Date().getHours();
             let diaActual= new Date().toISOString();
             let diaActualSplit= diaActual.split('T')[0];
-            let diaActualMilisegundos= new Date().getTime();
+            let diaActualMilisegundos= new Date().getTime();            
        {{#each reservas}} 
-       
+        
           horaReserva= document.getElementById({{ horas fecha }}).innerHTML;
           horaDeLaReserva = horaReserva.split(/[/ :]/)[0]-4;
           fechaReservada= new Date(document.getElementById({{idReserva}}).innerHTML).toISOString();
           fechaReservadaUTC= new Date(document.getElementById({{idReserva}}).innerHTML).toUTCString()
-          convertirAMilisegundos= Date.parse(fechaReservadaUTC); 
-                  
-            if (convertirAMilisegundos > diaActualMilisegundos) {
-                  document.getElementById({{id}}).disabled= false;
-                }
-           if((diaActualSplit == fechaReservada.split('T')[0]) & ( horaActual > horaDeLaReserva)) {
+          convertirAMilisegundos= Date.parse(fechaReservadaUTC);
+          console.log(horaDeLaReserva)  
+          console.log(horaActual)  
+             {{!-- if (convertirAMilisegundos > diaActualMilisegundos) {
+                  document.getElementById({{id}}).disabled= true;
+                }  --}}
+           if((diaActualSplit == fechaReservada.split('T')[0]) && ( horaActual >= horaDeLaReserva)) {
                document.getElementById({{id}}).disabled= true;
                 }
            
        {{/each}}
-
+        
      }
     bloquearBoton()   
     {{!-- console.log(new Intl.DateTimeFormat('es-AR').format(new Date(document.getElementById(14).innerHTML)));

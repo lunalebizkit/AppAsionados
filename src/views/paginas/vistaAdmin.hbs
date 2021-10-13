@@ -18,94 +18,111 @@
     }
 
 </script>
-<div class="container">
-    <div class="btn-group mb-3">
-        <button class="btn btn-outline-info" onclick="mostrar(2,1)" ondblclick="mostrar(2,0)">
-            <h4><b>CANCHAS</b></h4>
-        </button>
-        <button class="btn btn-outline-info" onclick="mostrar(0,1)" ondblclick="mostrar(0,0)">
-            <h4><b>EQUIPOS</b></h4>
-        </button>
-        <button class="btn btn-outline-info" onclick="mostrar(1,1)" ondblclick="mostrar(1,0)">
-            <h4><b>USUARIOS</b></h4>
-        </button>
-    </div>
-    <div class="justify-content-around">
-        <div class="container-fluid" id="tablaEquipo" style="display: none;">          
-            <table class="table table-hover bg-warning">
-                  <h2 class="text-white" style="text-align: center;"><b>EQUIPOS</b></h2>
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Nombre Equipo</th>
-                        <th>Deporte</th>
-                        <th>Usuario</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {{#each equipos}}
-                    <tr>
-                        <td>{{idEquipo}}</td>
-                        <td>{{nombreEquipo}}</td>
-                        <td>{{idDeporte}}</td>
-                        <td>{{idUsuarios}}</td>
-                    {{/each}}
-                </tbody>
-            </table>
-
+<div class="row">
+<div class="col md-4" style="color: red;">
+    <h4>hola</h4>
+    <h4>hola</h4>
+    <h4>hola</h4>
+    <h4>hola</h4>
+    <h4>hola</h4>
+    <h4>hola</h4>
+    <h4>hola</h4>
+    <h4>hola</h4>
+    <h4>hola</h4>
+    <h4>hola</h4>
+    <h4>hola</h4>
+</div>
+<div class="col md-8">
+    <div class="container mt-2">
+        <div class="btn-group mb-3">
+            <button class="btn btn-outline-info" onclick="mostrar(2,1)" ondblclick="mostrar(2,0)">
+                <h4><b>CANCHAS</b></h4>
+            </button>
+            <button class="btn btn-outline-info" onclick="mostrar(0,1)" ondblclick="mostrar(0,0)">
+                <h4><b>EQUIPOS</b></h4>
+            </button>
+            <button class="btn btn-outline-info" onclick="mostrar(1,1)" ondblclick="mostrar(1,0)">
+                <h4><b>USUARIOS</b></h4>
+            </button>
         </div>
-        <div class="container-fluid" id="tablaCanchas" style="display: none;">
-            <table class="table table-hover bg-warning">
-                <h2 class="text-white" style="text-align: center;"><b>CANCHAS</b></h2>
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th style="text-align: center;"><span style="color: red;">Nombre</span></th>
-                        <th style="text-align: center;">Direccion</th>
-                        <th style="text-align: center;">Contacto</th>
-                        <th style="text-align: center;">Dueño</th>
+        <div class="justify-content-around">
+            <div class="container-fluid" id="tablaEquipo" style="display: none;">
+                <table class="table table-hover bg-warning">
+                    <h2 class="text-white" style="text-align: center;"><b>EQUIPOS</b></h2>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre Equipo</th>
+                            <th>Deporte</th>
+                            <th>Usuario</th>
+                        </tr>
+                    </thead>
 
-                    </tr>
-                </thead>
+                    <tbody>
+                        {{#each equipos}}
+                        <tr>
+                            <td>{{idEquipo}}</td>
+                            <td>{{nombreEquipo}}</td>
+                            <td>{{idDeporte}}</td>
+                            <td>{{idUsuarios}}</td>
+                            {{/each}}
+                    </tbody>
+                </table>
 
-                <tbody>
-                    {{#each establecimiento}}
-                    <tr>
-                        <td>{{idEstablecimiento}}</td>
-                        <td>{{nombreEstablecimiento}}</td>
-                        <td>{{direccion}}</td>
-                        <td>{{cuit}}</td>
-                        <td>{{idUsuarios}}</td>                
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
+            </div>
+            <div class="container-fluid" id="tablaCanchas" style="display: none;">
+                <table class="table table-hover bg-warning">
+                    <h2 class="text-white" style="text-align: center;"><b>CANCHAS</b></h2>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th style="text-align: center;"><span style="color: red;">Nombre</span></th>
+                            <th style="text-align: center;">Direccion</th>
+                            <th style="text-align: center;">Contacto</th>
+                            <th style="text-align: center;">Dueño</th>
 
-        </div>
-        <div id="tablaUsuario" class="container-fluid" style="display: none;">
-            <table class="table table-hover bg-warning">
-                <h2 class="text-white" style="text-align: center;"><b>USUARIOS</b></h2>
-                <thead>
-                    <tr>
-                        <th>Usuario</th>
-                        <th>Nombre</th>
-                        <th>Contacto</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each usuarios}}
-                    <tr>
-                        <td>{{nombreUsuario}}</td>
-                        <td>{{nombre}} {{apellido}}</td>
-                        <td>{{email}}</td>
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {{#each establecimiento}}
+                        <tr>
+                            <td>{{idEstablecimiento}}</td>
+                            <td>{{nombreEstablecimiento}}</td>
+                            <td>{{direccion}}</td>
+                            <td>{{cuit}}</td>
+                            <td>{{idUsuarios}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+
+            </div>
+            <div id="tablaUsuario" class="container-fluid" style="display: none;">
+                <table class="table table-hover bg-warning">
+                    <h2 class="text-white" style="text-align: center;"><b>USUARIOS</b></h2>
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Contacto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each usuarios}}
+                        <tr>
+                            <td>{{nombreUsuario}}</td>
+                            <td>{{nombre}} {{apellido}}</td>
+                            <td>{{email}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
-<div style = "float: left" class="col-2  p-4">
-        <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
-    </div>
+</div>
+<div style="float: left" class="col-2  p-4">
+    <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
+</div>

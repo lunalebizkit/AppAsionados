@@ -131,8 +131,32 @@ ruta.get('/duenio', estaLogueado, duenio, async (req, res) => {
 });
 ruta.get('/reservaEstablecimiento/:idEstablecimiento', estaLogueado, duenio, async(req, res)=>{
     const {idEstablecimiento}= req.params;
-    const establecimiento= await db.query('Select * from reserva join cancha join establecimiento join usuarios where usuarios.idUsuarios= reserva.idUsuario and cancha.idEstablecimiento = establecimiento.idEstablecimiento and reserva.idCancha = cancha.id and establecimiento.idEstablecimiento =?', [idEstablecimiento]);
-    res.render('paginas/reservaEstablecimiento', {establecimiento});
+    const establecimiento= await db.query('Select * from reserva join cancha join establecimiento join usuarios where usuarios.idUsuarios= reserva.idUsuario and cancha.idEstablecimiento = establecimiento.idEstablecimiento and reserva.idCancha = cancha.id and establecimiento.idEstablecimiento =? and reserva.estado = "reservado" order by reserva.fechaReserva desc', [idEstablecimiento]);
+    res.render('paginas/reservaEstablecimiento', {establecimiento, idEstablecimiento});
+});
+ruta.get('/asistio/:idReserva&:idEstablecimiento',estaLogueado, duenio, async(req, res)=>{
+    const {idReserva, idEstablecimiento}= req.params;
+    try {
+        await db.query('Update reserva set estado = "Asistio" where idReserva =?', [idReserva]);
+        req.flash('mensajeOk', 'Turno Actulizado')
+        res.redirect('/paginas/reservaEstablecimiento/' + idEstablecimiento)
+    } catch (error) {
+        console.info(error)
+        req.flash('mensajeMal', 'No se pudo actualizar estado')
+        res.redirect('/paginas/reservaEstablecimiento/' + idEstablecimiento)
+    }   
+});
+ruta.get('/fallo/:idReserva&:idEstablecimiento',estaLogueado, duenio, async(req, res)=>{
+    const {idReserva, idEstablecimiento}= req.params;
+    try {
+        await db.query('Update reserva set estado = "No Asistio" where idReserva =?', [idReserva]);
+        req.flash('mensajeOk', 'Turno Actulizado')
+        res.redirect('/paginas/reservaEstablecimiento/' + idEstablecimiento)
+    } catch (error) {
+        console.info(error)
+        req.flash('mensajeMal', 'No se pudo actualizar estado')
+        res.redirect('/paginas/reservaEstablecimiento/' + idEstablecimiento)
+    }   
 });
 //pantalla crear cancha
 ruta.get('/cancha/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {

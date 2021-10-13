@@ -21,10 +21,10 @@
                     <td>{{nombreEstablecimiento}}</td>
                     <td>{{numeroCancha}}</td>
                     <td>{{deporte}}</td>
-                    <td id="{{idReserva}}">{{fechaReserva}}</td>
-                    <td id="{{ horas fecha}}">{{ hora}}:00 Hs</td>
+                    <td>{{fechaReserva}}</td>
+                    <td>{{ hora}}:00 Hs</td>
                     <td><form action="/paginas/reservaUsuarioCancelar/{{idReserva}}" method="get">
-                    <button id="{{id}}" class="btn btn-warning">Cancelar Reserva</button>
+                    <button class="btn btn-warning">Cancelar Reserva</button>
                     </form></td>
                 </tr>
                 {{/each}}
@@ -56,7 +56,7 @@
         for (var i = 0; i < tabla.rows.length; i++) {
             celdaFechaReservada= tabla.rows[i].children[4].innerHTML
             celdaHoraReservada= tabla.rows[i].children[5].innerHTML.split(/[/ :]/)[0]
-            if ((convertirFecha(diaActual) == celdaFechaReservada) & (horaActual > celdaHoraReservada)){        tabla.rows[i].children[6].children[0][0].disabled= 'true'               
+            if ((convertirFecha(diaActual) == celdaFechaReservada) & (horaActual >= celdaHoraReservada)){        tabla.rows[i].children[6].children[0][0].disabled= 'true'               
             }
             if (celdaFechaReservada < (convertirFecha(diaActual))) {
                  tabla.rows[i].children[6].children[0][0].disabled= 'true'

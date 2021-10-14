@@ -64,8 +64,8 @@ ruta.get('/vistaAdmin', estaLogueado, admin, async (req, res) => {
     const usuarios= await db.query('select * from usuarios');
     const equipos= await db.query('select * from equipos');
     const establecimiento= await db.query('select * from establecimiento');
-   
-    res.render('paginas/vistaAdmin', {usuarios, equipos, establecimiento});
+   const deporte= await db.query('Select * from deporte')
+    res.render('paginas/vistaAdmin', {usuarios, equipos, establecimiento, deporte});
 });
 ruta.post('/vistaAdmin', admin, async (req, res) => {
     console.info(req.body);
@@ -131,8 +131,44 @@ ruta.get('/duenio', estaLogueado, duenio, async (req, res) => {
 });
 ruta.get('/reservaEstablecimiento/:idEstablecimiento', estaLogueado, duenio, async(req, res)=>{
     const {idEstablecimiento}= req.params;
-    const establecimiento= await db.query('Select * from reserva join cancha join establecimiento join usuarios where usuarios.idUsuarios= reserva.idUsuario and cancha.idEstablecimiento = establecimiento.idEstablecimiento and reserva.idCancha = cancha.id and establecimiento.idEstablecimiento =?', [idEstablecimiento]);
-    res.render('paginas/reservaEstablecimiento', {establecimiento});
+    const establecimiento= await db.query('Select * from reserva join cancha join establecimiento join usuarios where usuarios.idUsuarios= reserva.idUsuario and cancha.idEstablecimiento = establecimiento.idEstablecimiento and reserva.idCancha = cancha.id and establecimiento.idEstablecimiento =? and reserva.estado = "reservado" order by reserva.fechaReserva desc', [idEstablecimiento]);
+    res.render('paginas/reservaEstablecimiento', {establecimiento, idEstablecimiento});
+});
+ruta.get('/asistio/:idReserva&:idEstablecimiento',estaLogueado, duenio, async(req, res)=>{
+    const {idReserva, idEstablecimiento}= req.params;
+    try {
+        await db.query('Update reserva set estado = "Asistio" where idReserva =?', [idReserva]);
+        req.flash('mensajeOk', 'Turno Actulizado')
+        res.redirect('/paginas/reservaEstablecimiento/' + idEstablecimiento)
+    } catch (error) {
+        console.info(error)
+        req.flash('mensajeMal', 'No se pudo actualizar estado')
+        res.redirect('/paginas/reservaEstablecimiento/' + idEstablecimiento)
+    }   
+});
+ruta.get('/fallo/:idReserva&:idEstablecimiento',estaLogueado, duenio, async(req, res)=>{
+    const {idReserva, idEstablecimiento}= req.params;
+    try {
+        await db.query('Update reserva set estado = "No Asistio" where idReserva =?', [idReserva]);
+        req.flash('mensajeOk', 'Turno Actulizado')
+        res.redirect('/paginas/reservaEstablecimiento/' + idEstablecimiento)
+    } catch (error) {
+        console.info(error)
+        req.flash('mensajeMal', 'No se pudo actualizar estado')
+        res.redirect('/paginas/reservaEstablecimiento/' + idEstablecimiento)
+    }   
+});
+ruta.get('/crearDep',estaLogueado, admin, async(req, res)=>{
+    const {deporte}= req.query;
+    try {
+        await db.query('Insert into deporte set?', {'deporte': deporte});
+        req.flash('mensajeOk', 'Deporte Creado!!!')
+        res.redirect('/paginas/vistaAdmin')
+    } catch (error) {
+        console.info(error)
+        req.flash('mensajeMal', 'No se pudo crear el Deporte')
+        res.redirect('/paginas/vistaAdmin')
+    }   
 });
 //pantalla crear cancha
 ruta.get('/cancha/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
@@ -251,8 +287,9 @@ ruta.get('/jugadores/:jugador', estaLogueado, async(req, res)=>{
 });
 ruta.get('/reservaUsuario/:idUsuario', estaLogueado, async (req, res) => {
     const {idUsuario}= req.params;
-    const reservas= await db.query("Select reserva.idReserva, cancha.id, reserva.fechaReserva, deporte.deporte, reserva.fecha, reserva.hora, cancha.numeroCancha, establecimiento.nombreEstablecimiento from reserva join establecimiento join cancha join deporte where deporte.idDeportes = cancha.idDeportes and cancha.id = reserva.idCancha and reserva.estado = 'reservado' and establecimiento.idEstablecimiento = cancha.idEstablecimiento and idUsuario =? and reserva.estado = 'reservado' order by reserva.fechaReserva desc", [idUsuario]);
-    res.render('paginas/reservaUsuario', {reservas});
+    const diaActual= new Date().toISOString().split('T')[0]
+    const reservas= await db.query("Select reserva.idReserva, cancha.id, reserva.fechaReserva, deporte.deporte, reserva.fecha, reserva.hora, cancha.numeroCancha, establecimiento.nombreEstablecimiento from reserva join establecimiento join cancha join deporte where deporte.idDeportes = cancha.idDeportes and cancha.id = reserva.idCancha and reserva.estado = 'reservado' and establecimiento.idEstablecimiento = cancha.idEstablecimiento and idUsuario =? and reserva.estado = 'reservado' and reserva.fechaReserva >= ? order by reserva.fechaReserva desc", [idUsuario, diaActual]);
+      res.render('paginas/reservaUsuario', {reservas});
 });
 ruta.get('/reservaUsuarioCancelar/:id', estaLogueado, async (req, res)=>{    
     const {id}=(req.params);

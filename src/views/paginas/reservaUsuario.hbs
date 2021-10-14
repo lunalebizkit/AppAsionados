@@ -14,17 +14,17 @@
                 <th>Hora</th>
                 <th>Opcion</th>
             </thead>
-            <tbody>
+            <tbody id="tablaReserva">
                 {{#each reservas}}
                 <tr>
                     <td>{{fechas fecha}}</td>
                     <td>{{nombreEstablecimiento}}</td>
                     <td>{{numeroCancha}}</td>
                     <td>{{deporte}}</td>
-                    <td id="{{idReserva}}">{{fechaReserva}}</td>
-                    <td id="{{ horas fecha}}">{{ hora}}:00 Hs</td>
+                    <td>{{fechaReserva}}</td>
+                    <td>{{ hora}}:00 Hs</td>
                     <td><form action="/paginas/reservaUsuarioCancelar/{{idReserva}}" method="get">
-                    <button id="{{id}}" class="btn btn-warning">Cancelar Reserva</button>
+                    <button class="btn btn-warning">Cancelar Reserva</button>
                     </form></td>
                 </tr>
                 {{/each}}
@@ -39,36 +39,31 @@
     </div> 
 </div>
 <script>     
-   async function bloquearBoton() {
-           let horaActual= new Date().getHours();
-            let diaActual= new Date().toISOString();
-            let diaActualSplit= diaActual.split('T')[0];
-            let diaActualMilisegundos= new Date().getTime();
-       {{#each reservas}} 
-       
-          horaReserva= document.getElementById({{ horas fecha }}).innerHTML;
-          horaDeLaReserva = horaReserva.split(/[/ :]/)[0]-4;
-          fechaReservada= new Date(document.getElementById({{idReserva}}).innerHTML).toISOString();
-          fechaReservadaUTC= new Date(document.getElementById({{idReserva}}).innerHTML).toUTCString()
-          convertirAMilisegundos= Date.parse(fechaReservadaUTC); 
-                  
-            if (convertirAMilisegundos > diaActualMilisegundos) {
-                  document.getElementById({{id}}).disabled= false;
-                }
-           if((diaActualSplit == fechaReservada.split('T')[0]) & ( horaActual > horaDeLaReserva)) {
-               document.getElementById({{id}}).disabled= true;
-                }
-           
-       {{/each}}
-
+    var tabla= document.getElementById('tablaReserva')
+    let horaActual= new Date().getHours() + 4;
+    let diaActual= new Date()
+     const convertirFecha= (fecha)=>{
+            let mes= fecha.getMonth()+1;
+            if (mes < 10) {
+             mes='0' + mes}
+            let dia= fecha.getDate();
+            if (dia < 10) {
+             dia='0' + dia}
+            convertirParaComparar= fecha.getFullYear() + "-"+ mes + "-"+ dia;
+            return convertirParaComparar
      }
-    bloquearBoton()   
-    {{!-- console.log(new Intl.DateTimeFormat('es-AR').format(new Date(document.getElementById(14).innerHTML)));
-    let fechaz= document.getElementById(14).innerHTML;
-    let año= fechaz.split(/[ -]/)[0];
-    let mes= fechaz.split(/[ -]/)[1];
-    let dia= fechaz.split(/[ -]/)[2]
-    console.log( Date.parse(dia+'/'+mes+'/'+año));
-    console.log(Date.parse(fechaz));
-    console.log(new Date()); --}}
+    function bloquear() {
+        for (var i = 0; i < tabla.rows.length; i++) {
+            celdaFechaReservada= tabla.rows[i].children[4].innerHTML
+            celdaHoraReservada= tabla.rows[i].children[5].innerHTML.split(/[/ :]/)[0]
+            if ((convertirFecha(diaActual) == celdaFechaReservada) & (horaActual >= celdaHoraReservada)){        tabla.rows[i].children[6].children[0][0].disabled= 'true'               
+            }
+            if (celdaFechaReservada < (convertirFecha(diaActual))) {
+                 tabla.rows[i].children[6].children[0][0].disabled= 'true'
+            }
+            
+        }
+    }
+    bloquear()
+
 </script>

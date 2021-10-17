@@ -21,7 +21,7 @@
             id = 'tablaUsuario'
         } if (id == 2) {
             id = 'tablaCanchas'
-        }if (id == 3) {
+        } if (id == 3) {
             id = 'tablaDeportes'
         }
         var estado
@@ -45,28 +45,31 @@
         <li><button class="btn btn-outline-info mb-3" onclick="mostrar(1,1)" ondblclick="mostrar(1,0)">
                 <h4><b>USUARIOS</b></h4>
             </button></li>
-        <li><button class="btn btn-outline-info mb-3" onclick="mostrar(3,1)" ondblclick="mostrar(3,0)">
+        <li class="mb-5"><button class="btn btn-outline-info mb-3" onclick="mostrar(3,1)" ondblclick="mostrar(3,0)">
                 <h4><b>DEPORTES</b></h4>
             </button></li>
-        <li><form action="/paginas/crearDep" method="get">
-            <label class="text-center text-white" for="dep" style="font-size: 1.5rem;">Crear Deporte</label>
-            <input id="dep" type=" text" name="deporte" placeholder="Ingrese Deporte">
-            
-            <button class="btn btn-success">
-                <i class="fas fa-thumbs-up"></i>
-            </button>
+        <li class="mt-5">
+            <form action="/paginas/crearDep" method="get">
+                <label class="text-center text-white" for="dep" style="font-size: 1.5rem;">Crear Deporte</label>
+                <input id="dep" type=" text" name="deporte" placeholder="Ingrese Deporte">
+
+                <button class="btn btn-success">
+                    <i class="fas fa-thumbs-up"></i>
+                </button>
             </form>
         </li>
     </u>
 </div>
-<div id="contenido" style="margin-left: 0px;">
-    <a id="abrir" class="abrir-cerrar" href="javascript:void(0)" onclick="mostrarBarra()" style="display: inline;">
-        Abrir menu
-    </a>
-    <a id="cerrar" class="abrir-cerrar" href="javascript:void(0)" onclick="ocultarBarra()" style="display: none;">
-        Cerrar menu
-    </a>
 
+<div id="contenido" style="margin-left: 0px;">
+    <div class="mt-3 pb-3">
+        <a id="abrir" class="abrir-cerrar" href="javascript:void(0)" onclick="mostrarBarra()" style="display: inline;">
+            Abrir menu
+        </a>
+        <a id="cerrar" class="abrir-cerrar" href="javascript:void(0)" onclick="ocultarBarra()" style="display: none;">
+            Cerrar menu
+        </a>
+    </div>
     <div class="justify-content-around">
         <div class="container-fluid" id="tablaDeportes" style="display: none;">
             <table class="table table-hover bg-warning">
@@ -74,7 +77,7 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Deporte</th>                  
+                        <th>Deporte</th>
                     </tr>
                 </thead>
 
@@ -95,16 +98,15 @@
                         <th>Id</th>
                         <th>Nombre Equipo</th>
                         <th>Deporte</th>
-                        <th>Usuario</th>
+                        <th>Usuario</th>                        
                     </tr>
                 </thead>
-
                 <tbody>
                     {{#each equipos}}
                     <tr>
                         <td>{{idEquipo}}</td>
                         <td>{{nombreEquipo}}</td>
-                        <td>{{idDeporte}}</td>
+                        <td>{{deporte}}</td>
                         <td>{{idUsuarios}}</td>
                         {{/each}}
                 </tbody>
@@ -127,11 +129,11 @@
                 <tbody>
                     {{#each establecimiento}}
                     <tr>
-                        <td>{{idEstablecimiento}}</td>
-                        <td>{{nombreEstablecimiento}}</td>
-                        <td>{{direccion}}</td>
-                        <td>{{cuit}}</td>
-                        <td>{{idUsuarios}}</td>
+                        <td style="text-align: center;">{{idEstablecimiento}}</td>
+                        <td style="text-align: center;">{{nombreEstablecimiento}}</td>
+                        <td style="text-align: center;">{{direccion}}</td>
+                        <td style="text-align: center;">{{cuit}}</td>
+                        <td style="text-align: center;">{{nombre}} {{apellido}}</td>
                     </tr>
                     {{/each}}
                 </tbody>
@@ -145,6 +147,8 @@
                         <th>Usuario</th>
                         <th>Nombre</th>
                         <th>Contacto</th>
+                        <th>Estado</th>
+                         <th>Alta/Baja</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -153,10 +157,22 @@
                         <td>{{nombreUsuario}}</td>
                         <td>{{nombre}} {{apellido}}</td>
                         <td>{{email}}</td>
+                        <td>{{baja}}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                            <form action="/paginas/alta/{{idUsuarios}}">
+                            <button class="btn btn-success"><i class="fa fa-heart"></i></button>
+                            </form>
+                            <form action="/paginas/baja/{{idUsuarios}}">
+                            <button class="btn btn-danger"><i class="fa fa-skull-crossbones"></i></button>
+                            </form>
+                            </div>
+                        </td>
                     </tr>
                     {{/each}}
                 </tbody>
             </table>
         </div>
     </div>
+
 </div>

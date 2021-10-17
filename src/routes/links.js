@@ -62,14 +62,44 @@ Vista Admionistrador
 ---------------------------------------------------*/
 ruta.get('/vistaAdmin', estaLogueado, admin, async (req, res) => {
     const usuarios= await db.query('select * from usuarios');
-    const equipos= await db.query('select * from equipos');
-    const establecimiento= await db.query('select * from establecimiento');
+    const equipos= await db.query('select * from equipos join deporte where equipos.idDeportes = deporte.idDeportes');
+    const establecimiento= await db.query('select * from establecimiento join usuarios where usuarios.idUsuarios = establecimiento.idUsuarios');
    const deporte= await db.query('Select * from deporte')
     res.render('paginas/vistaAdmin', {usuarios, equipos, establecimiento, deporte});
 });
-ruta.post('/vistaAdmin', admin, async (req, res) => {
-    console.info(req.body);
-    res.render('paginas/vistaAdmin');
+ruta.get('/alta/:id', estaLogueado, admin, async(req, res)=>{
+    const {id}=req.params
+    try {
+        await db.query('Update usuarios set baja = 0 where idUsuarios =?', [id]);
+        req.flash('mensajeOk', 'Alta de Usuario')
+    } catch (error) {
+        console.log(error)
+        req.flash('mensajeMal', 'Alta de Usuario Fallida')
+    }
+    res.redirect('/paginas/vistaAdmin')
+});
+ruta.get('/baja/:id', estaLogueado, admin, async(req, res)=>{
+    const {id}=req.params
+    try {
+        await db.query('Update usuarios set baja = 1 where idUsuarios =?', [id])
+        req.flash('mensajeOk', 'Baja de Usuario')
+    } catch (error) {
+        console.log(error)
+        req.flash('mensajeMal', 'Alta de Usuario Fallida')
+    }
+    res.redirect('/paginas/vistaAdmin')
+});
+ruta.get('/crearDep',estaLogueado, admin, async(req, res)=>{
+    const {deporte}= req.query;
+    try {
+        await db.query('Insert into deporte set?', {'deporte': deporte});
+        req.flash('mensajeOk', 'Deporte Creado!!!')
+        res.redirect('/paginas/vistaAdmin')
+    } catch (error) {
+        console.info(error)
+        req.flash('mensajeMal', 'No se pudo crear el Deporte')
+        res.redirect('/paginas/vistaAdmin')
+    }   
 });
 //agregue pantalla crear equipo Futbol 
 ruta.get('/crearEquipoFutbol/:id', estaLogueado, async (req, res) => {
@@ -156,18 +186,6 @@ ruta.get('/fallo/:idReserva&:idEstablecimiento',estaLogueado, duenio, async(req,
         console.info(error)
         req.flash('mensajeMal', 'No se pudo actualizar estado')
         res.redirect('/paginas/reservaEstablecimiento/' + idEstablecimiento)
-    }   
-});
-ruta.get('/crearDep',estaLogueado, admin, async(req, res)=>{
-    const {deporte}= req.query;
-    try {
-        await db.query('Insert into deporte set?', {'deporte': deporte});
-        req.flash('mensajeOk', 'Deporte Creado!!!')
-        res.redirect('/paginas/vistaAdmin')
-    } catch (error) {
-        console.info(error)
-        req.flash('mensajeMal', 'No se pudo crear el Deporte')
-        res.redirect('/paginas/vistaAdmin')
     }   
 });
 //pantalla crear cancha
@@ -322,7 +340,7 @@ ruta.post('/miPerfil/:id', estaLogueado, foto, async (req, res) => {
     }   
 });
 /*---------------------------------------------------------
-                    REservas
+ REservas
 ---------------------------------------------------------*/
 ruta.get('/reservaDeporte', estaLogueado, async(req, res)=>{
     const deporte= await db.query('select * from deporte');

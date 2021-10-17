@@ -42,7 +42,7 @@ ruta.get('/basquet', estaLogueado, async (req, res) => {
     const { idUsuarios } = req.user;
     const equipos = await db.query('select * from equipos inner join deporte join usuarios where equipos.idDeportes = deporte.idDeportes and usuarios.idUsuarios = equipos.idUsuarios and deporte.idDeportes = 4');
     const misEquipos= await db.query('select equipos.nombreEquipo from jugador inner join equipos where equipos.idEquipo = jugador.idEquipo and equipos.idDeportes = 4 and jugador.idUsuarios =?', [idUsuarios]);
-    const canchas = await db.query('select * from establecimiento join cancha where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = 4');
+    const canchas = await db.query('select * from establecimiento join cancha where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = 4 group by establecimiento.nombreEstablecimiento');
     res.render('paginas/basquet', {equipos, misEquipos, canchas});
 });
 //agregue pantalla padel
@@ -157,7 +157,7 @@ ruta.get('/ingresarAlEquipo/:idEquipo&:idDeportes', estaLogueado, async(req, res
 ruta.get('/duenio', estaLogueado, duenio, async (req, res) => {
     const {idUsuarios}= req.user;
     const canchas= await db.query('Select * from establecimiento where idUsuarios =?', [idUsuarios]);
-    res.render('paginas/duenio', {canchas});
+    res.render('paginas/duenio', {canchas, idUsuarios});
 });
 ruta.get('/reservaEstablecimiento/:idEstablecimiento', estaLogueado, duenio, async(req, res)=>{
     const {idEstablecimiento}= req.params;
@@ -225,6 +225,35 @@ ruta.get('/misCanchas/:idEstablecimiento', estaLogueado, duenio, async (req, res
     const establecimiento= await db.query('Select * from cancha join deporte join imagenCancha join horarios where  horarios.idCancha= cancha.id and imagenCancha.idCancha = cancha.id and cancha.idDeportes = deporte.idDeportes and cancha.idEstablecimiento =?', [idEstablecimiento]);
     res.render('paginas/misCanchas', {establecimiento});
 });
+ruta.get('/establecimiento/:id', estaLogueado, duenio, async (req, res) => {
+    const {id}= req.params
+    res.render('paginas/establecimiento', {id});
+});
+ruta.post('/establecimiento/:id', estaLogueado, duenio, async (req, res) => {
+    const {nombreEstablecimiento, cuit, direccion}=req.body;
+     const {id}= req.params;
+     const newEstablecimiento= {
+         nombreEstablecimiento,
+         direccion,
+         cuit,
+         idUsuarios: id
+     };
+     try {
+         let crearEstablecimiento= await db.query('insert into establecimiento set?', [newEstablecimiento])
+         if (crearEstablecimiento){
+            req.flash('mensajeOk', 'Establecimiento creado!')
+            res.redirect('/paginas/duenio')
+         }else{
+            req.flash('mensajeMal', 'No se pudo crear el Establecimiento')
+         }
+     } catch (error) {
+         console.log(error)
+         req.flash('mensajeMal', 'No se pudo crear el Establecimiento')
+         res.redirect('/paginas/duenio')
+     }
+
+});
+
 //agregue pantalla crear equipo Basquet 
 ruta.get('/crearEquipoBasquet/:id', estaLogueado, async (req, res) => {
     res.render('paginas/crearEquipoBasquet');
@@ -288,9 +317,7 @@ ruta.post('/crearEquipoPadel/:id', estaLogueado, async (req, res) => {
     };   
 });
 //agregue pantalla establecimiento
-ruta.get('/establecimiento', estaLogueado, duenio, async (req, res) => {
-    res.render('paginas/establecimiento');
-});
+
 //agregue pantalla verCancha
 ruta.get('/verCancha/:idEstablecimiento', estaLogueado, async (req, res) => {
     const{idEstablecimiento}= req.params;

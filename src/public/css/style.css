@@ -118,7 +118,7 @@ h6, h5{
   color: wheat;
 }
 #cancha {
-  background-image: url(../img/app/duenio.jpg);
+  background-image: url(../img/app/verCancha.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -203,6 +203,12 @@ h6, h5{
 #scroll {
   overflow-y: scroll;
   height: 370px;
+  display: block
+}
+
+#scrollEstablecimientos {
+  overflow-y: scroll;
+  height: 320px;
   display: block
 }
 #scrollMiEquipo {

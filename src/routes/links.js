@@ -33,7 +33,7 @@ ruta.get('/futbol', estaLogueado, async (req, res) => {
     const { idUsuarios } = req.user;
     const equipos = await db.query('select * from equipos inner join deporte join usuarios where equipos.idDeportes = deporte.idDeportes and usuarios.idUsuarios = equipos.idUsuarios and deporte.idDeportes < 4');
     const misEquipos= await db.query('select equipos.nombreEquipo from jugador inner join equipos where equipos.idEquipo = jugador.idEquipo and equipos.idDeportes < 4 and jugador.idUsuarios =?', [idUsuarios]);
-    const canchas = await db.query('select * from establecimiento');
+    const canchas = await db.query('select * from establecimiento join cancha where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes < 4 group by nombreEstablecimiento');
     res.render('paginas/futbol', {equipos, misEquipos, canchas});
 });
 //agregue pantalla basquet
@@ -42,7 +42,7 @@ ruta.get('/basquet', estaLogueado, async (req, res) => {
     const { idUsuarios } = req.user;
     const equipos = await db.query('select * from equipos inner join deporte join usuarios where equipos.idDeportes = deporte.idDeportes and usuarios.idUsuarios = equipos.idUsuarios and deporte.idDeportes = 4');
     const misEquipos= await db.query('select equipos.nombreEquipo from jugador inner join equipos where equipos.idEquipo = jugador.idEquipo and equipos.idDeportes = 4 and jugador.idUsuarios =?', [idUsuarios]);
-    const canchas = await db.query('select * from establecimiento join cancha where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = 4');
+    const canchas = await db.query('select * from establecimiento join cancha where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = 4 group by nombreEstablecimiento');
     res.render('paginas/basquet', {equipos, misEquipos, canchas});
 });
 //agregue pantalla padel
@@ -50,7 +50,7 @@ ruta.get('/padel', estaLogueado, async (req, res) => {
     const { idUsuarios } = req.user;
     const equipos = await db.query('select * from equipos inner join deporte join usuarios where equipos.idDeportes = deporte.idDeportes and usuarios.idUsuarios = equipos.idUsuarios and deporte.idDeportes = 5');
     const misEquipos= await db.query('select equipos.nombreEquipo from jugador inner join equipos where equipos.idEquipo = jugador.idEquipo and equipos.idDeportes = 5 and jugador.idUsuarios =?', [idUsuarios]);
-    const canchas = await db.query('select * from establecimiento join cancha where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = 5');
+    const canchas = await db.query('select * from establecimiento join cancha where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = 5 group by nombreEstablecimiento');
     res.render('paginas/padel', {equipos, misEquipos, canchas});
 });
 //agregue pantalla deporte
@@ -276,9 +276,12 @@ ruta.get('/establecimiento', estaLogueado, duenio, async (req, res) => {
 //agregue pantalla verCancha
 ruta.get('/verCancha/:idEstablecimiento', estaLogueado, async (req, res) => {
     const{idEstablecimiento}= req.params;
-    const consultaEstablecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [idEstablecimiento]);
-    const establecimiento= consultaEstablecimiento[0];
-    res.render('paginas/verCancha', {establecimiento});
+    
+    const establecimiento= await db.query('Select * from establecimiento join cancha join deporte join imagenCancha join horarios where establecimiento.idEstablecimiento = cancha.idEstablecimiento and horarios.idCancha= cancha.id and imagenCancha.idCancha = cancha.id and cancha.idDeportes = deporte.idDeportes and cancha.idEstablecimiento =?', [idEstablecimiento]);
+    const nombre = await db.query('Select nombreEstablecimiento from establecimiento where idEstablecimiento =?', [idEstablecimiento]);
+    //const establecimiento= consultaEstablecimiento[0];
+    //console.info(establecimiento, nombre);
+    res.render('paginas/verCancha', {establecimiento, nombre});
 });
 //agregue pantalla jugadores 
 ruta.get('/jugadores/:jugador', estaLogueado, async(req, res)=>{
@@ -375,19 +378,28 @@ ruta.get('/mapa/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
 });
 
 ruta.post('/mapa/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
-    const {mapLat} = req.body;
-    const {mapLong} = req.body;
+    const {lat} = req.body;
+    //const {mapLong} = req.body;
     const {idEstablecimiento}=req.params;
-    if (  await db.query('update establecimiento set latitud = ?, longitud = ? where idEstablecimiento =?', [mapLat, mapLong, idEstablecimiento])) {
-        req.flash('mensajeOk', 'Coordenada almacenada!!!');    
-        res.redirect('/paginas/mapa');
-    }else {
-        req.flash('mensajeMal', 'Error al guardar coordenada');
-        res.redirect('/paginas/mapa');
-    }   
+    //if (  await db.query('update establecimiento set latitud = ?, longitud = ? where idEstablecimiento =?', [mapLat, mapLong, idEstablecimiento])) {
+    //    req.flash('mensajeOk', 'Coordenada almacenada!!!');    
+    //    res.redirect('/paginas/mapa');
+    //}else {
+    //    req.flash('mensajeMal', 'Error al guardar coordenada');
+    //    res.redirect('/paginas/mapa');
+    //}   
     //await db.query('Update establecimiento SET latitud = ? where idEstablecimiento =?', [filename, idEstablecimiento]);
-    //console.log(req.body);
+    console.log(req.body);
     //res.render('paginas/mapa');
+});
+
+//agregue pantalla ver mapa usuario
+ruta.get('/verMapa/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
+    const {idEstablecimiento}=req.params;
+    const establecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [idEstablecimiento]);  
+    const cancha= establecimiento[0];
+    console.info(establecimiento);
+    res.render('paginas/verMapa', {cancha, idEstablecimiento});
 });
 
 ruta.get('/tutorialJugador', estaLogueado, async (req, res) => {

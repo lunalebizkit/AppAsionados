@@ -183,7 +183,7 @@ ruta.get('/historialReservas/:idEstablecimiento', estaLogueado, duenio, async(re
 ruta.get('/asistio/:idReserva&:idEstablecimiento',estaLogueado, duenio, async(req, res)=>{
     const {idReserva, idEstablecimiento}= req.params;
     try {
-        await db.query('Update reserva set estado = "Asistio" where idReserva =?', [idReserva]);
+        await db.query('Update reserva set estado = "Asistió" where idReserva =?', [idReserva]);
         req.flash('mensajeOk', 'Turno Actulizado')
         res.redirect('/paginas/reservaEstablecimiento/' + idEstablecimiento)
     } catch (error) {
@@ -195,7 +195,7 @@ ruta.get('/asistio/:idReserva&:idEstablecimiento',estaLogueado, duenio, async(re
 ruta.get('/fallo/:idReserva&:idEstablecimiento',estaLogueado, duenio, async(req, res)=>{
     const {idReserva, idEstablecimiento}= req.params;
     try {
-        await db.query('Update reserva set estado = "No Asistio" where idReserva =?', [idReserva]);
+        await db.query('Update reserva set estado = "No Asistió" where idReserva =?', [idReserva]);
         req.flash('mensajeOk', 'Turno Actulizado')
         res.redirect('/paginas/reservaEstablecimiento/' + idEstablecimiento)
     } catch (error) {
@@ -356,7 +356,7 @@ ruta.get('/reservaUsuarioCancelar/:id', estaLogueado, async (req, res)=>{
     const {id}=(req.params);
     const {idUsuarios}= req.user;
     try {
-        await db.query('Update reserva set estado = "cancelado" where idReserva =?', [id]);
+        await db.query('Update reserva set estado = "Cancelado" where idReserva =?', [id]);
         req.flash('mensajeOk', 'Turno Cancelado')
         res.redirect('/paginas/reservaUsuario/'+ idUsuarios);
     } catch (error) {
@@ -413,7 +413,7 @@ ruta.post('/reservaDeporte1/:deporte', async(req, res)=>{
 ruta.get('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
     const { idCancha, fecha}= req.session.newReserva;
      const turnos= await db.query('select * from  horarios where idCancha =?', [idCancha]);
-     const reservas= await db.query('select hora from reserva where fechaReserva =? and estado = "reservado" and idCancha =?', [fecha, idCancha]);
+     const reservas= await db.query('select hora from reserva where fechaReserva =? and estado = "Reservado" and idCancha =?', [fecha, idCancha]);
      const turno= turnos[0];
     res.render('reserva/reservaDeporte2', {turno, idCancha, reservas})
 });

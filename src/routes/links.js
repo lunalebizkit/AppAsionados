@@ -62,7 +62,7 @@ Vista Admionistrador
 ---------------------------------------------------*/
 ruta.get('/vistaAdmin', estaLogueado, admin, async (req, res) => {
     const usuarios= await db.query('select * from usuarios');
-    const equipos= await db.query('select * from equipos join deporte where equipos.idDeportes = deporte.idDeportes');
+    const equipos= await db.query('select * from equipos join deporte join usuarios where equipos.idDeportes = deporte.idDeportes and equipos.idUsuarios = usuarios.idUsuarios');
     const establecimiento= await db.query('select * from establecimiento join usuarios where usuarios.idUsuarios = establecimiento.idUsuarios');
    const deporte= await db.query('Select * from deporte')
     res.render('paginas/vistaAdmin', {usuarios, equipos, establecimiento, deporte});
@@ -153,7 +153,9 @@ ruta.get('/ingresarAlEquipo/:idEquipo&:idDeportes', estaLogueado, async(req, res
         res.render('paginas/ingresarAlEquipo');
     }
 });
-//agregue pantalla duenio
+/*----------------------------------
+Dueño
+--------------------------------------*/
 ruta.get('/duenio', estaLogueado, duenio, async (req, res) => {
     const {idUsuarios}= req.user;
     const canchas= await db.query('Select * from establecimiento where idUsuarios =?', [idUsuarios]);
@@ -163,6 +165,20 @@ ruta.get('/reservaEstablecimiento/:idEstablecimiento', estaLogueado, duenio, asy
     const {idEstablecimiento}= req.params;
     const establecimiento= await db.query('Select * from reserva join cancha join establecimiento join usuarios where usuarios.idUsuarios= reserva.idUsuario and cancha.idEstablecimiento = establecimiento.idEstablecimiento and reserva.idCancha = cancha.id and establecimiento.idEstablecimiento =? and reserva.estado = "reservado" order by reserva.fechaReserva desc', [idEstablecimiento]);
     res.render('paginas/reservaEstablecimiento', {establecimiento, idEstablecimiento});
+});
+ruta.get('/historialReservas/:idEstablecimiento', estaLogueado, duenio, async(req, res)=>{
+    const {idEstablecimiento}= req.params;
+    const establecimiento= await db.query('Select * from reserva join cancha join establecimiento join usuarios where usuarios.idUsuarios= reserva.idUsuario and cancha.idEstablecimiento = establecimiento.idEstablecimiento and reserva.idCancha = cancha.id and establecimiento.idEstablecimiento =? order by reserva.fechaReserva desc', [idEstablecimiento]);
+    const cantidadReservas= establecimiento.length
+    const asistieron= await db.query('Select * from reserva join establecimiento join cancha where reserva.idCancha = cancha.id and cancha.idEstablecimiento = establecimiento.idEstablecimiento and reserva.estado = "Asistio" and establecimiento.idEstablecimiento =?', [idEstablecimiento]);
+    const cantidadAsistieron= asistieron.length
+    const fallaron =  await db.query('Select * from reserva join establecimiento join cancha where reserva.idCancha = cancha.id and cancha.idEstablecimiento = establecimiento.idEstablecimiento and reserva.estado = "No Asistio" and establecimiento.idEstablecimiento =?', [idEstablecimiento]);
+    const cantidadFallaron= fallaron.length
+    const cancelaron= await db.query('Select * from reserva join establecimiento join cancha where reserva.idCancha = cancha.id and cancha.idEstablecimiento = establecimiento.idEstablecimiento and reserva.estado = "cancelado" and establecimiento.idEstablecimiento =?', [idEstablecimiento]);
+    const cantidadCancelaron= cancelaron.length
+    const reservadas= await db.query('Select * from reserva join establecimiento join cancha where reserva.idCancha = cancha.id and cancha.idEstablecimiento = establecimiento.idEstablecimiento and reserva.estado = "reservado" and establecimiento.idEstablecimiento =?', [idEstablecimiento]);
+    const cantidadReservadas= reservadas.length
+    res.render('paginas/historialReservas', {establecimiento, idEstablecimiento, cantidadAsistieron, cantidadFallaron, cantidadReservas, cantidadCancelaron, cantidadReservadas});
 });
 ruta.get('/asistio/:idReserva&:idEstablecimiento',estaLogueado, duenio, async(req, res)=>{
     const {idReserva, idEstablecimiento}= req.params;
@@ -188,7 +204,6 @@ ruta.get('/fallo/:idReserva&:idEstablecimiento',estaLogueado, duenio, async(req,
         res.redirect('/paginas/reservaEstablecimiento/' + idEstablecimiento)
     }   
 });
-//pantalla crear cancha
 ruta.get('/cancha/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
     const {idEstablecimiento}=req.params;
     const establecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [idEstablecimiento]);

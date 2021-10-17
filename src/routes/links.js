@@ -331,8 +331,6 @@ ruta.post('/crearEquipoPadel/:id', estaLogueado, async (req, res) => {
         res.redirect('/paginas/padel')
     };   
 });
-//agregue pantalla establecimiento
-
 //agregue pantalla verCancha
 ruta.get('/verCancha/:idEstablecimiento', estaLogueado, async (req, res) => {
     const{idEstablecimiento}= req.params;

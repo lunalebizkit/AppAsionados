@@ -12,10 +12,9 @@
                     <form action="/paginas/reservaDeporte2/{{idCancha}}&fechaSeleccionada" method="POST">
                         <div class="container">
                             <div id="texto" class="row justify-content-around">
-
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success text-dark">Reservar</button>
+                        {{!-- <button id="botonReservar" type="submit" class="btn btn-success text-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" disabled>Reservar</button> --}}
                         <div class="col-1 mt-5 py-1">
                             <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-outline-danger">Volver</a>
                         </div>
@@ -25,9 +24,16 @@
                     </form>
                 </div>
             </div>
+            <div class="col">
+                  <div id="btnCentro" class="mx-auto">
+                <!-- logo de la app -->
+                    <img src="/img/app/logo4.png" alt="Logo App" class="mx-1">
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
 let tomarParametro = new URLSearchParams(window.location.href);
 let fechaSeleccionada = tomarParametro.get('fecha');
@@ -57,9 +63,11 @@ function misTurnos(a, b) {
             }
             {{/each}}       
             document.getElementById("texto").innerHTML += `<div class="col-4 mb-3 m-2 bg-primary"><input type="radio" name="turno" id="" value="${i}" required> ${i}:00 Hs</div>`;
-            }
+        }
+document.getElementById("texto").innerHTML += `<button id="botonReservar" type="submit" class="btn btn-success text-dark">Reservar</button>`
         }      
 let btnTurnos = document.getElementById("botonTurnos");
 let disableButton = function () { this.disabled = true; };
-btnTurnos.addEventListener('click', disableButton, false);
+btnTurnos.addEventListener('click', disableButton, false)
+
 </script>

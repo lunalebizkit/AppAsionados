@@ -42,7 +42,7 @@ ruta.get('/basquet', estaLogueado, async (req, res) => {
     const { idUsuarios } = req.user;
     const equipos = await db.query('select * from equipos inner join deporte join usuarios where equipos.idDeportes = deporte.idDeportes and usuarios.idUsuarios = equipos.idUsuarios and deporte.idDeportes = 4');
     const misEquipos= await db.query('select equipos.nombreEquipo from jugador inner join equipos where equipos.idEquipo = jugador.idEquipo and equipos.idDeportes = 4 and jugador.idUsuarios =?', [idUsuarios]);
-    const canchas = await db.query('select * from establecimiento join cancha where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = 4 group by nombreEstablecimiento');
+    const canchas = await db.query('select * from establecimiento join cancha where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = 4 group by establecimiento.nombreEstablecimiento');
     res.render('paginas/basquet', {equipos, misEquipos, canchas});
 });
 //agregue pantalla padel
@@ -62,14 +62,44 @@ Vista Admionistrador
 ---------------------------------------------------*/
 ruta.get('/vistaAdmin', estaLogueado, admin, async (req, res) => {
     const usuarios= await db.query('select * from usuarios');
-    const equipos= await db.query('select * from equipos');
-    const establecimiento= await db.query('select * from establecimiento');
+    const equipos= await db.query('select * from equipos join deporte join usuarios where equipos.idDeportes = deporte.idDeportes and equipos.idUsuarios = usuarios.idUsuarios');
+    const establecimiento= await db.query('select * from establecimiento join usuarios where usuarios.idUsuarios = establecimiento.idUsuarios');
    const deporte= await db.query('Select * from deporte')
     res.render('paginas/vistaAdmin', {usuarios, equipos, establecimiento, deporte});
 });
-ruta.post('/vistaAdmin', admin, async (req, res) => {
-    console.info(req.body);
-    res.render('paginas/vistaAdmin');
+ruta.get('/alta/:id', estaLogueado, admin, async(req, res)=>{
+    const {id}=req.params
+    try {
+        await db.query('Update usuarios set baja = 0 where idUsuarios =?', [id]);
+        req.flash('mensajeOk', 'Alta de Usuario')
+    } catch (error) {
+        console.log(error)
+        req.flash('mensajeMal', 'Alta de Usuario Fallida')
+    }
+    res.redirect('/paginas/vistaAdmin')
+});
+ruta.get('/baja/:id', estaLogueado, admin, async(req, res)=>{
+    const {id}=req.params
+    try {
+        await db.query('Update usuarios set baja = 1 where idUsuarios =?', [id])
+        req.flash('mensajeOk', 'Baja de Usuario')
+    } catch (error) {
+        console.log(error)
+        req.flash('mensajeMal', 'Alta de Usuario Fallida')
+    }
+    res.redirect('/paginas/vistaAdmin')
+});
+ruta.get('/crearDep',estaLogueado, admin, async(req, res)=>{
+    const {deporte}= req.query;
+    try {
+        await db.query('Insert into deporte set?', {'deporte': deporte});
+        req.flash('mensajeOk', 'Deporte Creado!!!')
+        res.redirect('/paginas/vistaAdmin')
+    } catch (error) {
+        console.info(error)
+        req.flash('mensajeMal', 'No se pudo crear el Deporte')
+        res.redirect('/paginas/vistaAdmin')
+    }   
 });
 //agregue pantalla crear equipo Futbol 
 ruta.get('/crearEquipoFutbol/:id', estaLogueado, async (req, res) => {
@@ -123,16 +153,32 @@ ruta.get('/ingresarAlEquipo/:idEquipo&:idDeportes', estaLogueado, async(req, res
         res.render('paginas/ingresarAlEquipo');
     }
 });
-//agregue pantalla duenio
+/*----------------------------------
+Dueño
+--------------------------------------*/
 ruta.get('/duenio', estaLogueado, duenio, async (req, res) => {
     const {idUsuarios}= req.user;
     const canchas= await db.query('Select * from establecimiento where idUsuarios =?', [idUsuarios]);
-    res.render('paginas/duenio', {canchas});
+    res.render('paginas/duenio', {canchas, idUsuarios});
 });
 ruta.get('/reservaEstablecimiento/:idEstablecimiento', estaLogueado, duenio, async(req, res)=>{
     const {idEstablecimiento}= req.params;
     const establecimiento= await db.query('Select * from reserva join cancha join establecimiento join usuarios where usuarios.idUsuarios= reserva.idUsuario and cancha.idEstablecimiento = establecimiento.idEstablecimiento and reserva.idCancha = cancha.id and establecimiento.idEstablecimiento =? and reserva.estado = "reservado" order by reserva.fechaReserva desc', [idEstablecimiento]);
     res.render('paginas/reservaEstablecimiento', {establecimiento, idEstablecimiento});
+});
+ruta.get('/historialReservas/:idEstablecimiento', estaLogueado, duenio, async(req, res)=>{
+    const {idEstablecimiento}= req.params;
+    const establecimiento= await db.query('Select * from reserva join cancha join establecimiento join usuarios where usuarios.idUsuarios= reserva.idUsuario and cancha.idEstablecimiento = establecimiento.idEstablecimiento and reserva.idCancha = cancha.id and establecimiento.idEstablecimiento =? order by reserva.fechaReserva desc', [idEstablecimiento]);
+    const cantidadReservas= establecimiento.length
+    const asistieron= await db.query('Select * from reserva join establecimiento join cancha where reserva.idCancha = cancha.id and cancha.idEstablecimiento = establecimiento.idEstablecimiento and reserva.estado = "Asistio" and establecimiento.idEstablecimiento =?', [idEstablecimiento]);
+    const cantidadAsistieron= asistieron.length
+    const fallaron =  await db.query('Select * from reserva join establecimiento join cancha where reserva.idCancha = cancha.id and cancha.idEstablecimiento = establecimiento.idEstablecimiento and reserva.estado = "No Asistio" and establecimiento.idEstablecimiento =?', [idEstablecimiento]);
+    const cantidadFallaron= fallaron.length
+    const cancelaron= await db.query('Select * from reserva join establecimiento join cancha where reserva.idCancha = cancha.id and cancha.idEstablecimiento = establecimiento.idEstablecimiento and reserva.estado = "cancelado" and establecimiento.idEstablecimiento =?', [idEstablecimiento]);
+    const cantidadCancelaron= cancelaron.length
+    const reservadas= await db.query('Select * from reserva join establecimiento join cancha where reserva.idCancha = cancha.id and cancha.idEstablecimiento = establecimiento.idEstablecimiento and reserva.estado = "reservado" and establecimiento.idEstablecimiento =?', [idEstablecimiento]);
+    const cantidadReservadas= reservadas.length
+    res.render('paginas/historialReservas', {establecimiento, idEstablecimiento, cantidadAsistieron, cantidadFallaron, cantidadReservas, cantidadCancelaron, cantidadReservadas});
 });
 ruta.get('/asistio/:idReserva&:idEstablecimiento',estaLogueado, duenio, async(req, res)=>{
     const {idReserva, idEstablecimiento}= req.params;
@@ -158,19 +204,6 @@ ruta.get('/fallo/:idReserva&:idEstablecimiento',estaLogueado, duenio, async(req,
         res.redirect('/paginas/reservaEstablecimiento/' + idEstablecimiento)
     }   
 });
-ruta.get('/crearDep',estaLogueado, admin, async(req, res)=>{
-    const {deporte}= req.query;
-    try {
-        await db.query('Insert into deporte set?', {'deporte': deporte});
-        req.flash('mensajeOk', 'Deporte Creado!!!')
-        res.redirect('/paginas/vistaAdmin')
-    } catch (error) {
-        console.info(error)
-        req.flash('mensajeMal', 'No se pudo crear el Deporte')
-        res.redirect('/paginas/vistaAdmin')
-    }   
-});
-//pantalla crear cancha
 ruta.get('/cancha/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
     const {idEstablecimiento}=req.params;
     const establecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [idEstablecimiento]);
@@ -207,6 +240,35 @@ ruta.get('/misCanchas/:idEstablecimiento', estaLogueado, duenio, async (req, res
     const establecimiento= await db.query('Select * from cancha join deporte join imagenCancha join horarios where  horarios.idCancha= cancha.id and imagenCancha.idCancha = cancha.id and cancha.idDeportes = deporte.idDeportes and cancha.idEstablecimiento =?', [idEstablecimiento]);
     res.render('paginas/misCanchas', {establecimiento});
 });
+ruta.get('/establecimiento/:id', estaLogueado, duenio, async (req, res) => {
+    const {id}= req.params
+    res.render('paginas/establecimiento', {id});
+});
+ruta.post('/establecimiento/:id', estaLogueado, duenio, async (req, res) => {
+    const {nombreEstablecimiento, cuit, direccion}=req.body;
+     const {id}= req.params;
+     const newEstablecimiento= {
+         nombreEstablecimiento,
+         direccion,
+         cuit,
+         idUsuarios: id
+     };
+     try {
+         let crearEstablecimiento= await db.query('insert into establecimiento set?', [newEstablecimiento])
+         if (crearEstablecimiento){
+            req.flash('mensajeOk', 'Establecimiento creado!')
+            res.redirect('/paginas/duenio')
+         }else{
+            req.flash('mensajeMal', 'No se pudo crear el Establecimiento')
+         }
+     } catch (error) {
+         console.log(error)
+         req.flash('mensajeMal', 'No se pudo crear el Establecimiento')
+         res.redirect('/paginas/duenio')
+     }
+
+});
+
 //agregue pantalla crear equipo Basquet 
 ruta.get('/crearEquipoBasquet/:id', estaLogueado, async (req, res) => {
     res.render('paginas/crearEquipoBasquet');
@@ -269,10 +331,6 @@ ruta.post('/crearEquipoPadel/:id', estaLogueado, async (req, res) => {
         res.redirect('/paginas/padel')
     };   
 });
-//agregue pantalla establecimiento
-ruta.get('/establecimiento', estaLogueado, duenio, async (req, res) => {
-    res.render('paginas/establecimiento');
-});
 //agregue pantalla verCancha
 ruta.get('/verCancha/:idEstablecimiento', estaLogueado, async (req, res) => {
     const{idEstablecimiento}= req.params;
@@ -325,7 +383,7 @@ ruta.post('/miPerfil/:id', estaLogueado, foto, async (req, res) => {
     }   
 });
 /*---------------------------------------------------------
-                    REservas
+ REservas
 ---------------------------------------------------------*/
 ruta.get('/reservaDeporte', estaLogueado, async(req, res)=>{
     const deporte= await db.query('select * from deporte');

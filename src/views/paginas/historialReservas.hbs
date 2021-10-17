@@ -1,0 +1,38 @@
+<div class="container mt-5">
+    <table class="table table-hover bg-warning">
+        <h2 class="text-white" style="text-align: center;"><b>HISTORIAL RESERVAS</b></h2>
+        <thead>
+            <tr>
+                <th>Cantidad Reservas: <span style="color: BLUE;">{{cantidadReservas}}</span></th>
+                <th>Asistidas: <span style="color: green;">{{cantidadAsistieron}}</span></th>
+                <th>Faltaron: <span style="color: red;">{{cantidadFallaron}}</span></th>
+                <th>Cancelaron: <span style="color:orangered;">{{cantidadCancelaron}}</span></th>
+                <th>Reservadas: <span style="color:rgb(15, 15, 15);">{{cantidadReservadas}}</span></th>
+            </tr>
+            <tr>
+                <th>Nro de Cancha</th>
+                <th>Fecha Reservada</th>
+                <th>Hora Reservada</th>
+                <th>Nombre y Apellido</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each establecimiento}}
+            <tr>
+                <td>{{numeroCancha}}</td>
+                <td>{{fechaReserva}}</td>
+                <td>{{hora}}:00 Hs</td>
+                <td>{{nombre}} {{apellido}}</td>
+                <td>{{fechas fecha}}</td>
+                <td>{{estado}}</td>
+                {{/each}}
+        </tbody>
+    </table>
+     <div class="col-2  p-4">
+        <a id="volver" href="/paginas/reservaEstablecimiento/{{idEstablecimiento}}" type="button" class="btn btn-primary">Reservas</a>
+    </div>
+
+</div>

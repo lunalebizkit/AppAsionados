@@ -9,7 +9,7 @@
                 <h3 class="text-center mb-4">Elige un Deporte</h3>
                 <div class="text-center">
                     <form action="/paginas/reservaDeporte1/" method="GET">
-                        <select class="btn btn-outline-primary" name="deporte" required>
+                        <select class="btn btn-primary" name="deporte" required>
                             <option value="" selected disabled>Deportes</option>
                             {{#each deporte}}
                             <option value="{{idDeportes}}" required>{{deporte}}</option>
@@ -28,8 +28,13 @@
                 </div>
 
             </div>
+            <div class="col">
+                  <div id="btnCentro" class="mx-auto">
+                <!-- logo de la app -->
+                    <img src="/img/app/logo4.png" alt="Logo App" class="mx-1">
+                </div>
+            </div>
         </div>
-
     </div>
 
 </div>

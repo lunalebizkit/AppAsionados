@@ -1,6 +1,6 @@
 <div id="futbol">
     <div class="container-fluid">
-        <div class="row justify-content-between">
+        <div class="row justify-content-between pt-5">
             <!--Tabla Equipos-->
             <div id="tablaEquipo" class="col-lg-5 m-2 p-2">
                 <div class="d-flex">
@@ -9,24 +9,17 @@
                         <a class="btn btn-dark btn-lg dropdown-toggle text-white" href="#" id="dropdown04"
                             data-bs-toggle="dropdown" aria-expanded="false">EQUIPOS</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#misEquipo"
-                                    data-bs-whatever="@equipo">Mis Equipos</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="/paginas/crearEquipoFutbol/{{user.idUsuarios}}">Crear
-                                    Equipo</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="/paginas/jugadores/{{user.idUsuarios}}">Ver Jugadores</a>
-                            </li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#misEquipo" data-bs-whatever="@equipo">Mis Equipos</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/paginas/crearEquipoFutbol/{{user.idUsuarios}}">Crear Equipo</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/paginas/jugadores/{{user.idUsuarios}}">Ver Jugadores</a></li>
                         </ul>
                     </a>
                     <div class="d-flex justify-content-between m-auto ">
                         <input id="busqueda" type="text" class="form-control" placeholder="Buscar" onkeyup="buscar();"
                             autofocus>
-                        <button class="btn btn-danger" id="boton">
+                        <button class="btn btn-danger" id="boton" disabled>
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
@@ -66,8 +59,8 @@
                         <h4 class=" text-white px-4"><b>ESTABLECIMIENTOS</b></h4>
                     </a>
                     <div class="d-flex justify-content-between m-auto ">
-                        <input id="busqueda1" type="text" class="card-filter" placeholder="Buscar" onkeyup="buscar1();" autofocus>
-                        <button class="btn btn-danger" type="reset" id="boton">
+                        <input id="busqueda1" type="text" class="form-control" placeholder="Buscar" onkeyup="buscar1();" autofocus>
+                        <button class="btn btn-danger" type="reset" id="boton" disabled>
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
@@ -78,7 +71,7 @@
                             <tr>
                                 <th>Establecimiento</th>
                                 <th>Dirección</th>
-                                <th>Deporte</th>
+                                <th>Opción</th>
                             </tr>
                         </thead>
                         <tbody id="tblCancha">
@@ -88,7 +81,7 @@
                                     <a href="/paginas/verCancha/{{idEstablecimiento}}">{{nombreEstablecimiento}}</a>
                                 </td>
                                 <td>{{direccion}}</td>
-                                <td>#</td>
+                                <td><a href="/paginas/verMapa/{{idEstablecimiento}}">Ver mapa</a></td>
                             </tr>
                             {{/each}}
                         </tbody>
@@ -98,7 +91,7 @@
             </div>
         </div>
     </div>
-    <div class="col-2  p-4">
+    <div class="col py-2">
         <a id="volver" href="/paginas/deporte" type="button" class="btn btn-danger">Volver</a>
     </div>
 

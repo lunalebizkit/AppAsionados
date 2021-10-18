@@ -1,11 +1,18 @@
 <div id="cancha">
     <div class="container-fluid pt-5">
         <div class="card text-center mb-1">
-            <h2 class="mb-1 mx-auto">RESERVAS</h2>
+            <h2 class="mb-1 mx-auto">HISTORIAL RESERVAS</h2>
         </div>
         <div id="scrollMisCanchas" class="container">
             <table class="table table-hover bg-warning">
                 <thead>
+                    <tr>
+                        <th>Total Reservas: <span style="color: BLUE;">{{cantidadReservas}}</span></th>
+                        <th>Asistieron: <span style="color: green;">{{cantidadAsistieron}}</span></th>
+                        <th>Faltaron: <span style="color: red;">{{cantidadFallaron}}</span></th>
+                        <th>Cancelaron: <span style="color:orangered;">{{cantidadCancelaron}}</span></th>
+                        <th>Reservadas: <span style="color:rgb(15, 15, 15);">{{cantidadReservadas}}</span></th>
+                    </tr>
                     <tr>
                         <th>Nº de Cancha</th>
                         <th>Fecha Reservada</th>
@@ -13,7 +20,6 @@
                         <th>Nombre y Apellido</th>
                         <th>Fecha</th>
                         <th>Estado</th>
-                        <th>Opcion</th>
                     </tr>
                 </thead>
 
@@ -26,17 +32,12 @@
                         <td>{{nombre}} {{apellido}}</td>
                         <td>{{fechas fecha}}</td>
                         <td>{{estado}}</td>
-                        <td><b><a class="link link-success" href="/paginas/asistio/{{idReserva}}&{{idEstablecimiento}}" >Asistió</a></b><br>
-                            <b><a class="link link-danger" href="/paginas/fallo/{{idReserva}}&{{idEstablecimiento}}">Falló</a></b>
-                        </td>
-                    </tr>
-                    {{/each}}
+                        {{/each}}
                 </tbody>
             </table>
         </div>
-        <div class="p-3">
-            <a id="volver" href="/paginas/duenio" type="button" class="btn btn-primary">Volver</a>
-            <button class="btn btn-success" onclick="location.href='/paginas/historialReservas/{{idEstablecimiento}}'">Ver historial</button>
+        <div class="col-2  p-3">
+            <a id="volver" href="/paginas/reservaEstablecimiento/{{idEstablecimiento}}" type="button" class="btn btn-primary">Volver</a>
         </div>
     </div>
 </div>

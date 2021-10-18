@@ -12,7 +12,7 @@ passport.use('local.ingreso', new LocalStrategy({
     passwordField: 'contrasenia',
     passReqToCallback: true
 }, async (req, nombreUsuario, contrasenia, done) => {
-    const buscar = await db.query('SELECT * FROM usuarios WHERE nombreUsuario = ?', [nombreUsuario]);
+    const buscar = await db.query('SELECT * FROM usuarios WHERE nombreUsuario = ? and baja = false', [nombreUsuario]);
     if (buscar.length > 0) {
         const usuario = buscar[0];
         const validacion = await helpers.comparaContrasenia(contrasenia, usuario.contrasenia);
@@ -24,7 +24,7 @@ passport.use('local.ingreso', new LocalStrategy({
         }
 
     } else {
-        return done(null, false, req.flash('mensajeMal', 'El usuario no existe'));
+        return done(null, false, req.flash('mensajeMal', 'Usuario en baja o no existente'));
     }
 }));
 /*------------------------------------

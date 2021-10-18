@@ -337,9 +337,10 @@ ruta.get('/verCancha/:idEstablecimiento', estaLogueado, async (req, res) => {
     
     const establecimiento= await db.query('Select * from establecimiento join cancha join deporte join imagenCancha join horarios where establecimiento.idEstablecimiento = cancha.idEstablecimiento and horarios.idCancha= cancha.id and imagenCancha.idCancha = cancha.id and cancha.idDeportes = deporte.idDeportes and cancha.idEstablecimiento =?', [idEstablecimiento]);
     const nombre = await db.query('Select nombreEstablecimiento from establecimiento where idEstablecimiento =?', [idEstablecimiento]);
+    const futbol = await db.query('select * from deporte join cancha where deporte.idDeportes = cancha.idDeportes and deporte.idDeportes < 4')
     //const establecimiento= consultaEstablecimiento[0];
     //console.info(establecimiento, nombre);
-    res.render('paginas/verCancha', {establecimiento, nombre});
+    res.render('paginas/verCancha', {establecimiento, nombre, futbol});
 });
 //agregue pantalla jugadores 
 ruta.get('/jugadores/:jugador', estaLogueado, async(req, res)=>{

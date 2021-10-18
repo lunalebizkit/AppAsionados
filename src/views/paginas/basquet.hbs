@@ -25,12 +25,12 @@
 
                 </div>
                 <div id="scroll">
-                    <table class="table table-hover table-info">
+                    <table id="myTable" class="table table-hover table-info">
                         <thead class="fixed">
                             <tr>
-                                <th>Capitán</th>
-                                <th>Nombre</th>
-                                <th>Deporte</th>
+                                <th onclick="sortTable(0, 'str')">Capitán</th>
+                                <th onclick="sortTable(1, 'str')">Nombre</th>
+                                <th onclick="sortTable(2, 'str')">Deporte</th>
                             </tr>
                         </thead>
                         <tbody id="tblEquipos">
@@ -62,11 +62,11 @@
                     </div>
                 </form>
                 <div id="scroll">
-                    <table class="table table-hover table-info">
+                    <table id="myTable1" class="table table-hover table-info">
                         <thead class="fixed">
                             <tr>
-                                <th>Establecimiento</th>
-                                <th>Dirección</th>
+                                <th onclick="sortTable1(0, 'str')">Establecimiento</th>
+                                <th onclick="sortTable1(1, 'str')">Dirección</th>
                                 <th>Opción</th>
                             </tr>
                         </thead>

@@ -4,16 +4,15 @@
             <h5 style="color: rgba(255, 0, 0, 0.589);"><p>* Las reservas se podran cancelar 4hs antes de la fecha seleccionada</p></h5>
             <h2><b>MIS RESERVAS</b></h2>
         </div>
-        <table class="table table-success table-striped ">
-            <h2 class="text-white text-center mb-3">Mis Reservas</h2>
+        <table id="myTable" class="table table-success table-striped ">
             <thead>
-                <th>Fecha</th>
-                <th>Establecimiento</th>
-                <th>Cancha</th>
-                <th>Deporte</th>
-                <th>Fecha Reservada</th>
-                <th>Hora</th>
-                <th>Opcion</th>
+                <th onclick="sortTable(0, 'str')">Fecha</th>
+                <th onclick="sortTable(1, 'str')">Establecimiento</th>
+                <th onclick="sortTable(2, 'int')">Cancha</th>
+                <th onclick="sortTable(3, 'str')">Deporte</th>
+                <th onclick="sortTable(4, 'str')">Fecha Reservada</th>
+                <th onclick="sortTable(5, 'int')">Hora</th>
+                <th>Opción</th>
             </thead>
             <tbody id="tablaReserva">
                 {{#each reservas}}
@@ -25,7 +24,7 @@
                     <td>{{fechaReserva}}</td>
                     <td>{{ hora}}:00 Hs</td>
                     <td><form action="/paginas/reservaUsuarioCancelar/{{idReserva}}" method="get">
-                    <button class="btn btn-warning">Cancelar Reserva</button>
+                    <button class="btn btn-warning" onclick="return confirm('¿Estás seguro que deseas cancelar la reserva?');">Cancelar Reserva</button>
                     </form></td>
                 </tr>
                 {{/each}}

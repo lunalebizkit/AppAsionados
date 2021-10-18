@@ -4,15 +4,15 @@
             <h2 class="mb-1 mx-auto">RESERVAS</h2>
         </div>
         <div id="scrollMisCanchas" class="container">
-            <table class="table table-hover bg-warning">
+            <table id="myTable" class="table table-hover bg-warning">
                 <thead>
                     <tr>
-                        <th>Nº de Cancha</th>
-                        <th>Fecha Reservada</th>
-                        <th>Hora Reservada</th>
-                        <th>Nombre y Apellido</th>
-                        <th>Fecha</th>
-                        <th>Estado</th>
+                        <th onclick="sortTable(0, 'int')">Nº de Cancha</th>
+                        <th onclick="sortTable(1, 'str')">Fecha Reservada</th>
+                        <th onclick="sortTable(2, 'int')">Hora Reservada</th>
+                        <th onclick="sortTable(3, 'str')">Nombre y Apellido</th>
+                        <th onclick="sortTable(4, 'str')">Fecha</th>
+                        <th onclick="sortTable(5, 'str')">Estado</th>
                         <th>Opcion</th>
                     </tr>
                 </thead>

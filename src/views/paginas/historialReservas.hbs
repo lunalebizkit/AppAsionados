@@ -8,18 +8,22 @@
                 <thead>
                     <tr>
                         <th>Total Reservas: <span style="color: BLUE;">{{cantidadReservas}}</span></th>
-                        <th>Asistieron: <span style="color: green;">{{cantidadAsistieron}}</span></th>
-                        <th>Faltaron: <span style="color: red;">{{cantidadFallaron}}</span></th>
-                        <th>Cancelaron: <span style="color:orangered;">{{cantidadCancelaron}}</span></th>
-                        <th>Reservadas: <span style="color:rgb(15, 15, 15);">{{cantidadReservadas}}</span></th>
+                        <th><i class="fas fa-thumbs-up"></i> Asistieron: <span style="color: green;">{{cantidadAsistieron}}</span></th>
+                        <th><i class="fas fa-thumbs-down"></i> Faltaron: <span style="color: red;">{{cantidadFallaron}}</span></th>
+                        <th><i class="fas fa-times-circle"></i> Cancelaron: <span style="color:orangered;">{{cantidadCancelaron}}</span></th>
+                        <th><i class="fas fa-calendar-check"></i> Reservadas: <span style="color:rgb(15, 15, 15);">{{cantidadReservadas}}</span></th>
                     </tr>
+                </thead>
+            </table>
+            <table id="myTable" class="table table-hover bg-warning">
+                <thead>
                     <tr>
-                        <th>Nº de Cancha</th>
-                        <th>Fecha Reservada</th>
-                        <th>Hora Reservada</th>
-                        <th>Nombre y Apellido</th>
-                        <th>Fecha</th>
-                        <th>Estado</th>
+                        <th onclick="sortTable(0, 'int')">Nº de Cancha</th>
+                        <th onclick="sortTable(1, 'str')">Fecha Reservada</th>
+                        <th onclick="sortTable(2, 'int')">Hora Reservada</th>
+                        <th onclick="sortTable(3, 'str')">Nombre y Apellido</th>
+                        <th onclick="sortTable(4, 'str')">Fecha</th>
+                        <th onclick="sortTable(5, 'str')">Estado</th>
                     </tr>
                 </thead>
 

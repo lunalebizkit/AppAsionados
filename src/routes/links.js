@@ -21,12 +21,33 @@ ruta.get('/equipo/:club&:idDeportes', estaLogueado, async (req, res) => {
     const {club}= req.params;
     const {idDeportes}= req.params;
     const {idUsuarios} = req.user;
-    const equipos = await db.query('select * from equipos inner join deporte join usuarios where equipos.idDeportes = deporte.idDeportes and usuarios.idUsuarios = equipos.idUsuarios');
     const equipo= await db.query('Select * from jugador join equipos join usuarios where usuarios.IdUsuarios = jugador.idUsuarios and jugador.idEquipo = equipos.idEquipo and equipos.nombreEquipo =?', [club]);
     const pertenezco= await db.query('select * from jugador join equipos where jugador.idUsuarios =? and jugador.idEquipo = equipos.idEquipo and equipos.nombreEquipo =?', [idUsuarios, club]);
     const idEquipo= await db.query('select idEquipo from equipos where nombreEquipo =?', [club]);
     let numero= idEquipo[0].idEquipo;
-    res.render('paginas/equipo', {equipos, equipo, club, pertenezco, numero, idDeportes});
+    res.render('paginas/equipo', {equipo, club, pertenezco, numero, idDeportes});
+});
+ruta.get('/ingresarAlEquipo/:idEquipo&:idDeportes', estaLogueado, async(req, res) =>{
+    const {idEquipo, idDeportes} = req.params;
+    const {posicion}=req.query;
+    const {idUsuarios}= req.user;
+    const newJugador={
+        idUsuarios,
+        posicion,
+        idEquipo
+    }
+    try {
+        const ingresar=await db.query('insert into jugador set?', [newJugador])
+        const atras= req.header('Referer')
+        if (ingresar){
+            req.flash('mensajeOk', 'Ya sos parte del equipo!!!')
+            res.redirect(atras);
+        }
+    } catch (error) {
+        console.log(error)
+        req.flash('mensajeMal', "No se pudo realizar la operacion")
+        res.redirect('/paginas/deporte')
+    }    
 });
 //agregue pantalla futbol
 ruta.get('/futbol', estaLogueado, async (req, res) => {
@@ -137,22 +158,7 @@ ruta.get('/miEquipo/:equipo', estaLogueado, async(req, res)=>{
     const equipos= await db.query('Select usuarios.nombreUsuario, usuarios.nombre, jugador.posicion from equipos join jugador join usuarios where jugador.idEquipo = equipos.idEquipo and usuarios.idUsuarios = jugador.idUsuarios and nombreEquipo =?',[equipo] );
     res.render('paginas/miEquipo', {equipos, equipo});
 });
-ruta.get('/ingresarAlEquipo/:idEquipo&:idDeportes', estaLogueado, async(req, res) =>{
-    const {idEquipo, idDeportes} = req.params;
-    const {posicion}=req.query;
-    const {idUsuarios}= req.user;
-    const newJugador={
-        idUsuarios,
-        posicion,
-        idEquipo
-    }
-    if (await db.query('insert into jugador set?', [newJugador])){
-        req.flash('mensajeOk', 'Ya sos parte del equipo!!!');
-        res.redirect('/paginas/futbol');
-    }else{
-        res.render('paginas/ingresarAlEquipo');
-    }
-});
+
 /*----------------------------------
 Dueño
 --------------------------------------*/
@@ -419,12 +425,21 @@ ruta.get('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
     res.render('reserva/reservaDeporte2', {turno, idCancha, reservas})
 });
 ruta.post('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
-    const {idCancha, idUsuarios, fecha}= req.session.newReserva;
-    const {turno}= req.body;
-    const newReserva= {idCancha, idUsuario: idUsuarios, estado: "reservado",fechaReserva: fecha, hora: turno}
-    await db.query('insert into reserva set?',[newReserva]);
-    req.flash('mensajeOk', 'Reserva Hecha!!!');
-    res.redirect('/paginas/reservaUsuario/'+ idUsuarios);
+    try {
+        const {idCancha, idUsuarios, fecha}= req.session.newReserva;
+        const {turno}= req.body;
+        const newReserva= {idCancha, idUsuario: idUsuarios, estado: "reservado",fechaReserva: fecha, hora: turno}
+        let reservaCompleta= await db.query('insert into reserva set?',[newReserva]);
+        if (reservaCompleta) {
+            req.session.newReserva= {}
+            req.flash('mensajeOk', 'Reserva Hecha!!!');
+            res.redirect('/paginas/reservaUsuario/'+ idUsuarios);
+        }
+    } catch (error) {
+        console.log(error)
+        req.flash('mensajeMal', 'No se ha podido realizar la reserva');
+        res.redirect('/paginas/reservaDeporte')
+    } 
 });
 
 //agregue pantalla mapa

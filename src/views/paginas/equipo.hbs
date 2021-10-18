@@ -1,5 +1,5 @@
 <div id="inicio" class="container-fluid">
-    <div class="col-md-9 m-auto p-4">
+    <div class="col-md-9 m-auto pt-5">
         <h2 class="card text-center py-2" style="color: rgb(0, 0, 0);">{{club}}</h2>
         <div id="scrollMiEquipo">
             <table class="table table-hover table-dark">
@@ -11,7 +11,7 @@
                 <tbody>
                     {{#each equipo}}
                     <tr>
-                        <td>{{nombre}} <!--<i class="fas fa-copyright"></i>--></td>
+                        <td>{{nombre}}</td>
                         <td>{{apellido}}</td>
                         <td>{{posicion}}</td>
                     </tr>
@@ -20,7 +20,7 @@
             </table>
         </div>
     </div>
-    <div class="col-2  p-4">
+    <div class="col-2  p-3">
         <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
     </div>
     
@@ -29,21 +29,51 @@
         <div id="semiTransparente" class="col-7 m-auto p-1 text-center">
             <h3 style="color: rgb(0, 0, 0);">¿Querés ser parte del Equipo?</h3>
             <form  action="/paginas/ingresarAlEquipo/{{numero}}&{{idDeportes}}" method="get">
-                <div class="col-6 mx-auto py-2">
-                    <select name="posicion" class="btn btn-ls btn-success" required>
-                        <option type="text" value="">Elegir posición</option>
-                        <option type="text" value="Arquero">Arquero</option>
-                        <option type="text" value="Defensor">Defensor</option>
-                        <option type="text" value="MedioCampo">Medio campo</option>
-                        <option type="text" value="Delantero">Delantero</option>
-                    </select>
-                    <span><hr class="dropdown-divider"></span>
-                    <button class="btn btn-primary btn-block">Unirme</button>
-                </div>
-                
+                <div id="deporteFormulario" class="col-6 mx-auto py-2">             
             </form>
         </div>
     </div>
     {{/unless}}
     
 </div>
+<script>
+    function claseDeporte() {
+        var numero = {{idDeportes}} 
+        if ( numero ==  3 || numero== 2 || numero == 1) {           
+            document.getElementById("deporteFormulario").innerHTML += ` <select name="posicion" class="btn btn-ls btn-success" required>
+                        <option type="text" value="">Elegir posición</option>
+                        <option type="text" value="Arquero">Arquero</option>
+                        <option type="text" value="Defensor">Defensor</option>
+                        <option type="text" value="MedioCampo">Medio campo</option>
+                        <option type="text" value="Delantero">Delantero</option>
+                    </select> 
+                      <span><hr class="dropdown-divider"></span>
+                    <button class="btn btn-primary btn-block">Unirme</button>
+                </div>`            
+        }
+        if (numero ==4 ) {
+             document.getElementById("deporteFormulario").innerHTML += `<select name="posicion" class="btn btn-ls btn-success" required>
+                                <option type="text" value="">POSICIÓN</option>
+                                <option type="text" value="Base">Base</option>
+                                <option type="text" value="Escolta">Escolta</option>
+                                <option type="text" value="Alero">Alero</option>
+                                <option type="text" value="Ala pivot">Ala pivot</option>
+                                <option type="text" value="Pivot">Pivot</option>
+                            </select>
+                      <span><hr class="dropdown-divider"></span>
+                    <button class="btn btn-primary btn-block">Unirme</button>
+                </div>`      
+        }
+        if (numero == 5) {
+              document.getElementById("deporteFormulario").innerHTML += `<select name="posicion" class="btn btn-ls btn-success" required>
+                                <option type="text" value="">POSICIÓN</option>
+                                <option type="text" value="Derecha">Derecha</option>
+                                <option type="text" value="Revés">Revés</option>
+                            </select>
+                      <span><hr class="dropdown-divider"></span>
+                    <button class="btn btn-primary btn-block">Unirme</button>
+                </div>` 
+        }
+    } 
+claseDeporte()
+</script>

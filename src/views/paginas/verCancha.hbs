@@ -2,10 +2,10 @@
     <div class="container-fluid">
         {{#each nombre}}
         <div class="card text-center mb-4">
-            <h2 class="mb-3 mx-auto">{{nombreEstablecimiento}}</h2>
+            <h2 class="mb-3  mx-auto">{{nombreEstablecimiento}}</h2>
         </div>
         {{/each}}
-        <div id="scrollMisCanchas" class="row">
+        <div id="scrollMisCanchas" class="rows" >
             {{#each establecimiento}}
             <div class="col-lg-4 mb-4">
                 <div class="card bg-white" style="opacity: 1;">
@@ -21,19 +21,13 @@
                         <b>a {{horaFin}}hs</b>
                     </div>
                 </div>
-                <div id="semiTransparente" class="card-body text-white">
-                    <i type="text">Dirección: <b>{{direccion}}</b></i>
-                    <br>
-                    <i type="text">Deporte: <b>{{idDeportes}}</b></i>
-                </div>
                 <div class="d-flex justify-content-around">
                     <div id="showMap" style="width: 480px; height: 263px;"></div>
                 </div>
-                 {{/with}}
             </div>
             {{/each}}
         </div>
-        <div class="col-2  p-4">
+        <div class="col-2 p-4">
             <a  href="javascript: history.go(-1)" type="button" class="btn btn-primary">Volver</a>
         </div>
     </div>

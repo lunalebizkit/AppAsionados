@@ -5,7 +5,7 @@
             <h2 class="mb-3  mx-auto"><b>{{nombreEstablecimiento}}</b> - <i>{{direccion}}</i></h2>
         </div>
         {{/each}}
-        <div id="scrollMisCanchas" class="rows" >
+        <div id="scrollMisCanchas" class="row" >
             {{#each establecimiento}}
             <div class="col-lg-4 mb-4">
                 <div class="card bg-white" style="opacity: 1;">
@@ -19,9 +19,6 @@
                         <a href="/paginas/diasCancha" type="link" class="link link-primary">Ver dias y horario</a>
                         <button class="btn btn-primary">Reservar</button>
                     </div>
-                </div>
-                <div class="d-flex justify-content-around">
-                    <div id="showMap" style="width: 480px; height: 263px;"></div>
                 </div>
             </div>
             {{/each}}

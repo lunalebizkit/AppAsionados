@@ -7,7 +7,7 @@
                         <a class="btn btn-dark btn-lg dropdown-toggle text-white" href="#" id="dropdown04"
                             data-bs-toggle="dropdown" aria-expanded="false">ESTABLECIMIENTO</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                            <li><a class="dropdown-item" href="establecimiento">Agregar Establecimiento</a></li>
+                            <li><a class="dropdown-item" href="establecimiento/{{idUsuarios}}">Agregar Establecimiento</a></li>
                         </ul>
                     </a>
                      <a class="navbar-brand">
@@ -20,13 +20,13 @@
                         </ul>
                     </a>
                 </div>
-                <div id="scroll">
-                    <table class="table table-hover table-info">
+                <div id="scrollEstablecimientos">
+                    <table id="myTable" class="table table-hover table-info">
                         <thead>
                             <tr>
-                                <th>Nombre</th>
-                                <th>Dirección</th>
-                                <th>Cuit</th>                                   
+                                <th onclick="sortTable(0, 'str')">Nombre</th>
+                                <th onclick="sortTable(1, 'str')">Dirección</th>
+                                <th onclick="sortTable(2, 'str')">Cuit</th>                                   
                                 <th>Opción</th>
                             </tr>
                         </thead>
@@ -39,7 +39,9 @@
                                 <td><a >{{cuit}}</a></td>
                                 <td><b><a class="link link-success" href="cancha/{{idEstablecimiento}}">Agregar Cancha</a></b>
                                 <br>
-                                <b><a class="link link-primary" href="misCanchas/{{idEstablecimiento}}">Mis Canchas</a></b></td>
+                                <b><a class="link link-primary" href="misCanchas/{{idEstablecimiento}}">Mis Canchas</a></b>
+                                <br>
+                                <b><a class="link link-danger" href="mapa/{{idEstablecimiento}}">Mapa</a></b></td>
                             </tr>
                             {{/each}}
                         </tbody>

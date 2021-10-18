@@ -1,26 +1,33 @@
-<div id="cancha" style="width: 100vw; height: 33rem">
-    <div class="container-fluid p-3">
-        <div class="card bg-dark col-md-5 m-auto p-5">
-            <div class="col-md-15">
-                {{#with establecimiento}}
-                <div class="card text-center mb-4">
-                    <div class="text-center">
-                        
-                        <h2>{{nombreEstablecimiento}}</h2>
+<div id="cancha">
+    <div class="container-fluid">
+        {{#each nombre}}
+        <div class="card text-center mb-4">
+            <h2 class="mb-3  mx-auto"><b>{{nombreEstablecimiento}}</b> - <i>{{direccion}}</i></h2>
+        </div>
+        {{/each}}
+        <div id="scrollMisCanchas" class="rows" >
+            {{#each establecimiento}}
+            <div class="col-lg-4 mb-4">
+                <div class="card bg-white" style="opacity: 1;">
+                    <div class="card-header">
+                        <b>Cancha Nº {{numeroCancha}} - {{deporte}}</b>
+                    </div>
+                    <div class="card-body">
+                        <img src="/img/descarga/{{img}}" alt="" width="250" height="200">
+                    </div>
+                    <div class="card-footer">
+                        <a href="/paginas/diasCancha" type="link" class="link link-primary">Ver dias y horario</a>
+                        <button class="btn btn-primary">Reservar</button>
                     </div>
                 </div>
-                <div id="semiTransparente" class="card-body text-white">
-
-                    <i type="text">Dirección: <b>{{direccion}}</b></i>
-                    <br>
-                    <i type="text">Deporte: <b>Fútbol 5</b></i>
+                <div class="d-flex justify-content-around">
+                    <div id="showMap" style="width: 480px; height: 263px;"></div>
                 </div>
-                 {{/with}}
             </div>
+            {{/each}}
         </div>
-           <div class="col-2  p-4">
-            <a  href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
+        <div class="col-2 p-4">
+            <a  href="javascript: history.go(-1)" type="button" class="btn btn-primary">Volver</a>
         </div>
     </div>
-  
 </div>

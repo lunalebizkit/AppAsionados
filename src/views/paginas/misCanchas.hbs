@@ -1,12 +1,12 @@
 <div id="cancha">
-    <div class="container-fluid p-5">
+    <div class="container-fluid">
         <div class="card text-center mb-4">
             <h2 class="mb-3 mx-auto">MIS CANCHAS</h2>
         </div>
         <div id="scrollMisCanchas" class="row">
             {{#each establecimiento}}
-            <div class="col-md-4 mb-4">
-                <div class="card bg-white">
+            <div class="col-lg-4 mb-4">
+                <div class="card bg-white" style="opacity: 1;">
                     <div class="card-header">
                         <b>Cancha Nº {{numeroCancha}} - {{deporte}}</b>
                     </div>
@@ -14,9 +14,9 @@
                         <img src="/img/descarga/{{img}}" alt="" width="250" height="200">
                     </div>
                     <div class="card-footer">
-                        <b>Horarios </b>
-                        <b>Desde</b> {{ horaInicio}} <b>Hs</b>
-                        <b>Hasta</b> {{ horaFin}} <b>Hs</b>
+                        <b>Horario -</b>
+                        <b>De {{horaInicio}}hs</b>
+                        <b>a {{horaFin}}hs</b>
                     </div>
                 </div>
             </div>

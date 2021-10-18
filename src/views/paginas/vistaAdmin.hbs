@@ -1,13 +1,28 @@
 <script type="text/javascript">
+    function mostrarBarra() {
+        document.getElementById("barraLateral").style.width = "300px";
+        document.getElementById("contenido").style.marginLeft = "300px";
+        document.getElementById("abrir").style.display = "none";
+        document.getElementById("cerrar").style.display = "inline";
+    }
+
+    function ocultarBarra() {
+        document.getElementById("barraLateral").style.width = "0";
+        document.getElementById("contenido").style.marginLeft = "0";
+        document.getElementById("abrir").style.display = "inline";
+        document.getElementById("cerrar").style.display = "none";
+    }
     function mostrar(id, n) {
         var id
         if (id == 0) {
-            id = 'tablaEquipo'
+            id = 'tablaEquipos'
         }
         if (id == 1) {
             id = 'tablaUsuario'
         } if (id == 2) {
             id = 'tablaCanchas'
+        } if (id == 3) {
+            id = 'tablaDeportes'
         }
         var estado
         if (n == 1) {
@@ -18,42 +33,84 @@
     }
 
 </script>
-<div class="container">
-    <div class="btn-group mb-3">
-        <button class="btn btn-outline-info" onclick="mostrar(2,1)" ondblclick="mostrar(2,0)">
-            <h4><b>CANCHAS</b></h4>
-        </button>
-        <button class="btn btn-outline-info" onclick="mostrar(0,1)" ondblclick="mostrar(0,0)">
-            <h4><b>EQUIPOS</b></h4>
-        </button>
-        <button class="btn btn-outline-info" onclick="mostrar(1,1)" ondblclick="mostrar(1,0)">
-            <h4><b>USUARIOS</b></h4>
-        </button>
+<div id="barraLateral" class="barraLateral" style="width: 0px;">
+    <a href="#" class="boton-cerrar" onclick="ocultarBarra()">×</a>
+    <u>
+        <li><button class="btn btn-outline-info mb-3" onclick="mostrar(2,1)" ondblclick="mostrar(2,0)">
+                <h4><b>CANCHAS</b></h4>
+            </button></li>
+        <li> <button class="btn btn-outline-info mb-3" onclick="mostrar(0,1)" ondblclick="mostrar(0,0)">
+                <h4><b>EQUIPOS</b></h4>
+            </button></li>
+        <li><button class="btn btn-outline-info mb-3" onclick="mostrar(1,1)" ondblclick="mostrar(1,0)">
+                <h4><b>USUARIOS</b></h4>
+            </button></li>
+        <li class="mb-5"><button class="btn btn-outline-info mb-3" onclick="mostrar(3,1)" ondblclick="mostrar(3,0)">
+                <h4><b>DEPORTES</b></h4>
+            </button></li>
+        <li class="mt-5">
+            <form action="/paginas/crearDep" method="get">
+                <label class="text-center text-white" for="dep" style="font-size: 1.5rem;">Crear Deporte</label>
+                <input id="dep" type=" text" name="deporte" placeholder="Ingrese Deporte">
+
+                <button class="btn btn-success">
+                    <i class="fas fa-thumbs-up"></i>
+                </button>
+            </form>
+        </li>
+    </u>
+</div>
+
+<div id="contenido" style="margin-left: 0px;">
+    <div class="mt-3 pb-3">
+        <a id="abrir" class="abrir-cerrar" href="javascript:void(0)" onclick="mostrarBarra()" style="display: inline;">
+            Abrir menu
+        </a>
+        <a id="cerrar" class="abrir-cerrar" href="javascript:void(0)" onclick="ocultarBarra()" style="display: none;">
+            Cerrar menu
+        </a>
     </div>
     <div class="justify-content-around">
-        <div class="container-fluid" id="tablaEquipo" style="display: none;">          
+        <div class="container-fluid" id="tablaDeportes" style="display: none;">
             <table class="table table-hover bg-warning">
-                  <h2 class="text-white" style="text-align: center;"><b>EQUIPOS</b></h2>
+                <h2 class="text-white" style="text-align: center;"><b>DEPORTES</b></h2>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Deporte</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{#each deporte}}
+                    <tr>
+                        <td>{{idDeportes}}</td>
+                        <td>{{deporte}}</td>
+                        {{/each}}
+                </tbody>
+            </table>
+        </div>
+        <div class="container-fluid" id="tablaEquipos" style="display: none;">
+            <table class="table table-hover bg-warning">
+                <h2 class="text-white" style="text-align: center;"><b>EQUIPOS</b></h2>
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>Nombre Equipo</th>
                         <th>Deporte</th>
-                        <th>Usuario</th>
+                        <th>Capitan</th>                        
                     </tr>
                 </thead>
-
                 <tbody>
                     {{#each equipos}}
                     <tr>
                         <td>{{idEquipo}}</td>
                         <td>{{nombreEquipo}}</td>
-                        <td>{{idDeporte}}</td>
-                        <td>{{idUsuarios}}</td>
-                    {{/each}}
+                        <td>{{deporte}}</td>
+                        <td>{{nombre}} {{apellido}}</td>
+                        {{/each}}
                 </tbody>
             </table>
-
         </div>
         <div class="container-fluid" id="tablaCanchas" style="display: none;">
             <table class="table table-hover bg-warning">
@@ -61,7 +118,7 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th style="text-align: center;"><span style="color: red;">Nombre</span></th>
+                        <th style="text-align: center;">Nombre</th>
                         <th style="text-align: center;">Direccion</th>
                         <th style="text-align: center;">Contacto</th>
                         <th style="text-align: center;">Dueño</th>
@@ -72,16 +129,15 @@
                 <tbody>
                     {{#each establecimiento}}
                     <tr>
-                        <td>{{idEstablecimiento}}</td>
-                        <td>{{nombreEstablecimiento}}</td>
-                        <td>{{direccion}}</td>
-                        <td>{{cuit}}</td>
-                        <td>{{idUsuarios}}</td>                
+                        <td style="text-align: center;">{{idEstablecimiento}}</td>
+                        <td style="text-align: center;">{{nombreEstablecimiento}}</td>
+                        <td style="text-align: center;">{{direccion}}</td>
+                        <td style="text-align: center;">{{cuit}}</td>
+                        <td style="text-align: center;">{{nombre}} {{apellido}}</td>
                     </tr>
                     {{/each}}
                 </tbody>
             </table>
-
         </div>
         <div id="tablaUsuario" class="container-fluid" style="display: none;">
             <table class="table table-hover bg-warning">
@@ -91,6 +147,8 @@
                         <th>Usuario</th>
                         <th>Nombre</th>
                         <th>Contacto</th>
+                        <th>Estado</th>
+                         <th>Alta/Baja</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -99,13 +157,22 @@
                         <td>{{nombreUsuario}}</td>
                         <td>{{nombre}} {{apellido}}</td>
                         <td>{{email}}</td>
+                        <td>{{baja}}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                            <form action="/paginas/alta/{{idUsuarios}}">
+                            <button class="btn btn-success"><i class="fa fa-heart"></i></button>
+                            </form>
+                            <form action="/paginas/baja/{{idUsuarios}}">
+                            <button class="btn btn-danger"><i class="fa fa-skull-crossbones"></i></button>
+                            </form>
+                            </div>
+                        </td>
                     </tr>
                     {{/each}}
                 </tbody>
             </table>
         </div>
     </div>
+
 </div>
-<div style = "float: left" class="col-2  p-4">
-        <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
-    </div>

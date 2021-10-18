@@ -4,22 +4,22 @@
         <div class=" card text-center mb-4 p-3">
             <h2>Nuevo Establecimiento</h2>
         </div>
-        <form id="semiTransparente" class="p-5">
+        <form id="semiTransparente" action="/paginas/establecimiento/{{id}}" class="p-5" method="post">
             
             <div class="input-group mb-3">          
                 <b><span style="color: red;">*  </span></b>                      
-                <input type="number" class="form-control" name="cuit" placeholder="CUIT (sin guiones)" maxlength="11" minlength="11" required>
+                <input type="number" class="form-control" name="cuit" placeholder="CUIT (sin guiones)" maxlength="11" minlength="11" required autofocus>
             </div>
             <div class="input-group mb-3">          
                 <b><span style="color: red;">*  </span></b>                      
-                <input type="text" class="form-control" name="nombreEstablecimiento" placeholder="Nombre del establecimiento" required autofocus>
+                <input type="text" class="form-control" name="nombreEstablecimiento" placeholder="Nombre del establecimiento" required >
             </div>
             <div class="input-group mb-3">          
                 <b><span style="color: red;">*  </span></b>                      
-                <input type="text" class="form-control" name="direccion" placeholder="Direccion" required>
+                <input type="text" class="form-control" name="direccion" placeholder="Dirección" required>
             </div>    
                                      
-            <b><span style="color: red;"><b>*</b></span><span style="font-size:small"> CAMPOS OBLIGATORIOS</span></b>                          
+            <b><span style="color: red;"><b>*</b></span><span style="font-size:small; color:white"> CAMPOS OBLIGATORIOS</span></b>                          
             
             <span><hr class="dropdown-divider"></span>
             <div class="col-md-6 mx-auto pb-2">
@@ -33,37 +33,3 @@
         </form>
     </div>
 </div>
-<!--
-<div id="cancha">
-    <div class="col-md-6 mx-auto p-4">
-        
-        <div class=" card text-center mb-4 p-1">
-            <h2>Nuevo Establecimiento</h2>
-        </div>
-        <form id="semiTransparente" class=" p-4">
-            <div class="input-group mb-3 px-3">
-                <input type="text" class="form-control" id="validationDefault01"
-                    placeholder="Nombre del Establecimiento" autofocus required>
-            </div>
-            <div class="input-group mb-3 px-3">
-                <input type="text" class="form-control" id="validationDefault02" placeholder="Dirección" required>
-            </div>
-            <div class="input-group mb-3 px-3">
-                <input type="number" class="form-control" id="validationDefault02" placeholder="CUIT" required>
-            </div>
-            <div class="mb-3 text-center">
-                <label for="formFile" class="text-white"><b>Logo (opcional)</b></label>
-                <input class="form-control" type="file" id="formFile">
-            </div>
-            <span><hr class="dropdown-divider"></span>
-            <div class="col-md-6 mx-auto pb-3">
-                <button type="submit" class="btn btn-success btn-block">
-                    Cargar
-                </button>
-                <button onclick="location.href='/paginas/duenio'" class="btn btn-danger btn-block">
-                    Cancelar
-                </button>
-        </form>
-    </div>
-</div>
--->

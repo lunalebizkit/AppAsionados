@@ -1,0 +1,248 @@
+<div id="inicio">
+    <form method="POST" action="/paginas/mapa/{{idEstablecimiento}}">
+        <div class="container-flex">
+            <div class="d-flex justify-content-around p-4">
+            {{#with cancha}}
+                <div id="showMap" style="width: 800px; height: 360px;"> 
+                    <div id="marker"></div>
+                    <!--<input id="mapLat" type="text" name="lat" value="">
+                    <input id="mapLong" type="text" name="long" value="">
+                    <div onload="showMap.initMap()">
+                        <h1>Obtener Coordenadas a partir de una dirección</h1>
+                        <div id="showMap" style="width: 450px; height: 250px;"> </div>
+                        <div><p id="coordenadas"></p></div>
+                        <input type="text" id="search"> <input type="button" value="Buscar Dirección" onClick="mapa.getCoords()">
+                    </div>-->
+                </div>
+            {{/with}}   
+            </div>   
+        </div>
+        <div class="col-5 mx-auto p-4" style="background-color: blanchedalmond;">
+            <button type="submit" class="btn btn-success btn-block">
+                Cargar
+            </button>
+            
+            <a href="javascript: history.go(-1)" type="button" class="btn btn-danger btn-block">
+                Cancelar
+            </a>
+        </div>  
+    </form>
+</div>
+
+
+
+<script type="text/javascript"> 
+{{#with cancha}}
+
+function showGoogleMaps()
+{
+    
+    //Creamos el punto a partir de la latitud y longitud de una dirección:
+    var point = new google.maps.LatLng({{latitud}}, {{longitud}});
+    //var point = new google.maps.Map({{latitud}}, {{longitud}}),
+      
+    //Configuramos las opciones indicando zoom, punto y tipo de mapa
+    var myOptions = {
+        zoom: 15, 
+        center: point, 
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+ 
+    //Creamos el mapa y lo asociamos a nuestro contenedor
+    var map = new google.maps.Map(document.getElementById("showMap"),  myOptions);
+ 
+    //Mostramos el marcador en el punto que hemos creado
+    var marker = new google.maps.Marker({
+        position:point,
+        draggable: true,
+        map: map,
+        title: '{{direccion}}'
+    });
+    google.maps.event.addListener(marker, 'dragend', function(event) {
+        //document.getElementById("coords").value = this.getPosition().lat()+","+this.getPosition().lng();
+        
+        var lat = marker.getPosition().lat();
+        var long = marker.getPosition().lng();
+        alert('Latitud = '+lat+ ', Longitud = '+long);
+        
+    });
+    
+    
+    
+}
+showGoogleMaps();
+{{/with}}
+</script>
+
+<!--
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<title>Obtener Coordenadas a partir de una dirección</title>
+<meta charset="utf-8" />
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script type="text/javascript" src="https://maps.google.com/maps/api/js"></script>
+<script>
+
+mapa = {
+ map : false,
+ marker : false,
+
+ initMap : function() {
+
+ // Creamos un objeto mapa y especificamos el elemento DOM donde se va a mostrar.
+
+ mapa.map = new google.maps.Map(document.getElementById('mapa'), {
+   center: {lat: 43.2686751, lng: -2.9340005},
+   scrollwheel: false,
+   zoom: 14,
+   zoomControl: true,
+   rotateControl : false,
+   mapTypeControl: true,
+   streetViewControl: false,
+ });
+
+ // Creamos el marcador
+ mapa.marker = new google.maps.Marker({
+ position: {lat: 43.2686751, lng: -2.9340005},
+ draggable: true
+ });
+
+ // Le asignamos el mapa a los marcadores.
+  mapa.marker.setMap(mapa.map);
+
+ },
+ 
+
+// función que se ejecuta al pulsar el botón buscar dirección
+getCoords : function()
+{
+  // Creamos el objeto geodecoder
+ var geocoder = new google.maps.Geocoder();
+
+ address = document.getElementById('search').value;
+ if(address!='')
+ {
+  // Llamamos a la función geodecode pasandole la dirección que hemos introducido en la caja de texto.
+ geocoder.geocode({ 'address': address}, function(results, status)
+ {
+   if (status == 'OK')
+   {
+// Mostramos las coordenadas obtenidas en el p con id coordenadas
+   document.getElementById("coordenadas").innerHTML='Coordenadas:   '+results[0].geometry.location.lat()+', '+results[0].geometry.location.lng();
+// Posicionamos el marcador en las coordenadas obtenidas
+   mapa.marker.setPosition(results[0].geometry.location);
+// Centramos el mapa en las coordenadas obtenidas
+   mapa.map.setCenter(mapa.marker.getPosition());
+   agendaForm.showMapaEventForm();
+   }
+  });
+ }
+ 
+ }
+}
+</script>
+</head>
+<body onload="mapa.initMap()">
+ <h1>Obtener Coordenadas a partir de una dirección</h1>
+ <div id="mapa" style="width: 450px; height: 350px;"> </div>
+ <div><p id="coordenadas"></p></div>
+ <input type="text" id="search"> <input type="button" value="Buscar Dirección" onClick="mapa.getCoords()">
+</body>
+</html>
+
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Obtener coordenadas de un marcador </title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        width: 100%;
+        height: 80%;
+      }
+      #coords{width: 500px;}
+    </style>
+  </head>
+  <body >
+    <div id="map"></div>
+ 
+    <input type="text" id="coords" />
+    <script>
+ 
+ 
+var marker;          //variable del marcador
+var coords = {};    //coordenadas obtenidas con la geolocalización
+ 
+//Funcion principal
+initMap = function () 
+{
+ 
+    //usamos la API para geolocalizar el usuario
+        navigator.geolocation.getCurrentPosition(
+          function (position){
+            coords =  {
+              lng: position.coords.longitude,
+              lat: position.coords.latitude
+            };
+            setMapa(coords);  //pasamos las coordenadas al metodo para crear el mapa
+            
+           
+          },function(error){console.log(error);});
+    
+}
+ 
+ 
+ 
+function setMapa (coords)
+{   
+      //Se crea una nueva instancia del objeto mapa
+      var map = new google.maps.Map(document.getElementById('map'),
+      {
+        zoom: 13,
+        center:new google.maps.LatLng(coords.lat,coords.lng),
+ 
+      });
+ 
+      //Creamos el marcador en el mapa con sus propiedades
+      //para nuestro obetivo tenemos que poner el atributo draggable en true
+      //position pondremos las mismas coordenas que obtuvimos en la geolocalización
+      marker = new google.maps.Marker({
+        map: map,
+        draggable: true,
+        animation: google.maps.Animation.DROP,
+        position: new google.maps.LatLng(coords.lat,coords.lng),
+ 
+      });
+      //agregamos un evento al marcador junto con la funcion callback al igual que el evento dragend que indica 
+      //cuando el usuario a soltado el marcador
+      marker.addListener('click', toggleBounce);
+      
+      marker.addListener( 'dragend', function (event)
+      {
+        //escribimos las coordenadas de la posicion actual del marcador dentro del input #coords
+        document.getElementById("coords").value = this.getPosition().lat()+","+ this.getPosition().lng();
+      });
+}
+ 
+//callback al hacer clic en el marcador lo que hace es quitar y poner la animacion BOUNCE
+function toggleBounce() {
+  if (marker.getAnimation() !== null) {
+    marker.setAnimation(null);
+  } else {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+  }
+}
+ 
+// Carga de la libreria de google maps 
+ 
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>
+  </body>
+</html>
+-->

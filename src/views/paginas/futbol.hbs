@@ -1,6 +1,6 @@
 <div id="futbol">
-    <div class="container-fluid pt-5">
-        <div class="row justify-content-between">
+    <div class="container-fluid">
+        <div class="row justify-content-between pt-5">
             <!--Tabla Equipos-->
             <div id="tablaEquipo" class="col-lg-5 m-2 p-2">
                 <div class="d-flex">
@@ -17,32 +17,28 @@
                         </ul>
                     </a>
                     <div class="d-flex justify-content-between m-auto ">
-                        <form class="d-flex" method="GET" action="">
-                            <input type="search" class="form-control" id= "formulario" placeholder="Buscar" autofocus>
-                            <button class="btn btn-danger" type="submit" id="boton">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </form>
-                       <script>
-                           const formulario = document.querySelector('#formulario');
-                           const boton = document.querySelector('#boton');
-                           
-                       </script> 
+                        <input id="busqueda" type="text" class="form-control" placeholder="Buscar" onkeyup="buscar();"
+                            autofocus>
+                        <button class="btn btn-danger" id="boton" disabled>
+                            <i class="fas fa-search"></i>
+                        </button>
                     </div>
+
                 </div>
                 <div id="scroll">
-                    <table class="table table-hover table-info">
+                    <table id="myTable" class="table table-hover table-info">
                         <thead class="fixed">
                             <tr>
-                                <th>Capitán</th>
-                                <th>Nombre</th>
-                                <th>Deporte</th>
+                                <th onclick="sortTable(0, 'str')">Capitán</th>
+                                <th onclick="sortTable(1, 'str')">Nombre</th>
+                                <th onclick="sortTable(2, 'str')">Deporte</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {{#each equipos}}
-                            <tr>
-                                <td data-bs-toggle="tooltip" data-bs-placement="top" title="{{email}}">
+                        <tbody id="tblEquipos">
+
+                            {{#each equipos }}
+                            <tr id="texto">
+                                <td  data-bs-toggle="tooltip" data-bs-placement="top" title="{{email}}">
                                     {{nombreUsuario}}
                                 </td>
                                 <td><a href="/paginas/equipo/{{nombreEquipo}}&{{idDeportes}}">{{nombreEquipo}}</a>
@@ -50,52 +46,56 @@
                                 <td>{{deporte}}</td>
                             </tr>
                             {{/each}}
+
                         </tbody>
                     </table>
                 </div>
             </div>
 
             <!--Tabla Canchas-->
-            <div id="tablaEquipo" class="col-lg-5 m-2 p-2">
+            <div id="tablaEquipo" class="col-lg-6 m-2 p-2">
                 <form class="d-flex">
                     <a class="navbar-brand" href="#">
-                        <h3 class=" text-white px-5"><b>CANCHAS</b></h3>
+                        <h4 class=" text-white px-4"><b>ESTABLECIMIENTOS</b></h4>
                     </a>
                     <div class="d-flex justify-content-between m-auto ">
-                        <input type="text" class="form-control" name="buscarCancha" placeholder="Buscar" autofocus>
-                        <button class="btn btn-danger" type="reset">
+                        <input id="busqueda1" type="text" class="form-control" placeholder="Buscar" onkeyup="buscar1();" autofocus>
+                        <button class="btn btn-danger" type="reset" id="boton" disabled>
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
                 </form>
                 <div id="scroll">
-                    <table class="table table-hover table-info">
+                    <table id="myTable1" class="table table-hover table-info">
                         <thead class="fixed">
                             <tr>
-                                <th>Establecimiento</th>
-                                <th>Dirección</th>
+                                <th onclick="sortTable1(0, 'str')">Establecimiento</th>
+                                <th onclick="sortTable1(1, 'str')">Dirección</th>
+                                <th>Opción</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tblCancha">
                             {{#each canchas}}
                             <tr>
                                 <td data-bs-toggle="tooltip" data-bs-placement="top" title="{{email}}">
                                     <a href="/paginas/verCancha/{{idEstablecimiento}}">{{nombreEstablecimiento}}</a>
                                 </td>
                                 <td>{{direccion}}</td>
+                                <td><a href="/paginas/verMapa/{{idEstablecimiento}}">Ver mapa</a></td>
                             </tr>
                             {{/each}}
                         </tbody>
                     </table>
                 </div>
+
             </div>
         </div>
     </div>
-    <div class="col-2  p-4">
+    <div class="col py-2">
         <a id="volver" href="/paginas/deporte" type="button" class="btn btn-danger">Volver</a>
     </div>
-</div>
 
+</div>
 <!-- The Modal -->
 <div class="modal fade" id="misEquipo" tabindex="-1">
     <div class="modal-dialog">
@@ -111,18 +111,21 @@
             <div class="modal-body" id="misEquipo">
                 <table class="table text-center">
                     <tbody>
-                         {{#if misEquipos}}
-                            {{#each misEquipos}}
+                        {{#if misEquipos}}
+                        {{#each misEquipos}}
                         <tr>
                             <td><i>
                                     <h4><a class="text-white"
                                             href="/paginas/miEquipo/{{nombreEquipo}}">{{nombreEquipo}}</a></h4>
                                 </i></td>
                         </tr>
-                            {{/each}}
+                        {{/each}}
                         {{else}}
-                        <h4><p  class="text-white text-center" >Aún no tienes equipo</p></h4>
-                        <h5 class="text-center"><a href="/paginas/crearEquipoFutbol/{{user.idUsuarios}}"><em>Crea tu propio Equipo!</em></a></h5>
+                        <h4>
+                            <p class="text-white text-center">Aún no tienes equipo</p>
+                        </h4>
+                        <h5 class="text-center"><a href="/paginas/crearEquipoFutbol/{{user.idUsuarios}}"><em>Crea tu
+                                    propio Equipo!</em></a></h5>
                         {{/if}}
                     </tbody>
                 </table>
@@ -135,3 +138,52 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function buscar() {
+        var tabla = document.getElementById('tblEquipos');
+        var busqueda = document.getElementById('busqueda').value.toLowerCase();
+        var cellsOfRow = " ";
+        var found = false;
+        var compareWith = " ";
+        for (var i = 0; i < tabla.rows.length; i++) {
+            cellsOfRow = tabla.rows[i].getElementsByTagName('td')
+            found = false;
+            for (var j = 0; j < cellsOfRow.length && !found; j++) {
+                compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+                if (busqueda.length == 0 || (compareWith.indexOf(busqueda) > -1)) {
+                    found = true;
+                }
+            }
+            if (found) {
+                tabla.rows[i].style.display = '';
+                
+            } else {
+                tabla.rows[i].style.display = 'none';  
+            }
+         
+        }  
+    }
+    function buscar1() {
+        var tabla = document.getElementById('tblCancha');
+        var busqueda = document.getElementById('busqueda1').value.toLowerCase();
+        var cellsOfRow = " ";
+        var found = false;
+        var compareWith = " ";
+        for (var i = 0; i < tabla.rows.length; i++) {
+            cellsOfRow = tabla.rows[i].getElementsByTagName('td')
+            found = false;
+            for (var j = 0; j < cellsOfRow.length && !found; j++) {
+                compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+                if (busqueda.length == 0 || (compareWith.indexOf(busqueda) > -1)) {
+                    found = true;
+                }
+            }
+            if (found) {
+                tabla.rows[i].style.display = '';
+            } else {
+                tabla.rows[i].style.display = 'none';
+            }
+        }
+    }
+</script>
+

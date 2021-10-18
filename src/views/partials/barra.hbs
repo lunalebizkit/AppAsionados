@@ -32,6 +32,21 @@
                     <a type="link" class="nav-link" href="#" aria-disabled="true" data-bs-toggle="modal"
                     data-bs-target="#nosotros" aria-controls="offcanvasRight">Nosotros</a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown"
+                        aria-expanded="false">Tutorial</a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown04">
+                        <li><a class="dropdown-item" href="/paginas/tutorialJugador">¿Dónde ingreso como jugador?</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/paginas/tutorialCancha">¿Dónde ingreso como dueño de cancha?</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/paginas/tutorialReserva">¿Cómo realizo una reserva?</a></li>
+                    </ul>
+                </li>
                 
             </ul>
         </div>
@@ -64,10 +79,10 @@
             <!-- Modal body -->
             <div class="modal-body" id="miPerfil">
                 <div id="sello" class="row ">
-                    <div class="col-sm-3">
+                    <div class="col-3">
                        <a href="/paginas/miPerfil/{{user.idUsuarios}}"><img class="zoom" src="/img/descarga/{{user.img}}" alt="" width="125" height="120"></a>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-8">
                         <div class="d-flex">
                             <b><pre class="ms-2">Nombre:{{user.nombre}}</pre></b>
                         </div>
@@ -124,12 +139,7 @@
                         <div class="d-flex col-sm-10">
                             <i class="fas fa-user-friends"></i>
                             <p> Armá tu equipo invitando a tus amigos.</p></h5>
-                        </div>
-                            
-                            
-                            
-                            
-                            
+                        </div>                            
                     </div>
                 </div>
             </div>
@@ -146,3 +156,4 @@
 
 document.getElementById('accesoDuenio').style.display= estado
 </script>
+

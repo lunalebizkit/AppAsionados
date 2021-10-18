@@ -12,7 +12,7 @@ passport.use('local.ingreso', new LocalStrategy({
     passwordField: 'contrasenia',
     passReqToCallback: true
 }, async (req, nombreUsuario, contrasenia, done) => {
-    const buscar = await db.query('SELECT * FROM usuarios WHERE nombreUsuario = ?', [nombreUsuario]);
+    const buscar = await db.query('SELECT * FROM usuarios WHERE nombreUsuario = ? and baja = false', [nombreUsuario]);
     if (buscar.length > 0) {
         const usuario = buscar[0];
         const validacion = await helpers.comparaContrasenia(contrasenia, usuario.contrasenia);
@@ -24,7 +24,7 @@ passport.use('local.ingreso', new LocalStrategy({
         }
 
     } else {
-        return done(null, false, req.flash('mensajeMal', 'El usuario no existe'));
+        return done(null, false, req.flash('mensajeMal', 'Usuario en baja o no existente'));
     }
 }));
 /*------------------------------------
@@ -66,7 +66,7 @@ passport.use('local.registro', new LocalStrategy({
     const CLIENT_ID="646859646017-mdq9mtoudeusnv9vpt4fibts5t2fnsp9.apps.googleusercontent.com";
     const CLIENT_SECRET="7JkJcecbeO2F4hAcVczI_AJk";
     const REDIRECT_URI="https://developers.google.com/oauthplayground";
-    const REFRESH_TOKEN="1//045uBOya05irDCgYIARAAGAQSNwF-L9IrkT5c_3Rq7XJpSYHVSpamvx7_UzsORg5JQ-wUOTwZ8CQxpeKGIdsUAQ_sCaldobYrcPk";
+    const REFRESH_TOKEN="1//04DDtGxmm0pX-CgYIARAAGAQSNwF-L9Ira2Ua-IRVqVk8PU649AlEDDCUhNIESaodTyXpeABJ73AaWbbMIRPiGgajYvNsi5oHGug";
     const oAuth2cliente = new google.auth.OAuth2( 
         CLIENT_ID,
         CLIENT_SECRET,

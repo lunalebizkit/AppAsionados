@@ -1,9 +1,20 @@
 <div id="cancha">
     <div class="container-fluid pt-3">
         <div class="card text-center mb-1">
-            <h2 class="mb-1 mx-auto">RESERVAS</h2>
+            <h2 class="mb-1 mx-auto">HISTORIAL RESERVAS</h2>
         </div>
         <div id="scrollMisCanchas" class="container">
+            <table class="table table-hover bg-warning">
+                <thead>
+                    <tr>
+                        <th>Total Reservas: <span style="color: BLUE;">{{cantidadReservas}}</span></th>
+                        <th><i class="fas fa-thumbs-up"></i> Asistieron: <span style="color: green;">{{cantidadAsistieron}}</span></th>
+                        <th><i class="fas fa-thumbs-down"></i> Faltaron: <span style="color: red;">{{cantidadFallaron}}</span></th>
+                        <th><i class="fas fa-times-circle"></i> Cancelaron: <span style="color:orangered;">{{cantidadCancelaron}}</span></th>
+                        <th><i class="fas fa-calendar-check"></i> Reservadas: <span style="color:rgb(15, 15, 15);">{{cantidadReservadas}}</span></th>
+                    </tr>
+                </thead>
+            </table>
             <table id="myTable" class="table table-hover bg-warning">
                 <thead>
                     <tr>
@@ -13,7 +24,6 @@
                         <th onclick="sortTable(3, 'str')">Nombre y Apellido</th>
                         <th onclick="sortTable(4, 'str')">Fecha</th>
                         <th onclick="sortTable(5, 'str')">Estado</th>
-                        <th>Opcion</th>
                     </tr>
                 </thead>
 
@@ -26,17 +36,12 @@
                         <td>{{nombre}} {{apellido}}</td>
                         <td>{{fechas fecha}}</td>
                         <td>{{estado}}</td>
-                        <td><b><a class="link link-success" href="/paginas/asistio/{{idReserva}}&{{idEstablecimiento}}" >Asistió</a></b><br>
-                            <b><a class="link link-danger" href="/paginas/fallo/{{idReserva}}&{{idEstablecimiento}}">Falló</a></b>
-                        </td>
-                    </tr>
-                    {{/each}}
+                        {{/each}}
                 </tbody>
             </table>
         </div>
-        <div class="p-3">
-            <a id="volver" href="/paginas/duenio" type="button" class="btn btn-primary">Volver</a>
-            <button class="btn btn-success" onclick="location.href='/paginas/historialReservas/{{idEstablecimiento}}'">Ver historial</button>
+        <div class="col-2  p-3">
+            <a id="volver" href="/paginas/reservaEstablecimiento/{{idEstablecimiento}}" type="button" class="btn btn-primary">Volver</a>
         </div>
     </div>
 </div>

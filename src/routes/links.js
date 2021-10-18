@@ -21,7 +21,7 @@ ruta.get('/equipo/:club&:idDeportes', estaLogueado, async (req, res) => {
     const {club}= req.params;
     const {idDeportes}= req.params;
     const {idUsuarios} = req.user;
-    const equipo= await db.query('Select * from jugador join equipos join usuarios where usuarios.IdUsuarios = jugador.idUsuarios and jugador.idEquipo = equipos.idEquipo and equipos.nombreEquipo =?', [club]);
+    const equipo= await db.query('Select * from jugador join equipos join usuarios where usuarios.IdUsuarios = jugador.idUsuarios and jugador.idEquipo = equipos.idEquipo and equipos.nombreEquipo =? and usuarios.baja = "false"', [club]);
     const pertenezco= await db.query('select * from jugador join equipos where jugador.idUsuarios =? and jugador.idEquipo = equipos.idEquipo and equipos.nombreEquipo =?', [idUsuarios, club]);
     const idEquipo= await db.query('select idEquipo from equipos where nombreEquipo =?', [club]);
     let numero= idEquipo[0].idEquipo;
@@ -345,20 +345,17 @@ ruta.get('/verCancha/:idEstablecimiento', estaLogueado, async (req, res) => {
     const nombre = await db.query('Select nombreEstablecimiento, direccion from establecimiento where idEstablecimiento =?', [idEstablecimiento]);
     const futbol = await db.query('select * from deporte join cancha where deporte.idDeportes = cancha.idDeportes and deporte.idDeportes < 4')
     //const establecimiento= consultaEstablecimiento[0];
-    //console.info(establecimiento, nombre);
     res.render('paginas/verCancha', {establecimiento, nombre, futbol});
 });
 
 //agregue pantalla diasCancha
-ruta.get('/diasCancha', estaLogueado, async (req, res) => {
-    const{idEstablecimiento}= req.params;
+ruta.get('/diasCancha/:idCancha', estaLogueado, async (req, res) => {
+    const{idCancha}= req.params;
 
-    const establecimiento= await db.query('Select * from establecimiento join cancha join deporte join imagenCancha join horarios where establecimiento.idEstablecimiento = cancha.idEstablecimiento and horarios.idCancha= cancha.id and imagenCancha.idCancha = cancha.id and cancha.idDeportes = deporte.idDeportes and cancha.idEstablecimiento =?', [idEstablecimiento]);
-    const nombre = await db.query('Select nombreEstablecimiento from establecimiento where idEstablecimiento =?', [idEstablecimiento]);
-    const futbol = await db.query('select * from deporte join cancha where deporte.idDeportes = cancha.idDeportes and deporte.idDeportes < 4')
-    //const establecimiento= consultaEstablecimiento[0];
-    //console.info(establecimiento, nombre);
-    res.render('paginas/diasCancha', {establecimiento, nombre, futbol});
+     const cancha= await db.query('Select * from cancha join imagenCancha join horarios join deporte join establecimiento where cancha.id =? and imagenCancha.idCancha = cancha.id and deporte.idDeportes = cancha.idDeportes and horarios.idCancha = cancha.id and establecimiento.idEstablecimiento = cancha.idEstablecimiento', [idCancha]);
+   const dias = await db.query('select * from dia join diaDetalle where diaDetalle.dia = dia.dia and dia.idCancha =?', [idCancha])  
+    
+    res.render('paginas/diasCancha', {cancha, dias});
 });
 
 //agregue pantalla jugadores 

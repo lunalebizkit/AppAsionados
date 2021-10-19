@@ -3,23 +3,14 @@
         <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar"
             aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%"></div>
     </div>
-    <div class="container-fluid py-5">
+    <div class="container-fluid py-2">
         <div class="row row-cols-2 pt-5 pb-5">
             <div class="col-md-4 py-5" style="background-color: rgb(255, 255, 255, 0.5);">
                 <h3 class="text-center mb-4">Elige un Deporte</h3>
                 <div class="text-center">
-                    <form action="/paginas/reservaDeporte1/" method="GET">
-                        <select class="btn btn-primary" name="deporte" required>
-                            <option value="" selected disabled>Deportes</option>
-                            {{#each deporte}}
-                            <option value="{{idDeportes}}" required>{{deporte}}</option>
-                            {{/each}}
-                        </select>
-                        <button type="submit" class="btn btn-success m-2">Aceptar</button>
-                        {{!-- <div class="col-1 mt-5 py-1">
-                            <a id="volver" href=type="button" class="btn btn-outline-danger">Volver</a>
-                        </div> --}}
-                    </form>
+                     {{#each deporte}}
+                    <a href="/paginas/reservaDeporte1/{{idDeportes}}" class="btn btn-primary mb-3" name="" >{{deporte}}</a>
+                    {{/each}}
                 </div>
                 <div class="row pt-5">
                     <div class="container m-0 pt-5">

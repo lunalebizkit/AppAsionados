@@ -406,14 +406,14 @@ ruta.get('/reservaDeporte', estaLogueado, async(req, res)=>{
     const deporte= await db.query('select * from deporte');
     res.render('reserva/reservaDeporte', {deporte})
 });
-ruta.get('/reservaDeporte1/', estaLogueado, async(req, res)=>{
-    const {deporte} =req.query;
-    const canchas= await db.query('select imagenCancha.img, establecimiento.nombreEstablecimiento, cancha.numeroCancha, cancha.id, deporte.deporte, horarios.horaInicio, horarios.horaFin from establecimiento join cancha join imagenCancha join deporte join horarios where imagenCancha.idCancha = cancha.id and establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = deporte.idDeportes and cancha.id = horarios.idCancha and cancha.idDeportes =?', [deporte]);
+ruta.get('/reservaDeporte1/:idDeportes', estaLogueado, async(req, res)=>{
+    const {idDeportes} =req.params;
+    const canchas= await db.query('select imagenCancha.img, establecimiento.nombreEstablecimiento, cancha.numeroCancha, cancha.id, deporte.deporte, horarios.horaInicio, horarios.horaFin from establecimiento join cancha join imagenCancha join deporte join horarios where imagenCancha.idCancha = cancha.id and establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = deporte.idDeportes and cancha.id = horarios.idCancha and cancha.idDeportes =?', [idDeportes]);
     if((canchas.length)===0) {
         req.flash('mensajeMal', "No hay Establecimientos"),
         res.redirect('/paginas/reservaDeporte');
     }
-    res.render('reserva/reservaDeporte1', {canchas, deporte})
+    res.render('reserva/reservaDeporte1', {canchas, idDeportes})
 });
 ruta.post('/reservaDeporte1/:deporte', async(req, res)=>{
     const{fecha, idCancha}=req.body;
@@ -434,10 +434,10 @@ ruta.get('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
      const turno= turnos[0];
     res.render('reserva/reservaDeporte2', {turno, idCancha, reservas})
 });
-ruta.post('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
+ruta.get('/reservaDeporte3/:turno', async(req, res)=>{
+    const {turno}=req.params
     try {
         const {idCancha, idUsuarios, fecha}= req.session.newReserva;
-        const {turno}= req.body;
         const newReserva= {idCancha, idUsuario: idUsuarios, estado: "reservado",fechaReserva: fecha, hora: turno}
         let reservaCompleta= await db.query('insert into reserva set?',[newReserva]);
         if (reservaCompleta) {
@@ -449,7 +449,7 @@ ruta.post('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
         console.log(error)
         req.flash('mensajeMal', 'No se ha podido realizar la reserva');
         res.redirect('/paginas/reservaDeporte')
-    } 
+    }
 });
 
 //agregue pantalla mapa

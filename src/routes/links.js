@@ -438,7 +438,7 @@ ruta.get('/reservaDeporte3/:turno', async(req, res)=>{
     const {turno}=req.params
     try {
         const {idCancha, idUsuarios, fecha}= req.session.newReserva;
-        const newReserva= {idCancha, idUsuario: idUsuarios, estado: "reservado",fechaReserva: fecha, hora: turno}
+        const newReserva= {idCancha, idUsuario: idUsuarios, estado: "Reservado",fechaReserva: fecha, hora: turno}
         let reservaCompleta= await db.query('insert into reserva set?',[newReserva]);
         if (reservaCompleta) {
             req.session.newReserva= {}

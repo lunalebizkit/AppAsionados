@@ -352,7 +352,7 @@ h6, h5{
   display: none;
 }
 
-/*estilo valoracion 1*/
+/*estilo valoracion 1
 #val {
   width: 100px;
   height: 30px;
@@ -375,7 +375,7 @@ input[type="radio"] {
 input[type="radio"]:checked ~ #label {
   color: rgb(255, 187, 0);
 }
-
+*/
 /*estilo valoracion 2*/
 #pingStar, #list{
   list-style: none;

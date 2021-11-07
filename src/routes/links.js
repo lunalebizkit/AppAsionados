@@ -244,8 +244,16 @@ ruta.post('/cancha/:idEstablecimiento', estaLogueado, duenio, foto, async (req, 
 ruta.get('/misCanchas/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
     const {idEstablecimiento}=req.params;
     const establecimiento= await db.query('Select * from cancha join deporte join imagenCancha join horarios where  horarios.idCancha= cancha.id and imagenCancha.idCancha = cancha.id and cancha.idDeportes = deporte.idDeportes and cancha.idEstablecimiento =?', [idEstablecimiento]);
+    console.info(establecimiento)
     res.render('paginas/misCanchas', {establecimiento});
 });
+//creamos paginas de creacion de evento
+ruta.get('/crearObservacion/:id', estaLogueado, duenio, async(req, res)=> {
+ const {id}= req.params;
+ const cancha= await db.query('Select * from cancha where id=?', [id])
+ console.info(cancha)
+    res.send("llego")
+})
 ruta.get('/establecimiento/:id', estaLogueado, duenio, async (req, res) => {
     const {id}= req.params
     res.render('paginas/establecimiento', {id});
@@ -412,7 +420,7 @@ ruta.get('/reservaDeporte', estaLogueado, async(req, res)=>{
 ruta.get('/reservaDeporte1/:idDeportes', estaLogueado, async(req, res)=>{
     const {idDeportes} =req.params;
     const canchas= await db.query('select imagenCancha.img, establecimiento.nombreEstablecimiento, cancha.numeroCancha, cancha.id, deporte.deporte, horarios.horaInicio, horarios.horaFin from establecimiento join cancha join imagenCancha join deporte join horarios where imagenCancha.idCancha = cancha.id and establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = deporte.idDeportes and cancha.id = horarios.idCancha and cancha.idDeportes =?', [idDeportes]);
-    if((canchas.length)===0) {
+    if((canchas.length)==0) {
         req.flash('mensajeMal', "No hay Establecimientos"),
         res.redirect('/paginas/reservaDeporte');
     }
@@ -425,10 +433,11 @@ ruta.post('/reservaDeporte1/:deporte', async(req, res)=>{
     req.session.newReserva= {idUsuarios, fecha, idCancha};
     const dia= new Date(fecha).getDay() + 1;
     const dias=await db.query('Select * from dia where idCancha =? and dia=?', [idCancha, dia]);
+    console.log(dias);
     if ((dias.length)>0) {
         res.redirect('/paginas/reservaDeporte2/'+idCancha+'&'+"fecha="+fecha);
     }else{req.flash('mensajeMal', 'El dia seleccionado No atiende!'),
-    res.redirect('/paginas/reservaDeporte1/'+ '?deporte='+deporte)}  
+    res.redirect('/paginas/reservaDeporte1/'+ deporte)}  
 });
 ruta.get('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
     const { idCancha, fecha}= req.session.newReserva;
@@ -460,23 +469,24 @@ ruta.get('/mapa/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
     const {idEstablecimiento}=req.params;
     const establecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [idEstablecimiento]);  
     const cancha= establecimiento[0];
-    console.info(establecimiento);
     res.render('paginas/mapa', {cancha, idEstablecimiento});
 });
 
 ruta.post('/mapa1/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
-  
-    //if (  await db.query('update establecimiento set latitud = ?, longitud = ? where idEstablecimiento =?', [mapLat, mapLong, idEstablecimiento])) {
-    //    req.flash('mensajeOk', 'Coordenada almacenada!!!');    
-    //    res.redirect('/paginas/mapa');
-    //}else {
-    //    req.flash('mensajeMal', 'Error al guardar coordenada');
-    //    res.redirect('/paginas/mapa');
-    //}   
-    //await db.query('Update establecimiento SET latitud = ? where idEstablecimiento =?', [filename, idEstablecimiento]);
-    console.log(req.query);
-    console.log(req.body);
-    res.send('llego');
+  const {idEstablecimiento}= req.params;
+  const {mapa}= req.body;
+    try {
+        const insertarMapa= await db.query('Update establecimiento set mapa=? where idEstablecimiento =?', [mapa, idEstablecimiento])
+        if (insertarMapa){
+            req.flash('mensajeOk', 'Mapa insertado');
+            res.redirect('/paginas/duenio')
+        }
+        
+    } catch (error) {
+        console.log(error)
+        req.flash('mensajeMal', 'Algo salio Mal');
+        res.redirect('/paginas/mapa/' + idEstablecimiento)
+    };
 });
 
 //agregue pantalla ver mapa usuario

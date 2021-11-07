@@ -19,12 +19,14 @@
 
 
 
+
 <script type="text/javascript"> 
 {{#with cancha}}
 
 function showGoogleMaps()
 {
     
+<<<<<<< HEAD
     //Creamos el punto a partir de la latitud y longitud de una dirección:
     var point = new google.maps.LatLng(-32.8876, -68.8292);
     //var point = new google.maps.Map({{latitud}}, {{longitud}}),
@@ -57,8 +59,42 @@ function showGoogleMaps()
     
     
     
+=======
+  //Creamos el punto a partir de la latitud y longitud de una dirección:
+  var point = new google.maps.LatLng({{latitud}}, {{longitud}});
+    
+  //Configuramos las opciones indicando zoom, punto y tipo de mapa
+  var myOptions = {
+      zoom: 15, 
+      center: point, 
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+  //Creamos el mapa y lo asociamos a nuestro contenedor
+  var map = new google.maps.Map(document.getElementById("showMap"),  myOptions);
+
+  //Mostramos el marcador en el punto que hemos creado
+  var marker = new google.maps.Marker({
+      position:point,
+      draggable: true,
+      map: map,
+      title: '{{direccion}}'
+  });
+
+
+  google.maps.event.addListener(marker, 'dragend', function(event) {
+      
+      var lat = marker.getPosition().lat();
+      var long = marker.getPosition().lng();
+
+      document.getElementById("showMap").innerHTML += `<input id="mapLong" type="text" name="long" value=${long}> <input id="mapLong" type="text" name="lat" value=${lat}>`;
+  });
+>>>>>>> 549c059b578826045a65c9fbb46a98d638bd4abb
 }
 showGoogleMaps();
 {{/with}}
 </script>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 549c059b578826045a65c9fbb46a98d638bd4abb

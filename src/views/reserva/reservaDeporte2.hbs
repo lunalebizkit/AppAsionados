@@ -63,7 +63,7 @@ function misTurnos() {
                 document.getElementById("texto").innerHTML += `<a class="btn btn-danger mb-3" href=#> ${i}:00 Hs (RESERVADO)</a>`;continue;
             }
             {{/each}}       
-            document.getElementById("texto").innerHTML += `<a class="btn btn-primary mb-3" href="/paginas/reservaDeporte3/${i}"> ${i}:00 Hs</a>`;
+            document.getElementById("texto").innerHTML += `<a class="btn btn-primary mb-3" href="/paginas/reservaDeporte3/${i}" onclick="return confirm('¿Estás seguro que deseas realizar la reserva? Recuerde que las reservas sólo podran cancelarse 4hs antes de la fecha seleccionada');"> ${i}:00 Hs</a>`;
         }
 }      
 misTurnos()

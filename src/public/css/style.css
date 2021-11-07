@@ -351,3 +351,37 @@ h6, h5{
 #cerrar {
   display: none;
 }
+
+/*estilo valoracion 1
+#val {
+  width: 100px;
+  height: 30px;
+}
+#p {
+  text-align: left;
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+input[type="radio"] {
+  display: none;
+}
+#label {
+  color: rgb(158, 157, 157);
+  font-size: 20px;
+}
+#label:hover, #label:hover ~ #label {
+  color: rgb(255, 187, 0);
+}
+input[type="radio"]:checked ~ #label {
+  color: rgb(255, 187, 0);
+}
+*/
+/*estilo valoracion 2*/
+#pingStar, #list{
+  list-style: none;
+}
+.starts,.starts ul{float:left;}
+.starts{padding-left:16px;padding-top:7px;}
+.starts ul li{float:left;color:rgb(163, 163, 163);padding-right:3px;font-size:28px;cursor: pointer;}
+.starts ul li.on{color:orange;}
+.starts ul span{display:inline;float:left;padding-left:10px;margin-top: 10px;}

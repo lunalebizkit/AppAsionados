@@ -59,7 +59,6 @@ ruta.get('/futbol', estaLogueado, async (req, res) => {
 });
 //agregue pantalla basquet
 ruta.get('/basquet', estaLogueado, async (req, res) => {
-    //const canchas = await db.query('select distinct establecimiento.idEstablecimiento, establecimiento.direccion, establecimiento.nombreEstablecimiento from establecimiento join cancha where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = 4');
     const { idUsuarios } = req.user;
     const equipos = await db.query('select * from equipos inner join deporte join usuarios where equipos.idDeportes = deporte.idDeportes and usuarios.idUsuarios = equipos.idUsuarios and deporte.idDeportes = 4');
     const misEquipos= await db.query('select equipos.nombreEquipo from jugador inner join equipos where equipos.idEquipo = jugador.idEquipo and equipos.idDeportes = 4 and jugador.idUsuarios =?', [idUsuarios]);
@@ -282,12 +281,10 @@ ruta.post('/establecimiento/:id', estaLogueado, duenio, async (req, res) => {
      }
 
 });
-
 //agregue pantalla crear equipo Basquet 
 ruta.get('/crearEquipoBasquet/:id', estaLogueado, async (req, res) => {
     res.render('paginas/crearEquipoBasquet');
 });
-
 //acceso a la pagina por metodo POST para crear equipo de basquet. Se valida que el usuario se encuentre logueado pasando el id del usuario por parametro. Se obtienen valores para los atributos del equipo del cuerpo de la pagina
 ruta.post('/crearEquipoBasquet/:id', estaLogueado, async (req, res) => { //
     const { id } = req.params;
@@ -350,8 +347,7 @@ ruta.post('/crearEquipoPadel/:id', estaLogueado, async (req, res) => {
 });
 //agregue pantalla verCancha
 ruta.get('/verCancha/:idEstablecimiento', estaLogueado, async (req, res) => {
-    const{idEstablecimiento}= req.params;
-    
+    const{idEstablecimiento}= req.params;    
     const establecimiento= await db.query('Select * from establecimiento join cancha join deporte join imagenCancha join horarios where establecimiento.idEstablecimiento = cancha.idEstablecimiento and horarios.idCancha= cancha.id and imagenCancha.idCancha = cancha.id and cancha.idDeportes = deporte.idDeportes and cancha.idEstablecimiento =?', [idEstablecimiento]);
     const nombre = await db.query('Select nombreEstablecimiento, direccion from establecimiento where idEstablecimiento =?', [idEstablecimiento]);
     const futbol = await db.query('select * from deporte join cancha where deporte.idDeportes = cancha.idDeportes and deporte.idDeportes < 4')
@@ -362,13 +358,11 @@ ruta.get('/verCancha/:idEstablecimiento', estaLogueado, async (req, res) => {
 //agregue pantalla diasCancha
 ruta.get('/diasCancha/:idCancha', estaLogueado, async (req, res) => {
     const{idCancha}= req.params;
-
      const cancha= await db.query('Select * from cancha join imagenCancha join horarios join deporte join establecimiento where cancha.id =? and imagenCancha.idCancha = cancha.id and deporte.idDeportes = cancha.idDeportes and horarios.idCancha = cancha.id and establecimiento.idEstablecimiento = cancha.idEstablecimiento', [idCancha]);
    const dias = await db.query('select * from dia join diaDetalle where diaDetalle.dia = dia.dia and dia.idCancha =?', [idCancha])  
     
     res.render('paginas/diasCancha', {cancha, dias});
 });
-
 //agregue pantalla jugadores 
 ruta.get('/jugadores/:jugador', estaLogueado, async(req, res)=>{
     const jugadores= await db.query('Select usuarios.idUsuarios, usuarios.nombreUsuario, usuarios.nombre, usuarios.apellido, usuarios.email from usuarios Group by usuarios.nombreUsuario');
@@ -463,13 +457,14 @@ ruta.get('/reservaDeporte3/:turno', async(req, res)=>{
         res.redirect('/paginas/reservaDeporte')
     }
 });
-
 //agregue pantalla mapa
 ruta.get('/mapa/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
     const {idEstablecimiento}=req.params;
+    const consultarMapaExiste= await db.query('select mapa from establecimiento where idEstablecimiento =?', [idEstablecimiento])
+    const {mapa}= consultarMapaExiste[0]
     const establecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [idEstablecimiento]);  
     const cancha= establecimiento[0];
-    res.render('paginas/mapa', {cancha, idEstablecimiento});
+    res.render('paginas/mapa', {cancha, idEstablecimiento, mapa});
 });
 
 ruta.post('/mapa1/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {

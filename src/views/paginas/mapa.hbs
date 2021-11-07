@@ -1,4 +1,7 @@
 <div id="inicio">  
+  {{#if mapa}}
+  <p>{{{mapa}}}</p>
+  {{/if }}
     <form method="POST" action="/paginas/mapa1/{{idEstablecimiento}}">
     <p>Puedes crear un acceso al mapa de la siguiente manera</p>
     <a href="https://www.google.com.ar/maps" target="_blank" >Google Maps</a>

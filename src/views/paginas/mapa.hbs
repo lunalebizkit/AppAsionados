@@ -1,21 +1,24 @@
 <div id="inicio">
-    <form method="POST" action="/paginas/mapa/{{idEstablecimiento}}">
+  <p><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13392.411200382541!2d-68.78983620168967!3d-32.948295202849074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x967e0c5dbc3dc1bd%3A0x781c6b45571a096f!2sCanchas%20La%20Champion!5e0!3m2!1ses-419!2sar!4v1636238476907!5m2!1ses-419!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe></p>
+    <form method="POST" action="/paginas/mapa1/{{idEstablecimiento}}">
         <div class="container-flex">
             <div class="d-flex justify-content-around p-4">
-            {{#with cancha}}
+           {{!-- {{#with cancha}}
                 <div id="showMap" style="width: 800px; height: 360px;"> 
-                    <div id="marker"></div>
-                    <!--<input id="mapLat" type="text" name="lat" value="">
+                    <div id="marker">
+                    <input id="latitud" type="text" name="lat" value="">
+                    <input id="longitud" type="text" name="long"></div>
+                     <input id="mapLat" type="text" name="lat" value="">
                     <input id="mapLong" type="text" name="long" value="">
                     <div onload="showMap.initMap()">
                         <h1>Obtener Coordenadas a partir de una dirección</h1>
                         <div id="showMap" style="width: 450px; height: 250px;"> </div>
                         <div><p id="coordenadas"></p></div>
                         <input type="text" id="search"> <input type="button" value="Buscar Dirección" onClick="mapa.getCoords()">
-                    </div>-->
+                    </div> 
                 </div>
-            {{/with}}   
-            </div>   
+            {{/with}}    
+             </div>   
         </div>
         <div class="col-5 mx-auto p-4" style="background-color: blanchedalmond;">
             <button type="submit" class="btn btn-success btn-block">
@@ -25,8 +28,8 @@
             <a href="javascript: history.go(-1)" type="button" class="btn btn-danger btn-block">
                 Cancelar
             </a>
-        </div>  
-    </form>
+        </div>  --}}
+    </form> 
 </div>
 
 
@@ -38,7 +41,7 @@ function showGoogleMaps()
 {
     
     //Creamos el punto a partir de la latitud y longitud de una dirección:
-    var point = new google.maps.LatLng({{latitud}}, {{longitud}});
+    var point = new google.maps.LatLng(43.5293101, -5.6773233);
     //var point = new google.maps.Map({{latitud}}, {{longitud}}),
       
     //Configuramos las opciones indicando zoom, punto y tipo de mapa
@@ -63,8 +66,11 @@ function showGoogleMaps()
         
         var lat = marker.getPosition().lat();
         var long = marker.getPosition().lng();
-        alert('Latitud = '+lat+ ', Longitud = '+long);
         
+        {{!-- document.getElementById('latitud').value+= lat
+        document.getElementById('longitud').value+= long --}}
+     
+        alert(document.getElementById("latitud").type)
     });
     
     

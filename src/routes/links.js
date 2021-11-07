@@ -279,31 +279,34 @@ ruta.post('/establecimiento/:id', estaLogueado, duenio, async (req, res) => {
 ruta.get('/crearEquipoBasquet/:id', estaLogueado, async (req, res) => {
     res.render('paginas/crearEquipoBasquet');
 });
-ruta.post('/crearEquipoBasquet/:id', estaLogueado, async (req, res) => {
+
+//acceso a la pagina por metodo POST para crear equipo de basquet. Se valida que el usuario se encuentre logueado pasando el id del usuario por parametro. Se obtienen valores para los atributos del equipo del cuerpo de la pagina
+ruta.post('/crearEquipoBasquet/:id', estaLogueado, async (req, res) => { //
     const { id } = req.params;
-    const idUsuarios = id
+    const idUsuarios = id 
     const { nombreEquipo, posicion, idDeportes } = req.body;
-    let newEquipo = {
+    let newEquipo = { 
         nombreEquipo,
         idDeportes,
         idUsuarios
     };
-    const consulta = await db.query('Select * from equipos Where nombreEquipo =?', [nombreEquipo]);
-    if ((consulta.length) > 0) {
-        req.flash('mensajeMal', "Equipo Existente");
+    //Se verifica si ya existe el nombre del equipo en DB (debe ser unico). Si existe se envia mensaje y redirecciona para ingreso de nuevo nombre. Si no existe se da de alta. 
+    const consulta = await db.query('Select * from equipos Where nombreEquipo =?', [nombreEquipo]);// 
+    if ((consulta.length) > 0) {  
+        req.flash('mensajeMal', "Equipo Existente"); 
         res.redirect('/paginas/crearEquipoBasquet/:id')
     }
-    else {
+    else { 
         const crearEquipo = await db.query('Insert into equipos set?', [newEquipo]);
-        const idEquipo = crearEquipo.insertId;
-        let newJugador = {
+        const idEquipo = crearEquipo.insertId; 
+        let newJugador = { 
             idUsuarios,
             posicion,
             idEquipo
         };
-        await db.query('Insert into jugador set?', [newJugador]);
+        await db.query('Insert into jugador set?', [newJugador]); 
         req.flash('mensajeOk', "Equipo Creado con Exito!!!");
-        res.redirect('/paginas/basquet')
+        res.redirect('/paginas/basquet') 
     };
 });
 //agregue pantalla crear equipo Padel 
@@ -461,10 +464,8 @@ ruta.get('/mapa/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
     res.render('paginas/mapa', {cancha, idEstablecimiento});
 });
 
-ruta.post('/mapa/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
-    const {lat} = req.body;
-    //const {mapLong} = req.body;
-    const {idEstablecimiento}=req.params;
+ruta.post('/mapa1/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
+  
     //if (  await db.query('update establecimiento set latitud = ?, longitud = ? where idEstablecimiento =?', [mapLat, mapLong, idEstablecimiento])) {
     //    req.flash('mensajeOk', 'Coordenada almacenada!!!');    
     //    res.redirect('/paginas/mapa');
@@ -473,8 +474,9 @@ ruta.post('/mapa/:idEstablecimiento', estaLogueado, duenio, async (req, res) => 
     //    res.redirect('/paginas/mapa');
     //}   
     //await db.query('Update establecimiento SET latitud = ? where idEstablecimiento =?', [filename, idEstablecimiento]);
+    console.log(req.query);
     console.log(req.body);
-    //res.render('paginas/mapa');
+    res.send('llego');
 });
 
 //agregue pantalla ver mapa usuario

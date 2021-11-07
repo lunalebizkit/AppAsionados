@@ -1,4 +1,5 @@
 module.exports= {
+    /*  funcion que asegura que la persona que acceda a la pagina esta registrada y logueado*/
     estaLogueado(req, res, next) {
         if (req.isAuthenticated()) {
             return next();

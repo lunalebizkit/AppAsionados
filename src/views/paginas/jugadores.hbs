@@ -1,21 +1,26 @@
 <div id="cancha" class="container-fluid">
     <div id="scrollJugador" class="col-md-9 m-auto p-4">
-        <table class="table table-hover table-dark">
-            <h3><p class="card text-center py-2">JUGADORES</p></h3>
+        <h3><p class="card text-center py-2">JUGADORES</p></h3>
+        <div class="d-flex justify-content-between p-2">
+            <input id="busqueda" type="text" class="form-control" placeholder="Buscar" onkeyup="buscar();"
+                autofocus>
+            <button class="btn btn-danger" id="boton" disabled>
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        <table id="myTable" class="table table-hover table-dark">
             <thead class="table">
                 <th>Nombre/Apellido</th>
                 <th>Nombre de Usuario</th>
                 <th>Email</th>
-                <th>Opción</th>
                 
             </thead>
-            <tbody>            
+            <tbody id="tblJugadores">            
                 {{#each jugadores}}
-                <tr>
+                <tr id="texto">
                 <td>{{nombre}} {{apellido}}</td>
                 <td>{{nombreUsuario}}</td>
                 <td>{{email}}</td>
-                <td><a class="button" href="#">Invitar</a></td>
                 </tr>
                 {{/each}}
                 
@@ -27,3 +32,30 @@
         <a id="volver" href="/paginas/futbol" type="button" class="btn btn-danger">Volver</a>
     </div>
 </div>
+
+<script type="text/javascript">
+    function buscar() {
+        var tabla = document.getElementById('tblJugadores');
+        var busqueda = document.getElementById('busqueda').value.toLowerCase();
+        var cellsOfRow = " ";
+        var found = false;
+        var compareWith = " ";
+        for (var i = 0; i < tabla.rows.length; i++) {
+            cellsOfRow = tabla.rows[i].getElementsByTagName('td')
+            found = false;
+            for (var j = 0; j < cellsOfRow.length && !found; j++) {
+                compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+                if (busqueda.length == 0 || (compareWith.indexOf(busqueda) > -1)) {
+                    found = true;
+                }
+            }
+            if (found) {
+                tabla.rows[i].style.display = '';
+                
+            } else {
+                tabla.rows[i].style.display = 'none';  
+            }
+         
+        }  
+    }
+</script>

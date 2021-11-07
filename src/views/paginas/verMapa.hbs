@@ -1,10 +1,12 @@
 <div id="cancha">
     <div class="container-flex">
-        <div class="d-flex justify-content-around p-4">
-            {{#with cancha}}
-            <div id="showMap" style="width: 900px; height: 410px;"></div>
-            {{/with}}
-        </div>   
+        <div id="cancha" > 
+            {{#if mapa}}
+            <div class="row pt-2 m-auto">
+                {{{mapa}}}
+            </div>
+            {{/if }} 
+        </div>
         <div class="col-2  p-4">
             <a  href="javascript: history.go(-1)" type="button" class="btn btn-primary">Volver</a>
         </div>

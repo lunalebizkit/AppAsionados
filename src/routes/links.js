@@ -50,7 +50,7 @@ ruta.get('/ingresarAlEquipo/:idEquipo&:idDeportes', estaLogueado, async(req, res
     }    
 });
 //agregue pantalla futbol
-ruta.get('/futbol', estaLogueado, async (req, res) => {
+ruta.get('/Futbol', estaLogueado, async (req, res) => {
     const { idUsuarios } = req.user;
     const equipos = await db.query('select * from equipos inner join deporte join usuarios where equipos.idDeportes = deporte.idDeportes and usuarios.idUsuarios = equipos.idUsuarios and deporte.idDeportes < 4');
     const misEquipos= await db.query('select equipos.nombreEquipo from jugador inner join equipos where equipos.idEquipo = jugador.idEquipo and equipos.idDeportes < 4 and jugador.idUsuarios =?', [idUsuarios]);
@@ -241,8 +241,8 @@ ruta.post('/cancha/:idEstablecimiento', estaLogueado, duenio, foto, async (req, 
     res.redirect('/paginas/duenio');
 });
 ruta.get('/misCanchas/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
-    const {idEstablecimiento}=req.params;
-    const establecimiento= await db.query('Select * from cancha join deporte join imagenCancha join horarios where  horarios.idCancha= cancha.id and imagenCancha.idCancha = cancha.id and cancha.idDeportes = deporte.idDeportes and cancha.idEstablecimiento =?', [idEstablecimiento]);
+    const {idEstablecimiento}=req.params;  
+    const establecimiento= await db.query('Select * from cancha join deporte join imagenCancha join horarios where horarios.idCancha= cancha.id and imagenCancha.idCancha = cancha.id and cancha.idDeportes = deporte.idDeportes and cancha.idEstablecimiento =?', [idEstablecimiento]);
     console.info(establecimiento)
     res.render('paginas/misCanchas', {establecimiento});
 });
@@ -347,11 +347,14 @@ ruta.post('/crearEquipoPadel/:id', estaLogueado, async (req, res) => {
 });
 //agregue pantalla verCancha
 ruta.get('/verCancha/:idEstablecimiento', estaLogueado, async (req, res) => {
-    const{idEstablecimiento}= req.params;    
-    const establecimiento= await db.query('Select * from establecimiento join cancha join deporte join imagenCancha join horarios where establecimiento.idEstablecimiento = cancha.idEstablecimiento and horarios.idCancha= cancha.id and imagenCancha.idCancha = cancha.id and cancha.idDeportes = deporte.idDeportes and cancha.idEstablecimiento =?', [idEstablecimiento]);
+    const{idEstablecimiento}= req.params;  
+    var direccion=req.headers.referer 
+    const deporte= '%'+ direccion.split('paginas/', [2])[1] + '%'
+    const establecimiento= await db.query('Select * from establecimiento join cancha join deporte join imagenCancha join horarios where establecimiento.idEstablecimiento = cancha.idEstablecimiento and horarios.idCancha= cancha.id and imagenCancha.idCancha = cancha.id and cancha.idDeportes = deporte.idDeportes and cancha.idEstablecimiento =? and deporte.deporte LIKE?', [idEstablecimiento, deporte]);
     const nombre = await db.query('Select nombreEstablecimiento, direccion from establecimiento where idEstablecimiento =?', [idEstablecimiento]);
     const futbol = await db.query('select * from deporte join cancha where deporte.idDeportes = cancha.idDeportes and deporte.idDeportes < 4')
-    //const establecimiento= consultaEstablecimiento[0];
+   
+    console.info(deporte)
     res.render('paginas/verCancha', {establecimiento, nombre, futbol});
 });
 
@@ -491,15 +494,12 @@ ruta.get('/verMapa/:idEstablecimiento', estaLogueado, async (req, res) => {
     const {mapa}= consultarMapaExiste[0]
     res.render('paginas/verMapa', {mapa, idEstablecimiento});
 });
-
 ruta.get('/tutorialJugador', estaLogueado, async (req, res) => {
     res.render('paginas/tutorialJugador');
 });
-
 ruta.get('/tutorialReserva', estaLogueado, async (req, res) => {
     res.render('paginas/tutorialReserva');
 });
-
 ruta.get('/tutorialCancha', estaLogueado, async (req, res) => {
     res.render('paginas/tutorialCancha');
 });

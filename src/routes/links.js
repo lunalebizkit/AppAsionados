@@ -457,24 +457,20 @@ ruta.get('/mapa/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
     const {idEstablecimiento}=req.params;
     const establecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [idEstablecimiento]);  
     const cancha= establecimiento[0];
-    console.info(establecimiento);
     res.render('paginas/mapa', {cancha, idEstablecimiento});
 });
 
 ruta.post('/mapa/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
-    const {lat} = req.body;
-    //const {mapLong} = req.body;
-    const {idEstablecimiento}=req.params;
-    //if (  await db.query('update establecimiento set latitud = ?, longitud = ? where idEstablecimiento =?', [mapLat, mapLong, idEstablecimiento])) {
-    //    req.flash('mensajeOk', 'Coordenada almacenada!!!');    
-    //    res.redirect('/paginas/mapa');
-    //}else {
-    //    req.flash('mensajeMal', 'Error al guardar coordenada');
-    //    res.redirect('/paginas/mapa');
-    //}   
-    //await db.query('Update establecimiento SET latitud = ? where idEstablecimiento =?', [filename, idEstablecimiento]);
-    console.log(req.body);
-    //res.render('paginas/mapa');
+    const {lat, long} = req.body;
+    const {idEstablecimiento} = req.params;
+    if ( lat, long ) {
+        await db.query('update establecimiento set latitud = ?, longitud = ? where idEstablecimiento =?', [lat, long, idEstablecimiento]);
+        req.flash('mensajeOk', 'Coordenada almacenada!!!');    
+        res.redirect('/paginas/duenio');
+    }else {
+        req.flash('mensajeMal', 'Error al guardar coordenada');
+        res.redirect('/paginas/mapa/' + idEstablecimiento);
+    } 
 });
 
 //agregue pantalla ver mapa usuario

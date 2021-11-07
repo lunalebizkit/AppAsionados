@@ -372,7 +372,7 @@ ruta.get('/reservaUsuario/:idUsuario', estaLogueado, async (req, res) => {
     const {idUsuario}= req.params;
     const diaActual= new Date().toISOString().split('T')[0]
     const reservas= await db.query("Select reserva.idReserva, cancha.id, reserva.fechaReserva, deporte.deporte, reserva.fecha, reserva.hora, cancha.numeroCancha, establecimiento.nombreEstablecimiento from reserva join establecimiento join cancha join deporte where deporte.idDeportes = cancha.idDeportes and cancha.id = reserva.idCancha and reserva.estado = 'reservado' and establecimiento.idEstablecimiento = cancha.idEstablecimiento and idUsuario =? and reserva.estado = 'reservado' and reserva.fechaReserva >= ? order by reserva.fechaReserva desc", [idUsuario, diaActual]);
-      res.render('paginas/reservaUsuario', {reservas});
+    res.render('paginas/reservaUsuario', {reservas});
 });
 ruta.get('/reservaUsuarioCancelar/:id', estaLogueado, async (req, res)=>{    
     const {id}=(req.params);
@@ -460,7 +460,7 @@ ruta.get('/reservaDeporte3/:turno', async(req, res)=>{
 //agregue pantalla mapa
 ruta.get('/mapa/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {
     const {idEstablecimiento}=req.params;
-    const consultarMapaExiste= await db.query('select mapa from establecimiento where idEstablecimiento =?', [idEstablecimiento])
+    const consultarMapaExiste= await db.query('select mapa from establecimiento where idEstablecimiento =?', [idEstablecimiento]);
     const {mapa}= consultarMapaExiste[0]
     const establecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [idEstablecimiento]);  
     const cancha= establecimiento[0];
@@ -471,7 +471,7 @@ ruta.post('/mapa1/:idEstablecimiento', estaLogueado, duenio, async (req, res) =>
   const {idEstablecimiento}= req.params;
   const {mapa}= req.body;
     try {
-        const insertarMapa= await db.query('Update establecimiento set mapa=? where idEstablecimiento =?', [mapa, idEstablecimiento])
+        const insertarMapa= await db.query('Update establecimiento set mapa=? where idEstablecimiento =?', [mapa, idEstablecimiento]);
         if (insertarMapa){
             req.flash('mensajeOk', 'Mapa insertado');
             res.redirect('/paginas/duenio')
@@ -487,9 +487,9 @@ ruta.post('/mapa1/:idEstablecimiento', estaLogueado, duenio, async (req, res) =>
 //agregue pantalla ver mapa usuario
 ruta.get('/verMapa/:idEstablecimiento', estaLogueado, async (req, res) => {
     const {idEstablecimiento}=req.params;
-    const establecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [idEstablecimiento]);  
-    const cancha= establecimiento[0];
-    res.render('paginas/verMapa', {cancha, idEstablecimiento});
+    const consultarMapaExiste= await db.query('select mapa from establecimiento where idEstablecimiento =?', [idEstablecimiento]);
+    const {mapa}= consultarMapaExiste[0]
+    res.render('paginas/verMapa', {mapa, idEstablecimiento});
 });
 ruta.get('/tutorialJugador', estaLogueado, async (req, res) => {
     res.render('paginas/tutorialJugador');

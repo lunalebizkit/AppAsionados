@@ -352,10 +352,7 @@ ruta.get('/verCancha/:idEstablecimiento', estaLogueado, async (req, res) => {
     const deporte= '%'+ direccion.split('paginas/', [2])[1] + '%'
     const establecimiento= await db.query('Select * from establecimiento join cancha join deporte join imagenCancha join horarios where establecimiento.idEstablecimiento = cancha.idEstablecimiento and horarios.idCancha= cancha.id and imagenCancha.idCancha = cancha.id and cancha.idDeportes = deporte.idDeportes and cancha.idEstablecimiento =? and deporte.deporte LIKE?', [idEstablecimiento, deporte]);
     const nombre = await db.query('Select nombreEstablecimiento, direccion from establecimiento where idEstablecimiento =?', [idEstablecimiento]);
-    const futbol = await db.query('select * from deporte join cancha where deporte.idDeportes = cancha.idDeportes and deporte.idDeportes < 4')
-   
-    console.info(deporte)
-    res.render('paginas/verCancha', {establecimiento, nombre, futbol});
+    res.render('paginas/verCancha', {establecimiento, nombre});
 });
 
 //agregue pantalla diasCancha
@@ -375,7 +372,7 @@ ruta.get('/reservaUsuario/:idUsuario', estaLogueado, async (req, res) => {
     const {idUsuario}= req.params;
     const diaActual= new Date().toISOString().split('T')[0]
     const reservas= await db.query("Select reserva.idReserva, cancha.id, reserva.fechaReserva, deporte.deporte, reserva.fecha, reserva.hora, cancha.numeroCancha, establecimiento.nombreEstablecimiento from reserva join establecimiento join cancha join deporte where deporte.idDeportes = cancha.idDeportes and cancha.id = reserva.idCancha and reserva.estado = 'reservado' and establecimiento.idEstablecimiento = cancha.idEstablecimiento and idUsuario =? and reserva.estado = 'reservado' and reserva.fechaReserva >= ? order by reserva.fechaReserva desc", [idUsuario, diaActual]);
-      res.render('paginas/reservaUsuario', {reservas});
+    res.render('paginas/reservaUsuario', {reservas});
 });
 ruta.get('/reservaUsuarioCancelar/:id', estaLogueado, async (req, res)=>{    
     const {id}=(req.params);

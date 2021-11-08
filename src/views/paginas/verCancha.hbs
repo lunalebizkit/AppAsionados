@@ -16,7 +16,10 @@
                         <img src="/img/descarga/{{img}}" alt="" width="250" height="200">
                     </div>
                     <div class="card-footer">
-                        <a href="/paginas/diasCancha/{{idCancha}}" type="link" class="link link-primary">Ver dias y horario</a>
+                        <a href="/paginas/diasCancha/{{idCancha}}" type="button" class="btn btn-outline-primary">Días y horario</a>
+                        {{#if mapa}}
+                        <a href="/paginas/verMapa/{{idEstablecimiento}}" type="button" class="btn btn-outline-primary">¿Cómo llegar?</a>
+                        {{/if}}
                         <a class="btn btn-primary" href="/paginas/reservaDeporteDirecto/{{idCancha}}">Reservar</a>
                     </div>
                 </div>

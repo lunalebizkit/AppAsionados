@@ -273,11 +273,11 @@ ruta.post('/editarEstablecimiento/:idEstablecimiento', estaLogueado, duenio, asy
 })
 //creamos paginas de creacion de evento
 ruta.get('/crearObservacion/:id', estaLogueado, duenio, async(req, res)=> {
- const {id}= req.params;
- const cancha= await db.query('Select * from cancha where id=?', [id])
- console.info(cancha)
-    res.send("llego")
-})
+    const {id}= req.params;
+    const cancha= await db.query('Select * from cancha join establecimiento where cancha.idEstablecimiento = establecimiento.idEstablecimiento and cancha.id=?', [id])
+    const nombre= await db.query('Select establecimiento.nombreEstablecimiento, cancha.numeroCancha, deporte.deporte from establecimiento join cancha join deporte where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = deporte.idDeportes and cancha.id = ?', [id] );
+    res.render('paginas/crearObservacion', {cancha, nombre, id});
+});
 ruta.get('/establecimiento/:id', estaLogueado, duenio, async (req, res) => {
     const {id}= req.params
     res.render('paginas/establecimiento', {id});
@@ -556,9 +556,12 @@ ruta.post('/mapa1/:idEstablecimiento', estaLogueado, duenio, async (req, res) =>
 //agregue pantalla ver mapa usuario
 ruta.get('/verMapa/:idEstablecimiento', estaLogueado, async (req, res) => {
     const {idEstablecimiento}=req.params;
+    const consultarMapaExiste= await db.query('select mapa from establecimiento where idEstablecimiento =?', [idEstablecimiento])
+    const {mapa}= consultarMapaExiste[0]
     const establecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [idEstablecimiento]);  
     const cancha= establecimiento[0];
-    res.render('paginas/verMapa', {cancha, idEstablecimiento});
+    console.log(cancha);
+    res.render('paginas/verMapa', {idEstablecimiento, cancha, mapa});
 });
 ruta.get('/tutorialJugador', estaLogueado, async (req, res) => {
     res.render('paginas/tutorialJugador');

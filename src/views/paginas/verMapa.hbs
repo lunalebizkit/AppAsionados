@@ -1,44 +1,12 @@
 <div id="cancha">
     <div class="container-flex">
-        <div id="cancha" > 
-            {{#if mapa}}
-            <div class="row pt-2 m-auto">
-                {{{mapa}}}
-            </div>
-            {{/if }} 
+        {{#if cancha}}
+        <div class="row pt-2 m-auto">
+            {{{mapa}}}
         </div>
+        {{/if }} 
         <div class="col-2  p-4">
             <a  href="javascript: history.go(-1)" type="button" class="btn btn-primary">Volver</a>
         </div>
     </div>
 </div>
-
-<script type="text/javascript"> 
-{{#with cancha}}
-function showGoogleMaps()
-{
-    //Creamos el punto a partir de la latitud y longitud de una dirección:
-    var point = new google.maps.LatLng({{latitud}}, {{longitud}});    
-    
- 
-    //Configuramos las opciones indicando zoom, punto y tipo de mapa
-    var myOptions = {
-        zoom: 15, 
-        center: point, 
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
- 
-    //Creamos el mapa y lo asociamos a nuestro contenedor
-    var map = new google.maps.Map(document.getElementById("showMap"),  myOptions);
- 
-    //Mostramos el marcador en el punto que hemos creado
-    var marker = new google.maps.Marker({
-        position:point,
-        draggable: false,
-        map: map,
-        title: '{{direccion}}'
-    });    
-}
-showGoogleMaps();
-{{/with}}
-</script>

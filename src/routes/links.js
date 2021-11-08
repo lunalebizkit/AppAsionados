@@ -358,9 +358,9 @@ ruta.get('/verCancha/:idEstablecimiento', estaLogueado, async (req, res) => {
 //agregue pantalla diasCancha
 ruta.get('/diasCancha/:idCancha', estaLogueado, async (req, res) => {
     const{idCancha}= req.params;
-     const cancha= await db.query('Select * from cancha join imagenCancha join horarios join deporte join establecimiento where cancha.id =? and imagenCancha.idCancha = cancha.id and deporte.idDeportes = cancha.idDeportes and horarios.idCancha = cancha.id and establecimiento.idEstablecimiento = cancha.idEstablecimiento', [idCancha]);
-   const dias = await db.query('select * from dia join diaDetalle where diaDetalle.dia = dia.dia and dia.idCancha =?', [idCancha])  
-    
+    const cancha= await db.query('Select * from cancha join imagenCancha join horarios join deporte join establecimiento where cancha.id =? and imagenCancha.idCancha = cancha.id and deporte.idDeportes = cancha.idDeportes and horarios.idCancha = cancha.id and establecimiento.idEstablecimiento = cancha.idEstablecimiento', [idCancha]);
+    const dias = await db.query('select * from dia join diaDetalle where diaDetalle.dia = dia.dia and dia.idCancha =?', [idCancha])  
+    console.log(dias);
     res.render('paginas/diasCancha', {cancha, dias});
 });
 //agregue pantalla jugadores 
@@ -427,7 +427,6 @@ ruta.post('/reservaDeporte1/:deporte', async(req, res)=>{
     req.session.newReserva= {idUsuarios, fecha, idCancha};
     const dia= new Date(fecha).getDay() + 1;
     const dias=await db.query('Select * from dia where idCancha =? and dia=?', [idCancha, dia]);
-    console.log(dias);
     if ((dias.length)>0) {
         res.redirect('/paginas/reservaDeporte2/'+idCancha+'&'+"fecha="+fecha);
     }else{req.flash('mensajeMal', 'El dia seleccionado No atiende!'),
@@ -456,6 +455,31 @@ ruta.get('/reservaDeporte3/:turno', async(req, res)=>{
         req.flash('mensajeMal', 'No se ha podido realizar la reserva');
         res.redirect('/paginas/reservaDeporte')
     }
+});
+
+ruta.get('/reservaDeporteDirecto/:idCancha', estaLogueado, async(req, res)=>{
+    const {idCancha} =req.params;
+    const canchas= await db.query('select imagenCancha.img, establecimiento.nombreEstablecimiento, cancha.numeroCancha, cancha.id, deporte.deporte, horarios.horaInicio, horarios.horaFin from establecimiento join cancha join imagenCancha join deporte join horarios where imagenCancha.idCancha = cancha.id and establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = deporte.idDeportes and cancha.id = horarios.idCancha and cancha.id =?', [idCancha]);
+    
+    res.render('reserva/reservaDeporteDirecto', {canchas, idCancha})
+});
+ruta.post('/reservaDeporteDirecto/:idCancha', async(req, res)=>{
+    const{fecha}=req.body;
+    const {idCancha}= req.params;
+    const{idUsuarios}= req.user;
+    console.log(fecha);
+    req.session.newReserva= {idUsuarios, fecha, idCancha};
+    var dia= new Date(fecha).getDay() + 1;
+    if (dia == 7){
+        dia = 0
+    };
+    console.log(dia);
+    const dias=await db.query('Select * from dia where idCancha =? and dia=?', [idCancha, dia]);
+    console.log(dias);
+    if ((dias.length)>0) {
+        res.redirect('/paginas/reservaDeporte2/'+idCancha+'&'+"fecha="+fecha);
+    }else{req.flash('mensajeMal', 'El dia seleccionado No atiende!'),
+    res.redirect('/paginas/reservaDeporteDirecto/'+ idCancha)}  
 });
 //agregue pantalla mapa
 ruta.get('/mapa/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {

@@ -1,0 +1,14 @@
+<div id="cancha">
+    <div class="container">
+         {{#each traerEstablecimiento}}
+    <form method="post" action="/paginas/editarEstablecimiento/{{idEstablecimiento}}">
+    <input type="text" name="nombreEstablecimiento" value="{{nombreEstablecimiento}}" placeholder="{{nombreEstablecimiento}}"> <br>
+    <input type="text" name="direccion" value="{{direccion}}" placeholder="{{direccion}}"><br>
+    <input type="number" name="cuit" value="{{cuit}}" placeholder="{{cuit}}"><br>
+    {{/each}}
+    <button>Editar</button>
+    </form>
+    </div>
+    
+   
+</div>

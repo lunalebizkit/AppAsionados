@@ -492,11 +492,15 @@ ruta.post('/reservaDeporte1/:deporte', async(req, res)=>{
     if(dia == 7) {
      dia = 0
     }
+    const detalle=await db.query('Select * from observacion where idCancha =? and fecha=?', [idCancha, fecha]);
     const dias=await db.query('Select * from dia where idCancha =? and dia=?', [idCancha, dia]);
     if ((dias.length)>0) {
-        res.redirect('/paginas/reservaDeporte2/'+idCancha+'&'+"fecha="+fecha);
-    }else{req.flash('mensajeMal', 'El dia seleccionado No atiende!'),
-    res.redirect('/paginas/reservaDeporte1/'+ deporte)}  
+        if ((detalle.length)==0) {
+            res.redirect('/paginas/reservaDeporte2/'+idCancha+'&'+"fecha="+fecha);
+        }else {
+            req.flash('mensajeMal', 'El dia seleccionado No atiende!'),
+        res.redirect('/paginas/reservaDeporte1/'+ deporte)}
+    };
 });
 ruta.get('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
     const { idCancha, fecha}= req.session.newReserva;
@@ -540,12 +544,15 @@ ruta.post('/reservaDeporteDirecto/:idCancha', async(req, res)=>{
         dia = 0
     };
     console.log(dia);
+    const detalle=await db.query('Select * from observacion where idCancha =? and fecha=?', [idCancha, fecha]);
     const dias=await db.query('Select * from dia where idCancha =? and dia=?', [idCancha, dia]);
-    console.log(dias);
     if ((dias.length)>0) {
-        res.redirect('/paginas/reservaDeporte2/'+idCancha+'&'+"fecha="+fecha);
-    }else{req.flash('mensajeMal', 'El dia seleccionado No atiende!'),
-    res.redirect('/paginas/reservaDeporteDirecto/'+ idCancha)}  
+        if ((detalle.length)==0) {
+            res.redirect('/paginas/reservaDeporte2/'+idCancha+'&'+"fecha="+fecha);
+        }else {
+            req.flash('mensajeMal', 'El dia seleccionado No atiende!'),
+        res.redirect('/paginas/reservaDeporteDirecto/'+ idCancha)}
+    };
 });
 //agregue pantalla mapa
 ruta.get('/mapa/:idEstablecimiento', estaLogueado, duenio, async (req, res) => {

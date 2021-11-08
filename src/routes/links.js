@@ -278,6 +278,27 @@ ruta.get('/crearObservacion/:id', estaLogueado, duenio, async(req, res)=> {
     const nombre= await db.query('Select establecimiento.nombreEstablecimiento, cancha.numeroCancha, deporte.deporte from establecimiento join cancha join deporte where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes = deporte.idDeportes and cancha.id = ?', [id] );
     res.render('paginas/crearObservacion', {cancha, nombre, id});
 });
+ruta.post('/crearObservacion/:id', estaLogueado, duenio, async(req, res)=> {
+    const {id} = req.params;
+    const{fecha, detalle}=req.body;
+    const newObservacion= {
+        idCancha: id,
+        fecha,
+        detalle
+    };
+    try {
+        let crearObservacion= await db.query('insert into observacion set?', [newObservacion])
+        if (crearObservacion){
+           req.flash('mensajeOk', 'Se guardó detalle de día no laboral')
+           res.redirect('/paginas/duenio')
+        }
+    } catch (error) {
+        console.log(error)
+        req.flash('mensajeMal', 'No se pudo guardar detalle de día no laboral')
+        res.redirect('/paginas/crearObservacion/'+id)
+    }
+});
+
 ruta.get('/establecimiento/:id', estaLogueado, duenio, async (req, res) => {
     const {id}= req.params
     res.render('paginas/establecimiento', {id});

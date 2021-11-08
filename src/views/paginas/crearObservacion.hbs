@@ -2,21 +2,21 @@
     <div class="container-fluid">
         <div class="col-lg-5 mx-auto p-3">
             {{#each nombre}}
-            <div class="card text-center">
-                <h2>Día no laboral</h2>
-                <h2>"{{nombreEstablecimiento}} - {{numeroCancha}}"</h2>
+            <div class="card text-center mt-5">
+                <h2>Día no laboral - "{{nombreEstablecimiento}}"</h2>
+                <h3>Cancha Nº{{numeroCancha}} - {{deporte}}</h3>
             </div>
             {{/each}}
             <div id="semiTransparente" class="text-white">
-                <form action="/paginas/cancha/{{idEstablecimiento}}" method="POST" enctype="multipart/form-data" onsubmit="return verificar();">
+                <form action="/paginas/crearObservacion/{{id}}" method="POST" >
                     
-                    <div class="container m-2 ">
+                    <div class="container m-2">
                         <span style="color: white">*</span>
                         <label class="mt-3 mb-5" for="fecha"><b>Elije un día:</b></label>
                         <input id="fecha" type="date" name="fecha" required>
                     </div>
                     <div class="container m-2">
-                        <textarea cols="40" rows="7" maxlength="100" minlength="4" placeholder="* Describe la razón del cierre" required></textarea>
+                        <textarea name="detalle" cols="40" rows="5" maxlength="100" minlength="4" placeholder="* Describe la razón del día no laboral" required></textarea>
                     </div>
                     <span><hr class="dropdown-divider"></span>
                     <div class="col-5 mx-auto">
@@ -37,3 +37,17 @@
         </div>
     </div>
 </div>
+<script>
+        var hoy = new Date();
+        var dd = hoy.getDate();
+        var mm = hoy.getMonth() + 1;
+        var yyyy = hoy.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+        hoy = yyyy + '-' + mm + '-' + dd;
+        document.getElementById("fecha").setAttribute("min", hoy);
+</script>

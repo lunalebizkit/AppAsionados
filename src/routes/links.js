@@ -409,8 +409,9 @@ ruta.get('/diasCancha/:idCancha', estaLogueado, async (req, res) => {
     const{idCancha}= req.params;
     const cancha= await db.query('Select * from cancha join imagenCancha join horarios join deporte join establecimiento where cancha.id =? and imagenCancha.idCancha = cancha.id and deporte.idDeportes = cancha.idDeportes and horarios.idCancha = cancha.id and establecimiento.idEstablecimiento = cancha.idEstablecimiento', [idCancha]);
     const dias = await db.query('select * from dia join diaDetalle where diaDetalle.dia = dia.dia and dia.idCancha =?', [idCancha])  
-    console.log(dias);
-    res.render('paginas/diasCancha', {cancha, dias});
+    const detalle = await db.query('select * from observacion where idCancha =?', [idCancha]);
+    
+    res.render('paginas/diasCancha', {cancha, dias, detalle});
 });
 //agregue pantalla jugadores 
 ruta.get('/jugadores/:jugador', estaLogueado, async(req, res)=>{
@@ -537,13 +538,11 @@ ruta.post('/reservaDeporteDirecto/:idCancha', async(req, res)=>{
     const{fecha}=req.body;
     const {idCancha}= req.params;
     const{idUsuarios}= req.user;
-    console.log(fecha);
     req.session.newReserva= {idUsuarios, fecha, idCancha};
     var dia= new Date(fecha).getDay() + 1;
     if (dia == 7){
         dia = 0
     };
-    console.log(dia);
     const detalle=await db.query('Select * from observacion where idCancha =? and fecha=?', [idCancha, fecha]);
     const dias=await db.query('Select * from dia where idCancha =? and dia=?', [idCancha, dia]);
     if ((dias.length)>0) {

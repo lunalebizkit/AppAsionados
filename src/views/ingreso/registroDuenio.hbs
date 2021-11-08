@@ -12,23 +12,24 @@
                     </div>
                     <div class="card-body">
                         <form action="/registroDuenio" method="post">                        
-                            <div class="input-group mb-3">          
-                                <b><span style="color: red;">*  </span></b>                      
-                                <input type="text" class="form-control" name="cuit" placeholder="Ingrese su Cuit sin guiones" pattern="[0-9]{10,11}" required>
+                            <div class="input-group m-1 row">                               
+                                <input type="numeric" class="form-control" name="cuit" placeholder="* CUIT" pattern="[0-9!?]{10,11}" required autofocus>
+                                <label style="font-size: small;">Ingresa entre 10 y 11 números sin guiones.</label>
                             </div>
-                             <div class="input-group mb-3">          
-                                <b><span style="color: red;">*  </span></b>                      
-                                <input type="text" class="form-control" name="nombreEstablecimiento" placeholder="Nombre del establecimiento" required>
+                             <div class="input-group m-1 row">                               
+                                <input type="text" class="form-control" name="nombreEstablecimiento" placeholder="* Nombre del establecimiento" required>
                             </div>
-                             <div class="input-group mb-3">          
-                                <b><span style="color: red;">*  </span></b>                      
-                                <input type="text" class="form-control" name="direccion" placeholder="Direccion" required>
+                             <div class="input-group m-1 row">                               
+                                <input type="text" class="form-control" name="direccion" placeholder="* Direccion" required>
                             </div>                             
                             <b><span style="color: red;"><b>*</b></span><span style="font-size:small"> CAMPOS OBLIGATORIOS</span></b>                          
-                            <div class="d-grid mb-2">
+                            <div class="d-grid">
                                 <button type="submit" class="btn btn-success btn-block">
                                     Registrarte
                                 </button>
+                                <a type="button" href="/paginas/inicio" class="btn btn-danger btn-block">
+                                    Cancelar
+                                </a>
                             </div>
                         </form>
                     </div>                   

@@ -2,7 +2,8 @@ module.exports= {
     dataBase: {
         host : 'localhost',
         user : 'root',
-        database: 'appasionados'
+        password:'root',
+        database: 'appasionados',
 
     }
 };

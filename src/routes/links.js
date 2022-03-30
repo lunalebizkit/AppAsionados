@@ -54,7 +54,8 @@ ruta.get('/Futbol', estaLogueado, async (req, res) => {
     const { idUsuarios } = req.user;
     const equipos = await db.query('select * from equipos inner join deporte join usuarios where equipos.idDeportes = deporte.idDeportes and usuarios.idUsuarios = equipos.idUsuarios and deporte.idDeportes < 4');
     const misEquipos= await db.query('select equipos.nombreEquipo from jugador inner join equipos where equipos.idEquipo = jugador.idEquipo and equipos.idDeportes < 4 and jugador.idUsuarios =?', [idUsuarios]);
-    const canchas = await db.query('select * from establecimiento join cancha where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes < 4 group by nombreEstablecimiento');
+    //const canchas = await db.query('select * from establecimiento join cancha where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes < 4 group by nombreEstablecimiento');
+    const canchas = await db.query('select * from establecimiento join cancha where establecimiento.idEstablecimiento = cancha.idEstablecimiento and cancha.idDeportes < 4 ');
     res.render('paginas/futbol', {equipos, misEquipos, canchas});
 });
 //agregue pantalla basquet
@@ -422,21 +423,21 @@ ruta.get('/reservaUsuario/:idUsuario', estaLogueado, async (req, res) => {
     const {idUsuario}= req.params;
     const a=new Date().toLocaleString();
     const crearFecha= (a)=>{
-        var dia= new Date(a).getDate()
+        var dia= new Date().getDay(a)
         if(dia < 10) {
             dia= '0'+ dia
         }
-        var mes= new Date(a).getMonth() + 1
+        var mes= new Date().getMonth(a) + 1
         if (mes < 10) {
             mes = '0' + mes
         }
-        var anio= new Date(a).getFullYear()
-        var nuevaFecha= anio + '-'+ mes + '-'+ dia
+        var anio= new Date().getFullYear(a)
+        var nuevaFecha= anio + '-'+ mes + '-'+ dia        
         return nuevaFecha
     }
     const diaActual= crearFecha(a)
-    const reservas= await db.query("Select reserva.idReserva, cancha.id, reserva.fechaReserva, deporte.deporte, reserva.fecha, reserva.hora, cancha.numeroCancha, establecimiento.nombreEstablecimiento from reserva join establecimiento join cancha join deporte where deporte.idDeportes = cancha.idDeportes and cancha.id = reserva.idCancha and reserva.estado = 'reservado' and establecimiento.idEstablecimiento = cancha.idEstablecimiento and idUsuario =? and reserva.estado = 'reservado' and reserva.fechaReserva >= ? order by reserva.fechaReserva desc", [idUsuario, diaActual]);
-      res.render('paginas/reservaUsuario', {reservas});
+    const reservas= await db.query("Select reserva.idReserva, cancha.id, reserva.fechaReserva, deporte.deporte, reserva.fecha, reserva.hora, cancha.numeroCancha, establecimiento.nombreEstablecimiento from reserva join establecimiento join cancha join deporte where deporte.idDeportes = cancha.idDeportes and cancha.id = reserva.idCancha and reserva.estado = 'reservado' and establecimiento.idEstablecimiento = cancha.idEstablecimiento and idUsuario =? and reserva.estado = 'reservado' and reserva.fechaReserva >= ? order by reserva.fechaReserva desc", [idUsuario, diaActual]); 
+    res.render('paginas/reservaUsuario', {reservas});
 });
 ruta.get('/reservaUsuarioCancelar/:id', estaLogueado, async (req, res)=>{    
     const {id}=(req.params);

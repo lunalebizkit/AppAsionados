@@ -8,8 +8,6 @@ const MySQLStore = require('express-mysql-session');
 const { dataBase } = require('./keys');
 const flash= require('connect-flash');
 
-
-
 /* Iniciar
 ------------------------------------------------------------------------------
 */
@@ -34,6 +32,7 @@ aplicacion.set('view engine', '.hbs');
 
 //middeleware
 aplicacion.use(flash());
+
 aplicacion.use(session({
     secret: 'aleLuna',
     resave: false,
@@ -41,8 +40,9 @@ aplicacion.use(session({
     store: new MySQLStore(dataBase)
 }));
 aplicacion.use(morgan('dev'));
-aplicacion.use(express.urlencoded({extended: false}));
+aplicacion.use(express.urlencoded({extended: true}));
 aplicacion.use(express.json());
+
 //Global variables
 aplicacion.use(passport.initialize());
 aplicacion.use(passport.session());

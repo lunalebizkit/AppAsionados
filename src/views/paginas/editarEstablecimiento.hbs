@@ -1,0 +1,32 @@
+<div id="cancha">
+    <div class="col-md-6 mx-auto p-4">
+        {{#each traerEstablecimiento}}
+        <div class=" card text-center mb-4 p-3">
+            <h2>Editar establecimiento {{nombreEstablecimiento}}</h2>
+        </div>
+        
+        <form id="semiTransparente" action="/paginas/editarEstablecimiento/{{idEstablecimiento}}" class="p-5" method="post">
+            
+            <div class="input-group mb-1 row">               
+                <input type="numeric" class="form-control" name="cuit" value="{{cuit}}" placeholder="{{cuit}}" pattern="[0-9!?]{10,11}" required autofocus>
+                <label class="text-white" style="font-size: small;">Ingresa entre 10 y 11 números sin guiones.</label>
+            </div>
+            <div class="input-group mb-4 row">                    
+                <input type="text" class="form-control" name="nombreEstablecimiento" value="{{nombreEstablecimiento}}" placeholder="{{nombreEstablecimiento}}" required >
+            </div>
+            <div class="input-group mb-3 row">                    
+                <input type="text" class="form-control" name="direccion" value="{{direccion}}" placeholder="{{direccion}}" required>
+            </div>    
+            {{/each}}
+            <span><hr class="dropdown-divider"></span>
+            <div class="col-md-6 mx-auto m-3 p-2">
+                <button type="submit" class="btn btn-success btn-block">
+                    Cargar
+                </button>
+                <a type="button" href="/paginas/duenio" class="btn btn-danger btn-block">
+                    Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

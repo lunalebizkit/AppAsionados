@@ -1,0 +1,68 @@
+<div id="ticket">
+    <div class="container-fluid pt-5">
+        <div class="container card text-center mb-3">
+            <h5 style="color: rgba(255, 0, 0, 0.589);"><p>* Las reservas se podran cancelar 4hs antes de la fecha seleccionada</p></h5>
+            <h2><b>MIS RESERVAS</b></h2>
+        </div>
+        <table id="myTable" class="table table-success table-striped ">
+            <thead>
+                <th onclick="sortTable(0, 'str')">Fecha</th>
+                <th onclick="sortTable(1, 'str')">Establecimiento</th>
+                <th onclick="sortTable(2, 'int')">Cancha</th>
+                <th onclick="sortTable(3, 'str')">Deporte</th>
+                <th onclick="sortTable(4, 'str')">Fecha Reservada</th>
+                <th onclick="sortTable(5, 'int')">Hora</th>
+                <th>Opción</th>
+            </thead>
+            <tbody id="tablaReserva">
+                {{#each reservas}}
+                <tr>
+                    <td>{{fechas fecha}}</td>
+                    <td>{{nombreEstablecimiento}}</td>
+                    <td>{{numeroCancha}}</td>
+                    <td>{{deporte}}</td>
+                    <td>{{fechaReserva}}</td>
+                    <td>{{ hora}}:00 Hs</td>
+                    <td><form action="/paginas/reservaUsuarioCancelar/{{idReserva}}" method="get">
+                    <button class="btn btn-warning" onclick="return confirm('¿Estás seguro que deseas cancelar la reserva?');">Cancelar Reserva</button>
+                    </form></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+     
+           <div class="row py-5">
+        <div style="float: left" class="col-2 p-3">
+            <a id="volver" href="/paginas/deporte" type="button" class="btn btn-danger">Salir</a>
+        </div>
+    </div> 
+</div>
+<script>     
+    var tabla= document.getElementById('tablaReserva')
+    let horaActual= new Date().getHours() + 4;
+    let diaActual= new Date()
+     const convertirFecha= (fecha)=>{
+            let mes= fecha.getMonth()+1;
+            if (mes < 10) {
+             mes='0' + mes}
+            let dia= fecha.getDate();
+            if (dia < 10) {
+             dia='0' + dia}
+            convertirParaComparar= fecha.getFullYear() + "-"+ mes + "-"+ dia;
+            return convertirParaComparar
+     }
+    function bloquear() {
+        for (var i = 0; i < tabla.rows.length; i++) {
+            celdaFechaReservada= tabla.rows[i].children[4].innerHTML
+            celdaHoraReservada= tabla.rows[i].children[5].innerHTML.split(/[/ :]/)[0]
+            if ((convertirFecha(diaActual) == celdaFechaReservada) & (horaActual >= celdaHoraReservada)){        tabla.rows[i].children[6].children[0][0].disabled= 'true'               
+            }
+            if (celdaFechaReservada < (convertirFecha(diaActual))) {
+                 tabla.rows[i].children[6].children[0][0].disabled= 'true'
+            }
+            
+        }
+    }
+    bloquear()
+
+</script>

@@ -2,22 +2,15 @@ body {
   background-color: rgba(0, 0, 0, 0.897)
 }
 #inicio {
-  background-image: url(../img/imgInicio.jpg);
-  background-position: center center;
+  background-image: url(../img/app/imgInicio.jpg);
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
-  height: 39rem;
-  padding-bottom: 0%;
-  margin-bottom: 0%;
-  
 }
-
-h3 {
+#nombreEquipo {
   color: rgb(6, 100, 189);
 }
-
-h6 {
+h6, h5{
   color: rgba(0, 0, 0, 0.575);
   text-align: center;
 }
@@ -38,7 +31,7 @@ h6 {
     text-align: center;
 }
 .formulario {
-  background-image: url(../img/fondoImg.jpg);
+  background-image: url(../img/app/fondoImg.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -52,75 +45,61 @@ h6 {
 }
 
 .card-header, .card-footer {
-  border-style: none;
-   
+  border-style: none   
 }
-
 #futbol {
-  background-color: rgb(32, 155, 16);
-  background-position: center center;
+  background-image: url(../img/app/verde1.jpg);
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  height: 33rem;
-    
+  cursor: url(../img/app/iconF.png), auto;
 }
-
 #basquet {
-  background-color: rgb(199, 135, 16);
+  background-image: url(../img/app/basq.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  height: 33rem;
-    
+  cursor: url(../img/app/iconB.png), auto;
 }
-
 #padel {
-  background-color: rgb(28, 138, 202);
+  background-image: url(../img/app/padd.jfif);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  height: 33rem;
-    
+  cursor: url(../img/app/iconP.png), auto;    
 }
-
 #tablaEquipo {
-  background: rgba(255, 254, 254, 0.61);
+  background: rgba(0, 0, 0, 0.623);
+  position: relative;
 }
-
-
   /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
   background: rgba(100, 100, 100, 0.651);
   bottom: 1rem;
   z-index: 10;
-}
-  
+}  
   /* Declare heights because of positioning of img element */
 .carousel-item {
   height: 33rem;
 }
-
 #citaAutor {
   font-style: italic;
-}
-  
+}  
 #btnCentro {
   display: flex;
   align-items: center;
   justify-content: center;  
   margin: 100px;
 }
-
 #linkCentro {
   background: rgba(255, 255, 255, 0.63);
   width:230px; 
   margin: -50px;
-  text-align: center; 
+  text-align: center 
 }
-
 .offcanvas {
   background: rgba(44, 44, 44, 0.925);
   color: rgb(255, 255, 255);
@@ -138,41 +117,24 @@ h6 {
 #barraDesplegable {
   background: rgb(192, 192, 192);
 }
-
 .modal-title, .modal-body {
   color: wheat;
 }
-
-#Cancha {
-  background-image: url(../img/fut.jpg);
+#cancha {
+  background-image: url(../img/app/verCancha.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  height: 39rem;
-  padding-bottom: 0%;
-  margin-bottom: 0%
-}
-
-#formCancha{
-  background: rgba(255, 254, 254, 0.61);
-  padding:2px 0 10px 0 ;
-   cursor:pointer;
-   display:block;
-   width:400px;
-   margin: 0 auto;
-   margin-left: auto;
-  margin-right: auto;
+  
 }
 
 #modalCancha-header{
   color:black;
-  text-align: center;
-
+  text-align: center
 }
-
 #inicioDuenio {
-  background-image: url(../img/duenio.jpeg);
+  background-image: url(../img/app/duenio.jpeg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -181,11 +143,245 @@ h6 {
   padding-bottom: 0%;
   margin-bottom: 0%;
   display: flex;
-  align-items: center;
-       
+  align-items: center       
+}
+#scrollDuenio {
+  overflow-y: scroll;
+  width: 970px;
+  height: 379px
+}
+#formularioF{
+  background-image: url(../img/app/verde1.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  width: 100%;
+  height: 535px;
+}
+#formularioB{
+  background-image: url(../img/app/basq.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  width: 100%;
+  height: 535px;
+}
+#formularioP{
+  background-image: url(../img/app/padd.jfif);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  width: 100%;
+  height: 535px;
+}
+#semiTransparente{
+  background: rgba(41, 41, 41, 0.575);
 }
 
-#inicioCentrar {
-  display: flex;
-  align-items: center;
+#volver {
+  bottom: 0;
 }
+.tooltip.right .tiptext{
+  top: -5px;
+  left: 110%;
+}
+.tooltip.right .tiptext::after{
+  margin-top: -5px;
+  top: 50%;
+  right: 100%;
+  border-color: transparent #2E2E2E transparent transparent;
+}
+#tablaEquipo {
+  position: relative;
+}
+#tablaEquipo table{  
+  width: 100%;
+}
+#tablaEquipoScroll {
+  /* height: 350px; */
+  overflow-y: auto
+}
+#scroll {
+  overflow-y: scroll;
+  height: 363px;
+  display: block
+}
+
+#scrollEstablecimientos {
+  overflow-y: scroll;
+  height: 320px;
+  display: block
+}
+#scrollMiEquipo {
+  overflow-y: scroll;
+  height: 346px;
+  display: block;
+}
+
+#scrollJugador {
+  overflow-y: scroll;
+  height: 445px;
+  display: block;
+}
+
+#scrollMisCanchas {
+  overflow-y: scroll;
+  height: 380px
+}
+
+#scrollReservas {
+  overflow-y: scroll;
+  height: 335px
+}
+
+#perfil{
+  background-color: rgb(26, 26, 26);
+}
+#sello{
+  background-image: url(../img/app/sello.png);
+  background-repeat: no-repeat;
+  background-position: 95%;
+  font: message-box;
+  font-style: oblique;
+}
+#mensaje{
+  position: absolute !important;
+  top: 80px;
+  left: 135px;
+  animation: aparecer 2s 
+}
+@keyframes aparecer {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+.navbar {
+ padding-bottom: 0px;
+ padding-top: 0px;
+}
+
+.zoom {
+  transition: transform .2s; 
+}
+
+.zoom:hover {
+  transform: scale(1.2); 
+}
+.zoom1{
+  transition: 0.6s;
+}
+.zoom1:hover {
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg) scale(1.2);
+}
+
+#ticket {
+  background-image: url(../img/app/ticket.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+ 
+}
+
+#misCanchas {
+  background-image: url(../img/app/fut1.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed    
+}
+.barraLateral {
+  position: fixed;
+  height: 100%;
+  width: 0;
+  top: 4.8rem;
+  left: 0;
+  z-index: 1;
+  background-color: #00324b;
+  overflow-x: hidden;
+  transition: 0.4s;
+  padding: 1rem 0;
+  box-sizing: border-box;
+}
+.barraLateral .boton-cerrar {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  font-size: 2rem;
+  display: block;
+  padding: 0;
+  line-height: 1.5rem;
+  margin: 0;
+  height: 32px;
+  width: 32px;
+  text-align: center;
+}
+.barraLateral ul, .barraLateral li{
+  margin: 0;
+  padding: 0;
+  list-style: none inside;
+}
+.barraLateral ul {
+  margin: 4rem auto;
+  display: block;
+  width: 80%;
+  min-width: 200px;
+}
+.barraLateral a {
+  display:  block;
+  font-size: 120%;
+  color: #eee;
+  text-decoration:  none;
+}
+.barraLateral a:hover{
+  color: #fff;
+  background-color: #f90;
+}
+#contenido {
+  transition: margin-left .4s;
+  padding: 1rem;
+}
+.abrir-cerrar {
+  color: #afdcfc;
+  font-size: 1rem;
+}
+
+#cerrar {
+  display: none;
+}
+
+/*estilo valoracion 1
+#val {
+  width: 100px;
+  height: 30px;
+}
+#p {
+  text-align: left;
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+input[type="radio"] {
+  display: none;
+}
+#label {
+  color: rgb(158, 157, 157);
+  font-size: 20px;
+}
+#label:hover, #label:hover ~ #label {
+  color: rgb(255, 187, 0);
+}
+input[type="radio"]:checked ~ #label {
+  color: rgb(255, 187, 0);
+}
+*/
+/*estilo valoracion 2*/
+#pingStar, #list{
+  list-style: none;
+}
+.starts,.starts ul{float:left;}
+.starts{padding-left:16px;padding-top:7px;}
+.starts ul li{float:left;color:rgb(163, 163, 163);padding-right:3px;font-size:28px;cursor: pointer;}
+.starts ul li.on{color:orange;}
+.starts ul span{display:inline;float:left;padding-left:10px;margin-top: 10px;}

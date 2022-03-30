@@ -1,133 +1,182 @@
 <div id="padel">
-    <div class="d-flex justify-content-around">
-        <div class="container-fluid">
-            <div id="tablaEquipo" class="col-md-12">
-                <form class="d-flex">
-                    <img class="rounded mx-auto d-block" src="/img/pelotaP.png" alt="" width="50" height="50">
-                    <h2 class=" me-4"><b>EQUIPOS</b></h2>
-                    <div class="d-flex m-2">
-                        <input class="form-control" type="search" placeholder="Buscar equipo" aria-label="Search">
-                        <button class="btn btn-warning me-3" type="submit">Ir</button>
-                        <input class="form-control" type="search" placeholder="Buscar jugador" aria-label="Search">
-                        <button class="btn btn-warning" type="submit">Ir</button>
+    <div class="container-fluid">
+        <div class="row justify-content-between pt-5">
+            <!--Tabla Equipos-->
+            <div id="tablaEquipo" class="col-lg-5 m-2 p-2">
+                <div class="d-flex">
+                    <img class="d-inline-block" src="/img/app/pelotaP.png" alt="" width="50" height="50">
+                    <a class="navbar-brand">
+                        <a class="btn btn-dark btn-lg dropdown-toggle text-white" href="#" id="dropdown04" 
+                            data-bs-toggle="dropdown" aria-expanded="false">EQUIPOS</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown04">
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#misEquipo" data-bs-whatever="@equipo">Mis Equipos</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/paginas/crearEquipoPadel/{{user.idUsuarios}}">Crear Equipo</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/paginas/jugadores/{{user.idUsuarios}}">Ver Jugadores</a></li>
+                        </ul>
+                    </a>
+                    <div class="d-flex justify-content-between m-auto ">  
+                        <input type="search" class="form-control" id= "busqueda" placeholder="Buscar"
+                        onkeyup="buscar();" autofocus>
+                        <button class="btn btn-danger" type="submit" id="boton">
+                            <i class="fas fa-search"></i>
+                        </button>
                     </div>
-                </form>
-                <table class="table table-hover table-info">
-                    <thead>
-                        <tr>
-                            <th>Nº de Equipo</th>
-                            <th>Nombre</th>
-                            <th>Nº de Jugadores</th>
-                                
-                        </tr> 
-                    </thead>        
-                        
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Equipo1</td>
-                            <td>7</td>
-                                <!--<td>{{numero}}</td>
-                                <td>{{nombre}}</td>
-                                <td>{{cantidadJugadores}}</td>-->
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Equipo2</td>
-                            <td>9</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Equipo3</td>
-                            <td>6</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Equipo4</td>
-                            <td>7</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Equipo5</td>
-                            <td>7</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Equipo6</td>
-                            <td>9</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Equipo7</td>
-                            <td>8</td>
-                        </tr>
-                    </tbody>
-                </table>
+                </div>
+                <div id="scroll">
+                    <table id="myTable" class="table table-hover table-info">
+                        <thead class="fixed">
+                            <tr>
+                                <th onclick="sortTable(0, 'str')">Capitán</th>
+                                <th onclick="sortTable(1, 'str')">Nombre</th>
+                                <th onclick="sortTable(2, 'str')">Deporte</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblEquipos">
+                            {{#each equipos}}
+                            <tr>
+                                <td data-bs-toggle="tooltip" data-bs-placement="top" title="{{email}}">
+                                    {{nombreUsuario}}
+                                </td>
+                                <td><a href="/paginas/equipo/{{nombreEquipo}}&{{idDeportes}}">{{nombreEquipo}}</a></td>
+                                <td>{{deporte}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="container-fluid">
-            <div id="tablaEquipo" class="col-md-12">
+    <!--Tabla Canchas-->
+            <div id="tablaEquipo" class="col-md-6 m-2 p-2">
                 <form class="d-flex">
-                    <h2 class=" me-4"><b>MI EQUIPO</b></h2>
-                    <h3><i>Equipo1</i></h3>
+                    <a class="navbar-brand" href="#">
+                        <h4 class=" text-white px-4"><b>ESTABLECIMIENTOS</b></h4>
+                    </a>
+
+                    <div class="d-flex justify-content-between m-auto ">
+                        <input type="text" class="form-control" name="buscarCancha" id="busqueda1" placeholder="Buscar" onkeyup="buscar1();"autofocus required>
+                        <button class="btn btn-danger" type="reset">
+                            <i class="fas fa-search"></i> 
+                        </button>
+                    </div>
+
                 </form>
-                <table class="table table-hover table-success ">
-                    <thead>
-                        <tr>
-                            <th>Número</th>
-                            <th>Nombre</th>
-                            <th>Posición</th>
-                                
-                        </tr> 
-                    </thead>        
-                        
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Juan</td>
-                            <td>Arquero</td>
-                                <!--<td>{{numero}}</td>
-                                <td>{{nombre}}</td>
-                                <td>{{cantidadJugadores}}</td>-->
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Pedro</td>
-                            <td>Defensor</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Carlos</td>
-                            <td>Defensor</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Tomas</td>
-                            <td>Defensor</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Mario</td>
-                            <td>Medio</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Roman</td>
-                            <td>Medio</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Jose</td>
-                            <td>Delantero</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div id="scroll">
+                    <table id="myTable1" class="table table-hover table-info">
+                        <thead class="fixed">
+                            <tr>
+                                <th onclick="sortTable1(0, 'str')">Establecimiento</th>
+                                <th onclick="sortTable1(1, 'str')">Dirección</th>
+                                <th>Opción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblCancha">                            
+                            {{#each canchas}}
+                            <tr>
+                                <td data-bs-toggle="tooltip" data-bs-placement="top" title="{{email}}">
+                                    <a href="/paginas/verCancha/{{idEstablecimiento}}">{{nombreEstablecimiento}}</a>
+                                </td>
+                                <td>{{direccion}}</td>
+                                {{#if mapa}}
+                                <td><a href="/paginas/verMapa/{{idEstablecimiento}}">Ver mapa</a></td>
+                                {{else}}
+                                <td><a href="" style="pointer-events: none; cursor: default; color:rgb(168, 168, 168)">Ver mapa</a></td>
+                                {{/if}}
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn btn-warning" type="submit">Buscar cancha</button>
+    <div class="col py-2">
+        <a id="volver" href="/paginas/deporte" type="button" class="btn btn-danger">Volver</a>
+    </div>
+</div>
+<!-- The Modal -->
+<div class="modal fade" id="misEquipo" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+            <!-- Modal Header -->
+            <div class="modal-header" id="misEquipo">
+                <h4 class="modal-title">MIS EQUIPOS</h4>
+                <button type="button" class="close" data-bs-dismiss="modal" id="crearEquipo">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body" id="misEquipo">
+                <table class="table text-center">
+                    <tbody>
+                        {{#if misEquipos}}
+                            {{#each misEquipos}}
+                        <tr>
+                            <td><i>
+                                    <h4><a class="text-white"
+                                            href="/paginas/miEquipo/{{nombreEquipo}}">{{nombreEquipo}}</a></h4>
+                                </i></td>
+                        </tr>
+                            {{/each}}
+                        {{else}}
+                        <h4><p  class="text-white text-center" >Aún no tienes equipo</p></h4>
+                        <h5 class="text-center"><a href="/paginas/crearEquipoPadel/{{user.idUsuarios}}"><em>Crea tu propio Equipo!</em></a></h5>
+                        {{/if}}
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer" id="crearEquipo">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            </div>
         </div>
     </div>
-</div> 
+</div>
+<script type="text/javascript">
+    function buscar() {
+        var tabla = document.getElementById('tblEquipos');
+        var busqueda = document.getElementById('busqueda').value.toLowerCase();
+        var cellsOfRow = " ";
+        var found = false;
+        var compareWith = " ";
+        for (var i = 0; i < tabla.rows.length; i++) {
+            cellsOfRow = tabla.rows[i].getElementsByTagName('td')
+            found = false;
+            for (var j = 0; j < cellsOfRow.length && !found; j++) {
+                compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+                if (busqueda.length == 0 || (compareWith.indexOf(busqueda) > -1)) {
+                    found = true;
+                }
+            }
+            if (found) {
+                tabla.rows[i].style.display = '';
+                
+            } else {
+                tabla.rows[i].style.display = 'none';  
+            }
+         
+        }  
+    }
+    function buscar1() {
+        var tabla = document.getElementById('tblCancha');
+        var busqueda = document.getElementById('busqueda1').value.toLowerCase();
+        var cellsOfRow = " ";
+        var found = false;
+        var compareWith = " ";
+        for (var i = 0; i < tabla.rows.length; i++) {
+            cellsOfRow = tabla.rows[i].getElementsByTagName('td')
+            found = false;
+            for (var j = 0; j < cellsOfRow.length && !found; j++) {
+                compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+                if (busqueda.length == 0 || (compareWith.indexOf(busqueda) > -1)) {
+                    found = true;
+                }
+            }
+            if (found) {
+                tabla.rows[i].style.display = '';
+            } else {
+                tabla.rows[i].style.display = 'none';
+            }
+        }
+    }
+</script>

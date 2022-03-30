@@ -1,0 +1,44 @@
+<div id="formularioP" class="container">
+    <form id="formequipo" method="POST" action="/paginas/crearEquipoPadel/{{user.idUsuarios}}">
+        <div class="row">
+            <div id="semiTransparente" class="col-5 m-auto py-3 px-3 ">
+                <div class="card">
+                    <div class="card-header">
+                        <h1  class=" mt-3 text-center py-2">CREA TU EQUIPO</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group mb-3 py-2">
+                            <input type="text" class="form-control" name="nombreEquipo" placeholder="Nombre del equipo" autofocus required>
+                            
+                        </div>
+                        <div class="input-group mb-2 justify-content-between py-2">
+                            <select name="posicion" class="btn btn-ls btn-outline-primary" required>
+                                <option type="text" value="">POSICIÓN</option>
+                                <option type="text" value="Derecha">Derecha</option>
+                                <option type="text" value="Revés">Revés</option>
+                            </select>
+                            
+                            <select name="idDeportes" class="btn btn-ls btn-outline-primary" required>
+                                <option type="" value="">FORMATO</option>
+                                <option type="number" value=5>Pádel </option>
+                               
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="semiTransparente" class="col-5 m-auto py-3">
+                <button type="submit" class="btn btn-success btn-block">
+                    Crear
+                </button>
+                <button onclick="location.href='/paginas/padel'" class="btn btn-danger btn-block">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </form>
+    
+</div>
+

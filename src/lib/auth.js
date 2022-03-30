@@ -1,6 +1,5 @@
-
-
 module.exports= {
+    /*  funcion que asegura que la persona que acceda a la pagina esta registrada y logueado*/
     estaLogueado(req, res, next) {
         if (req.isAuthenticated()) {
             return next();
@@ -12,10 +11,14 @@ module.exports= {
         } return res.redirect('/paginas/deporte');
     },
     admin(req, res, next) {
-        if((req.user.rol) === 'admin') {
+        if((req.isAuthenticated()) && (req.user.idRol) === 1) {
             return next();
-        } return req.flash('mensajeMal', 'Acceso restringido'),
-        res.redirect('/ingreso');
+        }return res.redirect('/paginas/inicio');
+    },
+    duenio(req, res, next) {
+        if((req.isAuthenticated()) & (req.user.idRol) === 2) {
+            return next();
+        }return res.redirect('/registroDuenio');
     }
      
 }

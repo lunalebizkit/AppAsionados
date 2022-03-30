@@ -1,0 +1,96 @@
+<div id="cancha" > 
+  {{#if mapa}}
+  <div class="row pt-5 m-auto">
+    {{{mapa}}}
+  </div>
+  {{/if }} 
+  <form method="POST" action="/paginas/mapa1/{{idEstablecimiento}}">
+    <div class="row pt-3 py-3">
+      <div id="semiTransparente" class="col-lg-7 m-auto py-3 px-3 ">
+        <div class="card">
+          <div class="card-header">
+            <h1 class="text-center py-2">UBICACIÓN DEL ESTABLECIMIENTO</h1>
+          </div>
+          <div class="card-body">
+            <div class="input-group mb-2">
+              <p>1- Ingresá en el siguiente enlace:&nbsp;</p>
+              <a href="https://www.google.com.ar/maps" target="_blank">Google Maps</a>
+            </div>
+            <div class="input-group mb-2">
+              <p>2- Buscá la ubicación de tu establecimiento.</p>
+            </div>
+            <div class="input-group mb-2">
+              <p>3- Dale click en "Compartir".</p>
+              <div >
+                <img src="/img/app/cargaMapa1.png" >
+              </div>
+            </div>
+            <div class="input-group mb-2">
+              <p>4- Dale click en "Incorporar un mapa".</p>
+              <img src="/img/app/cargaMapa2.png" >
+            </div>
+            <div class="input-group mb-2">
+              <p>4- Copiá el link desde el botón "COPIAR HTML".</p>
+              <img src="/img/app/cargaMapa3.png" >
+            </div>
+            <div class="input-group mb-2 justify-content-between ">
+              <p>5- Pegá el link aquí:&nbsp;</p>
+              <input id="mapa" type="text" class="form-control" name="mapa"placeholder='Ejemplo: <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4738.071196067877!2d-68.8517426232201!3d-32.88964658941882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x967e0907b3f6324b%3A0x501d1521958dfb21!2sPlaza%20Independencia!5e0!3m2!1ses-419!2sar!4v1636318534338!5m2!1ses-419!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>' required>
+            </div>
+          </div>
+          <div class="col-5 m-auto py-2">
+            <button type="submit" class="btn btn-success btn-block">
+                Cargar
+            </button>
+            <a href="javascript: history.go(-1)" type="button" class="btn btn-danger btn-block">
+                Cancelar
+            </a>
+          </div>
+        </div>
+      </div> 
+    <div>
+  </form> 
+</div>
+
+
+
+
+<script type="text/javascript"> 
+{{#with cancha}}
+
+function showGoogleMaps()
+{
+    
+  //Creamos el punto a partir de la latitud y longitud de una dirección:
+  var point = new google.maps.LatLng({{latitud}}, {{longitud}});
+    
+  //Configuramos las opciones indicando zoom, punto y tipo de mapa
+  var myOptions = {
+      zoom: 15, 
+      center: point, 
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+  //Creamos el mapa y lo asociamos a nuestro contenedor
+  var map = new google.maps.Map(document.getElementById("showMap"),  myOptions);
+
+  //Mostramos el marcador en el punto que hemos creado
+  var marker = new google.maps.Marker({
+      position:point,
+      draggable: true,
+      map: map,
+      title: '{{direccion}}'
+  });
+
+
+  google.maps.event.addListener(marker, 'dragend', function(event) {
+      
+      var lat = marker.getPosition().lat();
+      var long = marker.getPosition().lng();
+
+      document.getElementById("showMap").innerHTML += `<input id="mapLong" type="text" name="long" value=${long}> <input id="mapLong" type="text" name="lat" value=${lat}>`;
+  });
+}
+showGoogleMaps();
+{{/with}}
+</script>

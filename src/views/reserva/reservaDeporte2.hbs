@@ -1,0 +1,71 @@
+<div id="ticket">
+    <div class="progress mb-3">
+        <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+    </div>
+    <div class="container-fluid">
+        <div class="row row-cols-2 pb-5">
+            <div class="col-md-4 m-0 mt-3 py-4 pb-5" style="background-color: rgb(255, 255, 255, 0.5);">
+                <div class="text-center">
+                    <h3>Elige Turno</h3>             
+                    
+                        <div class="container">
+                            <div id="texto" class="row justify-content-around">
+                            </div>
+                        </div>
+                        {{!-- <button id="botonReservar" type="submit" class="btn btn-success text-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" disabled>Reservar</button> --}}
+                        <div class="col-1 mt-5 py-1">
+                            <a id="volver" href="javascript: history.go(-1)" type="button" class="btn btn-danger">Volver</a>
+                        </div>
+                        <div class="col-1 py-1">
+                            <a id="volver" href="/paginas/inicio" type="button" class="btn btn-danger">Salir</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col">
+                  <div id="btnCentro" class="mx-auto">
+                <!-- logo de la app -->
+                    <img src="/img/app/logo4.png" alt="Logo App" class="mx-1">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+let tomarParametro = new URLSearchParams(window.location.href);
+let fechaSeleccionada = tomarParametro.get('fecha');
+let diaActual=  new Date()
+function misTurnos() {  
+        var inicio= {{turno.horaInicio}}
+        var fin= {{turno.horaFin}}     
+        const convertirFecha= (fecha)=>{
+            let mes= fecha.getMonth()+1;
+            if (mes < 10) {
+             mes='0' + mes}
+            let dia= fecha.getDate();
+            if (dia < 10) {
+             dia='0' + dia}
+            convertirParaComparar= fecha.getFullYear() + "-"+ mes + "-"+ dia;
+            return convertirParaComparar
+        }
+         let horaActual= new Date().getHours()+1;    
+         
+        for (let i = inicio; i <= fin; i++) {              
+            if ((convertirFecha(diaActual) == fechaSeleccionada) & ( horaActual >= i )) {
+                continue;
+            }    
+                
+            {{#each reservas }}
+            idCancha= {{idCancha}}
+            hora= {{hora}}
+            if (i == hora) {
+                document.getElementById("texto").innerHTML += `<a class="btn btn-danger mb-3" href=#> ${i}:00 Hs (RESERVADO)</a>`;continue;
+            }
+            {{/each}}       
+            document.getElementById("texto").innerHTML += `<a class="btn btn-primary mb-3" href="/paginas/reservaDeporte3/${i}" onclick="return confirm('¿Estás seguro que deseas realizar la reserva? Recuerde que las reservas sólo podran cancelarse 4hs antes de la fecha seleccionada');"> ${i}:00 Hs</a>`;
+        }
+}      
+misTurnos()
+
+</script>

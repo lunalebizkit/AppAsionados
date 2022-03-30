@@ -1,0 +1,33 @@
+<div id="cancha">
+    <div class="container-fluid">
+        {{#each nombre}}
+        <div class="card text-center mb-4">
+            <h2 class="mb-3  mx-auto"><b>{{nombreEstablecimiento}}</b> - <i>{{direccion}}</i></h2>
+        </div>
+        {{/each}}
+        <div id="scrollMisCanchas" class="row" >
+            {{#each establecimiento}}
+            <div class="col-lg-4 mb-4">
+                <div class="card bg-white" style="opacity: 1;">
+                    <div class="card-header">
+                        <b>Cancha Nº {{numeroCancha}} - {{deporte}}</b>
+                    </div>
+                    <div class="card-body">
+                        <img src="/img/descarga/{{img}}" alt="" width="250" height="200">
+                    </div>
+                    <div class="card-footer">
+                        <a href="/paginas/diasCancha/{{idCancha}}" type="button" class="btn btn-outline-primary">Días y horario</a>
+                        {{#if mapa}}
+                        <a href="/paginas/verMapa/{{idEstablecimiento}}" type="button" class="btn btn-outline-primary">¿Cómo llegar?</a>
+                        {{/if}}
+                        <a class="btn btn-primary" href="/paginas/reservaDeporteDirecto/{{idCancha}}">Reservar</a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <div class="col-2 p-4">
+            <a  href="javascript: history.go(-1)" type="button" class="btn btn-primary">Volver</a>
+        </div>
+    </div>
+</div>

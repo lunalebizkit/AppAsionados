@@ -1,20 +1,38 @@
 <div id="inicio">
-    <div class="container">
-        <div class="row justify-content-between">
-            <div id="btnCentro" class="col-md py-5 mx-auto">
-                <a href="ingreso" type="button" class="btn btn-success btn-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="Inicia como jugador para ser parte de un equipo y realizar deportes.">JUGADOR</a>
+    <div class="container-flex">
+        <div class="d-flex justify-content-around p-4">
+            <div id="btnCentro" class="py-5 mx-auto">
+                <a href="deporte" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Ingresa para realizar deportes.">
+                    <!-- logo jugador -->
+                    <img class="zoom" src="/img/app/logoJugador1.png" srcset="/img/app/logoJugador1.png 1400w, /img/app/logoJugador1.png 300w"
+                    sizes="(mim-width: 500px) 33.3vw, 100vw" alt="Logo Jugador" class="mx-1">
+                </a>
             </div>
-            <div id="btnCentro" class="col-md py-5 mx-auto">
+            <div id="btnCentro" class="py-5 mx-auto">
                 <!-- logo de la app -->
-                <img src="/img/logo4.png" alt="Logo App" class="mx-1" width="300px">                
+                <img src="/img/app/logo4.png" alt="Logo App" class="mx-1" style="opacity: 0.7;">
             </div>
-            <div id="btnCentro" class="col-md py-5 mx-auto">
-                <a href="ingresoDuenio" type="button" class="btn btn-warning btn-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="Inicia como cancha para ingresar tu establecimiento deportivo.">CANCHA</a>                
+            <div id="btnCentro" class="py-5 mx-auto">
+                <a href="duenio" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Ingresa para subir tus canchas.">
+                    <!-- logo cancha -->
+                    <img class="zoom" src="/img/app/logoCancha1.png" srcset="/img/app/logoCancha1.png 1400w, /img/app/logoCancha1.png 300w"
+                    sizes="(mim-width: 500px) 33.3vw, 100vw"  alt="Logo Cancha" class="mx-1">
+                </a>
             </div>
         </div>
-    </div>
-    <div id="linkCentro" class="col-md mx-auto">
-        <b>Ingresar como <a href="ingresoAdmin"  type="link" class="link link-primary link-lg">Administrador</a></b>
-        <h6>© 2021 APPasionados</h6>
+     
+        <div id="linkCentro" class="col-sm-2 mx-auto" style="display: none;">
+            <b>Ingresar como... <a href="/paginas/vistaAdmin" type="link"
+                    class="link link-primary link-lg">Administrador</a></b>
+            <h6>© 2021 APPasionados</h6>
+        </div>           
     </div>
 </div>
+<script> 
+    var estado 
+    if ({{user.idRol}} === 1) {
+     estado= "block"
+     }else{
+     estado= "none"}
+document.getElementById('linkCentro').style.display= estado
+</script>

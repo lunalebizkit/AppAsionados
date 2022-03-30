@@ -1,12 +1,17 @@
 <main class="formulario">
     <div class="container">
-        <div class="row justify-content-between">
+        <div class="row ">
             <div id= "inicioCentrar" class="col-md-4 py-5">
-                <!--agregue logo de la app -->
-                <a title="logoApp" href="/" ><img src="/img/logo4.png" alt="logoApp" width="250"/></a>
-                
+                <!--agregue logo de la app -->               
+                <a title="logoApp" href='/'><img class="zoom"  src="/img/app/logo4.png" srcset="/img/app/logo4.png 1024w, /img/logo4.png 320w" sizes="(mim-width: 320px) 33vw, 100vw" alt="logoApp"></a>                
+                <div id="semiTransparente" class="container-fluid">
+                    <div class="row"> 
+                        <h4 style="text-align: unset; color:rgb(255, 255, 255);" ><i>Unite a la comunidad de </i><b style="color: rgba(96, 98, 223, 0.979);">APPasionados</b> <i>y disfrutá del deporte que más te apasiona.</i> </h4>
+                    </div>
+                    
+                </div>
             </div>
-            <div class="col-md-4 py-4">
+            <div class="col offset-md-3">
                 <div id="card" class="card">
                     <div class="card-header">
                         <h3>Registro</h3>
@@ -14,10 +19,10 @@
                     <div class="card-body">
                         <form action="/registro" method="POST">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="nombre" placeholder="Nombre" pattern="[a-zA-Z]{2,40}" oninvalid="setCustomValidity('Nombre no debe contener numeros')" onchange="try{setCustomValidity('')}catch(e){}" autofocus required>
+                                <input type="text" class="form-control" name="nombre" placeholder="Nombre" pattern="[a-zA-Z]{2,40}" oninvalid="setCustomValidity('Nombre no debe contener numeros ni espacios')" onchange="try{setCustomValidity('')}catch(e){}" autofocus required>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="apellido" placeholder="Apellido" pattern="[a-zA-Z]{2,40}" oninvalid="setCustomValidity('Apellido no debe contener numeros')" onchange="try{setCustomValidity('')}catch(e){}"  required>
+                                <input type="text" class="form-control" name="apellido" placeholder="Apellido" pattern="[a-zA-Z]{2,40}" oninvalid="setCustomValidity('Apellido no debe contener numeros ni espacios')" onchange="try{setCustomValidity('')}catch(e){}"  required>
                             </div>
                              <div class="input-group mb-3">
                                 <input type="email" class="form-control" name="email" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
@@ -26,8 +31,10 @@
                                 <input type="text" class="form-control" name="nombreUsuario" placeholder="Usuario" required>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="password" class="form-control" name="contrasenia" placeholder="Contraseña" required>
+                                <input type="password" class="form-control" name="contrasenia" placeholder="Contraseña" pattern="[a-z0-9]{3,8}" required>
                             </div>
+                            <span style="font-size:small">(La contraseña puede ser alfa-numérica y contener de 3 a 8 caracteres)</span>
+                            <span><hr class="dropdown-divider"></span>
                             <div class="d-grid mb-2">
                                 <button type="submit" class="btn btn-success btn-block">
                                     Registrarte

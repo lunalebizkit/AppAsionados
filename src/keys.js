@@ -3,7 +3,11 @@ module.exports= {
         host : 'localhost',
         user : 'root',
         password:'root',
+<<<<<<< HEAD
         database: 'appasionados',
+=======
+        database: 'appasionados'
+>>>>>>> origin/preDevelop
 
     }
 };

@@ -4,8 +4,6 @@ const db = require('../database');
 const helpers = require('../lib/helper');
 const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
-
-
 /* ----------------------------
 ingreso del usuario
 --------------------------------*/
@@ -14,7 +12,7 @@ passport.use('local.ingreso', new LocalStrategy({
     passwordField: 'contrasenia',
     passReqToCallback: true
 }, async (req, nombreUsuario, contrasenia, done) => {
-    const buscar = await db.query('SELECT * FROM usuarios WHERE nombreUsuario = ?', [nombreUsuario]);
+    const buscar = await db.query('SELECT * FROM usuarios WHERE nombreUsuario = ? and baja = false', [nombreUsuario]);
     if (buscar.length > 0) {
         const usuario = buscar[0];
         const validacion = await helpers.comparaContrasenia(contrasenia, usuario.contrasenia);
@@ -26,10 +24,9 @@ passport.use('local.ingreso', new LocalStrategy({
         }
 
     } else {
-        return done(null, false, req.flash('mensajeMal', 'El usuario no existe'));
+        return done(null, false, req.flash('mensajeMal', 'Usuario en baja o no existente'));
     }
 }));
-
 /*------------------------------------
 Registro del usuario
 -------------------------------------*/
@@ -52,6 +49,9 @@ passport.use('local.registro', new LocalStrategy({
             email,
             nombreUsuario,
             contrasenia,
+            idRol: 3,
+            img: 'perfil.png',
+            baja: 0
         };
         const mensajeMail =`
         <h2>Hola! ${nombre}...<br>
@@ -62,20 +62,17 @@ passport.use('local.registro', new LocalStrategy({
             <li>Su contraseña es :<b> ${contrasenia} </b></li>
         </ul>
         
-    `;
-    
-    const CLIENT_ID="127038509627-tbvecp500j6cnnhntp2lj2qgdn7uv1el.apps.googleusercontent.com";
-    const CLIENT_SECRET="3rTxwgS2L-z79sa2nR3Oy9wI";
+    `;    
+    const CLIENT_ID="646859646017-mdq9mtoudeusnv9vpt4fibts5t2fnsp9.apps.googleusercontent.com";
+    const CLIENT_SECRET="7JkJcecbeO2F4hAcVczI_AJk";
     const REDIRECT_URI="https://developers.google.com/oauthplayground";
-    const REFRESH_TOKEN="1//042zwVNgR64TgCgYIARAAGAQSNwF-L9IrgCqTog5tYUG3AiMjpbijAaCi4bpcHB8p_TXrZzATvpooFiz-NCI8dSKihxkyL09L4IA";
+    const REFRESH_TOKEN="1//04DDtGxmm0pX-CgYIARAAGAQSNwF-L9Ira2Ua-IRVqVk8PU649AlEDDCUhNIESaodTyXpeABJ73AaWbbMIRPiGgajYvNsi5oHGug";
     const oAuth2cliente = new google.auth.OAuth2( 
         CLIENT_ID,
         CLIENT_SECRET,
         REDIRECT_URI
-        );
-    
-     oAuth2cliente.setCredentials({refresh_token:REFRESH_TOKEN});
-     
+        );    
+     oAuth2cliente.setCredentials({refresh_token:REFRESH_TOKEN});     
      async function sendMail(){
          try{
             const accessToken= await oAuth2cliente.getAccessToken()
@@ -83,7 +80,7 @@ passport.use('local.registro', new LocalStrategy({
                  service: "gmail",
                  auth:{
                      type:"Oauth2",
-                     user: "elianacortez27@gmail.com",
+                     user: "appasionadosdeporte@gmail.com",
                      clientId:CLIENT_ID,
                      clientSecret:CLIENT_SECRET,
                      refreshToken:REFRESH_TOKEN,
@@ -94,7 +91,7 @@ passport.use('local.registro', new LocalStrategy({
              const mailOptions=
                 
                 {
-                 from:"APPasionados<elianacortez27@gmail.com>",
+                 from:"APPasionados <appasionadosdeporte@gmail.com>",
                  to: email,
                  subject:"Confirmacion de Registro",
                  html: mensajeMail, 
@@ -116,17 +113,12 @@ passport.use('local.registro', new LocalStrategy({
         req.flash('mensajeOk', 'Usuario Registrado Correctamente');
         newUsuario.idUsuarios = ingresoUsuario.insertId;
         return done(null, newUsuario);
-    }
-   
+    }   
 }));
-
-
-
 passport.serializeUser((user, done) => {
     done(null, user.idUsuarios);
 });
 passport.deserializeUser(async (id, done) => {
     const fila = await db.query('SELECT * FROM usuarios WHERE idUsuarios = ?', [id]);
     done(null, fila[0]);
-
 })

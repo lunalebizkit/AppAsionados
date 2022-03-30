@@ -1,0 +1,70 @@
+<div id="ticket">
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar"
+            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+        </div>
+    </div>
+    <div class="container-fluid">
+        <form action="/paginas/reservaDeporte1/{{idDeportes}}" method="POST">
+        <div class="row row-cols-2 pb-5">            
+            <div class="col-md-4 m-0 mt-4 py-4" style="background-color: rgb(255, 255, 255, 0.5);">
+                <div class="text-center">
+                    <h3>Elije Fecha</h3>
+                    <label class="mt-3 mb-5" for="fecha"><b>Elije un día</b></label>
+                    <input id="fecha" type="date" name="fecha" required>
+                    <div>
+                        <button class="btn btn-success btn-lg " type="submit">Aceptar</button>
+                    </div>                    
+                    <div class="col-1 mt-5 py-1">
+                        <a id="volver" href="/paginas/reservaDeporte" type="button"
+                            class="btn btn-danger">Volver</a>
+                    </div>
+                    <div class="col-1 py-1">
+                        <a id="volver" href="/paginas/inicio" type="button" class="btn btn-danger">Salir</a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-8 m-0 mt-2 py-4">
+                <div class="text-center">
+                    <div id="scrollJugador">
+                        {{#each canchas}}
+                        <div class="col-8 mx-auto mt-2">
+                            <div class="card" style="background-color: rgb(255, 255, 255, 0.5);">
+                                <div class="card-header">                                    
+                                    <b>{{nombreEstablecimiento}} Cancha Nº {{numeroCancha}} - {{deporte}}</b>
+                                </div>
+                                <div class="card-body">                                
+                                    <input class="m-3" type="radio" name="idCancha" value="{{id}}"  style="height: 30px; width: 30px;" required>
+                                    <img src="/img/descarga/{{img}}" alt="" width="300">
+                                </div>
+                                <div class="card-footer">
+                                    <b>Horario -</b>
+                                    <b>De {{horaInicio}}hs</b>
+                                    <b>a {{horaFin}}hs</b>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        </form>
+    </div>
+</div>
+<script>
+        var hoy = new Date();
+        var dd = hoy.getDate();
+        var mm = hoy.getMonth() + 1;
+        var yyyy = hoy.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+        hoy = yyyy + '-' + mm + '-' + dd;
+        document.getElementById("fecha").setAttribute("min", hoy);
+</script>

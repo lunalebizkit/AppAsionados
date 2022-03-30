@@ -1,141 +1,159 @@
-{{#if user.rol}}
-<nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
+{{#if user}}
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">APPasionados</a>
+        <a class="navbar-brand mb-1" href="/paginas/inicio">
+            <img src="/img/app/logo4.png" alt="" width="65" height="65" class="d-inline-block ">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarsExample04">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown"
+                        aria-expanded="false">Deportes</a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown04">
+                        <li><a class="dropdown-item" href="/paginas/futbol">Fútbol</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/paginas/basquet">Básquet</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/paginas/padel">Pádel</a></li>
+                    </ul>
+                </li>                
+                <li class="nav-item">
+                    <a type="link" id="accesoDuenio" class="nav-link" href="/paginas/duenio" aria-disabled="true" style="display: none;" aria-controls="offcanvasRight">Canchas</a>
+                </li>                
+                <li class="nav-item">
+                    <a type="link" class="nav-link" href="/paginas/reservaUsuario/{{user.idUsuarios}}" aria-disabled="true"
+                 aria-controls="offcanvasRight">Mis Reservas</a>
+                </li>
+                <li class="nav-item">
+                    <a type="link" class="nav-link" href="#" aria-disabled="true" data-bs-toggle="modal"
+                    data-bs-target="#nosotros" aria-controls="offcanvasRight">Nosotros</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown"
+                        aria-expanded="false">Tutorial</a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown04">
+                        <li><a class="dropdown-item" href="/paginas/tutorialJugador">¿Dónde ingreso como jugador?</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/paginas/tutorialCancha">¿Dónde ingreso como dueño de cancha?</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/paginas/tutorialReserva">¿Cómo realizo una reserva?</a></li>
+                    </ul>
+                </li>
+                
+            </ul>
+        </div>
+        <li class="navbar-nav nav-item">
+            <a type="button" class="btn btn-warning text-dark" href="/paginas/reservaDeporte">Reservá ya!</a>
+        </li>
+        
+        <li class="navbar-nav nav-item">
+            <a class="nav-link text-primary" href="#" aria-disabled="true" data-bs-toggle="modal"
+                data-bs-target="#miPerfil" aria-controls="offcanvasRight">Bienvenido/a {{user.nombreUsuario}}</a>
+        </li>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04"
             aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="navbarsExample04">
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown"
-                        aria-expanded="false">Acciones</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/cerrarSesion" tabindex="-1" aria-disabled="true">Cerrar Sesion</a>
-                </li>
-            </ul>
-            <form>
-                <input class="form-control" type="text" placeholder="Buscar..." aria-label="Search">
-            </form>
-        </div>
+        <li class="nav-item">
+            <a class="link link-danger" href="/cerrarSesion" tabindex="-1" aria-disabled="true">Salir</a>
+        </li>
     </div>
 </nav>
-{{else}}
-    {{#if user}}
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/paginas/deporte">
-                    <img src="/img/logo4.png" alt="" width="60" height="60" class="d-inline-block ">
-                    <h2 style="display: inline-block" >APPasionados</h2>
-                </a>
-                <li class="nav-item">
-                    <a class="nav-link " href="#" tabindex="-1" aria-disabled="true" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Bienvenido {{user.nombreUsuario}}</a>
-                </li>
-                
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-                    <div class="offcanvas-header">
-                        <ul id="nombrEmailBarra">
-                           <li><h4 id="offcanvasRightLabel">{{user.nombre}}</h4></li> 
-                           <li><i>{{user.email}}</i>
-                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                            </li>
-                        </ul>
-                                                          
-                    </div>
-                    <div class="offcanvas-body">
-                        <div class="container-fluid">
-                            <a class="nav-link active" aria-current="page">
-                                <div class="btn-group dropend">
-                                    <a  href="#" class="link link-secondary dropdown-toggle" type="link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Perfil
-                                    </a>
-                                    <ul id="barraDesplegable" class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-                                        <div class="container-md">
-                                            <li><span >Cuenta</span><h6>Jugador</h6></li>
-                                            <li><hr class="dropdown-divider"></li>
-                                            <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#exampleModal">Actualizar Nombre</a>
-                                        </div>
-                                    </ul>
-                                </div>
-                            </a>
-                            <a class="nav-link active" aria-current="page">
-                                <div class="btn-group dropend">
-                                    <a  href="#" class="link link-secondary dropdown-toggle" type="link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Mis Equipos
-                                    </a>
-                                    <ul id="barraDesplegable" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <div class="container-md">
-                                            <li>
-                                                Fútbol -
-                                                <a href="/paginas/equipo" class="link link-success" type="link">Equipo1</a>
-                                            </li>
-                                            <li><hr class="dropdown-divider"></li>
-                                            <li>
-                                                Básquet -
-                                                <a href="#" class="link link-success" type="link"></a>
-                                            </li>
-                                            <li><hr class="dropdown-divider"></li>
-                                            <li>
-                                                Pádel -
-                                                <a href="#" class="link link-success" type="link"></a>
-                                            </li>
-                                        </div>
-                                    </ul>
-                                </div>
-                            </a>
-                        </div>
-                        <br>
-                        <br>
-                        <div class="container-fluid">
-                            <a class="link link-primary " href="/paginas/deporte" tabindex="-1" aria-disabled="true">Elegir deporte</a>
-                        </div>
-                        <div class="container-fluid" style="margin-top: 70%" >
-                            <hr class="dropdown-divider">
-                            <a class="link link-danger " href="/cerrarSesion" tabindex="-1" aria-disabled="true">Cerrar sesión</a>
-                        </div>
-                    </div>
-                </div>
+<!--Modal perfil -->
+<div class="modal fade" id="miPerfil" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: rgb(245, 224, 187);">
+            <!-- Modal Header -->
+            <div class="modal-header" id="miPerfil">
+                <em><h4 class="modal-title text-dark"><u style="color: rgb(59, 59, 59);">Socio Nº {{user.idUsuarios}}</u></h4></em>
+                <button type="button" class="close" data-bs-dismiss="modal" id="crearEquipo">&times;</button>
             </div>
-
-        </nav>
-
-        <!-- Modal Actualizar Nombre-->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content bg-dark">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Actualizar nombre</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <!-- Modal body -->
+            <div class="modal-body" id="miPerfil">
+                <div id="sello" class="row ">
+                    <div class="col-3">
+                       <a href="/paginas/miPerfil/{{user.idUsuarios}}"><img class="zoom" src="/img/descarga/{{user.img}}" alt="" width="125" height="120"></a>
                     </div>
-                    <div class="modal-body">
-                        <form action="" method="POST">
-                            <b>Nombre actual</b>
-                            <input type="text" class="form-control" name="nombre" placeholder="Nombre usuario" autofocus>
-                            <b>Nuevo nombre</b>
-                            <input type="text" class="form-control" name="nombre nuevo" placeholder="Nuevo nombre usuario">  
-                        </form> 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-success">Actualizar</button>
+                    <div class="col-8">
+                        <div class="d-flex">
+                            <b><pre class="ms-2">Nombre:{{user.nombre}}</pre></b>
+                        </div>
+                        <div class="d-flex">
+                            <b><pre class="ms-2">Apellido:{{user.apellido}}</pre></b>
+                        </div>
+                        <div class="d-flex">
+                            <b><pre class="ms-2">Email:{{user.email}}</pre></b>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
-    {{/if}}
+<!--Modal nosotros -->
+<div class="modal fade" id="nosotros" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="background-color: rgb(10, 103, 131);">
+            <!-- Modal Header -->
+            <div class="modal-header" id="nosotros">
+                <h4 class="modal-title text-white">¿Qué es APPasionados?</h4>
+                <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body" id="nosotros">
+                <div class="row ">
+                    <div >
+                        <h5><p>LLamar a un complejo deportivo e intentar reservar un turno es cosa 
+                            del pasado. APPasionados te ofrece un sistema innovador para estar más 
+                            actualizado que nunca. A través de nuestra página, puedes crear o ser parte 
+                            de un equipo de tu deporte favorito, navegar por los distintos establecimientos
+                            para ver sus canchas, imágenes, turnos disponibles y reservar
+                            rápidamente, sin pérdidas de tiempo.</p> 
+                            <p>Ya no es necesario depender de una guía telefónica en tu celular de 
+                            todos los complejos deportivos que conoces, se puede prescindir del 
+                            teléfono y puedes olvidarte de las interminables llamadas para tratar
+                            de conseguir un turno. APPasionados llegó para hacer todo mucho más simple.</p></h5>
+                            <h4>¿Por qué usar APPasionados?</h4>
+                        <h5>
+                        <div class="d-flex col-sm-10">
+                            <i class="fas fa-history"></i>
+                            <p> Reduce el tiempo al alquilar la cancha de tu complejo favorito.</p>
+                        </div>
+                        <div class="d-flex col-sm-10">
+                            <i class="far fa-smile-wink"></i>
+                            <p> Fácil de usar, pensada para el usuario.</p>
+                        </div>
+                        <div class="d-flex col-sm-10">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p> Encontrá tu complejo favorito del deporte que quieras.</p>
+                        </div>
+                        <div class="d-flex col-sm-10">
+                            <i class="fas fa-user-friends"></i>
+                            <p> Armá tu equipo invitando a tus amigos.</p></h5>
+                        </div>                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {{/if}}
+<script> 
+    var estado 
+    if ({{user.idRol}} == 2) {
+     estado= "block"
+     }else{
+     estado= "none"}
+
+document.getElementById('accesoDuenio').style.display= estado
+</script>
+

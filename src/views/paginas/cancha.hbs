@@ -1,230 +1,133 @@
-<div id="Cancha">
-    
-    <form id="formCancha" class="row g-4" >
-        <div class="col-md-12">
-            
-            <div class="text-center"><h1>Mi Cancha</h1></div>
-            <input type="text" class="form-control" id="validationDefault01" value="Nombre" required>
-            <br>
-
-            <input type="text" class="form-control" id="validationDefault02" value="Dirección" required>
-            <br>
-            
-            <div class="mb-3">
-                <div class="text-center"><label for="formFile" class="form-label">Logo</label></div>
-                <input class="form-control" type="file" id="formFile">
-            <br>
-
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle col-md-12" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Disponibilidad
-                </button>
-                <div class="dropdown-menu col-md-12" aria-labelledby="dropdownMenuButton">
-                        <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Lunes</a><br>
-                        <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Martes</a><br>
-                        <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Miércoles</a><br>
-                        <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Jueves</a><br>
-                        <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Viernes</a><br>
-                        <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Sábado</a><br>
-                        <a href="#" class="link link-success" type="link" data-bs-toggle="modal" data-bs-target="#modelCancha">Domingo</a>
-                </div>
+<div id="cancha">
+    <div class="container-fluid">
+        <div class="col-md-5 mx-auto p-3">
+            <div class="card text-center">
+                <h2>Nueva Cancha</h2>
+                <h2>"{{datosEstablecimiento.nombreEstablecimiento}}"</h2>
             </div>
-    </form>
-    <br>
-    <button type="submit" onclick="location.href='/ingresoDuenio'" class="btn btn-success btn-block">
-        Crear Cancha
-    </button>
-</div>    
-
- <!-- Modal de horarios-->
-<div class="modal fade" id="modelCancha" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div  class="modal-content">
-            <div class="modal-header">
-                <h3 align="center">Horarios</h3>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Mañana</th>
-                            <th scope="col">Tarde</th>
-                            <th scope="col">Noche</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        9.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        13.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        20.00hs
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        10.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        14.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        21.00hs
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        11.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        15.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        22.00hs
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        12.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        16.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        23.00hs
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        17.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        00.00hs
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        18.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                
-                            </td>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        19.00hs
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success">Cargar</button>
+            <div id="semiTransparente" class="text-white">
+                <form action="/paginas/cancha/{{idEstablecimiento}}" method="POST" enctype="multipart/form-data" onsubmit="return verificar();">
+                    
+                    <div class="container mt-4 ">
+                        <label for="numeroCancha">Numero de Cancha<span style="color: red;"> *</span></label>
+                        <input type="number" name="numeroCancha" class="col-2 m-2" min="1" required>
+                        <select name="idDeportes" class="btn btn-ls btn-primary" required>
+                             <option value="" selected disabled>Formato</option>                         
+                            {{#each deporte}}
+                            <option type="number" value={{idDeportes}} required>{{deporte}}</option>                           
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="container mt-2">
+                        <label for="dias">Dias de Atencion <span style="color: red;">* </span></label><br>
+                        <div class="container justify-content-around">
+                            <label for="dias"><input type="checkbox" name="dia[]" value=1> Lunes</label>
+                            <label for="dias"><input type="checkbox" name="dia[]" value=2> Martes</label>
+                            <label for="dias"><input type="checkbox" name="dia[]" value=3> Miercoles</label>
+                            <label for="dias"><input type="checkbox" name="dia[]" value=4> Jueves</label>
+                            <label for="dias"><input type="checkbox" name="dia[]" value=5> Viernes</label>
+                            <label for="dias"><input type="checkbox" name="dia[]" value=6> Sabado</label>
+                            <label for="dias"><input type="checkbox" name="dia[]" value=0> Domingo</label>
+                        </div>
+                    </div>
+                    <div class="container  py-2">
+                        <label for="horario">Horario de Atencion <span style="color: red;"> * </span></label>
+                        <select name="horaInicio" class="btn btn-ls btn-primary" required>
+                            <option value="" selected disabled>Desde</option>
+                            <option value="0" type="number">0</option>
+                            <option value="1" type="number">1</option>
+                            <option value="2" type="number">2</option>
+                            <option value="3" type="number">3</option>
+                            <option value="4" type="number">4</option>
+                            <option value="5" type="number">5</option>
+                            <option value="6" type="number">6</option>
+                            <option value="7" type="number">7</option>
+                            <option value="8" type="number">8</option>
+                            <option value="9" type="number">9</option>
+                            <option value="10" type="number">10</option>
+                            <option value="11" type="number">11</option>
+                            <option value="12" type="number">12</option>
+                            <option value="13" type="number">13</option>
+                            <option value="14" type="number">14</option>
+                            <option value="15" type="number">15</option>
+                            <option value="16" type="number">16</option>
+                            <option value="17" type="number">17</option>
+                            <option value="18" type="number">18</option>
+                            <option value="19" type="number">19</option>
+                            <option value="20" type="number">20</option>
+                            <option value="21" type="number">21</option>
+                            <option value="22" type="number">22</option>
+                            <option value="23" type="number">23</option>
+                        </select>
+                        <select name="horaFin" class="btn btn-ls btn-primary" required>
+                            <option value="" selected disabled>Hasta</option>
+                            <option value="0" type="number">0</option>
+                            <option value="1" type="number">1</option>
+                            <option value="2" type="number">2</option>
+                            <option value="3" type="number">3</option>
+                            <option value="4" type="number">4</option>
+                            <option value="5" type="number">5</option>
+                            <option value="6" type="number">6</option>
+                            <option value="7" type="number">7</option>
+                            <option value="8" type="number">8</option>
+                            <option value="9" type="number">9</option>
+                            <option value="10" type="number">10</option>
+                            <option value="11" type="number">11</option>
+                            <option value="12" type="number">12</option>
+                            <option value="13" type="number">13</option>
+                            <option value="14" type="number">14</option>
+                            <option value="15" type="number">15</option>
+                            <option value="16" type="number">16</option>
+                            <option value="17" type="number">17</option>
+                            <option value="18" type="number">18</option>
+                            <option value="19" type="number">19</option>
+                            <option value="20" type="number">20</option>
+                            <option value="21" type="number">21</option>
+                            <option value="22" type="number">22</option>
+                            <option value="23" type="number">23</option>
+                        </select><span class="m-1"><b>Hs</b></span>
+                    </div>
+                    <div class="container mt-3">
+                        <label for="imagen"><span style="color: red;"> * </span><input type="file" name="imagen" id="imagen" required></label>
+                    </div>
+                    <span><hr class="dropdown-divider"></span>
+                    <div class="col-5 mx-auto">
+                        <button type="submit" class="btn btn-success btn-block">
+                            Cargar
+                        </button>
+                        
+                        <a href="javascript: history.go(-1)" type="button" class="btn btn-danger btn-block">
+                            Cancelar
+                        </a>
+                    </div>
+                    <div class="p-2">
+                        <span style="color: red;">*</span>
+                        <span style="color: rgb(255, 255, 255);">Datos Obligatorios para mejor experiencia de usuario. Gracias!</span> 
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+//<![CDATA[
+function verificar(){
+var suma = 0;
+var los_cboxes = document.getElementsByName('dia[]'); 
+for (var i = 0, j = los_cboxes.length; i < j; i++) {
+    
+    if(los_cboxes[i].checked == true){
+    suma++;
+    }
+}
+ 
+if(suma == 0){
+alert('Debe completar todos los campos requeridos');
+return false;
+}else{
+}
+ 
+}
+//]]>
+</script>

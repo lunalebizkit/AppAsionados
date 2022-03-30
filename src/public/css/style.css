@@ -257,9 +257,9 @@ h6, h5{
   0% {opacity: 0;}
   100% {opacity: 1;}
 }
-.navbar {
+.navbar { 
  padding-bottom: 0px;
- padding-top: 0px;
+ padding-top: 0px 
 }
 
 .zoom {

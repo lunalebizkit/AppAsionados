@@ -7,6 +7,7 @@ const passport= require('passport');
 const MySQLStore = require('express-mysql-session');
 const { dataBase } = require('./keys');
 const flash= require('connect-flash');
+const cors= require('cors');
 
 /* Iniciar
 ------------------------------------------------------------------------------
@@ -32,7 +33,7 @@ aplicacion.set('view engine', '.hbs');
 
 //middeleware
 aplicacion.use(flash());
-
+aplicacion.use(cors());
 aplicacion.use(session({
     secret: 'aleLuna',
     resave: false,

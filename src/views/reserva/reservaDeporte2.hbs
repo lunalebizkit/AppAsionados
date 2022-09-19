@@ -50,9 +50,10 @@ function misTurnos() {
             return convertirParaComparar
         }
          let horaActual= new Date().getHours()+1;    
-         
+         console.log(horaActual)
         for (let i = inicio; i <= fin; i++) {              
             if ((convertirFecha(diaActual) == fechaSeleccionada) & ( horaActual >= i )) {
+                console.log(convertirFecha(diaActual))
                 continue;
             }    
                 

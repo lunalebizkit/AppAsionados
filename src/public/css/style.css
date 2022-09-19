@@ -6,6 +6,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100vh;
 }
 #nombreEquipo {
   color: rgb(6, 100, 189);
@@ -36,7 +37,7 @@ h6, h5{
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  height: 39rem;
+  height: 100vh;
   padding-bottom: 0%;
   margin-bottom: 0%;
   display: flex;
@@ -54,6 +55,7 @@ h6, h5{
   background-size: cover;
   background-attachment: fixed;
   cursor: url(../img/app/iconF.png), auto;
+  height: 100vh;
 }
 #basquet {
   background-image: url(../img/app/basq.jpg);
@@ -62,6 +64,7 @@ h6, h5{
   background-size: cover;
   background-attachment: fixed;
   cursor: url(../img/app/iconB.png), auto;
+  height: 100vh;
 }
 #padel {
   background-image: url(../img/app/padd.jfif);
@@ -69,7 +72,8 @@ h6, h5{
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  cursor: url(../img/app/iconP.png), auto;    
+  cursor: url(../img/app/iconP.png), auto;  
+  height: 100vh;
 }
 #tablaEquipo {
   background: rgba(0, 0, 0, 0.623);
@@ -126,7 +130,7 @@ h6, h5{
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  
+  height: 100vh;
 }
 
 #modalCancha-header{
@@ -139,7 +143,7 @@ h6, h5{
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  height: 39rem;
+  height: 100vh;
   padding-bottom: 0%;
   margin-bottom: 0%;
   display: flex;
@@ -282,7 +286,7 @@ h6, h5{
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
- 
+ height: 100vh;
 }
 
 #misCanchas {

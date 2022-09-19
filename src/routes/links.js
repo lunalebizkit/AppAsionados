@@ -509,6 +509,7 @@ ruta.get('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
      const turnos= await db.query('select * from  horarios where idCancha =?', [idCancha]);
      const reservas= await db.query('select hora from reserva where fechaReserva =? and estado = "Reservado" and idCancha =?', [fecha, idCancha]);
      const turno= turnos[0];
+     console.log(turno);
     res.render('reserva/reservaDeporte2', {turno, idCancha, reservas})
 });
 ruta.get('/reservaDeporte3/:turno', async(req, res)=>{

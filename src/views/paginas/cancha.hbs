@@ -32,7 +32,7 @@
                     </div>
                     <div class="container  py-2">
                         <label for="horario">Horario de Atencion <span style="color: red;"> * </span></label>
-                        <select name="horaInicio" class="btn btn-ls btn-primary" required>
+                        <select name="horaInicio" class="btn btn-ls btn-primary" required id="horaInicio">
                             <option value="" selected disabled>Desde</option>
                             <option value="0" type="number">0</option>
                             <option value="1" type="number">1</option>
@@ -59,7 +59,7 @@
                             <option value="22" type="number">22</option>
                             <option value="23" type="number">23</option>
                         </select>
-                        <select name="horaFin" class="btn btn-ls btn-primary" required>
+                        <select name="horaFin" class="btn btn-ls btn-primary" required id="horaFin">
                             <option value="" selected disabled>Hasta</option>
                             <option value="0" type="number">0</option>
                             <option value="1" type="number">1</option>
@@ -114,6 +114,7 @@
 //<![CDATA[
 function verificar(){
 var suma = 0;
+
 var los_cboxes = document.getElementsByName('dia[]'); 
 for (var i = 0, j = los_cboxes.length; i < j; i++) {
     
@@ -121,7 +122,7 @@ for (var i = 0, j = los_cboxes.length; i < j; i++) {
     suma++;
     }
 }
- 
+
 if(suma == 0){
 alert('Debe completar todos los campos requeridos');
 return false;
@@ -129,5 +130,19 @@ return false;
 }
  
 }
+ var horaInicio = document.getElementById('horaInicio');
+var horaFin = document.getElementById('horaFin');
+  horaFin.addEventListener('change',
+  function(){
+    var selectedOption = this.options[horaInicio.selectedIndex];
+    var selectedOption2 = this.options[horaFin.selectedIndex];
+    if (parseInt(selectedOption.value) > parseInt(selectedOption2.value)) {
+        alert('El Horario de atencion Inicial debe ser mayor al de Cierre');
+        horaFin.value= "";
+        horaInicio.value= "";
+      return ;
+    }
+  });
+
 //]]>
 </script>

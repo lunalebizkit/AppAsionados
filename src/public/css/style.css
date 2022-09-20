@@ -131,7 +131,13 @@ h6, h5{
   background-size: cover;
   background-attachment: fixed;
 }
-
+#nohayturno {
+  font-weight: bold;
+  border-radius: 5px;
+  border-color:#0275d8;
+  background-color:#0275d8;
+  color: white;
+}
 #modalCancha-header{
   color:black;
   text-align: center

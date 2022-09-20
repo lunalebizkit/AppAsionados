@@ -49,22 +49,28 @@ function misTurnos() {
             convertirParaComparar= fecha.getFullYear() + "-"+ mes + "-"+ dia;
             return convertirParaComparar
         }
-         let horaActual= new Date().getHours()+1;    
-         console.log(horaActual)
+         let horaActual= new Date().getHours()+1;  
+         let contador=0;
         for (let i = inicio; i <= fin; i++) {              
-            if ((convertirFecha(diaActual) == fechaSeleccionada) & ( horaActual >= i )) {
-                console.log(convertirFecha(diaActual))
+            if ((convertirFecha(diaActual) == fechaSeleccionada) & ( horaActual >= i )) {            
                 continue;
             }    
-                
+             contador +=1;
+
             {{#each reservas }}
+
             idCancha= {{idCancha}}
+
             hora= {{hora}}
+
             if (i == hora) {
                 document.getElementById("texto").innerHTML += `<a class="btn btn-danger mb-3" href=#> ${i}:00 Hs (RESERVADO)</a>`;continue;
             }
             {{/each}}       
             document.getElementById("texto").innerHTML += `<a class="btn btn-primary mb-3" href="/paginas/reservaDeporte3/${i}" onclick="return confirm('¿Estás seguro que deseas realizar la reserva? Recuerde que las reservas sólo podran cancelarse 4hs antes de la fecha seleccionada');"> ${i}:00 Hs</a>`;
+        }
+        if (contador == 0){
+            document.getElementById("texto").innerHTML = `<div class="col-6 mb-3 pt-2 mt-2" id="nohayturno"><p>No hay Turnos Disponibles</p> </div>`
         }
 }      
 misTurnos()

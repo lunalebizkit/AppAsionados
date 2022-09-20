@@ -1,10 +1,10 @@
-<div id="ticket">
+<div id="ticket" style="min-height: 560px;">
     <div class="container-fluid pt-5">
         <div class="container card text-center mb-3">
             <h5 style="color: rgba(255, 0, 0, 0.589);"><p>* Las reservas se podran cancelar 4hs antes de la fecha seleccionada</p></h5>
             <h2><b>MIS RESERVAS</b></h2>
         </div>
-        <table id="myTable" class="table table-success table-striped ">
+        <table class="table table-success table-striped ">
             <thead>
                 <th onclick="sortTable(0, 'str')">Fecha</th>
                 <th onclick="sortTable(1, 'str')">Establecimiento</th>
@@ -31,11 +31,12 @@
             </tbody>
         </table>
      
-           <div class="row py-5">
-        <div style="float: left" class="col-2 p-3">
-            <a id="volver" href="/paginas/deporte" type="button" class="btn btn-danger">Salir</a>
-        </div>
-    </div> 
+        <div class="row py-5">
+            <div style="float: left" class="col-2 p-3">
+                <a id="volver" href="/paginas/deporte" type="button" class="btn btn-danger">Salir</a>
+            </div>
+        </div> 
+    </div>
 </div>
 <script>     
     var tabla= document.getElementById('tablaReserva')

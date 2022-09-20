@@ -494,22 +494,28 @@ ruta.post('/reservaDeporte1/:deporte', async(req, res)=>{
     if(dia == 7) {
      dia = 0
     }
+   
     const detalle=await db.query('Select * from observacion where idCancha =? and fecha=?', [idCancha, fecha]);
     const dias=await db.query('Select * from dia where idCancha =? and dia=?', [idCancha, dia]);
+    
     if ((dias.length)>0) {
         if ((detalle.length)==0) {
             res.redirect('/paginas/reservaDeporte2/'+idCancha+'&'+"fecha="+fecha);
         }else {
             req.flash('mensajeMal', 'El dia seleccionado No atiende!'),
         res.redirect('/paginas/reservaDeporte1/'+ deporte)}
-    };
+    }
+    else{
+        req.flash('mensajeMal', 'El dia seleccionado No atiende!'),
+        res.redirect('/paginas/reservaDeporte1/'+ deporte)
+    }
 });
 ruta.get('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
     const { idCancha, fecha}= req.session.newReserva;
      const turnos= await db.query('select * from  horarios where idCancha =?', [idCancha]);
      const reservas= await db.query('select hora from reserva where fechaReserva =? and estado = "Reservado" and idCancha =?', [fecha, idCancha]);
      const turno= turnos[0];
-     console.log(turno);
+     
     res.render('reserva/reservaDeporte2', {turno, idCancha, reservas})
 });
 ruta.get('/reservaDeporte3/:turno', async(req, res)=>{
@@ -589,7 +595,6 @@ ruta.get('/verMapa/:idEstablecimiento', estaLogueado, async (req, res) => {
     const {mapa}= consultarMapaExiste[0]
     const establecimiento= await db.query('Select * from establecimiento where idEstablecimiento =?', [idEstablecimiento]);  
     const cancha= establecimiento[0];
-    console.log(cancha);
     res.render('paginas/verMapa', {idEstablecimiento, cancha, mapa});
 });
 ruta.get('/tutorialJugador', estaLogueado, async (req, res) => {

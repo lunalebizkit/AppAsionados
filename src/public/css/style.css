@@ -183,10 +183,11 @@ h6, h5{
 }
 #semiTransparente{
   background: rgba(41, 41, 41, 0.575);
+  
 }
 
 #volver {
-  bottom: 0;
+ 
 }
 .tooltip.right .tiptext{
   top: -5px;

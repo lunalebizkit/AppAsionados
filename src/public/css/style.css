@@ -6,6 +6,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100vh;
 }
 #nombreEquipo {
   color: rgb(6, 100, 189);
@@ -36,7 +37,7 @@ h6, h5{
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  height: 39rem;
+  height: 100vh;
   padding-bottom: 0%;
   margin-bottom: 0%;
   display: flex;
@@ -54,6 +55,7 @@ h6, h5{
   background-size: cover;
   background-attachment: fixed;
   cursor: url(../img/app/iconF.png), auto;
+  height: 100vh;
 }
 #basquet {
   background-image: url(../img/app/basq.jpg);
@@ -62,6 +64,7 @@ h6, h5{
   background-size: cover;
   background-attachment: fixed;
   cursor: url(../img/app/iconB.png), auto;
+  height: 100vh;
 }
 #padel {
   background-image: url(../img/app/padd.jfif);
@@ -69,7 +72,8 @@ h6, h5{
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  cursor: url(../img/app/iconP.png), auto;    
+  cursor: url(../img/app/iconP.png), auto;  
+  height: 100vh;
 }
 #tablaEquipo {
   background: rgba(0, 0, 0, 0.623);
@@ -125,10 +129,16 @@ h6, h5{
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
-  
-}
+   background-attachment: fixed;
 
+}
+#nohayturno {
+  font-weight: bold;
+  border-radius: 5px;
+  border-color:#0275d8;
+  background-color:#0275d8;
+  color: white;
+}
 #modalCancha-header{
   color:black;
   text-align: center
@@ -139,7 +149,7 @@ h6, h5{
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  height: 39rem;
+  height: 100vh;
   padding-bottom: 0%;
   margin-bottom: 0%;
   display: flex;
@@ -179,10 +189,11 @@ h6, h5{
 }
 #semiTransparente{
   background: rgba(41, 41, 41, 0.575);
+  
 }
 
 #volver {
-  bottom: 0;
+ 
 }
 .tooltip.right .tiptext{
   top: -5px;
@@ -257,9 +268,9 @@ h6, h5{
   0% {opacity: 0;}
   100% {opacity: 1;}
 }
-.navbar {
+.navbar { 
  padding-bottom: 0px;
- padding-top: 0px;
+ padding-top: 0px 
 }
 
 .zoom {
@@ -282,7 +293,7 @@ h6, h5{
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
- 
+ height: 100vh;
 }
 
 #misCanchas {

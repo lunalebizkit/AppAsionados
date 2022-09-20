@@ -20,11 +20,26 @@ passport.use('local.ingreso', new LocalStrategy({
             done(null, usuario, req.flash('mensajeOk', 'Bienvenido! ' + usuario.nombreUsuario));
         } else {
             done(null, false, req.flash('mensajeMal', 'Contraseña Incorrecta'));
-            ;
+            
         }
 
     } else {
         return done(null, false, req.flash('mensajeMal', 'Usuario en baja o no existente'));
+    }
+}));
+passport.use( new LocalStrategy( async ( nombreUsuario, contrasenia, done)=> {
+    const buscar = await db.query('SELECT * FROM usuarios WHERE nombreUsuario = ? and baja = false', [nombreUsuario]);
+    if (buscar.length > 0) {
+        const usuario = buscar[0];
+        const validacion = await helpers.comparaContrasenia(contrasenia, usuario.contrasenia);
+        if (validacion) {
+            done(null, usuario);
+        } else {
+            done(null, false);
+        }
+
+    } else {
+        return done(null, false);
     }
 }));
 /*------------------------------------

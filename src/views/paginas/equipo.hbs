@@ -20,27 +20,30 @@
             </table>
         </div>
     </div>
-    <div id="regresar" class="col-2  p-3">
-        
-    </div>
-    
-    {{#unless pertenezco}}
-    <div class="container">
-        <div id="semiTransparente" class="col-7 m-auto p-1 text-center">
-            <h3 style="color: white;">¿Querés ser parte del Equipo?</h3>
-            <form  action="/paginas/ingresarAlEquipo/{{numero}}&{{idDeportes}}" method="get">
-                <div id="deporteFormulario" class="col-6 mx-auto py-2">             
-            </form>
+    <div class="row">
+        <div id="regresar" class="col-3"> </div>
+
+
+
+        {{#unless pertenezco}}
+        <div class="col-9">
+            <div id="semiTransparente" class="col-7 m-auto text-center" style="position:absolute;">
+                <h3 style="color: white;">¿Querés ser parte del Equipo?</h3>
+                <form action="/paginas/ingresarAlEquipo/{{numero}}&{{idDeportes}}" method="get">
+                    <div id="deporteFormulario" class="col-6 mx-auto py-2">
+                </form>
+            </div>
         </div>
+        {{/unless}}
     </div>
-    {{/unless}}
-    
+
 </div>
 <script>
     function claseDeporte() {
-        var numero = {{idDeportes}} 
-        if ( numero ==  3 || numero== 2 || numero == 1) {           
-            document.getElementById("deporteFormulario").innerHTML += ` <select name="posicion" class="btn btn-ls btn-success" required>
+        var numero = {{ idDeportes }}
+
+    if (numero == 3 || numero == 2 || numero == 1) {
+        document.getElementById("deporteFormulario").innerHTML += ` <select name="posicion" class="btn btn-ls btn-success" required>
                         <option type="text" value="">Elegir posición</option>
                         <option type="text" value="Arquero">Arquero</option>
                         <option type="text" value="Defensor">Defensor</option>
@@ -49,10 +52,10 @@
                     </select> 
                       <span><hr class="dropdown-divider"></span>
                     <button class="btn btn-primary btn-block">Unirme</button>
-                </div>`            
-        }
-        if (numero ==4 ) {
-             document.getElementById("deporteFormulario").innerHTML += `<select name="posicion" class="btn btn-ls btn-success" required>
+                </div>`
+    }
+    if (numero == 4) {
+        document.getElementById("deporteFormulario").innerHTML += `<select name="posicion" class="btn btn-ls btn-success" required>
                                 <option type="text" value="">POSICIÓN</option>
                                 <option type="text" value="Base">Base</option>
                                 <option type="text" value="Escolta">Escolta</option>
@@ -62,34 +65,34 @@
                             </select>
                       <span><hr class="dropdown-divider"></span>
                     <button class="btn btn-primary btn-block">Unirme</button>
-                </div>`      
-        }
-        if (numero == 5) {
-              document.getElementById("deporteFormulario").innerHTML += `<select name="posicion" class="btn btn-ls btn-success" required>
+                </div>`
+    }
+    if (numero == 5) {
+        document.getElementById("deporteFormulario").innerHTML += `<select name="posicion" class="btn btn-ls btn-success" required>
                                 <option type="text" value="">POSICIÓN</option>
                                 <option type="text" value="Derecha">Derecha</option>
                                 <option type="text" value="Revés">Revés</option>
                             </select>
                       <span><hr class="dropdown-divider"></span>
                     <button class="btn btn-primary btn-block">Unirme</button>
-                </div>` 
-        }
-    } 
-claseDeporte()
+                </div>`
+    }
+    }
+    claseDeporte()
 </script>
 
 <script>
     function volverDeporte() {
-        var numero = {{idDeportes}} 
-        if ( numero ==  3 || numero== 2 || numero == 1) {           
-            document.getElementById("regresar").innerHTML += `<a id="volver" href="/paginas/futbol" type="button" class="btn btn-danger">Volver</a>`            
-        }
-        if (numero ==4 ) {
-             document.getElementById("regresar").innerHTML += `<a id="volver" href="/paginas/basquet" type="button" class="btn btn-danger">Volver</a>`      
-        }
-        if (numero == 5) {
-              document.getElementById("regresar").innerHTML += `<a id="volver" href="/paginas/padel" type="button" class="btn btn-danger">Volver</a>` 
-        }
-    } 
-volverDeporte()
+        var numero = {{ idDeportes }}
+    if (numero == 3 || numero == 2 || numero == 1) {
+        document.getElementById("regresar").innerHTML += `<a id="volver" href="/paginas/futbol" type="button" class="btn btn-danger">Volver</a>`
+    }
+    if (numero == 4) {
+        document.getElementById("regresar").innerHTML += `<a id="volver" href="/paginas/basquet" type="button" class="btn btn-danger">Volver</a>`
+    }
+    if (numero == 5) {
+        document.getElementById("regresar").innerHTML += `<a id="volver" href="/paginas/padel" type="button" class="btn btn-danger">Volver</a>`
+    }
+    }
+    volverDeporte()
 </script>

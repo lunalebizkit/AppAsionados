@@ -20,7 +20,7 @@ ruta.post('/ingreso', (req, res, next)=> {
         successRedirect: 'paginas/inicio',
         failureRedirect: '/ingreso',
         failureFlash: true
-    })(req, res, next)
+    })(req, res, next) 
 });
 //registro duenio//
 ruta.get('/registroDuenio', estaLogueado, async(req, res)=> {

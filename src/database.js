@@ -12,12 +12,12 @@ db.getConnection((err, connection) => {
         if (err.code === 'ER_CON_COUNT_ERROR') {
             console.error('La base de Datos tiene muchas conexiones');
         }
-        if (err.code === 'ECONREFUSED') {
+        if (err.code === 'ECONNREFUSED') {
             console.error('La conexion fue rechazada');
         }
     }
     if (connection) connection.release();
-    console.log('Base de datos conectada');
+    console.log('Base de Datos conectada');
     return;
 
     }

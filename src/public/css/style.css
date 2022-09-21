@@ -191,9 +191,6 @@ h6, h5{
   
 }
 
-#volver {
- 
-}
 .tooltip.right .tiptext{
   top: -5px;
   left: 110%;
@@ -293,6 +290,7 @@ h6, h5{
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  min-height: 555px;
 }
 
 #misCanchas {

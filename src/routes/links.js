@@ -519,16 +519,25 @@ ruta.get('/reservaDeporte2/:idCancha&:fecha', async(req, res)=>{
     res.render('reserva/reservaDeporte2', {turno, idCancha, reservas})
 });
 ruta.get('/reservaDeporte3/:turno', async(req, res)=>{
-    const {turno}=req.params
+    const {turno}=req.params;
+    const {idCancha, idUsuarios, fecha}= req.session.newReserva;
+    const newHayReserva={fechaReserva: fecha, hora: turno, idCancha };
+    
     try {
-        const {idCancha, idUsuarios, fecha}= req.session.newReserva;
-        const newReserva= {idCancha, idUsuario: idUsuarios, estado: "Reservado",fechaReserva: fecha, hora: turno}
+        const hayReserva=await db.query('Select * from reserva where fechaReserva =? and hora =? and estado != "Cancelado" and idCancha =?',[newHayReserva.fechaReserva, newHayReserva.hora, idCancha]);
+        if (hayReserva.length == 0 ){
+            const newReserva= {idCancha, idUsuario: idUsuarios, estado: "Reservado",fechaReserva: fecha, hora: turno}
         let reservaCompleta= await db.query('insert into reserva set?',[newReserva]);
         if (reservaCompleta) {
             req.session.newReserva= {}
             req.flash('mensajeOk', 'Reserva Hecha!!!');
             res.redirect('/paginas/reservaUsuario/'+ idUsuarios);
+        } 
+        }else{
+            req.flash('mensajeMal', 'No se ha podido realizar la reserva');
+            res.redirect('/paginas/reservaDeporte')
         }
+       
     } catch (error) {
         console.log(error)
         req.flash('mensajeMal', 'No se ha podido realizar la reserva');

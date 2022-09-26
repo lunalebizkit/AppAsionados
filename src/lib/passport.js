@@ -76,12 +76,14 @@ passport.use('local.registro', new LocalStrategy({
             <li>Su Usuario es:<b> ${nombreUsuario} </b></li>
             <li>Su contraseña es :<b> ${contrasenia} </b></li>
         </ul>
+        <p><img src="cid: firma" > </p>
         
-    `;    
+    `;   
     const CLIENT_ID="646859646017-mdq9mtoudeusnv9vpt4fibts5t2fnsp9.apps.googleusercontent.com";
     const CLIENT_SECRET="7JkJcecbeO2F4hAcVczI_AJk";
     const REDIRECT_URI="https://developers.google.com/oauthplayground";
-    const REFRESH_TOKEN="1//04DDtGxmm0pX-CgYIARAAGAQSNwF-L9Ira2Ua-IRVqVk8PU649AlEDDCUhNIESaodTyXpeABJ73AaWbbMIRPiGgajYvNsi5oHGug";
+    const REFRESH_TOKEN="1//04SJ8pdBH8EWBCgYIARAAGAQSNwF-L9IrlxDmL3-qjPQ4QFwiZE92QljQkHqheNtKMiEFKfZAJ3AxnuTCqnFevAegAsjzmnKPZoo";
+    
     const oAuth2cliente = new google.auth.OAuth2( 
         CLIENT_ID,
         CLIENT_SECRET,
@@ -110,6 +112,12 @@ passport.use('local.registro', new LocalStrategy({
                  to: email,
                  subject:"Confirmacion de Registro",
                  html: mensajeMail, 
+                 attachments: [{
+                    filename: 'firma2.jpeg',
+                    path: "C:/Users/Ale/Documents/Ale/AppAsionados/src/public/img/app/firma2.jpeg" ,
+                    cid : 'firma'
+                 }]
+                 
              };
              const result = await transporter.sendMail(mailOptions);
              return result
